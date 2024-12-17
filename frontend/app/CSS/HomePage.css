@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400..900;1,400..900&family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap');
+
+/* Animation for clockwise rotation with a 5s delay between each rotation */
+@keyframes rotateWithPauseClockwise {
+  0% {
+    transform: rotate(0deg);
+  }
+  90% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.rotate-with-pause-clockwise {
+  animation: rotateWithPauseClockwise 5s ease-in-out infinite;
+  animation-delay: 5s; /* 5-second delay between each rotation */
+}
+
+/* Animation for counterclockwise rotation with a 5s delay between each rotation */
+@keyframes rotateWithPauseCounterClockwise {
+  0% {
+    transform: rotate(0deg);
+  }
+  90% {
+    transform: rotate(-360deg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
+.rotate-with-pause-counterclockwise {
+  animation: rotateWithPauseCounterClockwise 5s ease-in-out infinite;
+  animation-delay: 0.5s; /* 5-second delay between each rotation */
+}
+
+/* FABCEYLON Light*/
+
+h1.headline{
+  font-size: calc(20px + 18vh);
+  line-height: calc(20px + 20vh);
+/*   text-shadow: 0 0 5px #f562ff, 0 0 15px #f562ff, 0 0 25px #f562ff,
+    0 0 20px #f562ff, 0 0 30px #890092, 0 0 80px #890092, 0 0 80px #890092;
+  color: #fccaff; */
+  text-shadow: 0 0 5px #EB650F, 0 0 15px #EB650F, 0 0 20px #EB650F, 0 0 40px #EB650F, 0 0 60px #EB650F, 0 0 10px #EB650F, 0 0 98px #EB650F;
+    color: #fff6a9;
+  
+  text-align: center;
+  animation: blink 12s infinite;
+  -webkit-animation: blink 12s infinite;
+}
+
+body {
+  padding: 2vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #222;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 7px,
+    rgba(0, 0, 0, 0.8) 9px,
+    rgba(0, 0, 0, 0.8) 13px,
+    transparent 13px
+  );
+}
+
+.headline-glow {
+  font-size: calc(20px + 18vh);
+  line-height: calc(20px + 20vh);
+  text-shadow: 0 0 5px #ffa500, 0 0 15px #ffa500, 0 0 20px #ffa500,
+               0 0 40px #ffa500, 0 0 60px #ff0000, 0 0 10px #ff8d00,
+               0 0 98px #ff0000;
+  color: #fff6a9;
+  font-family: "Sacramento", cursive;
+  text-align: center;
+  animation: blink 12s infinite;
+}
+
+.noto-serif-custom {
+  font-family: "Noto Serif", serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
+}
+
+@keyframes blink {
+  20%, 24%, 55% {
+    color: #111;
+    text-shadow: none;
+  }
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    text-shadow: 0 0 5px #ffa500, 0 0 15px #ffa500, 0 0 20px #ffa500, 
+                 0 0 40px #ffa500, 0 0 60px #ff0000, 0 0 10px #ff8d00, 
+                 0 0 98px #ff0000;
+    color: #fff6a9;
+  }
+
+}
