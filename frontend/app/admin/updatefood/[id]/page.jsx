@@ -5,11 +5,12 @@ import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import jwtDecode from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode';
 
-const UpdateFood = () => {
+const UpdateFood =  ({params}) => {
     const router = useRouter();
-    const { id } = router.query; // Fetch ID from query params
+    // const { id } = router.query; // Fetch ID from query params
+    const id = (params).id  
     const [loading, setLoading] = useState(true);
     const [formData, setFormData] = useState({
         foodName: "",
