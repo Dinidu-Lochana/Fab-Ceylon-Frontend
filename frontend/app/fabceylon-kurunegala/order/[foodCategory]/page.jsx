@@ -7,6 +7,8 @@ import { MenuNavBar } from '@/components/MenuNavBar';
 import { MainMenuNavBar } from '@/components/MainMenuNavBar';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import Link from 'next/link';
+
 
 export default function KandyMenu({ params }) {
   const foodCategory = params.foodCategory;
@@ -208,7 +210,19 @@ export default function KandyMenu({ params }) {
               )}
               .00
             </div>
+            {/* Checkout Button */}
+            <div className="flex justify-center w-full mt-5">
+              <button
+                
+                className="w-[200px] h-[50px] bg-[#eb650f] text-white text-xl font-bold font-['Poppins'] rounded-[10px] hover:bg-[#d4550d] transition-colors"
+              >
+                <Link href="http://localhost:3000/fabceylon-kurunegala/order/checkout">
+                  Checkout
+                </Link>
+              </button>
+            </div>
           </div>
+
         </div>
       </div>
     </div>

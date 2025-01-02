@@ -39,13 +39,7 @@ export const MainMenuNavBar = () => {
           <div className="text-[#caa767] text-[20px] font-medium font-['Poppins']">REGISTER</div>
 
           <div className="h-[52px] justify-start items-center gap-[22px] inline-flex ml-20">
-      <Image
-        className="w-[40px] h-[40px]"
-        src={cart_icon} 
-        alt="Icon 1"
-        width={52}
-        height={52}
-      />
+     
       <Image
         className="w-[40px] h-[40px]"
         src={user_icon} 
