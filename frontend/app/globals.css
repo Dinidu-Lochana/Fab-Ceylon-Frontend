@@ -1,6 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400..900;1,400..900&family=PT+Serif+Caption:ital@0;1&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Reem+Kufi:wght@400..700&display=swap');
+
+body {
+  font-family: 'Reem Kufi', sans-serif;
+}
 
 @layer base {
   :root {
@@ -64,7 +69,7 @@
     @apply border-border;
   }
   body {
-    @apply bg-[#9e3131] text-foreground;
+    @apply bg-[#f0e6d9] text-foreground;
   }
 }
 

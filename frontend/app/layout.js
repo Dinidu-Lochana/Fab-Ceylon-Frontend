@@ -26,6 +26,12 @@ const ebGaramond = EB_Garamond({
   display: 'swap', // Optional: improves font loading performance
 });
 
+const PTSerif = localFont({
+  src: "./fonts/PTSerifCaption-italic.woff",
+  variable: "--font-alegreya",
+  weight: "100 900",
+});
+
 // Configure Alegreya with specific weights if needed
 /*const alegreya = Alegreya({
   weight: '800',
