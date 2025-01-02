@@ -5,52 +5,93 @@ export const MenuNavBar = () => {
   return (
     <div>
       <div className="w-[15px] h-[66px] relative">
-        <Link href="/kandyMenu/friedrice">
+        <Link href="/fabceylon-kurunegala/order/appetizers">
           <div className="w-[125px] left-[140px] top-[16px] absolute text-center text-[#eb650f] text-2xl font-bold font-['Poppins'] cursor-pointer">
-            Fried Rice
+            Appetizers
           </div>
         </Link>
-        <Link href="/kandyMenu">
+        <Link href="/fabceylon-kurunegala/order/salads">
           <div className="w-[125px] left-[0px] top-[16px] absolute text-center text-[#eb650f] text-2xl font-bold font-['Poppins'] cursor-pointer">
-            Burger
+            Salads
           </div>
         </Link>
-        <Link href="/kandyMenu/kottu">
+        <Link href="/fabceylon-kurunegala/order/soups">
           <div className="w-[125px] left-[280px] top-[16px] absolute text-center text-[#eb650f] text-2xl font-bold font-['Poppins'] cursor-pointer">
-            Kottu
+            Soups
           </div>
         </Link>
-        <Link href="/kandyMenu/biriyani">
+        <Link href="/fabceylon-kurunegala/order/pasta-spaghetti">
           <div className="w-[125px] left-[425px] top-[16px] absolute text-center text-[#eb650f] text-2xl font-bold font-['Poppins'] cursor-pointer">
-            Biriyani
+            Pasta & Spaghetti
           </div>
         </Link>
-        <Link href="/kandyMenu/noodles">
+        <Link href="/fabceylon-kurunegala/order/noodles">
           <div className="w-[12px] left-[590px] top-[16px] absolute text-center text-[#eb650f] text-2xl font-bold font-['Poppins'] cursor-pointer">
             Noodles
           </div>
         </Link>
-        <Link href="/kandyMenu/soup">
+        <Link href="/fabceylon-kurunegala/order/kottu">
           <div className="w-[125px] left-[700px] top-[16px] absolute text-center text-[#eb650f] text-2xl font-bold font-['Poppins'] cursor-pointer">
-            Soup
+            Kottu
           </div>
         </Link>
-        <Link href="/kandyMenu/milkshake">
-          <div className="w-[215px] h-9 left-[820px] top-[16px] absolute text-center text-[#eb650f] text-2xl font-bold font-['Poppins'] cursor-pointer">
-            Milk Shake
+        <Link href="/fabceylon-kurunegala/order/fried-rice">
+          <div className="w-[125px] left-[820px] top-[16px] absolute text-center text-[#eb650f] text-2xl font-bold font-['Poppins'] cursor-pointer">
+            Fried Rice
           </div>
         </Link>
-        <Link href="/kandyMenu/mojito">
+        <Link href="/fabceylon-kurunegala/order/biriyani">
           <div className="w-[125px] left-[1050px] top-[16px] absolute text-center text-[#eb650f] text-2xl font-bold font-['Poppins'] cursor-pointer">
+            Biriyani
+          </div>
+        </Link>
+        <Link href="/fabceylon-kurunegala/order/signature-meals">
+          <div className="w-[125px] left-[1250px] top-[16px] absolute text-center text-[#eb650f] text-2xl font-bold font-['Poppins'] cursor-pointer">
+            Signature Meals
+          </div>
+        </Link>
+        <Link href="/fabceylon-kurunegala/order/seafood-monster">
+          <div className="w-[125px] left-[1400px] top-[16px] absolute text-center text-[#eb650f] text-2xl font-bold font-['Poppins'] cursor-pointer">
+            Seafood Monster
+          </div>
+        </Link>
+        
+        <Link href="/fabceylon-kurunegala/order/burgers">
+          <div className="w-[125px] left-[1600px] top-[16px] absolute text-center text-[#eb650f] text-2xl font-bold font-['Poppins'] cursor-pointer">
+            Burgers
+          </div>
+        </Link>
+        <Link href="/fabceylon-kurunegala/order/sandwiches-submarines">
+          <div className="w-[125px] left-[1800px] top-[16px] absolute text-center text-[#eb650f] text-2xl font-bold font-['Poppins'] cursor-pointer">
+            Sandwiches & Submarines
+          </div>
+        </Link>
+        <Link href="/fabceylon-kurunegala/order/desserts">
+          <div className="w-[125px] left-[2000px] top-[16px] absolute text-center text-[#eb650f] text-2xl font-bold font-['Poppins'] cursor-pointer">
+            Desserts
+          </div>
+        </Link>
+        <Link href="/fabceylon-kurunegala/order/iced-coffee-iced-tea">
+          <div className="w-[215px] h-9 left-[2200px] top-[16px] absolute text-center text-[#eb650f] text-2xl font-bold font-['Poppins'] cursor-pointer">
+            Iced Coffee & Iced Tea
+          </div>
+        </Link>
+        <Link href="/fabceylon-kurunegala/order/bubble-tea">
+          <div className="w-[125px] left-[2450px] top-[16px] absolute text-center text-[#eb650f] text-2xl font-bold font-['Poppins'] cursor-pointer">
+            Bubble Tea
+          </div>
+        </Link>
+        <Link href="/fabceylon-kurunegala/order/mojito">
+          <div className="w-[125px] left-[2650px] top-[16px] absolute text-center text-[#eb650f] text-2xl font-bold font-['Poppins'] cursor-pointer">
             Mojito
           </div>
         </Link>
-        <Link href="/kandyMenu/salad">
-          <div className="w-[125px] left-[1250px] top-[16px] absolute text-center text-[#eb650f] text-2xl font-bold font-['Poppins'] cursor-pointer">
-            Salad
+        <Link href="/fabceylon-kurunegala/order/milk-shakes">
+          <div className="w-[215px] h-9 left-[2850px] top-[16px] absolute text-center text-[#eb650f] text-2xl font-bold font-['Poppins'] cursor-pointer">
+            Milk Shakes
           </div>
         </Link>
       </div>
-    </div>
-  );
+    </div>
+  );
 };

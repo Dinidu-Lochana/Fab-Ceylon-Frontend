@@ -145,25 +145,25 @@ const AddFood = () => {
                         className="h-[40px] w-full bg-white border border-[#c9c9c9] rounded-[20px] text-[14px] pl-2 text-[#333]"
                     >
                         <option value="" disabled>Select Category</option>
-                        <option value="Appetizer">Appetizer</option>
-                        <option value="Salad-&-Soup">Salad & Soup</option>
-                        <option value="Pasta-&-Spaghetti">Pasta & Spaghetti</option>
-                        <option value="Fried-Rice">Fried Rice</option>
-                        <option value="Biriyani">Biriyani</option>
-                        <option value="Kottu">Kottu</option>
-                        <option value="Noodles">Noodles</option>
-                        <option value="Add-On">Add-On</option>
-                        <option value="Side-Dishes">Side Dishes</option>
-                        <option value="Fab-Signature-Shovel-Rice">Fab Signature Shovel Rice</option>
-                        <option value="Burger-&-Submarine">Burger & Submarine</option>
-                        <option value="Sandwiches-&-Submarines">Sandwiches & Submarines</option>
-                        <option value="Dessert">Dessert</option>
-                        <option value="Bubble-Tea">Bubble Tea</option>
-                        <option value="Iced-Tea-&-Coffee">Iced Tea & Coffee</option>
-                        <option value="Hot-Beverage">Hot Beverage</option>
-                        <option value="Mojito">Mojito</option>
-                        <option value="Milk-Shake">Milk Shake</option>
-                        <option value="Cocktails">Cocktails</option>
+                        <option value="appetizers">Appetizers</option>
+                        <option value="salads">Salads</option>
+                        <option value="soups">Soups</option>
+                        <option value="pasta-&-spaghetti">Pasta & Spaghetti</option>
+                        <option value="noodles">Noodles</option>
+                        <option value="kottu">Kottu</option>
+                        <option value="fried-rice">Fried Rice</option>
+                        <option value="biriyani">Biriyani</option>
+                        <option value="signature-meals">Signature Meals</option>
+                        <option value="seafood-monster">Seafood Monster</option>
+                        <option value="burgers">Burgers</option>
+                        <option value="sandwiches-&-submarines">Sandwiches & Submarines</option>
+                        <option value="desserts">Desserts</option>
+                        <option value="iced-coffee-&-iced-tea">Iced Coffee & Iced Tea</option>
+                        <option value="bubble-tea">Bubble Tea</option>
+                        <option value="mojito">Mojito</option>
+                        <option value="milk-shakes">Milk Shakes</option>
+
+
                     </select>
                 </div>
 

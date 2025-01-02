@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 import cart_icon from "./Assets/cart_icon.png"
 import user_icon from "./Assets/user_icon.png"
@@ -25,6 +26,11 @@ export const MainMenuNavBar = () => {
         <div className="flex items-center gap-8 ml-60 ">
           <div className="text-[#caa767] text-[20px] font-medium font-['Poppins']">HOME</div>
           <div className="text-[#caa767] text-[20px] font-medium font-['Poppins']">MENU</div>
+          <div className="text-[#caa767] text-[20px] font-medium font-['Poppins'] whitespace-nowrap">
+            <Link href="http://localhost:3000/fabceylon-kurunegala/order/salads">
+              PLACE ORDER
+            </Link>
+          </div>
           <div className="text-[#caa767] text-[20px] font-medium font-['Poppins']">RESERVATIONS</div>
           <div className="text-[#caa767] text-[20px] font-medium font-['Poppins']">REGISTER</div>
 
