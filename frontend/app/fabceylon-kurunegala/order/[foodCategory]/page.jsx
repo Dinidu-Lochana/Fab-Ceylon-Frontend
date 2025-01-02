@@ -135,8 +135,11 @@ export default function KandyMenu({ params }) {
                 />
 
                 <div className="text-white text-4xl font-bold font-['Poppins'] mt-5">
-                  {food.foodName}
+                  {food.foodName.split(' ').map(word => 
+                    word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+                  ).join(' ')}
                 </div>
+                
 
                 <div className="text-white text-xl font font-['Poppins'] mt-5">
                   {food.description}
