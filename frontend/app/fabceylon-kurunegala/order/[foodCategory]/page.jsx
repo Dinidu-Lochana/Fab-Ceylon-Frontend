@@ -16,7 +16,7 @@ export default function KandyMenu({ params }) {
   const [foods, setFoods] = useState([]);
 
   useEffect(() => {
-    const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
+    const storedCart = JSON.parse(localStorage.getItem('fab-kurunegala-cart')) || [];
     setCartItems(storedCart);
   }, []);
 
@@ -36,7 +36,7 @@ export default function KandyMenu({ params }) {
   }, [foodCategory]);
 
   const handleAddToCart = (food) => {
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const cart = JSON.parse(localStorage.getItem('fab-kurunegala-cart')) || [];
     const existingItem = cart.find((item) => item.id === food._id);
 
     if (existingItem) {
@@ -45,7 +45,7 @@ export default function KandyMenu({ params }) {
       cart.push({ ...food, quantity: 1 }); // Add to cart if not already present
     }
 
-    localStorage.setItem('cart', JSON.stringify(cart));
+    localStorage.setItem('fab-kurunegala-cart', JSON.stringify(cart));
     setCartItems(cart);
   };
 
@@ -53,7 +53,7 @@ export default function KandyMenu({ params }) {
     const updatedCart = cartItems.map((item) =>
       item.id === id ? { ...item, quantity: item.quantity + 1 } : item
     );
-    localStorage.setItem('cart', JSON.stringify(updatedCart));
+    localStorage.setItem('fab-kurunegala-cart', JSON.stringify(updatedCart));
     setCartItems(updatedCart);
   };
 
@@ -66,13 +66,13 @@ export default function KandyMenu({ params }) {
       )
       .filter((item) => item.quantity > 0);
 
-    localStorage.setItem('cart', JSON.stringify(updatedCart));
+    localStorage.setItem('fab-kurunegala-cart', JSON.stringify(updatedCart));
     setCartItems(updatedCart);
   };
 
   const handleDeleteFromCart = (id) => {
     const updatedCart = cartItems.filter((item) => item.id !== id);
-    localStorage.setItem('cart', JSON.stringify(updatedCart));
+    localStorage.setItem('fab-kurunegala-cart', JSON.stringify(updatedCart));
     setCartItems(updatedCart);
   };
 

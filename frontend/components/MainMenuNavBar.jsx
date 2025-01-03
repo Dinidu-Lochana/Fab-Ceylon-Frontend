@@ -24,19 +24,25 @@ export const MainMenuNavBar = () => {
 
         
         <div className="flex items-center gap-8 ml-60 ">
-          <div className="text-[#caa767] text-[20px] font-medium font-['Poppins']">HOME</div>
+          <div className="text-[#caa767] text-[20px] font-medium font-['Poppins']">
+            <Link href="/">
+              HOME
+            </Link></div>
           <div className="text-[#caa767] text-[20px] font-medium font-['Poppins'] whitespace-nowrap">
-            <Link href="http://localhost:3000/fabceylon-kurunegala/menu/salads">
+            <Link href="/fabceylon-kurunegala/menu/salads">
               MENU
             </Link>
           </div>
           <div className="text-[#caa767] text-[20px] font-medium font-['Poppins'] whitespace-nowrap">
-            <Link href="http://localhost:3000/fabceylon-kurunegala/order/salads">
+            <Link href="/fabceylon-kurunegala/order/salads">
               PLACE ORDER
             </Link>
           </div>
           <div className="text-[#caa767] text-[20px] font-medium font-['Poppins']">RESERVATIONS</div>
-          <div className="text-[#caa767] text-[20px] font-medium font-['Poppins']">REGISTER</div>
+          <div className="text-[#caa767] text-[20px] font-medium font-['Poppins']">
+          <Link href="/login">
+              LOGIN
+          </Link></div>
 
           <div className="h-[52px] justify-start items-center gap-[22px] inline-flex ml-20">
      

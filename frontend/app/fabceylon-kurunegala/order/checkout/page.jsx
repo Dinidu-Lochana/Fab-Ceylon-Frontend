@@ -1,41 +1,48 @@
 "use client"; 
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import deleteIcon from '@/components/Assets/delete.png';
 import { MainMenuNavBar } from '@/components/MainMenuNavBar';
 
 const CheckoutPage = () => {
-  const [cartItems, setCartItems] = useState([
-    { id: 1, foodName: 'Burger', quantity: 2, price: 500 },
-    { id: 2, foodName: 'Pizza', quantity: 1, price: 1000 },
-    { id: 3, foodName: 'Pasta', quantity: 3, price: 700 },
-  ]);
-
-  const [orderType, setOrderType] = useState('Pick-up'); // Set default value to 'Pick-up'
+  
+  const [cartItems, setCartItems] = useState([]);
+  const [orderType, setOrderType] = useState('Pick-up'); 
   const [paymentMethod, setPaymentMethod] = useState('');
 
-  const handleIncreaseQuantity = (id) => {
-    setCartItems((prevItems) =>
-      prevItems.map((item) =>
+  useEffect(() => {
+      const storedCart = JSON.parse(localStorage.getItem('fab-kurunegala-cart')) || [];
+      setCartItems(storedCart);
+    }, []);
+
+    const handleIncreaseQuantity = (id) => {
+      const updatedCart = cartItems.map((item) =>
         item.id === id ? { ...item, quantity: item.quantity + 1 } : item
-      )
-    );
-  };
-
-  const handleDecreaseQuantity = (id) => {
-    setCartItems((prevItems) =>
-      prevItems.map((item) =>
-        item.id === id && item.quantity > 1
-          ? { ...item, quantity: item.quantity - 1 }
-          : item
-      )
-    );
-  };
-
-  const handleDeleteFromCart = (id) => {
-    setCartItems((prevItems) => prevItems.filter((item) => item.id !== id));
-  };
+      );
+      localStorage.setItem('fab-kurunegala-cart', JSON.stringify(updatedCart));
+      setCartItems(updatedCart);
+    };
+  
+    const handleDecreaseQuantity = (id) => {
+      const updatedCart = cartItems
+        .map((item) =>
+          item.id === id && item.quantity > 1
+            ? { ...item, quantity: item.quantity - 1 }
+            : item
+        )
+        .filter((item) => item.quantity > 0);
+  
+      localStorage.setItem('fab-kurunegala-cart', JSON.stringify(updatedCart));
+      setCartItems(updatedCart);
+    };
+  
+    const handleDeleteFromCart = (id) => {
+      const updatedCart = cartItems.filter((item) => item.id !== id);
+      localStorage.setItem('fab-kurunegala-cart', JSON.stringify(updatedCart));
+      setCartItems(updatedCart);
+    };
+  
 
   const totalAmount = cartItems.reduce(
     (total, item) => total + item.price * item.quantity,
@@ -136,7 +143,7 @@ const CheckoutPage = () => {
                 onChange={(e) => setPaymentMethod(e.target.value)}
                 className="w-5 h-5"
               />
-              <span>Cash</span>
+              <span>Cash Payment</span>
             </label>
             <label className="flex items-center space-x-2">
               <input
@@ -147,7 +154,7 @@ const CheckoutPage = () => {
                 onChange={(e) => setPaymentMethod(e.target.value)}
                 className="w-5 h-5"
               />
-              <span>Card</span>
+              <span>Online Payment</span>
             </label>
           </div>
         </div>
