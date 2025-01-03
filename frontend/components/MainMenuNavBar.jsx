@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 import cart_icon from "./Assets/cart_icon.png"
 import user_icon from "./Assets/user_icon.png"
@@ -22,20 +23,23 @@ export const MainMenuNavBar = () => {
         </div>
 
         
-        <div className="flex items-center ml-60 gap-8 ">
+        <div className="flex items-center gap-8 ml-60 ">
           <div className="text-[#caa767] text-[20px] font-medium font-['Poppins']">HOME</div>
-          <div className="text-[#caa767] text-[20px] font-medium font-['Poppins']">MENU</div>
+          <div className="text-[#caa767] text-[20px] font-medium font-['Poppins'] whitespace-nowrap">
+            <Link href="http://localhost:3000/fabceylon-kurunegala/menu/salads">
+              MENU
+            </Link>
+          </div>
+          <div className="text-[#caa767] text-[20px] font-medium font-['Poppins'] whitespace-nowrap">
+            <Link href="http://localhost:3000/fabceylon-kurunegala/order/salads">
+              PLACE ORDER
+            </Link>
+          </div>
           <div className="text-[#caa767] text-[20px] font-medium font-['Poppins']">RESERVATIONS</div>
           <div className="text-[#caa767] text-[20px] font-medium font-['Poppins']">REGISTER</div>
 
           <div className="h-[52px] justify-start items-center gap-[22px] inline-flex ml-20">
-      <Image
-        className="w-[40px] h-[40px]"
-        src={cart_icon} 
-        alt="Icon 1"
-        width={52}
-        height={52}
-      />
+     
       <Image
         className="w-[40px] h-[40px]"
         src={user_icon} 
@@ -46,6 +50,6 @@ export const MainMenuNavBar = () => {
     </div>
         </div>
       </div>
-    </div>
-  );
+    </div>
+  );
 };
