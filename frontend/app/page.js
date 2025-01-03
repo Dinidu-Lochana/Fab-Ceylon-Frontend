@@ -39,7 +39,7 @@ export default function Home() {
         <div style={{ marginLeft: '100px' }}>
           <h1 className="p-20 font-bold tracking-wider text-7xl font-poppins ml-100">
             CHOOSE THE <br />
-            <span className="text-orange-500">BEST</span> AMONG <br />
+            <span className="text-orange-500 ">BEST</span> AMONG <br />
             BEST <span className="text-orange-500">FOODS...</span>
           </h1>
         </div>
