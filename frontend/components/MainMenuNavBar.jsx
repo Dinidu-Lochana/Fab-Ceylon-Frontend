@@ -18,7 +18,7 @@ export const MainMenuNavBar = () => {
         width={52}
         height={52}
       />
-        <div className="w-[323px] text-[#eb650f] text-[40px] font-extrabold font-['Post No Bills Colombo ExtraBold'] ml-10">
+        <div className="w-[323px] text-[#eb650f] text-[40px] font-extrabold font-serif ml-10">
           FAB CEYLON
         </div>
 

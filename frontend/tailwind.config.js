@@ -28,6 +28,8 @@ module.exports = {
       },
     },
     extend: {
+
+      
       // Extend default colors using HSL for custom themes
       
       colors: {

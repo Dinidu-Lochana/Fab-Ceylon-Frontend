@@ -36,7 +36,7 @@ export default function Home() {
         <div style={{ marginLeft: '100px' }}>
           <h1 className="text-7xl font-poppins font-bold p-20 ml-100 tracking-wider">
             CHOOSE THE <br />
-            <span className="text-orange-500">BEST</span> AMONG <br />
+            <span className="text-orange-500  ">BEST</span> AMONG <br />
             BEST <span className="text-orange-500">FOODS...</span>
           </h1>
         </div>
@@ -176,13 +176,13 @@ export default function Home() {
 
       {/* Cafe Nuwara Section */}
       <div className="mt-36 relative text-left text-white flex items-center justify-left">
-        <Image 
-          className="items-center flex justify-between h-80 w-80 ml-28"
-          src={Cafe_Nuwara_logo}
-          height={600}
-          width={600}
-          alt="Cafe Nuwara Logo"
-        />
+      <Image 
+    className="items-center flex justify-between h-80 w-80 ml-28 zoom-animation"
+    src={Cafe_Nuwara_logo}
+    height={600}
+    width={600}
+    alt="Cafe Nuwara Logo"
+  />
         <article>
           <h1 className="text-4xl text-center font-serif font-bold">
             CAFE NUWARA
@@ -230,12 +230,12 @@ export default function Home() {
       {/* Fab Ceylon Grand Section */}
       <div className="h-2/3 m-8 relative text-left text-white flex items-center justify-left -mt-12 ">
         <Image 
-          className="items-center flex justify-between h-80 w-80 ml-20"
+          className="items-center flex justify-between h-80 w-80 ml-20 -mt-12 zoom-animation"
           src={Fabceylon_Grand_logo}
           alt="Fab Ceylon Grand Logo"
         />
         <article>
-          <h1 className="text-4xl text-center font-serif font-bold">
+          <h1 className="text-4xl text-center font-serif font-bold mt-16">
             FAB CEYLON GRAND
           </h1>
           <p className="text-2xl font-serif font-bold p-10 ml-48 tracking-wider mb-40">
