@@ -28,12 +28,7 @@ module.exports = {
       },
     },
     extend: {
-      screens: {
-        lg: { max: '1024px' }, // For large devices
-      md: { max: '768px' },  // For medium devices
-      sm: { max: '640px' },  // For small devices
-      xs: { max: '480px' },  // For extra small devices
-      },
+      
       // Extend default colors using HSL for custom themes
       colors: {
         border: "hsl(var(--border))",
