@@ -70,24 +70,9 @@ export const MenuNavBar = () => {
             Desserts
           </div>
         </Link>
-        <Link href="/fabceylon-kandy/order/iced-coffee-iced-tea">
-          <div className="w-[215px] h-9 left-[1750px] top-[16px] absolute text-center text-[#eb650f] text-xl font-bold font-['Poppins'] cursor-pointer">
-            Iced Coffee & Iced Tea
-          </div>
-        </Link>
-        <Link href="/fabceylon-kandy/order/bubble-tea">
-          <div className="w-[125px] left-[1970px] top-[16px] absolute text-center text-[#eb650f] text-xl font-bold font-['Poppins'] cursor-pointer">
-            Bubble Tea
-          </div>
-        </Link>
-        <Link href="/fabceylon-kandy/order/mojito">
-          <div className="w-[125px] left-[2120px] top-[16px] absolute text-center text-[#eb650f] text-xl font-bold font-['Poppins'] cursor-pointer">
-            Mojito
-          </div>
-        </Link>
-        <Link href="/fabceylon-kandy/order/milk-shakes">
-          <div className="w-[215px] h-9 left-[2270px] top-[16px] absolute text-center text-[#eb650f] text-xl font-bold font-['Poppins'] cursor-pointer">
-            Milk Shakes
+        <Link href="/fabceylon-kurunegala/menu/desserts">
+          <div className="w-[125px] left-[1600px] top-[16px] absolute text-center text-[#eb650f] text-xl font-bold font-['Poppins'] cursor-pointer">
+            Beverages
           </div>
         </Link>
       </div>
