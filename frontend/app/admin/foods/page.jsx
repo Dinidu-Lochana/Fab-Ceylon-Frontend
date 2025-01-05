@@ -95,7 +95,7 @@ const ViewFoods = () => {
             </div>
 
             <div className="flex gap-4 mt-4">
-              <Link href={`/updatefood/${food._id}`}>
+              <Link href={`/admin/updatefood/${food._id}`}>
                 <button className="px-5 py-2 text-white bg-green-500 rounded-lg shadow-md transition-transform hover:translate-y-[-3px] hover:bg-green-600 hover:shadow-lg active:translate-y-[1px] active:shadow">
                   Update
                 </button>

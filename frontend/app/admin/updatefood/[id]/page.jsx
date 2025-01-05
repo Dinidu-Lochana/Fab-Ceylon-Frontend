@@ -5,19 +5,21 @@ import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import jwtDecode from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode';
+import Image from 'next/image';
 
-const UpdateFood = () => {
+const UpdateFood = ({ params }) => {
     const router = useRouter();
-    const { id } = router.query; // Fetch ID from query params
+    const id = params.id;
     const [loading, setLoading] = useState(true);
+    const [previewImage, setPreviewImage] = useState(null); // For new image preview
     const [formData, setFormData] = useState({
         foodName: "",
         price: "",
         description: "",
         foodCategory: "",
         isDeliveryAvailable: "",
-        image: ""
+        image: "" // Contains the base64 of the previous image
     });
 
     // Fetch food details
@@ -48,6 +50,7 @@ const UpdateFood = () => {
 
         const reader = new FileReader();
         reader.onloadend = () => {
+            setPreviewImage(reader.result); // Set new image preview
             setFormData({ ...formData, image: reader.result });
         };
         reader.readAsDataURL(file);
@@ -92,9 +95,20 @@ const UpdateFood = () => {
                 <form className="w-full max-w-2xl p-10 bg-white rounded-lg shadow-md">
                     <h1 className="mb-6 text-2xl font-semibold text-center">Update Food</h1>
 
+                    {/* Show previous image */}
+                    <div className="mb-4">
+                        <p className="text-sm text-gray-700">Current Image:</p>
+                        <img
+                            src={formData.image}
+                            alt="Current Food"
+                            className="w-32 h-32 mb-2 rounded"
+                        />
+                    </div>
+
+                    {/* Upload and preview new image */}
                     <div className="mb-4">
                         <label htmlFor="file-upload" className="block mb-2 text-sm font-medium text-gray-700">
-                            Upload Image
+                            Upload New Image
                         </label>
                         <label
                             htmlFor="file-upload"
@@ -108,8 +122,10 @@ const UpdateFood = () => {
                             accept="image/*"
                             onChange={handleImageChange}
                         />
+                        
                     </div>
 
+                    {/* Other input fields */}
                     <div className="mb-4">
                         <label className="block mb-2 text-sm font-medium text-gray-700">Food Name</label>
                         <input
