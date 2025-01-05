@@ -91,14 +91,14 @@ const CheckoutPage = () => {
       admin_id: "67167ca7d704fb6682f5e82c", // Hardcoded admin ID for now
       userId: userId,
       items: cartItems.map((item) => ({
-        foodId: item.id, // Ensure this matches your backend's expected field
+        foodId: item._id, // Ensure this matches your backend's expected field
         quantity: item.quantity,
         price: item.price,
       })),
       orderType,
       paymentMethod,
-      totalAmount, // This is calculated on the frontend
-      orderDescription: formData.orderDescription || "", // Default to empty string if not provided
+      totalAmount, 
+      orderDescription: formData.orderDescription || "", 
     };
 
     try {
