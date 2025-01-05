@@ -88,10 +88,11 @@ const CheckoutPage = () => {
     }
 
     const orderData = {
-      admin_id: "67167ca7d704fb6682f5e82c", // Hardcoded admin ID for now
+      admin_id: "67167ca7d704fb6682f5e82c", 
       userId: userId,
       items: cartItems.map((item) => ({
-        foodId: item._id, // Ensure this matches your backend's expected field
+        foodId: item._id, 
+        foodName : item.foodName,
         quantity: item.quantity,
         price: item.price,
       })),
@@ -108,7 +109,7 @@ const CheckoutPage = () => {
       );
 
       toast.success("Successfully created Order!", { containerId: "successMessage" });
-      localStorage.removeItem("fab-kurunegala-cart"); // Clear the cart
+      localStorage.removeItem("fab-kurunegala-cart"); 
       router.push("/fabceylon-kurunegala");
     } catch (error) {
       console.error("Error creating order:", error);
