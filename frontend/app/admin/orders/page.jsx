@@ -96,7 +96,7 @@ const ViewOrders = () => {
             {orders.map((order) => (
               <tr key={order._id} className="hover:bg-gray-100">
                 <td className="px-4 py-2 border border-gray-300">{order._id}</td>
-                <td className="px-4 py-2 border border-gray-300">{order.customerName} , {order.contactNumber}</td>
+                <td className="px-4 py-2 border border-gray-300">{order.customerName} - {order.contactNumber}</td>
                 <td className="px-4 py-2 border border-gray-300">
                   {order.items.map((item, index) => (
                     <div key={index}>
