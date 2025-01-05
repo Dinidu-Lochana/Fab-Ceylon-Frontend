@@ -65,7 +65,7 @@ export const MenuNavBar = () => {
             Desserts
           </div>
         </Link>
-        <Link href="/fabceylon-kurunegala/menu/desserts">
+        <Link href="/fabceylon-kurunegala/order/beverages">
           <div className="menu-item left-[1380px]">
             Beverages
           </div>
