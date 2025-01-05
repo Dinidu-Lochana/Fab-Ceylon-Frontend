@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 
 export const FabKurungalaMenuNavBar = () => {
+  const [isBeveragesOpen, setIsBeveragesOpen] = useState(false);
+
+  const toggleBeveragesMenu = () => {
+    setIsBeveragesOpen((prev) => !prev);
+  };
+
   return (
     <div>
       <div className="w-[15px] h-[66px] relative">
@@ -41,19 +47,21 @@ export const FabKurungalaMenuNavBar = () => {
         <Link href="/fabceylon-kurunegala/menu/desserts">
           <div className="menu-item left-[1270px]">Desserts</div>
         </Link>
-        <div className="menu-item beverages-dropdown left-[1380px]">
+        <div className="menu-item beverages-dropdown left-[1380px]" onClick={toggleBeveragesMenu}>
           Beverages
-          <div className="submenu">
-            <Link href="/fabceylon-kurunegala/menu/beverages">
-              <div className="submenu-item">Mojito</div>
-            </Link>
-            <Link href="/fabceylon-kurunegala/menu/milk-shake">
-              <div className="submenu-item">Milk Shake</div>
-            </Link>
-            <Link href="/fabceylon-kurunegala/menu/tea">
-              <div className="submenu-item">Tea</div>
-            </Link>
-          </div>
+          {isBeveragesOpen && (
+            <div className="submenu">
+              <Link href="/fabceylon-kurunegala/menu/mojito">
+                <div className="submenu-item">Mojito</div>
+              </Link>
+              <Link href="/fabceylon-kurunegala/menu/milk-shake">
+                <div className="submenu-item">Milk Shake</div>
+              </Link>
+              <Link href="/fabceylon-kurunegala/menu/tea">
+                <div className="submenu-item">Tea</div>
+              </Link>
+            </div>
+          )}
         </div>
       </div>
 
@@ -82,27 +90,22 @@ export const FabKurungalaMenuNavBar = () => {
 
         .submenu {
           position: absolute;
-          top: 40px;
+          top: 50px;
           left: 0;
-          background-color: black;
+          background-color: #000;
           border: 1px solid #ccc;
           box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-          display: none;
           z-index: 10;
-          width: 125px;
-        }
-
-        .beverages-dropdown:hover .submenu {
-          display: block;
+          width: 100px;
+          cursor: pointer;
         }
 
         .submenu-item {
           padding: 10px;
-          text-align: left;
           color: #eb650f;
           font-size: 1rem;
           cursor: pointer;
-          transition: background-color 0.3s ease, color 0.3s ease;
+          
         }
 
         .submenu-item:hover {
