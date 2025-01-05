@@ -1,24 +1,28 @@
 "use client";
-import { useRouter } from 'next/router';
-import React, { useState, useEffect } from 'react';
-import Image from 'next/image';
-import deleteIcon from '@/components/Assets/delete.png';
-import { MainMenuNavBar } from '@/components/MainMenuNavBar';
-import jwtDecode from 'jwt-decode';
-import axios from 'axios';
-import { toast } from 'react-toastify';
+import { useRouter } from "next/navigation";
+import React, { useState, useEffect } from "react";
+import Image from "next/image";
+import deleteIcon from "@/components/Assets/delete.png";
+import { MainMenuNavBar } from "@/components/MainMenuNavBar";
+import { jwtDecode } from "jwt-decode";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const CheckoutPage = () => {
-  
   const [cartItems, setCartItems] = useState([]);
-  const [orderType, setOrderType] = useState('Pick-up'); // Default to Pick-up
-  const [paymentMethod, setPaymentMethod] = useState('');
+  const [orderType, setOrderType] = useState("Pick-up"); // Default to Pick-up
+  const [paymentMethod, setPaymentMethod] = useState("");
   const [formData, setFormData] = useState({
-    orderDescription: '',
+    orderDescription: "",
   });
 
+  const [agreedToTerms, setAgreedToTerms] = useState(false);
+
+
+  const router = useRouter();
+
   useEffect(() => {
-    const storedCart = JSON.parse(localStorage.getItem('fab-kurunegala-cart')) || [];
+    const storedCart = JSON.parse(localStorage.getItem("fab-kurunegala-cart")) || [];
     setCartItems(storedCart);
   }, []);
 
@@ -26,7 +30,7 @@ const CheckoutPage = () => {
     const updatedCart = cartItems.map((item) =>
       item.id === id ? { ...item, quantity: item.quantity + 1 } : item
     );
-    localStorage.setItem('fab-kurunegala-cart', JSON.stringify(updatedCart));
+    localStorage.setItem("fab-kurunegala-cart", JSON.stringify(updatedCart));
     setCartItems(updatedCart);
   };
 
@@ -38,14 +42,18 @@ const CheckoutPage = () => {
           : item
       )
       .filter((item) => item.quantity > 0);
-    localStorage.setItem('fab-kurunegala-cart', JSON.stringify(updatedCart));
+    localStorage.setItem("fab-kurunegala-cart", JSON.stringify(updatedCart));
     setCartItems(updatedCart);
   };
 
   const handleDeleteFromCart = (id) => {
     const updatedCart = cartItems.filter((item) => item.id !== id);
-    localStorage.setItem('fab-kurunegala-cart', JSON.stringify(updatedCart));
+    localStorage.setItem("fab-kurunegala-cart", JSON.stringify(updatedCart));
     setCartItems(updatedCart);
+  };
+
+  const handleInputChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const totalAmount = cartItems.reduce(
@@ -54,7 +62,13 @@ const CheckoutPage = () => {
   );
 
   const addOrder = async () => {
-    const token = localStorage.getItem('user');
+
+    if (!agreedToTerms) {
+      toast.error("You must agree to the Terms and Conditions to proceed.", { containerId: "ErrorMessage" });
+      return;
+    }
+    
+    const token = localStorage.getItem("user");
     let userId = null;
 
     if (token) {
@@ -62,41 +76,43 @@ const CheckoutPage = () => {
         const decodedToken = jwtDecode(token);
         userId = decodedToken._id;
       } catch (error) {
-        console.error('Error decoding token:', error);
+        console.error("Error decoding token:", error);
+        toast.error("Invalid user session. Please log in again.", { containerId: "ErrorMessage" });
+        return;
       }
     }
 
     if (!orderType || !paymentMethod) {
-      toast.error('Please select a payment method and order type.', { containerId: 'ErrorMessage' });
+      toast.error("Please select a payment method and order type.", { containerId: "ErrorMessage" });
       return;
     }
 
     const orderData = {
-      admin_id: '67167ca7d704fb6682f5e82c',
+      admin_id: "67167ca7d704fb6682f5e82c", // Hardcoded admin ID for now
       userId: userId,
       items: cartItems.map((item) => ({
-        foodId: item.id,
+        foodId: item.id, // Ensure this matches your backend's expected field
         quantity: item.quantity,
         price: item.price,
       })),
       orderType,
       paymentMethod,
-      totalAmount,
-      orderDescription: formData.orderDescription,
+      totalAmount, // This is calculated on the frontend
+      orderDescription: formData.orderDescription || "", // Default to empty string if not provided
     };
 
     try {
       const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL_ADDRESS}/api/customers/order/orderfoods`,
+        `${process.env.NEXT_PUBLIC_BACKEND_URL_ADDRESS}/api/customers/order/orderfoods/67167ca7d704fb6682f5e82c/put-order`,
         orderData
       );
 
-      toast.success('Successfully created Order!', { containerId: 'successMessage' });
-      localStorage.removeItem('fab-kurunegala-cart'); // Clear the cart
-      router.push('/fabceylon-kurunegala');
+      toast.success("Successfully created Order!", { containerId: "successMessage" });
+      localStorage.removeItem("fab-kurunegala-cart"); // Clear the cart
+      router.push("/fabceylon-kurunegala");
     } catch (error) {
-      console.error('Error creating order:', error);
-      toast.error(error.response?.data?.message || 'An error occurred.', { containerId: 'ErrorMessage' });
+      console.error("Error creating order:", error);
+      toast.error(error.response?.data?.message || "An error occurred.", { containerId: "ErrorMessage" });
     }
   };
 
@@ -157,7 +173,7 @@ const CheckoutPage = () => {
                   type="radio"
                   name="orderType"
                   value="Pick-up"
-                  checked={orderType === 'Pick-up'}
+                  checked={orderType === "Pick-up"}
                   onChange={(e) => setOrderType(e.target.value)}
                   className="w-5 h-5"
                 />
@@ -168,7 +184,7 @@ const CheckoutPage = () => {
                   type="radio"
                   name="orderType"
                   value="Delivery"
-                  checked={orderType === 'Delivery'}
+                  checked={orderType === "Delivery"}
                   onChange={(e) => setOrderType(e.target.value)}
                   className="w-5 h-5"
                 />
@@ -185,7 +201,7 @@ const CheckoutPage = () => {
                   type="radio"
                   name="paymentMethod"
                   value="Cash"
-                  checked={paymentMethod === 'Cash'}
+                  checked={paymentMethod === "Cash"}
                   onChange={(e) => setPaymentMethod(e.target.value)}
                   className="w-5 h-5"
                 />
@@ -196,7 +212,7 @@ const CheckoutPage = () => {
                   type="radio"
                   name="paymentMethod"
                   value="Card"
-                  checked={paymentMethod === 'Card'}
+                  checked={paymentMethod === "Card"}
                   onChange={(e) => setPaymentMethod(e.target.value)}
                   className="w-5 h-5"
                 />
@@ -205,12 +221,51 @@ const CheckoutPage = () => {
             </div>
           </div>
 
+          <div className="mt-6">
+            <h2 className="mb-2 text-xl font-bold text-orange-400">Order Description:</h2>
+            <input
+              type="text"
+              name="orderDescription"
+              value={formData.orderDescription}
+              onChange={handleInputChange}
+              placeholder="Enter order description (Ex: Don't add onions...)"
+              className="w-full px-4 py-3 text-gray-900 bg-gray-200 rounded-lg placeholder-italic"
+            />
+          </div>
+
+          <div className="flex items-center mt-6 space-x-2">
+            <input
+              type="checkbox"
+              id="termsCheckbox"
+              checked={agreedToTerms}
+              onChange={() => setAgreedToTerms(!agreedToTerms)}
+              className="w-5 h-5"
+            />
+            <label htmlFor="termsCheckbox" className="text-sm text-gray-400">
+              I have read and agreed to the{" "}
+              <a
+                href="/order-terms-conditions"
+                target="_blank"
+                className="text-orange-400 underline"
+                rel="noopener noreferrer"
+              >
+                Terms and Conditions
+              </a>
+              .
+            </label>
+          </div>
+                    
+
           <button
             onClick={addOrder}
-            className="w-full py-3 mt-6 text-lg font-bold text-white transition bg-orange-500 rounded-lg hover:bg-orange-600"
+            disabled={!agreedToTerms}
+            className={`w-full py-3 mt-6 text-lg font-bold text-white rounded-lg transition ${
+              agreedToTerms ? "bg-orange-500 hover:bg-orange-600" : "bg-gray-600 cursor-not-allowed"
+            }`}
           >
             Proceed to Checkout
           </button>
+
         </div>
       </div>
     </div>
