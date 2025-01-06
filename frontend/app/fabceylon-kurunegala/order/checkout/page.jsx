@@ -54,7 +54,8 @@ const CheckoutPage = () => {
 
   return (
     <div>
-        <MainMenuNavBar />
+      <div className='bg-gray-800'><MainMenuNavBar /></div>
+        
     <div className="flex flex-col items-center min-h-screen px-4 py-10 text-white bg-gray-900">
         
       <div className="w-full max-w-2xl p-6 bg-gray-800 rounded-lg shadow-lg">
