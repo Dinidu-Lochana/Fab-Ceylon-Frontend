@@ -5,8 +5,8 @@ import Bugger from '@/components/Assets/Bugger.png';
 import Image from 'next/image';
 import star_icon from '@/components/Assets/star_icon.png';
 import delete_icon from '@/components/Assets/delete.png';
-import { GrandMenuNavBar } from '@/components/Fab-Grand-MenuNavBar';
-import { GrandMainMenuNavBar } from '@/components/Fab-Grand-MainMenu';
+import { KandyMenuNavBar } from '@/components/Fab-Kandy-MenuNavBar';
+import { KandyMainMenuNavBar } from '@/components/Fab-Kandy-MainMenuNavBar';
 
 export default function KandyMenu() {
   const [cartItems, setCartItems] = React.useState([]);
@@ -66,8 +66,8 @@ export default function KandyMenu() {
           objectFit="cover"
           alt="Background Image"
         />
-        <GrandMainMenuNavBar />
-        <GrandMenuNavBar />
+        <KandyMainMenuNavBar />
+        <KandyMenuNavBar />
 
         <div className="relative gap-2 text-left text-white">
           <div style={{ marginLeft: '100px' }}>

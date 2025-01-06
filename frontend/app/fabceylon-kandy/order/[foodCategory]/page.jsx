@@ -3,8 +3,8 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import MenuBack_image from '@/components/Assets/MenuBack_image.jpg';
 import delete_icon from '@/components/Assets/delete.png';
-import { GrandOderNavBar } from '@/components/Fab-Grand-PlaceOrderNavBar';
-import { GrandMainMenuNavBar } from '@/components/Fab-Grand-MainMenu';
+import { KandyOderNavBar } from '@/components/Fab-Kandy-PlaceOrderNavBar';
+import { KandyMainMenuNavBar } from '@/components/Fab-Kandy-MainMenuNavBar';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import Link from 'next/link';
@@ -97,8 +97,8 @@ export default function KandyMenu({ params }) {
           objectFit="cover"
           alt="Background Image"
         />
-        <GrandMainMenuNavBar />
-        <GrandOderNavBar />
+        <KandyMainMenuNavBar />
+        <KandyOderNavBar />
 
         <div className="relative gap-2 text-left text-white">
           <div style={{ marginLeft: '100px' }}>
