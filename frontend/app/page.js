@@ -11,12 +11,9 @@ import Side_back_image from "@/components/Assets/Side_back_image.png";
 
 import { Footer } from '@/components/Footer';
 import { HeroHighlight, HeroHighlightDemo } from '@/components/HeroHighlight';
-import '@/app/CSS/HomePage.css';
+import '@/app/CSS/HomePage.css'
 import Fab_logo_inner from '@/components/Assets/Fab_logo_inner.png';
 import Fab_logo_outer from "@/components/Assets/Fab_logo_outer.png";
-import Nuwara_logo_outer from "@/components/Assets/Nuwara_logo_outer.png";
-import Nuwara_logo_inner from "@/components/Assets/Nuwara_logo_inner.png";
-
 import Back_image_middle from "@/components/Assets/Back_image_middle.png"
 import { InfiniteMovingCardsDemo } from '@/components/InfiniteMovingCardDemo';
 
@@ -179,18 +176,13 @@ export default function Home() {
 
       {/* Cafe Nuwara Section */}
       <div className="relative flex items-center text-left text-white mt-36 justify-left">
-        <Image 
-            className="absolute top-0 left-0 h-80 w-80 rotate-with-pause-counterclockwise"
-            style={{ top: '0px', left: '130px' }}
-            src={Nuwara_logo_inner}
-            alt="Fab Ceylon Kandy Logo"
-          />
-        <Image 
-            className="absolute top-0 left-0 h-80 w-80 rotate-with-pause-clockwise"
-            src={Nuwara_logo_outer}
-            alt="Fab Ceylon Kandy Logo"
-            style={{ top: '0px', left: '130px',animationDelay: '0.5s' }}
-          />
+      <Image 
+    className="flex items-center justify-between h-80 w-80 ml-28 zoom-animation"
+    src={Cafe_Nuwara_logo}
+    height={600}
+    width={600}
+    alt="Cafe Nuwara Logo"
+  />
         <article>
           <h1 className="font-serif text-4xl font-bold text-center">
             CAFE NUWARA
@@ -238,12 +230,12 @@ export default function Home() {
       {/* Fab Ceylon Grand Section */}
       <div className="relative flex items-center m-8 -mt-12 text-left text-white h-2/3 justify-left ">
         <Image 
-          className="flex items-center justify-between ml-20 h-80 w-80"
+          className="flex items-center justify-between ml-20 -mt-12 h-80 w-80 zoom-animation"
           src={Fabceylon_Grand_logo}
           alt="Fab Ceylon Grand Logo"
         />
         <article>
-          <h1 className="font-serif text-4xl font-bold text-center">
+          <h1 className="mt-16 font-serif text-4xl font-bold text-center">
             FAB CEYLON GRAND
           </h1>
           <p className="p-10 mb-40 ml-48 font-serif text-2xl font-bold tracking-wider">

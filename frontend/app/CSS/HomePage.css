@@ -30,6 +30,19 @@
     transform: rotate(-360deg);
   }
 }
+@keyframes zoomInOut {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+.zoom-animation {
+  animation: zoomInOut 7s infinite ease-in-out;
+}
+
 
 .rotate-with-pause-counterclockwise {
   animation: rotateWithPauseCounterClockwise 5s ease-in-out infinite;
@@ -53,7 +66,7 @@ h1.headline{
 }
 
 body {
-  padding: 2vw;
+  padding: 0vw;
   display: flex;
   justify-content: center;
   align-items: center;
