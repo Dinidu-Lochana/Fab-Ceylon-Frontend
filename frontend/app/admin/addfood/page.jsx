@@ -65,7 +65,7 @@ const AddFood = () => {
             );
 
             toast.success('Successfully created Food', { containerId: 'successMessage' });
-            router.push('/admin/foods'); // Use router.push instead of navigate
+            router.push('/admin/foods'); 
         } catch (error) {
             toast.error(error.response?.data?.error || 'An error occurred', { containerId: 'ErrorMessage' });
         }
