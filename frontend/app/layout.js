@@ -1,6 +1,8 @@
 import localFont from "next/font/local";
 import "./globals.css";
 import { EB_Garamond, Alegreya } from '@next/font/google';
+import localfont from "next/font/local";
+
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",

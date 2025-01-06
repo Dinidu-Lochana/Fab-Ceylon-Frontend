@@ -7,6 +7,7 @@ import star_icon from '@/components/Assets/star_icon.png';
 import delete_icon from '@/components/Assets/delete.png';
 import { GrandMenuNavBar } from '@/components/Fab-Grand-MenuNavBar';
 import { GrandMainMenuNavBar } from '@/components/Fab-Grand-MainMenu';
+import { Footer } from '@/components/Fab-Grand-Fotter';
 
 export default function KandyMenu() {
   const [cartItems, setCartItems] = React.useState([]);
@@ -173,6 +174,7 @@ export default function KandyMenu() {
             </div>
           </div>
         </div>
+        <Footer />
       </div>
     </div>
   );
