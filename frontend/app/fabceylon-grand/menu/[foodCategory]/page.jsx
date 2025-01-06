@@ -7,6 +7,8 @@ import { GrandMenuNavBar} from '@/components/Fab-Grand-MenuNavBar';
 import { GrandMainMenuNavBar } from '@/components/Fab-Grand-MainMenu';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import '../fonts.css'; // Adjust the path based on your file structure
+
 
 export default function KandyMenu({ params }) {
   const foodCategory = params.foodCategory;

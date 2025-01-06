@@ -99,3 +99,11 @@ body {
   font-weight: 700; /* Set weight as needed */
   font-style: normal;
 }
+
+@font-face {
+  font-family: 'PTSerif';
+  src: 
+       url('/fonts/PTSerifCaption-Italic.woff') format('woff');
+  font-weight: normal; /* or bold, etc. */
+  font-style: normal; /* or italic, etc. */
+}
