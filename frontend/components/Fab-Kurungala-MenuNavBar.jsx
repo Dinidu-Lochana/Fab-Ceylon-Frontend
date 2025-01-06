@@ -10,16 +10,12 @@ export const FabKurungalaMenuNavBar = () => {
             Appetizers
           </div>
         </Link>
-        <Link href="/fabceylon-kurunegala/menu/salads">
+        <Link href="/fabceylon-kurunegala/menu/salads-&-soups">
           <div className="w-[125px] left-[0px] top-[16px] absolute text-center text-[#eb650f] text-xl font-bold font-['Poppins'] cursor-pointer">
-            Salads
+            Salads & Soups
           </div>
         </Link>
-        <Link href="/fabceylon-kurunegala/menu/soups">
-          <div className="w-[125px] left-[220px] top-[16px] absolute text-center text-[#eb650f] text-xl font-bold font-['Poppins'] cursor-pointer">
-            Soups
-          </div>
-        </Link>
+        
         <Link href="/fabceylon-kurunegala/menu/pasta-spaghetti">
           <div className="w-[125px] left-[350px] top-[16px] absolute text-center text-[#eb650f] text-xl font-bold font-['Poppins'] cursor-pointer">
             Pasta & Spaghetti

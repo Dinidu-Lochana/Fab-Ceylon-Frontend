@@ -9,7 +9,6 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import Link from 'next/link';
 
-
 export default function KandyMenu({ params }) {
   const foodCategory = params.foodCategory;
   const [cartItems, setCartItems] = useState([]);
@@ -37,30 +36,30 @@ export default function KandyMenu({ params }) {
 
   const handleAddToCart = (food) => {
     const cart = JSON.parse(localStorage.getItem('fab-kurunegala-cart')) || [];
-    const existingItem = cart.find((item) => item.id === food._id);
+    const existingItem = cart.find((item) => item._id === food._id);
 
     if (existingItem) {
-      existingItem.quantity += 1; // Increase quantity if it's already in the cart
+      existingItem.quantity += 1; 
     } else {
-      cart.push({ ...food, quantity: 1 }); // Add to cart if not already present
+      cart.push({ ...food, quantity: 1 }); 
     }
 
     localStorage.setItem('fab-kurunegala-cart', JSON.stringify(cart));
     setCartItems(cart);
   };
 
-  const handleIncreaseQuantity = (id) => {
+  const handleIncreaseQuantity = (foodId) => {
     const updatedCart = cartItems.map((item) =>
-      item.id === id ? { ...item, quantity: item.quantity + 1 } : item
+      item._id === foodId ? { ...item, quantity: item.quantity + 1 } : item
     );
     localStorage.setItem('fab-kurunegala-cart', JSON.stringify(updatedCart));
     setCartItems(updatedCart);
   };
 
-  const handleDecreaseQuantity = (id) => {
+  const handleDecreaseQuantity = (foodId) => {
     const updatedCart = cartItems
       .map((item) =>
-        item.id === id && item.quantity > 1
+        item._id === foodId && item.quantity > 1
           ? { ...item, quantity: item.quantity - 1 }
           : item
       )
@@ -70,26 +69,17 @@ export default function KandyMenu({ params }) {
     setCartItems(updatedCart);
   };
 
-  const handleDeleteFromCart = (id) => {
-    const updatedCart = cartItems.filter((item) => item.id !== id);
+  const handleDeleteFromCart = (foodId) => {
+    const updatedCart = cartItems.filter((item) => item._id !== foodId);
     localStorage.setItem('fab-kurunegala-cart', JSON.stringify(updatedCart));
     setCartItems(updatedCart);
   };
 
-  // Function to handle the Enter key press for adding or increasing quantity
-  const handleKeyPress = (event, food) => {
-    if (event.key === 'Enter') {
-      const existingItem = cartItems.find((item) => item.id === food._id);
-      if (existingItem) {
-        handleIncreaseQuantity(food._id); // Increase quantity if already in the cart
-      } else {
-        handleAddToCart(food); // Add to cart if not in the cart
-      }
-    }
-  };
+  
 
   return (
     <div>
+      {/* Background and Navigation */}
       <div className="relative h-screen bg-black">
         <Image
           src={MenuBack_image}
@@ -111,6 +101,7 @@ export default function KandyMenu({ params }) {
         </div>
       </div>
 
+      {/* Food Category and List */}
       <div className="relative bg-black">
         <div className="text-[#eb650f] text-8xl font-bold font-['Poppins'] bg-black text-center">
           <h1>{foodCategory.replace(/-/g, ' ').toUpperCase()}</h1>
@@ -121,6 +112,7 @@ export default function KandyMenu({ params }) {
         </div>
 
         <div className="flex flex-row items-start justify-center gap-10 mt-10">
+          {/* Foods */}
           <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
             {foods.map((food) => (
               <div
@@ -137,11 +129,13 @@ export default function KandyMenu({ params }) {
                 />
 
                 <div className="text-white text-4xl font-bold font-['Poppins'] mt-5">
-                  {food.foodName.split(' ').map(word => 
-                    word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
-                  ).join(' ')}
+                  {food.foodName
+                    .split(' ')
+                    .map((word) =>
+                      word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+                    )
+                    .join(' ')}
                 </div>
-                
 
                 <div className="text-white text-xl font font-['Poppins'] mt-5">
                   {food.description}
@@ -164,6 +158,7 @@ export default function KandyMenu({ params }) {
             ))}
           </div>
 
+          {/* Cart */}
           <div className="w-[397px] h-[780px] px-5 py-10 bg-[#110d0d] rounded-[20px] border-4 border-white flex flex-col items-start">
             <div className="w-full text-[#eb650f] text-5xl font-bold font-['Poppins'] mb-5">
               Your Cart
@@ -171,20 +166,20 @@ export default function KandyMenu({ params }) {
             <div className="w-full flex flex-col gap-4 overflow-y-auto h-[360px]">
               {cartItems.map((item) => (
                 <div
-                  key={item.id}
+                  key={item._id}
                   className="w-full flex justify-between items-center text-white text-xl font-bold font-['Poppins']"
                 >
                   <span>{item.foodName}</span>
                   <div className="flex items-center gap-2">
                     <button
-                      onClick={() => handleDecreaseQuantity(item.id)}
+                      onClick={() => handleDecreaseQuantity(item._id)}
                       className="px-2 py-1 font-bold text-white"
                     >
                       -
                     </button>
                     <span>{item.quantity}</span>
                     <button
-                      onClick={() => handleIncreaseQuantity(item.id)}
+                      onClick={() => handleIncreaseQuantity(item._id)}
                       className="px-2 py-1 font-bold text-white"
                     >
                       +
@@ -196,7 +191,7 @@ export default function KandyMenu({ params }) {
                       src={delete_icon}
                       alt="Delete"
                       className="w-6 h-6 cursor-pointer"
-                      onClick={() => handleDeleteFromCart(item.id)}
+                      onClick={() => handleDeleteFromCart(item._id)}
                     />
                   </div>
                 </div>
@@ -213,7 +208,6 @@ export default function KandyMenu({ params }) {
             {/* Checkout Button */}
             <div className="flex justify-center w-full mt-5">
               <button
-                
                 className="w-[200px] h-[50px] bg-[#eb650f] text-white text-xl font-bold font-['Poppins'] rounded-[10px] hover:bg-[#d4550d] transition-colors"
               >
                 <Link href="/fabceylon-kurunegala/order/checkout">
@@ -222,7 +216,6 @@ export default function KandyMenu({ params }) {
               </button>
             </div>
           </div>
-
         </div>
       </div>
     </div>
