@@ -1,29 +1,37 @@
-'use client';
+"use client";
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import MenuBack_image from '@/components/Assets/MenuBack_image.jpg';
-import delete_icon from '@/components/Assets/delete.png';
-import { MenuNavBar } from '@/components/MenuNavBar';
-import { MainMenuNavBar } from '@/components/MainMenuNavBar';
+import cafenuwara_nav from '@/components/Assets/cafenuwara_nav.png';
+import { CafeNuwaraNavBar } from '@/components/CafeNuwraNavBar';
+import CafeNuwaraHero_Image from '@/components/Assets/CafeNuwaraHero_Image.png';
+import Elephant_1 from '@/components/Assets/Elephant_1.png';
+import Elephant_2 from '@/components/Assets/Elephant_2.png';
+import Bugger2 from '@/components/Assets/Bugger2.jpg';
+import star_icon from '@/components/Assets/star_icon.png';
+import Boder from '@/components/Assets/Boder.png';
+import Boder2 from '@/components/Assets/Boder2.png';
+import CartTop from '@/components/Assets/CartTop.png';
+import Cafe_Nuwara_logo from '@/components/Assets/Cafe_Nuwara_logo.png';
 import axios from 'axios';
-import { toast } from 'react-toastify';
-import Link from 'next/link';
+import toast from 'react-hot-toast';
 
-export default function KandyMenu({ params }) {
+export default function CafeNuwara({ params }) {
   const foodCategory = params.foodCategory;
   const [cartItems, setCartItems] = useState([]);
   const [foods, setFoods] = useState([]);
 
+  // Fetch cart items from localStorage on component mount
   useEffect(() => {
-    const storedCart = JSON.parse(localStorage.getItem('fab-kurunegala-cart')) || [];
+    const storedCart = JSON.parse(localStorage.getItem('cafe-nuwara-cart')) || [];
     setCartItems(storedCart);
   }, []);
 
+  // Fetch foods based on category
   useEffect(() => {
     const fetchFoods = async () => {
       try {
         const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_BACKEND_URL_ADDRESS}/api/customers/order/orderfoods/67167ca7d704fb6682f5e82c/${foodCategory}`
+          `${process.env.NEXT_PUBLIC_BACKEND_URL_ADDRESS}/api/customers/order/orderfoods/677c4204dce103659628144c/${foodCategory}`
         );
         setFoods(response.data);
       } catch (error) {
@@ -34,28 +42,31 @@ export default function KandyMenu({ params }) {
     fetchFoods();
   }, [foodCategory]);
 
+  // Add item to cart
   const handleAddToCart = (food) => {
-    const cart = JSON.parse(localStorage.getItem('fab-kurunegala-cart')) || [];
+    const cart = JSON.parse(localStorage.getItem('cafe-nuwara-cart')) || [];
     const existingItem = cart.find((item) => item._id === food._id);
 
     if (existingItem) {
-      existingItem.quantity += 1; 
+      existingItem.quantity += 1;
     } else {
-      cart.push({ ...food, quantity: 1 }); 
+      cart.push({ ...food, quantity: 1 });
     }
 
-    localStorage.setItem('fab-kurunegala-cart', JSON.stringify(cart));
+    localStorage.setItem('cafe-nuwara-cart', JSON.stringify(cart));
     setCartItems(cart);
   };
 
+  // Increase item quantity
   const handleIncreaseQuantity = (foodId) => {
     const updatedCart = cartItems.map((item) =>
       item._id === foodId ? { ...item, quantity: item.quantity + 1 } : item
     );
-    localStorage.setItem('fab-kurunegala-cart', JSON.stringify(updatedCart));
+    localStorage.setItem('cafe-nuwara-cart', JSON.stringify(updatedCart));
     setCartItems(updatedCart);
   };
 
+  // Decrease item quantity
   const handleDecreaseQuantity = (foodId) => {
     const updatedCart = cartItems
       .map((item) =>
@@ -65,156 +76,160 @@ export default function KandyMenu({ params }) {
       )
       .filter((item) => item.quantity > 0);
 
-    localStorage.setItem('fab-kurunegala-cart', JSON.stringify(updatedCart));
+    localStorage.setItem('cafe-nuwara-cart', JSON.stringify(updatedCart));
     setCartItems(updatedCart);
   };
 
+  // Remove item from cart
   const handleDeleteFromCart = (foodId) => {
     const updatedCart = cartItems.filter((item) => item._id !== foodId);
-    localStorage.setItem('fab-kurunegala-cart', JSON.stringify(updatedCart));
+    localStorage.setItem('cafe-nuwara-cart', JSON.stringify(updatedCart));
     setCartItems(updatedCart);
   };
 
   return (
     <div>
-      {/* Background and Navigation */}
-      <div className="relative h-screen bg-black">
-        <Image
-          src={MenuBack_image}
-          layout="fill"
-          objectFit="cover"
-          alt="Background Image"
-        />
-        <MainMenuNavBar />
-        <MenuNavBar />
-
-        <div className="relative gap-2 text-left text-white">
-          <div style={{ marginLeft: '100px' }}>
-            <h1 className="pt-40 ml-32 font-bold tracking-wider text-7xl font-poppins">
-              CHOOSE <br />
-              <span className="text-white ml-28 mt-72">&</span> <br />
-              <span className="ml-8 text-white">ENJOY...</span>
-            </h1>
-          </div>
-        </div>
-      </div>
-
-      {/* Food Category and List */}
-      <div className="relative bg-black">
-        <div className="text-[#eb650f] text-8xl font-bold font-['Poppins'] bg-black text-center">
-          <h1>{foodCategory.replace(/-/g, ' ').toUpperCase()}</h1>
-
-          <div className="text-white text-4xl font-bold font-['Poppins'] mt-10">
-            It is a good time for the great taste of {foodCategory}
-          </div>
-        </div>
-
-        <div className="flex flex-row items-start justify-center gap-10 mt-10">
-          {/* Foods */}
-          <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
-            {foods.map((food) => (
-              <div
-                key={food._id}
-                className="w-[320px] h-[780px] px-[43px] pt-[25.50px] pb-[38.50px] bg-[#110c0c] rounded-[30px] flex flex-col items-start gap-5"
-              >
-                <div className="w-[200px] h-[200px] overflow-hidden rounded-full border-4 border-white mx-auto">
-                  <img
-                    src={`${process.env.NEXT_PUBLIC_BACKEND_URL_ADDRESS}/${food.image.replace(
-                      "\\",
-                      "/"
-                    )}`}
-                    alt={food.foodName}
-                    className="object-cover w-full h-full"
+      {/* Hero Section */}
+      <div>
+            <div className="relative h-screen bg-[#f0e6d9]">
+              <CafeNuwaraNavBar />
+            </div>
+            <div className="w-[370px] h-[370px] relative -mt-72 ml-28">
+              <Image
+                src={CafeNuwaraHero_Image}
+                alt="Placeholder"
+                layout="fill"
+                objectFit="contain"
+              />
+              <div className="w-[189px] h-[189px] relative ml-[450px]">
+                <Image
+                  src={Elephant_1}
+                  alt="Placeholder"
+                  layout="fill"
+                  objectFit="contain"
+                />
+                <div className="w-[215px] h-[215px] relative ml-44">
+                  <Image
+                    src={Elephant_2}
+                    alt="Placeholder"
+                    layout="fill"
+                    objectFit="contain"
+                    className="-mt-2"
                   />
                 </div>
-
-                <div className="text-white text-4xl font-bold font-['Poppins'] mt-5">
-                  {food.foodName
-                    .split(' ')
-                    .map((word) =>
-                      word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
-                    )
-                    .join(' ')}
-                </div>
-
-                <div className="text-white text-xl font font-['Poppins'] mt-5">
-                  {food.description}
-                </div>
-                <div className="text-[#eb650f] text-2xl font-bold font-['Poppins'] mt-6">
-                  LKR {food.price}
-                </div>
-                <div
-                  onClick={() => handleAddToCart(food)}
-                  role="button"
-                  tabIndex={0}
-                  className="h-[40px] px-[23px] py-[9px] bg-[#eb650f] rounded-[20px] flex justify-center items-center mt-8 cursor-pointer"
-                >
-                  <div className="text-black text-[20px] font-bold font-['Poppins']">
-                    ADD
-                  </div>
+                <div className="w-[428px] h-[335px] text-center text-black text-[40px] font-extrabold font-serif uppercase -mt-14 -ml-6">
+                  Choose <br />& <br />Enjoy...
                 </div>
               </div>
-            ))}
-          </div>
-
-          {/* Cart */}
-          <div className="w-[397px] h-[780px] px-5 py-10 bg-[#110d0d] rounded-[20px] border-4 border-white flex flex-col items-start">
-            <div className="w-full text-[#eb650f] text-5xl font-bold font-['Poppins'] mb-5">
-              Your Cart
+              <div className="w-[370px] h-[370px] relative -mt-48 ml-[925px]">
+                <Image
+                  src={CafeNuwaraHero_Image}
+                  alt="Placeholder"
+                  layout="fill"
+                  objectFit="contain"
+                />
+              </div>
             </div>
-            <div className="w-full flex flex-col gap-4 overflow-y-auto h-[360px]">
-              {cartItems.map((item) => (
-                <div
-                  key={item._id}
-                  className="w-full flex justify-between items-center text-white text-xl font-bold font-['Poppins']"
-                >
-                  <span>{item.foodName}</span>
-                  <div className="flex items-center gap-2">
-                    <button
-                      onClick={() => handleDecreaseQuantity(item._id)}
-                      className="px-2 py-1 font-bold text-white"
-                    >
-                      -
-                    </button>
-                    <span>{item.quantity}</span>
-                    <button
-                      onClick={() => handleIncreaseQuantity(item._id)}
-                      className="px-2 py-1 font-bold text-white"
-                    >
-                      +
-                    </button>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span>Rs. {item.price * item.quantity}</span>
-                    <Image
-                      src={delete_icon}
-                      alt="Delete"
-                      className="w-6 h-6 cursor-pointer"
-                      onClick={() => handleDeleteFromCart(item._id)}
-                    />
-                  </div>
+        {/* Other hero section elements */}
+      </div>
+      {/* Cards and Cart Container */}
+      <div className="flex flex-row items-start justify-center gap-10 mt-32">
+        {/* Card Grid Section */}
+        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
+          {foods.map((food) => (
+            <div
+              key={food._id}
+              className="w-[320px] h-[700px] relative bg-[#e1d6c1] rounded-[20px] flex-col justify-start items-start inline-flex"
+            >
+              <Image
+                className="w-[179px] h-[152px] mt-1"
+                src={Boder}
+                alt="Border Image"
+                width={179}
+                height={152}
+              />
+              <div className="w-[339px] h-[802px] relative">
+                <Image
+                  className="w-[200px] h-[200px] left-14 top-[-80px] absolute rounded-full border-4 border-[#caa767]"
+                  src={food.image || Bugger2}
+                  alt={food.name}
+                  width={200}
+                  height={200}
+                />
+                <div className="left-[20px] top-[150px] absolute text-black text-3xl font-bold font-['Reem Kufi']">
+                  {food.name}
                 </div>
-              ))}
-            </div>
-            <div className="w-full text-white text-xl font-bold font-['Poppins'] mt-5">
-              Total: Rs.{' '}
-              {cartItems.reduce(
-                (total, item) => total + item.price * item.quantity,
-                0
-              )}
-              .00
-            </div>
-            {/* Checkout Button */}
-            <div className="flex justify-center w-full mt-5">
-              <button
-                className="w-[200px] h-[50px] bg-[#eb650f] text-white text-xl font-bold font-['Poppins'] rounded-[10px] hover:bg-[#d4550d] transition-colors"
+                <div className="w-[339px] h-[87px] left-[15px] top-[200px] absolute text-black text-[15px] font-bold font-['Reem Kufi'] pr-9">
+                  {food.description}
+                </div>
+                <div className="left-[15px] top-[280px] absolute justify-start items-center inline-flex">
+                  {Array(food.rating || 4)
+                    .fill(0)
+                    .map((_, starIndex) => (
+                      <Image
+                        key={starIndex}
+                        className="w-[29px] h-[29px]"
+                        src={star_icon}
+                        alt="Rating Star"
+                        width={29}
+                        height={29}
+                      />
+                    ))}
+                </div>
+              </div>
+              <div className="left-[15px] top-[500px] absolute text-[#caa767] text-3xl font-bold font-['Poppins']">
+                LKR {food.price}
+              </div>
+              <div
+                onClick={() => handleAddToCart(food)}
+                className="w-[150px] px-[1px] top-[540px] absolute bg-[#caa767] rounded-[20px] justify-center items-center inline-flex ml-[15px] mt-10 cursor-pointer"
               >
-                <Link href="/fabceylon-kurunegala/order/checkout">
-                  Checkout
-                </Link>
-              </button>
+                <div className="text-black text-2xl font-bold font-['Poppins']">
+                  ADD
+                </div>
+              </div>
+              <Image
+                className="w-[179px] h-[152px] ml-[140px]"
+                src={Boder2}
+                alt="Rotated Border Image"
+                width={179}
+                height={152}
+              />
             </div>
+          ))}
+        </div>
+        {/* Cart Section */}
+        <div className="w-[370px] h-[700px] px-5 py-10 bg-[#e1d6c1] rounded-[20px] border-4 border-white flex flex-col items-start">
+          <Image
+            src={CartTop}
+            alt="Cart Top"
+            width={284}
+            height={160}
+            className="w-[250px] h-40 -mt-20 ml-10"
+          />
+          <div className="w-full text-black text-4xl font-bold font-['Poppins'] mb-5 ml-24 -mt-10">
+            Your Cart
           </div>
+          {cartItems.map((item) => (
+            <div
+              key={item._id}
+              className="flex items-center justify-between w-full mb-4"
+            >
+              <span className="text-xl font-bold">{item.name}</span>
+              <div className="flex items-center gap-2">
+                <button onClick={() => handleDecreaseQuantity(item._id)}>-</button>
+                <span>{item.quantity}</span>
+                <button onClick={() => handleIncreaseQuantity(item._id)}>+</button>
+                <button onClick={() => handleDeleteFromCart(item._id)}>Remove</button>
+              </div>
+            </div>
+          ))}
+          <div className="w-full text-black text-xl font-bold font-['Poppins'] mt-5">
+            Sub Total Rs. {cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0)}
+          </div>
+          <button className="w-[300px] h-[72px] px-[21px] py-5 bg-[#caa767] rounded-[20px] justify-center items-center mt-10">
+            Check Out
+          </button>
         </div>
       </div>
     </div>

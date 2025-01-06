@@ -88,7 +88,7 @@ const CheckoutPage = () => {
     }
 
     const orderData = {
-      admin_id: "67167ca7d704fb6682f5e82c", 
+      admin_id: "677c4204dce103659628144c", 
       userId: userId,
       items: cartItems.map((item) => ({
         foodId: item._id, 
@@ -104,7 +104,7 @@ const CheckoutPage = () => {
 
     try {
       const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL_ADDRESS}/api/customers/order/orderfoods/67167ca7d704fb6682f5e82c/put-order`,
+        `${process.env.NEXT_PUBLIC_BACKEND_URL_ADDRESS}/api/customers/order/orderfoods/677c4204dce103659628144c/put-order`,
         orderData
       );
 
