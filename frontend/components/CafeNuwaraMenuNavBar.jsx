@@ -44,17 +44,21 @@ export const CafeNuwaraMenuNavBar = () => {
             </div>
             <div className="flex gap-8 text-black text-[30px] font-normal font-['Reem Kufi'] ml-40">
               <div>
-                <Link href="/cafenuwara/menu/appetizer">
+                <Link href="/cafenuwara/menu/appetizers">
                   Menu
                 </Link>
               </div>
               <div>
-                <Link href="/cafenuwara/menu/appetizer">
+                <Link href="/cafenuwara/order/appetizers">
                   Place Order
                 </Link>
               </div>
               <div>Reservation</div>
-              <div>Register</div>
+              <div>
+                <Link href="/signup">
+                  Register
+                </Link>
+              </div>
             </div>
             <div className="h-[52px] justify-start items-center gap-[22px] inline-flex ml-10">
               <Image
