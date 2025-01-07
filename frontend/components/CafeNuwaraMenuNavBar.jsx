@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import cafenuwara_nav from '@/components/Assets/cafenuwara_nav.png';
-import Cafe_Nuwara_logo from '@/components/Assets/Cafe_Nuwara_logo.png';
+import Cafe_Nuwara_logo from '@/components/Assets/Nuwara _Logo_flat.png';
 import cart_icon from './Assets/cart_icon.png';
 import user_icon from './Assets/user_icon.png';
 import cafenuwaranav_2 from '@/components/Assets/cafenuwaranav_2.png';
@@ -33,15 +33,13 @@ export const CafeNuwaraMenuNavBar = () => {
           />
           <div className="absolute top-0 left-0 w-full h-full flex items-center mt-[20px] ml-24">
             <Image
-              src={Cafe_Nuwara_logo}
-              alt="Cafe Nuwara Logo"
-              width={100}
-              height={100}
-              className="mr-4 rounded-full"
-            />
-            <div className="mr-10 font-serif text-3xl font-extrabold text-black">
-              CAFE NUWARA
-            </div>
+                          src={Cafe_Nuwara_logo}
+                          alt="Cafe Nuwara Logo"
+                          width={220}
+                          height={80}
+                          className="mr-20"
+                        />
+            
             <div className="flex gap-8 text-black text-[30px] font-normal font-['Reem Kufi'] ml-40">
               <div>
                 <Link href="/cafenuwara/menu/appetizers">
