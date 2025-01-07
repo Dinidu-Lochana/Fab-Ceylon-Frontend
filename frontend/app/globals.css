@@ -107,3 +107,20 @@ body {
   font-weight: normal; /* or bold, etc. */
   font-style: normal; /* or italic, etc. */
 }
+
+@font-face {
+  font-family: 'PostNoe';
+  src: 
+       url('/fonts/PostNoBillsColombo-ExtraBold.woff') format('woff');
+  font-weight: Bold; /* or bold, etc. */
+  font-style: normal; /* or italic, etc. */
+}
+
+@font-face {
+  font-family: 'ReemKufi';
+  src: 
+       url('/fonts/ReemKufi-Regular.woff') format('woff');
+  font-weight: Bold; /* or bold, etc. */
+  font-style: normal; /* or italic, etc. */
+}
+

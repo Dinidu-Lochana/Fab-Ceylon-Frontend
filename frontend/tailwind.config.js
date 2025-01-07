@@ -77,6 +77,13 @@ module.exports = {
       fontFamily: {
         ptserif: ['PTSerif', 'sans-serif'], // Replace 'sans-serif' with a fallback font
       },
+      fontFamily: {
+        postNoe: ['PostNoe', 'PTSerif'], // Replace 'sans-serif' with a fallback font
+      },
+      fontFamily: {
+        reemKufi: ['ReemKufi', 'Georgia'], // Replace 'sans-serif' with a fallback font
+      },
+     
     },
   },
   plugins: [

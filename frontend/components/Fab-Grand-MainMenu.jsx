@@ -13,7 +13,7 @@ export const GrandMainMenuNavBar = () => {
       <div className="flex items-center h-[150px]  ml-[20px]">
         
        
-        <div className="w-[323px] text-[#eb650f] text-[25px] font-extrabold font-serif ml-10">
+        <div className="w-[323px] text-[#eb650f] text-[25px] font-extrabold font-postNoe ml-10">
           FAB CEYLON GRAND
         </div>
 

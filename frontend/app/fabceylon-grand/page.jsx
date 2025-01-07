@@ -174,7 +174,7 @@ export default function KandyMenu() {
             </div>
           </div>
         </div>
-        <Footer />
+        
       </div>
     </div>
   );

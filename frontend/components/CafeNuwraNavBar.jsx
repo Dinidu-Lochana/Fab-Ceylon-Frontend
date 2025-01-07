@@ -30,7 +30,7 @@ export const CafeNuwaraNavBar = () => {
             <div className="text-black text-3xl font-extrabold font-serif mr-10">
               CAFE NUWARA
             </div>
-            <div className="flex gap-10 text-black text-[30px] font-normal font-['Reem Kufi'] ml-60">
+            <div className="flex gap-10 text-black text-[30px] font-normal font-reemKufi font-semibold ml-60">
               <div>Menu</div>
               <div>Reservation</div>
               <div>Register</div>
@@ -62,15 +62,15 @@ export const CafeNuwaraNavBar = () => {
         style={{ width: '1700px', height: '160px' }}
       />
       <div class="w-[1500px] h-[66px] relative">
-    <div class="left-[250px] -mt-28 absolute text-center text-black text-[20px] font-bold font-['Reem Kufi']">Fried Rice</div>
-    <div class="] left-[135px] -mt-28 absolute text-center text-black text-[20px] font-bold font-['Reem Kufi']">Burger</div>
-    <div class=" left-[410px] -mt-28 absolute text-center text-black text-[20px] font-bold font-['Reem Kufi']">Kottu</div>
-    <div class="] left-[510px] -mt-28 absolute text-center text-black text-[20px] font-bold font-['Reem Kufi']">Biriyani</div>
-    <div class=" left-[660px] -mt-28 absolute text-center text-black text-[20px] font-bold font-['Reem Kufi']">Noodles</div>
-    <div class=" left-[800px] -mt-28 absolute text-center text-black text-[20px] font-bold font-['Reem Kufi']">Soup</div>
-    <div class=" h-9 left-[920px] v -mt-28 absolute text-center text-black text-[20px] font-bold font-['Reem Kufi']">MIlk Shake</div>
-    <div class=" left-[1130px] -mt-28 absolute text-center text-black text-[20px] font-bold font-['Reem Kufi']">Mojito</div>
-    <div class=" left-[1300px] -mt-28 absolute text-center text-black text-[20px] font-bold font-['Reem Kufi']">Salad</div>
+    <div class="left-[250px] -mt-28 absolute text-center text-black text-[20px] font-bold font-reemKufi">Fried Rice</div>
+    <div class="] left-[135px] -mt-28 absolute text-center text-black text-[20px] font-bold font-reemKufi">Burger</div>
+    <div class=" left-[410px] -mt-28 absolute text-center text-black text-[20px] font-bold font-reemKufi">Kottu</div>
+    <div class="] left-[510px] -mt-28 absolute text-center text-black text-[20px] font-bold font-reemKufi">Biriyani</div>
+    <div class=" left-[660px] -mt-28 absolute text-center text-black text-[20px] font-bold font-reemKufi">Noodles</div>
+    <div class=" left-[800px] -mt-28 absolute text-center text-black text-[20px] font-bold font-reemKufi">Soup</div>
+    <div class=" h-9 left-[920px] v -mt-28 absolute text-center text-black text-[20px] font-bold font-reemKufi">Milk Shake</div>
+    <div class=" left-[1130px] -mt-28 absolute text-center text-black text-[20px] font-bold font-reemKufi">Mojito</div>
+    <div class=" left-[1300px] -mt-28 absolute text-center text-black text-[20px] font-bold font-reemKufi">Salad</div>
 </div>
     </div>
       </div>
