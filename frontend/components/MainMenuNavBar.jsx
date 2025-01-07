@@ -4,13 +4,13 @@ import Link from 'next/link';
 
 import cart_icon from "./Assets/cart_icon.png";
 import user_icon from "./Assets/user_icon.png";
-import Fabceylon_logo from '@/components/Assets/Fabceylon_logo.png';
+import Fabceylon_logo from '@/components/Assets/fab_kurunegala.png';
 
 export const MainMenuNavBar = () => {
   const [activeItem, setActiveItem] = useState(''); // Tracks the active menu item
 
   const menuItems = [
-    { label: 'HOME', link: '#' },
+    { label: 'HOME', link: '/' },
     { label: 'MENU', link: '/fabceylon-kurunegala/menu/salads' },
     { label: 'PLACE ORDER', link: '/fabceylon-kurunegala/order/salads' },
     { label: 'RESERVATIONS', link: '#' },
@@ -21,15 +21,13 @@ export const MainMenuNavBar = () => {
     <div className="relative">
       <div className="flex items-center h-[150px] ml-[20px]">
         <Image
-          className="w-[45px] h-[45px] ml-10"
+          className="w-[260px] h-[45px] ml-10"
           src={Fabceylon_logo}
           alt="Fab Ceylon Logo"
-          width={52}
-          height={52}
+          width={352}
+          height={352}
         />
-        <div className="w-[323px] text-[#eb650f] text-[40px] font-extrabold font-serif ml-10">
-          FAB CEYLON
-        </div>
+        
 
         <div className="flex items-center gap-8 ml-60">
           {menuItems.map((item, index) => (
