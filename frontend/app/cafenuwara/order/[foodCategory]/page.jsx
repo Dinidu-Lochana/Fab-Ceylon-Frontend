@@ -11,22 +11,24 @@ import star_icon from '@/components/Assets/star_icon.png';
 import Boder from '@/components/Assets/Boder.png';
 import Boder2 from '@/components/Assets/Boder2.png';
 import CartTop from '@/components/Assets/CartTop.png';
+import delete_icon from '@/components/Assets/delete.png';
 import Cafe_Nuwara_logo from '@/components/Assets/Cafe_Nuwara_logo.png';
 import axios from 'axios';
 import toast from 'react-hot-toast';
+import Link from 'next/link';
 
 export default function CafeNuwara({ params }) {
   const foodCategory = params.foodCategory;
   const [cartItems, setCartItems] = useState([]);
   const [foods, setFoods] = useState([]);
 
-  // Fetch cart items from localStorage on component mount
+  
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem('cafe-nuwara-cart')) || [];
     setCartItems(storedCart);
   }, []);
 
-  // Fetch foods based on category
+  
   useEffect(() => {
     const fetchFoods = async () => {
       try {
@@ -42,22 +44,20 @@ export default function CafeNuwara({ params }) {
     fetchFoods();
   }, [foodCategory]);
 
-  // Add item to cart
   const handleAddToCart = (food) => {
     const cart = JSON.parse(localStorage.getItem('cafe-nuwara-cart')) || [];
     const existingItem = cart.find((item) => item._id === food._id);
 
     if (existingItem) {
-      existingItem.quantity += 1;
+      existingItem.quantity += 1; 
     } else {
-      cart.push({ ...food, quantity: 1 });
+      cart.push({ ...food, quantity: 1 }); 
     }
 
     localStorage.setItem('cafe-nuwara-cart', JSON.stringify(cart));
     setCartItems(cart);
   };
-
-  // Increase item quantity
+  
   const handleIncreaseQuantity = (foodId) => {
     const updatedCart = cartItems.map((item) =>
       item._id === foodId ? { ...item, quantity: item.quantity + 1 } : item
@@ -66,7 +66,6 @@ export default function CafeNuwara({ params }) {
     setCartItems(updatedCart);
   };
 
-  // Decrease item quantity
   const handleDecreaseQuantity = (foodId) => {
     const updatedCart = cartItems
       .map((item) =>
@@ -80,7 +79,6 @@ export default function CafeNuwara({ params }) {
     setCartItems(updatedCart);
   };
 
-  // Remove item from cart
   const handleDeleteFromCart = (foodId) => {
     const updatedCart = cartItems.filter((item) => item._id !== foodId);
     localStorage.setItem('cafe-nuwara-cart', JSON.stringify(updatedCart));
@@ -132,6 +130,19 @@ export default function CafeNuwara({ params }) {
             </div>
         {/* Other hero section elements */}
       </div>
+
+      {/* Food Category and List */}
+      <div className="relative ">
+        <div className="text-[#000000] text-6xl font-bold font-['Poppins'] text-center">
+          <h1>{foodCategory.replace(/-/g, ' ').toUpperCase()}</h1>
+
+          <div className="text-white text-3xl font-bold font-['Poppins'] mt-10">
+            It is a good time for the great taste of {foodCategory}
+          </div>
+        </div>
+      </div>
+
+      
       {/* Cards and Cart Container */}
       <div className="flex flex-row items-start justify-center gap-10 mt-32">
         {/* Card Grid Section */}
@@ -148,16 +159,28 @@ export default function CafeNuwara({ params }) {
                 width={179}
                 height={152}
               />
+              
               <div className="w-[339px] h-[802px] relative">
-                <Image
-                  className="w-[200px] h-[200px] left-14 top-[-80px] absolute rounded-full border-4 border-[#caa767]"
-                  src={food.image || Bugger2}
-                  alt={food.name}
-                  width={200}
-                  height={200}
-                />
+                
+              <div className="w-[200px] h-[200px] left-14 top-[-80px] absolute overflow-hidden rounded-full border-4 border-[#caa767] mx-auto">
+                  <img
+                    src={`${process.env.NEXT_PUBLIC_BACKEND_URL_ADDRESS}/${food.image.replace(
+                      "\\",
+                      "/"
+                    )}`}
+                    alt={food.foodName}
+                    className="object-cover w-full h-full"
+                  />
+                </div>
+
+                
                 <div className="left-[20px] top-[150px] absolute text-black text-3xl font-bold font-['Reem Kufi']">
-                  {food.name}
+                  {food.foodName
+                    .split(' ')
+                    .map((word) =>
+                      word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+                    )
+                    .join(' ')}
                 </div>
                 <div className="w-[339px] h-[87px] left-[15px] top-[200px] absolute text-black text-[15px] font-bold font-['Reem Kufi'] pr-9">
                   {food.description}
@@ -198,6 +221,8 @@ export default function CafeNuwara({ params }) {
             </div>
           ))}
         </div>
+
+        
         {/* Cart Section */}
         <div className="w-[370px] h-[700px] px-5 py-10 bg-[#e1d6c1] rounded-[20px] border-4 border-white flex flex-col items-start">
           <Image
@@ -215,21 +240,45 @@ export default function CafeNuwara({ params }) {
               key={item._id}
               className="flex items-center justify-between w-full mb-4"
             >
-              <span className="text-xl font-bold">{item.name}</span>
+              <span className="text-xl font-bold">{item.foodName}</span>
               <div className="flex items-center gap-2">
-                <button onClick={() => handleDecreaseQuantity(item._id)}>-</button>
-                <span>{item.quantity}</span>
-                <button onClick={() => handleIncreaseQuantity(item._id)}>+</button>
-                <button onClick={() => handleDeleteFromCart(item._id)}>Remove</button>
-              </div>
+                <button
+                                      onClick={() => handleDecreaseQuantity(item._id)}
+                                      className="px-2 py-1 font-extrabold text-black"
+                                    >
+                                      -
+                                    </button>
+                                    <span>{item.quantity}</span>
+                                    <button
+                                      onClick={() => handleIncreaseQuantity(item._id)}
+                                      className="px-2 py-1 font-extrabold text-black"
+                                    >
+                                      +
+                                    </button>
+                                  </div>
+                                  <div className="flex items-center gap-2">
+                                    <span>Rs. {item.price * item.quantity}</span>
+                                    <Image
+                                      src={delete_icon}
+                                      alt="Delete"
+                                      className="w-6 h-6 cursor-pointer filter brightness-0"
+                                      onClick={() => handleDeleteFromCart(item._id)}
+                                    />
+                                  </div>
+              
             </div>
           ))}
           <div className="w-full text-black text-xl font-bold font-['Poppins'] mt-5">
             Sub Total Rs. {cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0)}
           </div>
-          <button className="w-[300px] h-[72px] px-[21px] py-5 bg-[#caa767] rounded-[20px] justify-center items-center mt-10">
-            Check Out
+          <button className="w-[320px] h-[72px] px-[21px] py-5 bg-[#caa767] rounded-[20px] justify-center items-center mt-80">
+            <Link 
+              href="/cafenuwara/order/checkout" 
+              className="text-lg font-bold text-black">
+              Checkout
+            </Link>
           </button>
+
         </div>
       </div>
     </div>

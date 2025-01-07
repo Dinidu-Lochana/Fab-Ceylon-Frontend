@@ -44,10 +44,14 @@ export const CafeNuwaraMenuNavBar = () => {
             </div>
             <div className="flex gap-8 text-black text-[30px] font-normal font-['Reem Kufi'] ml-40">
               <div>
-                <Link href="/cafenuwara/menu/Appetizer">Menu</Link>
+                <Link href="/cafenuwara/menu/appetizer">
+                  Menu
+                </Link>
               </div>
               <div>
-                <Link href="/cafenuwara/order/Appetizer">Place Order</Link>
+                <Link href="/cafenuwara/menu/appetizer">
+                  Place Order
+                </Link>
               </div>
               <div>Reservation</div>
               <div>Register</div>
@@ -78,7 +82,7 @@ export const CafeNuwaraMenuNavBar = () => {
             height={223}
             style={{ width: '1700px', height: '160px' }}
           />
-
+          
           <div className="w-[1500px] h-[120px] relative">
             <div className="left-[1270px] -mt-20 absolute text-center text-black text-[16px] font-bold font-['Reem Kufi']">
               <a href="#" onClick={toggleBeverages}>
@@ -87,103 +91,104 @@ export const CafeNuwaraMenuNavBar = () => {
 
               {beveragesOpen && (
                 <div
-                  className="absolute top-[30px] left-0 min-w-[180px] bg-[#f0e6d9] shadow-lg p-4 rounded-md h-[130px]"
+                  className="absolute top-[30px] left-0 min-w-[180px] bg-[#f0e6d9] shadow-lg p-4 rounded-md h-[130px] "
+                   // Close when mouse leaves the entire dropdown area
                 >
-                  <div
-                    className="flex-col gap-3 h-[100px]"
-                    onMouseLeave={closeBeverages}
-                  >
+                  <div className="flex-col gap-3 h-[100px]"  onMouseLeave={closeBeverages}>
                     <div>
-                      <Link href="/cafenuwara/menu/Iced-Tea-&-Coffee">
-                        <div className="text-black text-[14px] font-bold hover:text-gray-600 cursor-pointer">
-                          Iced Tea & Coffee
-                        </div>
-                      </Link>
-                      <Link href="/cafenuwara/menu/Hot-Beverage">
-                        <div className="text-black text-[14px] font-bold hover:text-gray-600 cursor-pointer">
-                          Hot Beverage
-                        </div>
-                      </Link>
-                      <Link href="/cafenuwara/menu/Bubble-Tea">
-                        <div className="text-black text-[14px] font-bold hover:text-gray-600 cursor-pointer">
-                          Bubble Tea
-                        </div>
-                      </Link>
-                      <Link href="/cafenuwara/menu/Mojito">
-                        <div className="text-black text-[14px] font-bold hover:text-gray-600 cursor-pointer">
-                          Mojito
-                        </div>
-                      </Link>
-                      <Link href="/cafenuwara/menu/Milk-Shake">
-                        <div className="text-black text-[14px] font-bold hover:text-gray-600 cursor-pointer">
-                          Milk Shake
-                        </div>
-                      </Link>
+                    <Link href="/cafenuwara/menu/iced-coffee-&-iced-tea">
+                      <div className="text-black text-[14px] font-bold hover:text-gray-600 cursor-pointer">
+                        Iced Tea & Coffee
+                      </div>
+                    </Link>
+                    <Link href="/cafenuwara/menu/hot-beverages">
+                      <div className="text-black text-[14px] font-bold hover:text-gray-600 cursor-pointer">
+                        Hot Beverages
+                      </div>
+                    </Link>
+                    <Link href="/cafenuwara/menu/bubble-tea">
+                      <div className="text-black text-[14px] font-bold hover:text-gray-600 cursor-pointer">
+                        Bubble Tea
+                      </div>
+                    </Link>
+                    <Link href="/cafenuwara/menu/mojito">
+                      <div className="text-black text-[14px] font-bold hover:text-gray-600 cursor-pointer">
+                        Mojito
+                      </div>
+                    </Link>
+                    <Link href="/cafenuwara/menu/milk-shakes">
+                      <div className="text-black text-[14px] font-bold hover:text-gray-600 cursor-pointer">
+                        Milk Shakes
+                      </div>
+                    </Link>
                     </div>
                   </div>
                 </div>
-              )}
+)}
+
+
+
             </div>
 
-            {/* Updated menu items */}
+            {/* Other menu items */}
             <div className="left-[40px] -mt-20 absolute text-center text-black text-[16px] font-bold font-['Reem Kufi']">
-              <a href="/cafenuwara/menu/Appetizer">Appetizer</a>
+              <a href="/cafenuwara/menu/appetizers">Appetizers</a>
             </div>
             <div className="left-[150px] -mt-20 absolute text-center text-black text-[16px] font-bold font-['Reem Kufi']">
-              <a href="/cafenuwara/menu/Salad-and-Soup">
-                Salad
+              <a href="/cafenuwara/menu/salad-and-soup">
+                Salads
                 <br />
-                & Soup
+                & Soups
               </a>
             </div>
             <div className="left-[240px] -mt-20 absolute text-center text-black text-[16px] font-bold font-['Reem Kufi']">
-              <a href="/cafenuwara/menu/Pasta-and-Spaghetti">
+              <a href="/cafenuwara/menu/pasta-and-spaghetti">
                 Pasta
                 <br />
                 & Spaghetti
               </a>
             </div>
             <div className="left-[360px] -mt-20 absolute text-center text-black text-[16px] font-bold font-['Reem Kufi']">
-              <a href="/cafenuwara/menu/Noodles">Noodles</a>
+              <a href="/cafenuwara/menu/noodles">Noodles</a>
             </div>
             <div className="left-[460px] -mt-20 absolute text-center text-black text-[16px] font-bold font-['Reem Kufi']">
-              <a href="/cafenuwara/menu/Kottu">Kottu</a>
+              <a href="/cafenuwara/menu/kottu">Kottu</a>
             </div>
             <div className="left-[540px] -mt-20 absolute text-center text-black text-[16px] font-bold font-['Reem Kufi']">
-              <a href="/cafenuwara/menu/Fried-Rice">
+              <a href="/cafenuwara/menu/fried-rice">
                 Fried
                 <br />
                 Rice
               </a>
             </div>
             <div className="left-[620px] -mt-20 absolute text-center text-black text-[16px] font-bold font-['Reem Kufi']">
-              <a href="/cafenuwara/menu/Biriyani">Biriyani</a>
+              <a href="/cafenuwara/menu/biriyani">Biriyani</a>
             </div>
             <div className="left-[720px] -mt-20 absolute text-center text-black text-[16px] font-bold font-['Reem Kufi']">
-              <a href="/cafenuwara/menu/Signature-Meals">
+              <a href="/cafenuwara/menu/signature-meals">
                 Signature
                 <br />
                 Meals
               </a>
             </div>
             <div className="left-[840px] -mt-20 absolute text-center text-black text-[16px] font-bold font-['Reem Kufi']">
-              <a href="/cafenuwara/menu/Add-On">Add-On</a>
+              <a href="/cafenuwara/menu/add-on">Add-On</a>
             </div>
             <div className="left-[940px] -mt-20 absolute text-center text-black text-[16px] font-bold font-['Reem Kufi']">
-              <a href="/cafenuwara/menu/Burger">Burger</a>
+              <a href="/cafenuwara/menu/burgers">Burgers</a>
             </div>
             <div className="left-[1040px] -mt-20 absolute text-center text-black text-[16px] font-bold font-['Reem Kufi']">
-              <a href="/cafenuwara/menu/Sandwiches-and-Submarines">
+              <a href="/cafenuwara/menu/sandwiches-and-submarines">
                 Sandwiches
                 <br />
                 & Submarines
               </a>
             </div>
             <div className="left-[1190px] -mt-20 absolute text-center text-black text-[16px] font-bold font-['Reem Kufi']">
-              <a href="/cafenuwara/menu/Bowls">Bowls</a>
+              <a href="/cafenuwara/menu/bowls">Bowls</a>
             </div>
             <div className="left-[1370px] -mt-20 absolute text-center text-black text-[16px] font-bold font-['Reem Kufi']">
-              <a href="/cafenuwara/menu/Dessert">Dessert</a>
+              <a href="/cafenuwara/menu/desserts">Desserts</a>
             </div>
           </div>
         </div>

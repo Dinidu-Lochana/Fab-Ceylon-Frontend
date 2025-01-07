@@ -22,7 +22,7 @@ const CheckoutPage = () => {
   const router = useRouter();
 
   useEffect(() => {
-    const storedCart = JSON.parse(localStorage.getItem("fab-kurunegala-cart")) || [];
+    const storedCart = JSON.parse(localStorage.getItem("cafe-nuwara-cart")) || [];
     setCartItems(storedCart);
   }, []);
 
@@ -30,7 +30,7 @@ const CheckoutPage = () => {
     const updatedCart = cartItems.map((item) =>
       item.id === id ? { ...item, quantity: item.quantity + 1 } : item
     );
-    localStorage.setItem("fab-kurunegala-cart", JSON.stringify(updatedCart));
+    localStorage.setItem("cafe-nuwara-cart", JSON.stringify(updatedCart));
     setCartItems(updatedCart);
   };
 
@@ -42,13 +42,13 @@ const CheckoutPage = () => {
           : item
       )
       .filter((item) => item.quantity > 0);
-    localStorage.setItem("fab-kurunegala-cart", JSON.stringify(updatedCart));
+    localStorage.setItem("cafe-nuwara-cart", JSON.stringify(updatedCart));
     setCartItems(updatedCart);
   };
 
   const handleDeleteFromCart = (id) => {
     const updatedCart = cartItems.filter((item) => item.id !== id);
-    localStorage.setItem("fab-kurunegala-cart", JSON.stringify(updatedCart));
+    localStorage.setItem("cafe-nuwara-cart", JSON.stringify(updatedCart));
     setCartItems(updatedCart);
   };
 
