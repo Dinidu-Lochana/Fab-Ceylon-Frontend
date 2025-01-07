@@ -27,7 +27,7 @@ export const KandyMainMenuNavBar = () => {
           width={52}
           height={52}
         />
-        <div className="w-[323px] text-[#eb650f] text-[40px] font-extrabold font-serif ml-10">
+        <div className="w-[323px] text-[#bb8a6c] text-[40px] font-extrabold font-serif ml-10">
           FAB CEYLON
         </div>
 
