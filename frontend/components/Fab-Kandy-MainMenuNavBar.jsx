@@ -10,11 +10,11 @@ export const KandyMainMenuNavBar = () => {
   const [activeItem, setActiveItem] = useState(''); // Tracks the active menu item
 
   const menuItems = [
-    { label: 'HOME', link: '#' },
-    { label: 'MENU', link: '/fabceylon-kandy/menu/salads' },
-    { label: 'PLACE ORDER', link: '/fabceylon-kandy/order/salads' },
+    { label: 'HOME', link: '/' },
+    { label: 'MENU', link: '/fabceylon-kandy/menu/salads-soups' },
+    { label: 'PLACE ORDER', link: '/fabceylon-kandy/order/salads-soups' },
     { label: 'RESERVATIONS', link: '#' },
-    { label: 'REGISTER', link: '#' },
+    { label: 'REGISTER', link: '/signup' },
   ];
 
   return (

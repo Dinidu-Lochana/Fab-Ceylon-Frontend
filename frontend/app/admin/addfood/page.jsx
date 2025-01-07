@@ -146,20 +146,19 @@ const AddFood = () => {
                     >
                         <option value="" disabled>Select Category</option>
                         <option value="appetizers">Appetizers</option>
-                        <option value="salads-&-soups">Salads & Soups</option>
+                        <option value="salads-soups">Salads & Soups</option>
                         <option value="add-on">Add-On</option>
                         <option value="bowls">Bowls</option>
-                        <option value="pasta-&-spaghetti">Pasta & Spaghetti</option>
+                        <option value="pasta-spaghetti">Pasta & Spaghetti</option>
                         <option value="noodles">Noodles</option>
                         <option value="kottu">Kottu</option>
                         <option value="fried-rice">Fried Rice</option>
                         <option value="biriyani">Biriyani</option>
                         <option value="signature-meals">Signature Meals</option>
-                        <option value="seafood-monster">Seafood Monster</option>
                         <option value="burgers">Burgers</option>
-                        <option value="sandwiches-&-submarines">Sandwiches & Submarines</option>
+                        <option value="sandwiches-submarines">Sandwiches & Submarines</option>
                         <option value="desserts">Desserts</option>
-                        <option value="iced-coffee-&-iced-tea">Iced Coffee & Iced Tea</option>
+                        <option value="iced-coffee-iced-tea">Iced Coffee & Iced Tea</option>
                         <option value="hot-beverages">Hot Beverages</option>
                         <option value="bubble-tea">Bubble Tea</option>
                         <option value="mojito">Mojito</option>

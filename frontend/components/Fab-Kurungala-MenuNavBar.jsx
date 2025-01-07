@@ -29,27 +29,27 @@ export const FabKurungalaMenuNavBar = () => {
                 onMouseLeave={closeBeverages}
               >
                 <div className="flex-col gap-3 h-[100px]">
-                  <Link href="/menu/iced-coffee-&-iced-tea">
+                  <Link href="/fabceylon-kurunegala/menu/iced-coffee-iced-tea">
                     <div className="text-[#eb650f] text-[14px] font-bold hover:text-white cursor-pointer">
                       Iced Tea & Coffee
                     </div>
                   </Link>
-                  <Link href="/menu/hot-beverages">
+                  <Link href="/fabceylon-kurunegala/menu/hot-beverages">
                     <div className="text-[#eb650f] text-[14px] font-bold hover:text-white cursor-pointer">
                       Hot Beverages
                     </div>
                   </Link>
-                  <Link href="/menu/bubble-tea">
+                  <Link href="/fabceylon-kurunegala/menu/bubble-tea">
                     <div className="text-[#eb650f] text-[14px] font-bold hover:text-white cursor-pointer">
                       Bubble Tea
                     </div>
                   </Link>
-                  <Link href="/menu/mojito">
+                  <Link href="/fabceylon-kurunegala/menu/mojito">
                     <div className="text-[#eb650f] text-[14px] font-bold hover:text-white cursor-pointer">
                       Mojito
                     </div>
                   </Link>
-                  <Link href="/menu/milk-shakes">
+                  <Link href="/fabceylon-kurunegala/menu/milk-shakes">
                     <div className="text-[#eb650f] text-[14px] font-bold hover:text-white cursor-pointer">
                       Milk Shakes
                     </div>
@@ -60,37 +60,37 @@ export const FabKurungalaMenuNavBar = () => {
           </div>
         </div>
 
-        <Link href="/menu/appetizers">
+        <Link href="/fabceylon-kurunegala/menu/appetizers">
           <div className="menu-item left-[140px]">Appetizers</div>
         </Link>
-        <Link href="/menu/salads">
+        <Link href="/fabceylon-kurunegala/menu/salads-soups">
           <div className="menu-item left-[20px]">Salads & Soups</div>
         </Link>
-        <Link href="/menu/pasta-spaghetti">
+        <Link href="/fabceylon-kurunegala/menu/pasta-spaghetti">
           <div className="menu-item left-[260px]">Pasta & Spaghetti</div>
         </Link>
-        <Link href="/menu/noodles">
+        <Link href="/fabceylon-kurunegala/menu/noodles">
           <div className="menu-item left-[370px]">Noodles</div>
         </Link>
-        <Link href="/menu/kottu">
+        <Link href="/fabceylon-kurunegala/menu/kottu">
           <div className="menu-item left-[470px]">Kottu</div>
         </Link>
-        <Link href="/menu/fried-rice">
+        <Link href="/fabceylon-kurunegala/menu/fried-rice">
           <div className="menu-item left-[580px]">Fried Rice</div>
         </Link>
-        <Link href="/menu/biriyani">
+        <Link href="/fabceylon-kurunegala/menu/biriyani">
           <div className="menu-item left-[690px]">Biriyani</div>
         </Link>
-        <Link href="/menu/signature-meals">
+        <Link href="/fabceylon-kurunegala/menu/signature-meals">
           <div className="menu-item left-[800px]">Signature Meals</div>
         </Link>
-        <Link href="/menu/burgers">
+        <Link href="/fabceylon-kurunegala/menu/burgers">
           <div className="menu-item left-[910px]">Burgers</div>
         </Link>
-        <Link href="/menu/sandwiches-submarines">
+        <Link href="/fabceylon-kurunegala/menu/sandwiches-submarines">
           <div className="menu-item left-[1050px]">Sandwiches & Submarines</div>
         </Link>
-        <Link href="/menu/desserts">
+        <Link href="/fabceylon-kurunegala/menu/desserts">
           <div className="menu-item left-[1330px]">Desserts</div>
         </Link>
 

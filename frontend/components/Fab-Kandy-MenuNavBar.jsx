@@ -1,76 +1,101 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 
 export const KandyMenuNavBar = () => {
+  const [beveragesOpen, setBeveragesOpen] = useState(false);
+
+  const toggleBeverages = () => {
+    setBeveragesOpen(!beveragesOpen);
+  };
+
+  const closeBeverages = () => {
+    setBeveragesOpen(false);
+  };
+
   return (
     <div>
-      <div className="w-[15px] h-[66px] relative">
+      {/* Main Menu Items */}
+      <div className="w-[1500px] h-[200px] relative">
+
+        {/* Beverages Dropdown */}
+        <div className="w-[1500px] h-[120px] relative">
+          <div className="menu-item left-[1200px] absolute text-center">
+            <a href="#" onClick={toggleBeverages}>
+              Beverages
+            </a>
+            {beveragesOpen && (
+              <div
+                className="absolute top-[30px] left-0 min-w-[180px] bg-[rgba(0,0,0,0.8)] shadow-lg p-4 rounded-lg h-[130px]"
+                onMouseLeave={closeBeverages}
+              >
+                <div className="flex-col gap-3 h-[100px]">
+                  <Link href="/fabceylon-kandy/menu/iced-coffee-iced-tea">
+                    <div className="text-[#eb650f] text-[14px] font-bold hover:text-white cursor-pointer">
+                      Iced Tea & Coffee
+                    </div>
+                  </Link>
+                  <Link href="/fabceylon-kandy/menu/hot-beverages">
+                    <div className="text-[#eb650f] text-[14px] font-bold hover:text-white cursor-pointer">
+                      Hot Beverages
+                    </div>
+                  </Link>
+                  <Link href="/fabceylon-kandy/menu/bubble-tea">
+                    <div className="text-[#eb650f] text-[14px] font-bold hover:text-white cursor-pointer">
+                      Bubble Tea
+                    </div>
+                  </Link>
+                  <Link href="/fabceylon-kandy/menu/mojito">
+                    <div className="text-[#eb650f] text-[14px] font-bold hover:text-white cursor-pointer">
+                      Mojito
+                    </div>
+                  </Link>
+                  <Link href="/fabceylon-kandy/menu/milk-shakes">
+                    <div className="text-[#eb650f] text-[14px] font-bold hover:text-white cursor-pointer">
+                      Milk Shakes
+                    </div>
+                  </Link>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+
         <Link href="/fabceylon-kandy/menu/appetizers">
-          <div className="menu-item left-[120px]">
-            Appetizers
-          </div>
+          <div className="menu-item left-[140px]">Appetizers</div>
         </Link>
-        <Link href="/fabceylon-kandy/menu/salads">
-          <div className="menu-item left-[0px]">
-            Salads & Soups
-          </div>
+        <Link href="/fabceylon-kandy/menu/salads-soups">
+          <div className="menu-item left-[20px]">Salads & Soups</div>
         </Link>
         <Link href="/fabceylon-kandy/menu/pasta-spaghetti">
-          <div className="menu-item left-[250px]">
-            Pasta & Spaghetti
-          </div>
+          <div className="menu-item left-[260px]">Pasta & Spaghetti</div>
         </Link>
         <Link href="/fabceylon-kandy/menu/noodles">
-          <div className="menu-item left-[370px]">
-            Noodles
-          </div>
+          <div className="menu-item left-[370px]">Noodles</div>
         </Link>
         <Link href="/fabceylon-kandy/menu/kottu">
-          <div className="menu-item left-[470px]">
-            Kottu
-          </div>
+          <div className="menu-item left-[470px]">Kottu</div>
         </Link>
         <Link href="/fabceylon-kandy/menu/fried-rice">
-          <div className="menu-item left-[580px]">
-            Fried Rice
-          </div>
+          <div className="menu-item left-[580px]">Fried Rice</div>
         </Link>
         <Link href="/fabceylon-kandy/menu/biriyani">
-          <div className="menu-item left-[690px]">
-            Biriyani
-          </div>
+          <div className="menu-item left-[690px]">Biriyani</div>
         </Link>
         <Link href="/fabceylon-kandy/menu/signature-meals">
-          <div className="menu-item left-[800px]">
-            Signature Meals
-          </div>
-        </Link>
-        <Link href="/fabceylon-kandy/menu/seafood-monster">
-          <div className="menu-item left-[910px]">
-            Seafood Monster
-          </div>
+          <div className="menu-item left-[800px]">Signature Meals</div>
         </Link>
         <Link href="/fabceylon-kandy/menu/burgers">
-          <div className="menu-item left-[1010px]">
-            Burgers
-          </div>
+          <div className="menu-item left-[910px]">Burgers</div>
         </Link>
         <Link href="/fabceylon-kandy/menu/sandwiches-submarines">
-          <div className="menu-item left-[1140px]">
-            Sandwiches & Submarines
-          </div>
+          <div className="menu-item left-[1050px]">Sandwiches & Submarines</div>
         </Link>
         <Link href="/fabceylon-kandy/menu/desserts">
-          <div className="menu-item left-[1270px]">
-            Desserts
-          </div>
+          <div className="menu-item left-[1330px]">Desserts</div>
         </Link>
-        <Link href="/fabceylon-kandy/menu/beverages">
-          <div className="menu-item left-[1380px]">
-            Beverages
-          </div>
-        </Link>
+
       </div>
+
       <style jsx>{`
         .menu-item {
           width: 125px;

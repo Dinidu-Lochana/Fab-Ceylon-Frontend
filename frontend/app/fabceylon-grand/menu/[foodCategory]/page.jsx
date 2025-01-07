@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import MenuBack_image from '@/components/Assets/MenuBack_image.jpg';
 import delete_icon from '@/components/Assets/delete.png';
-import { GrandMenuNavBar} from '@/components/Fab-Grand-MenuNavBar';
+import { GrandMenuNavBar } from '@/components/Fab-Grand-MenuNavBar';
 import { GrandMainMenuNavBar } from '@/components/Fab-Grand-MainMenu';
 import axios from 'axios';
 import { toast } from 'react-toastify';
@@ -22,7 +22,7 @@ export default function KandyMenu({ params }) {
     const fetchFoods = async () => {
       try {
         const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_BACKEND_URL_ADDRESS}/api/customers/getfoods/67167ca7d704fb6682f5e82c/${foodCategory}`
+          `${process.env.NEXT_PUBLIC_BACKEND_URL_ADDRESS}/api/customers/getfoods/677c424ddce1036596281450/${foodCategory}`
         );
         setFoods(response.data);
       } catch (error) {
@@ -59,10 +59,10 @@ export default function KandyMenu({ params }) {
       </div>
 
       <div className="relative bg-black">
-        <div className="text-[#eb650f] text-8xl font-bold font-['Poppins'] bg-black text-center">
+        <div className="text-[#eb650f] text-7xl font-bold font-['Poppins'] bg-black text-center">
           <h1>{foodCategory.replace(/-/g, ' ').toUpperCase()}</h1>
 
-          <div className="text-white text-4xl font-bold font-['Poppins'] mt-10">
+          <div className="text-white text-3xl font-bold font-['Poppins'] mt-10">
             It is a good time for the great taste of {foodCategory}
           </div>
         </div>
@@ -74,14 +74,16 @@ export default function KandyMenu({ params }) {
                 key={food._id}
                 className="w-[320px] h-[780px] px-[43px] pt-[25.50px] pb-[38.50px] bg-[#110c0c] rounded-[30px] flex flex-col items-start gap-5"
               >
-                <img
-                  src={`${process.env.NEXT_PUBLIC_BACKEND_URL_ADDRESS}/${food.image.replace(
-                    "\\",
-                    "/"
-                  )}`}
-                  alt={food.foodName}
-                  className="object-cover w-full h-auto border-4 border-white rounded-full"
-                />
+                <div className="w-[200px] h-[200px] overflow-hidden rounded-full border-4 border-white mx-auto">
+                  <img
+                    src={`${process.env.NEXT_PUBLIC_BACKEND_URL_ADDRESS}/${food.image.replace(
+                      "\\",
+                      "/"
+                    )}`}
+                    alt={food.foodName}
+                    className="object-cover w-full h-full"
+                  />
+                </div>
 
                 <div className="text-white text-4xl font-bold font-['Poppins'] mt-5">
                   {food.foodName.split(' ').map(word => 

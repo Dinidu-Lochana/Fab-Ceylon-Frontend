@@ -34,7 +34,7 @@ export const MenuNavBar = () => {
                   onMouseLeave={closeBeverages}
                 >
                   <div className="flex-col gap-3 h-[100px]">
-                    <Link href="/fabceylon-kurunegala/order/iced-coffee-&-iced-tea">
+                    <Link href="/fabceylon-kurunegala/order/iced-coffee-iced-tea">
                       <div className="text-[#eb650f] text-[14px] font-bold hover:text-white cursor-pointer">
                         Iced Tea & Coffee
                       </div>
@@ -70,7 +70,7 @@ export const MenuNavBar = () => {
         <Link href="/fabceylon-kurunegala/order/appetizers">
           <div className="menu-item left-[140px]">Appetizers</div>
         </Link>
-        <Link href="/fabceylon-kurunegala/order/salads">
+        <Link href="/fabceylon-kurunegala/order/salads-soups">
           <div className="menu-item left-[20px]">Salads & Soups</div>
         </Link>
         <Link href="/fabceylon-kurunegala/order/pasta-spaghetti">

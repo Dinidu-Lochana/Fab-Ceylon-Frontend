@@ -100,12 +100,13 @@ export default function KandyMenu({ params }) {
       </div>
 
       {/* Food Category and List */}
-      <div className="relative bg-black">
-        <div className="text-[#eb650f] text-7xl font-bold font-['Poppins'] bg-black text-center">
-          <h1>{foodCategory.replace(/-/g, ' ').toUpperCase()}</h1>
+        <div className="relative bg-black">
+          
+          <div className="text-[#eb650f] text-7xl font-bold font-['Poppins'] bg-black text-center">
+            <h1>{foodCategory.replace(/-/g, ' ').toUpperCase()}</h1>
 
           <div className="text-white text-3xl font-bold font-['Poppins'] mt-10">
-            It is a good time for the great taste of {foodCategory}
+            It is a good time for the great taste of {foodCategory.replace(/-/g, ' ')}
           </div>
         </div>
 

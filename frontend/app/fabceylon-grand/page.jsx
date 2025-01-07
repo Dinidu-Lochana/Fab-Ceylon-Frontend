@@ -5,7 +5,7 @@ import Bugger from '@/components/Assets/Bugger.png';
 import Image from 'next/image';
 import star_icon from '@/components/Assets/star_icon.png';
 import delete_icon from '@/components/Assets/delete.png';
-import { GrandMenuNavBar } from '@/components/Fab-Grand-MenuNavBar';
+import { MenuNavBar } from '@/components/MenuNavBar';
 import { GrandMainMenuNavBar } from '@/components/Fab-Grand-MainMenu';
 
 export default function KandyMenu() {
@@ -67,7 +67,7 @@ export default function KandyMenu() {
           alt="Background Image"
         />
         <GrandMainMenuNavBar />
-        <GrandMenuNavBar />
+        <MenuNavBar />
 
         <div className="relative gap-2 text-left text-white">
           <div style={{ marginLeft: '100px' }}>

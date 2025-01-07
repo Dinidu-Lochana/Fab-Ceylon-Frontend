@@ -169,11 +169,24 @@ const UpdateFood = ({ params }) => {
                             onChange={changeHandler}
                             className="w-full h-10 px-3 text-sm text-gray-800 bg-white border border-gray-300 rounded-xl">
                             <option value="" disabled>Select Category</option>
-                            <option value="Appetizer">Appetizer</option>
-                            <option value="Main Course">Main Course</option>
-                            <option value="Dessert">Dessert</option>
-                            <option value="Beverage">Beverage</option>
-                            <option value="Salad">Salad</option>
+                        <option value="appetizers">Appetizers</option>
+                        <option value="salads-soups">Salads & Soups</option>
+                        <option value="add-on">Add-On</option>
+                        <option value="bowls">Bowls</option>
+                        <option value="pasta-spaghetti">Pasta & Spaghetti</option>
+                        <option value="noodles">Noodles</option>
+                        <option value="kottu">Kottu</option>
+                        <option value="fried-rice">Fried Rice</option>
+                        <option value="biriyani">Biriyani</option>
+                        <option value="signature-meals">Signature Meals</option>
+                        <option value="burgers">Burgers</option>
+                        <option value="sandwiches-submarines">Sandwiches & Submarines</option>
+                        <option value="desserts">Desserts</option>
+                        <option value="iced-coffee-iced-tea">Iced Coffee & Iced Tea</option>
+                        <option value="hot-beverages">Hot Beverages</option>
+                        <option value="bubble-tea">Bubble Tea</option>
+                        <option value="mojito">Mojito</option>
+                        <option value="milk-shakes">Milk Shakes</option>
                         </select>
                     </div>
 

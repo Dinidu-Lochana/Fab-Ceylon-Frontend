@@ -8,7 +8,7 @@ import Fabceylon_logo from "@/components/Assets/Fabceylon_logo.png";
 import Fabceylon_Grand_logo from "@/components/Assets/Fabceylon_Grand_logo.png";
 import Back_image_2 from "@/components/Assets/Back_image_2.png";
 import Side_back_image from "@/components/Assets/Side_back_image.png";
-
+import Link from 'next/link';
 import { Footer } from '@/components/Footer';
 import { HeroHighlight, HeroHighlightDemo } from '@/components/HeroHighlight';
 import '@/app/CSS/HomePage.css'
@@ -52,16 +52,18 @@ export default function Home() {
 
       {/* Logos Grid Section */}
       <div className="relative grid grid-cols-4 gap-6 m-20 p-12 h-[30rem] bg-[#111010] rounded-[60px] mx-32 px-12 animate-fadeIn">
-  <div className="relative">
-    <article className="delay-100 animate-slideUp">
-      <Image 
-        className="absolute transition-transform duration-300 transform hover:scale-105"
-        style={{ top: '30px', left: '30px' }}
-        src={Cafe_Nuwara_logo}
-        alt="Cafe Nuwara Logo"
-        height={200}
-        width={200}
-      />
+      <div className="relative">
+      <article className="delay-100 animate-slideUp">
+      <Link href="/cafenuwara/menu/appetizers">
+  <Image
+    className="absolute transition-transform duration-300 transform hover:scale-105"
+    style={{ top: '30px', left: '30px' }}
+    src={Cafe_Nuwara_logo}
+    alt="Cafe Nuwara Logo"
+    height={200}
+    width={200}
+  />
+</Link>
       <a 
         className="absolute text-3xl font-bold text-white transition-transform duration-300 font-poppins hover:scale-105"
         style={{ top: '250px', left: '40px' }}
@@ -73,14 +75,16 @@ export default function Home() {
 
   <div className="relative">
     <article className="delay-200 animate-slideUp">
-      <Image 
-        className="absolute transition-transform duration-300 transform hover:scale-105"
-        style={{ top: '30px', left: '40px' }}
-        src={Fabceylon_logo}
-        alt="Fab Ceylon Kandy Logo"
-        height={200}
-        width={200}
-      />
+    <Link href="/fabceylon-kandy/menu/appetizers">
+  <Image
+    className="absolute transition-transform duration-300 transform hover:scale-105"
+    style={{ top: '30px', left: '40px' }}
+    src={Fabceylon_logo}
+    alt="Fab Ceylon Kandy Logo"
+    height={200}
+    width={200}
+  />
+</Link>
       <a 
         className="absolute text-3xl font-bold text-white transition-transform duration-300 font-poppins hover:scale-105"
         style={{ top: '250px', left: '40px' }}
@@ -98,14 +102,16 @@ export default function Home() {
 
   <div className="relative">
     <article className="delay-300 animate-slideUp">
-      <Image 
-        className="absolute transition-transform duration-300 transform hover:scale-105"
-        style={{ top: '30px', left: '60px' }}
-        src={Fabceylon_Grand_logo}
-        alt="Fab Ceylon Grand Logo"
-        height={200}
-        width={200}
-      />
+    <Link href="/fabceylon-grand/menu/appetizers">
+  <Image
+    className="absolute transition-transform duration-300 transform hover:scale-105"
+    style={{ top: '30px', left: '60px' }}
+    src={Fabceylon_Grand_logo}
+    alt="Fab Ceylon Grand Logo"
+    height={200}
+    width={200}
+  />
+</Link>
       <a 
         className="absolute text-3xl font-bold text-white transition-transform duration-300 font-poppins hover:scale-105"
         style={{ top: '250px', left: '80px' }}
@@ -123,14 +129,16 @@ export default function Home() {
 
   <div className="relative">
     <article className="animate-slideUp delay-400">
-      <Image 
-        className="absolute transition-transform duration-300 transform hover:scale-105"
-        style={{ top: '30px', left: '60px' }}
-        src={Fabceylon_logo}
-        alt="Fab Ceylon Kurunegala Logo"
-        height={200}
-        width={200}
-      />
+    <Link href="/fabceylon-kurunegala/menu/appetizers">
+  <Image
+    className="absolute transition-transform duration-300 transform hover:scale-105"
+    style={{ top: '30px', left: '60px' }}
+    src={Fabceylon_logo}
+    alt="Fab Ceylon Kurunegala Logo"
+    height={200}
+    width={200}
+  />
+</Link>
       <a 
         className="absolute text-3xl font-bold text-white transition-transform duration-300 font-poppins hover:scale-105"
         style={{ top: '250px', left: '70px' }}

@@ -98,7 +98,7 @@ export const CafeNuwaraMenuNavBar = () => {
                 >
                   <div className="flex-col gap-3 h-[100px]"  onMouseLeave={closeBeverages}>
                     <div>
-                    <Link href="/cafenuwara/menu/iced-coffee-&-iced-tea">
+                    <Link href="/cafenuwara/menu/iced-coffee-iced-tea">
                       <div className="text-black text-[14px] font-bold hover:text-gray-600 cursor-pointer">
                         Iced Tea & Coffee
                       </div>
@@ -137,14 +137,14 @@ export const CafeNuwaraMenuNavBar = () => {
               <a href="/cafenuwara/menu/appetizers">Appetizers</a>
             </div>
             <div className="left-[150px] -mt-20 absolute text-center text-black text-[16px] font-bold font-['Reem Kufi']">
-              <a href="/cafenuwara/menu/salad-and-soup">
+              <a href="/cafenuwara/menu/salads-soups">
                 Salads
                 <br />
                 & Soups
               </a>
             </div>
             <div className="left-[240px] -mt-20 absolute text-center text-black text-[16px] font-bold font-['Reem Kufi']">
-              <a href="/cafenuwara/menu/pasta-and-spaghetti">
+              <a href="/cafenuwara/menu/pasta-spaghetti">
                 Pasta
                 <br />
                 & Spaghetti
@@ -180,7 +180,7 @@ export const CafeNuwaraMenuNavBar = () => {
               <a href="/cafenuwara/menu/burgers">Burgers</a>
             </div>
             <div className="left-[1040px] -mt-20 absolute text-center text-black text-[16px] font-bold font-['Reem Kufi']">
-              <a href="/cafenuwara/menu/sandwiches-and-submarines">
+              <a href="/cafenuwara/menu/sandwiches-submarines">
                 Sandwiches
                 <br />
                 & Submarines
