@@ -59,10 +59,10 @@ export default function KandyMenu({ params }) {
       </div>
 
       <div className="relative bg-black">
-        <div className="text-[#eb650f] text-8xl font-bold font-['Poppins'] bg-black text-center">
+        <div className="text-[#eb650f] text-7xl font-bold font-['Poppins'] bg-black text-center">
           <h1>{foodCategory.replace(/-/g, ' ').toUpperCase()}</h1>
 
-          <div className="text-white text-4xl font-bold font-['Poppins'] mt-10">
+          <div className="text-white text-3xl font-bold font-['Poppins'] mt-10">
             It is a good time for the great taste of {foodCategory}
           </div>
         </div>

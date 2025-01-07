@@ -1,18 +1,80 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 
 export const MenuNavBar = () => {
+  const [beveragesOpen, setBeveragesOpen] = useState(false);
+
+  const toggleBeverages = () => {
+    setBeveragesOpen(!beveragesOpen);
+  };
+
+  const closeBeverages = () => {
+    setBeveragesOpen(false);
+  };
+
   return (
     <div>
-      <div className="w-[15px] h-[66px] relative">
+      {/* Main Menu Items */}
+      
+
+
+      <div className="w-[1500px] h-[200px] relative">
+
+        
+
+          {/* Beverages Dropdown */}
+          <div className="w-[1500px] h-[120px] relative">
+            <div className="menu-item left-[1200px] absolute text-center">
+              <a href="#" onClick={toggleBeverages}>
+                Beverages
+              </a>
+              {beveragesOpen && (
+                <div
+                  className="absolute top-[30px] left-0 min-w-[180px] bg-[rgba(0,0,0,0.8)] shadow-lg p-4 rounded-lg h-[130px]"
+                  onMouseLeave={closeBeverages}
+                >
+                  <div className="flex-col gap-3 h-[100px]">
+                    <Link href="/fabceylon-kurunegala/order/iced-coffee-&-iced-tea">
+                      <div className="text-[#eb650f] text-[14px] font-bold hover:text-white cursor-pointer">
+                        Iced Tea & Coffee
+                      </div>
+                    </Link>
+                    <Link href="/fabceylon-kurunegala/order/hot-beverages">
+                      <div className="text-[#eb650f] text-[14px] font-bold hover:text-white cursor-pointer">
+                        Hot Beverages
+                      </div>
+                    </Link>
+                    <Link href="/fabceylon-kurunegala/order/bubble-tea">
+                      <div className="text-[#eb650f] text-[14px] font-bold hover:text-white cursor-pointer">
+                        Bubble Tea
+                      </div>
+                    </Link>
+                    <Link href="/fabceylon-kurunegala/order/mojito">
+                      <div className="text-[#eb650f] text-[14px] font-bold hover:text-white cursor-pointer">
+                        Mojito
+                      </div>
+                    </Link>
+                    <Link href="/fabceylon-kurunegala/order/milk-shakes">
+                      <div className="text-[#eb650f] text-[14px] font-bold hover:text-white cursor-pointer">
+                        Milk Shakes
+                      </div>
+                    </Link>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+       
+
+
         <Link href="/fabceylon-kurunegala/order/appetizers">
-          <div className="menu-item left-[120px]">Appetizers</div>
+          <div className="menu-item left-[140px]">Appetizers</div>
         </Link>
         <Link href="/fabceylon-kurunegala/order/salads">
-          <div className="menu-item left-[0px]">Salads & Soups</div>
+          <div className="menu-item left-[20px]">Salads & Soups</div>
         </Link>
         <Link href="/fabceylon-kurunegala/order/pasta-spaghetti">
-          <div className="menu-item left-[250px]">Pasta & Spaghetti</div>
+          <div className="menu-item left-[260px]">Pasta & Spaghetti</div>
         </Link>
         <Link href="/fabceylon-kurunegala/order/noodles">
           <div className="menu-item left-[370px]">Noodles</div>
@@ -33,24 +95,15 @@ export const MenuNavBar = () => {
           <div className="menu-item left-[910px]">Burgers</div>
         </Link>
         <Link href="/fabceylon-kurunegala/order/sandwiches-submarines">
-          <div className="menu-item left-[1010px]">Sandwiches & Submarines</div>
+          <div className="menu-item left-[1050px]">Sandwiches & Submarines</div>
         </Link>
         <Link href="/fabceylon-kurunegala/order/desserts">
-          <div className="menu-item left-[1140px]">Desserts</div>
+          <div className="menu-item left-[1330px]">Desserts</div>
         </Link>
-        <Link href="/fabceylon-kurunegala/order/iced-coffee-iced-tea">
-          <div className="menu-item left-[1270px]">Iced Coffee & Iced Tea</div>
-        </Link>
-        <Link href="/fabceylon-kurunegala/order/bubble-tea">
-          <div className="menu-item left-[1380px]">Bubble Tea</div>
-        </Link>
-        <Link href="/fabceylon-kurunegala/order/mojito">
-          <div className="menu-item left-[1490px]">Mojito</div>
-        </Link>
-        <Link href="/fabceylon-kurunegala/order/milk-shakes">
-          <div className="menu-item left-[1600px]">Milk Shakes</div>
-        </Link>
+
+        
       </div>
+
       <style jsx>{`
         .menu-item {
           width: 125px;
