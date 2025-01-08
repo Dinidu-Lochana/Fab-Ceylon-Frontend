@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation";
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import deleteIcon from "@/components/Assets/delete.png";
-import { MainMenuNavBar } from "@/components/MainMenuNavBar";
+import { GrandMainMenuNavBar } from '@/components/Fab-Grand-MainMenu';
 import { jwtDecode } from "jwt-decode";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -26,29 +26,30 @@ const CheckoutPage = () => {
     setCartItems(storedCart);
   }, []);
 
-  const handleIncreaseQuantity = (id) => {
+  const handleIncreaseQuantity = (foodId) => {
     const updatedCart = cartItems.map((item) =>
-      item.id === id ? { ...item, quantity: item.quantity + 1 } : item
+      item._id === foodId ? { ...item, quantity: item.quantity + 1 } : item
     );
-    localStorage.setItem("fab-grand-cart", JSON.stringify(updatedCart));
+    localStorage.setItem('fab-grand-cart', JSON.stringify(updatedCart));
     setCartItems(updatedCart);
   };
 
-  const handleDecreaseQuantity = (id) => {
+  const handleDecreaseQuantity = (foodId) => {
     const updatedCart = cartItems
       .map((item) =>
-        item.id === id && item.quantity > 1
+        item._id === foodId && item.quantity > 1
           ? { ...item, quantity: item.quantity - 1 }
           : item
       )
       .filter((item) => item.quantity > 0);
-    localStorage.setItem("fab-grand-cart", JSON.stringify(updatedCart));
+
+    localStorage.setItem('fab-grand-cart', JSON.stringify(updatedCart));
     setCartItems(updatedCart);
   };
 
-  const handleDeleteFromCart = (id) => {
-    const updatedCart = cartItems.filter((item) => item.id !== id);
-    localStorage.setItem("fab-grand-cart", JSON.stringify(updatedCart));
+  const handleDeleteFromCart = (foodId) => {
+    const updatedCart = cartItems.filter((item) => item._id !== foodId);
+    localStorage.setItem('fab-grand-cart', JSON.stringify(updatedCart));
     setCartItems(updatedCart);
   };
 
@@ -119,7 +120,7 @@ const CheckoutPage = () => {
 
   return (
     <div>
-      <MainMenuNavBar />
+      <GrandMainMenuNavBar />
       <div className="flex flex-col items-center min-h-screen px-4 py-10 text-white bg-gray-900">
         <div className="w-full max-w-2xl p-6 bg-gray-800 rounded-lg shadow-lg">
           <h1 className="mb-6 text-3xl font-bold text-orange-400">Your Cart</h1>
@@ -132,14 +133,14 @@ const CheckoutPage = () => {
                 <div className="text-lg font-bold">{item.foodName}</div>
                 <div className="flex items-center space-x-3">
                   <button
-                    onClick={() => handleDecreaseQuantity(item.id)}
+                    onClick={() => handleDecreaseQuantity(item._id)}
                     className="flex items-center justify-center w-8 h-8 text-lg font-bold text-white bg-gray-600 rounded-full"
                   >
                     -
                   </button>
                   <span>{item.quantity}</span>
                   <button
-                    onClick={() => handleIncreaseQuantity(item.id)}
+                    onClick={() => handleIncreaseQuantity(item._id)}
                     className="flex items-center justify-center w-8 h-8 text-lg font-bold text-white bg-gray-600 rounded-full"
                   >
                     +
@@ -153,7 +154,7 @@ const CheckoutPage = () => {
                     src={deleteIcon}
                     alt="Delete"
                     className="w-6 h-6 cursor-pointer"
-                    onClick={() => handleDeleteFromCart(item.id)}
+                    onClick={() => handleDeleteFromCart(item._id)}
                   />
                 </div>
               </div>

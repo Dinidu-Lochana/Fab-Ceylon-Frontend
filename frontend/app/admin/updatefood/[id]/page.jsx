@@ -79,7 +79,7 @@ const UpdateFood = ({ params }) => {
             );
 
             toast.success("Successfully updated Food", { containerId: 'successMessage' });
-            router.push("/foods");
+            router.push("/admin/foods");
         } catch (error) {
             toast.error(error.response?.data?.error || "An error occurred", { containerId: 'ErrorMessage' });
         }
