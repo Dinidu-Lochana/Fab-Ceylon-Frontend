@@ -138,17 +138,18 @@ const Orders = () => {
   };
 
   return (
-    <div className="bg-black min-h-screen text-[#f8f6f6] p-6">
+    <div className="bg-gray-900 min-h-screen text-[#f8f6f6] p-6">
       <h1 className="text-center text-2xl font-bold mb-8">Your Orders</h1>
       <div className="flex flex-wrap gap-6 justify-center">
         {orders.length > 0 ? (
           orders.map((order) => (
             <div
               key={order._id}
-              className="relative bg-transparent border border-[#110D0D] rounded-2xl p-4 w-64 h-80 shadow-md transition-transform duration-300 hover:translate-y-[-10px] hover:shadow-lg"
+              className="relative bg-transparent border border-[rgb(60,57,56)] rounded-2xl p-4 w-64 h-80 shadow-md transition-transform duration-300 hover:translate-y-[-10px] hover:shadow-lg"
             >
               {/* Apply backdrop blur to the background */}
-              <div className="absolute inset-0 bg-[#121247] opacity-20 backdrop-blur-sm rounded-2xl"></div>
+              <div className="absolute inset-0 bg-gray-800/30 backdrop-blur-md rounded-2xl border border-white/20 shadow-lg"></div>
+
 
               {/* Add custom spacing */}
               <div className="flex justify-center relative z-10 mb-4">
@@ -167,8 +168,8 @@ const Orders = () => {
                 <button
                   className={`mt-4 px-4 py-2 rounded-md transition ${
                     order.status === "Delivered"
-                      ? "bg-[#f07634] text-white hover:bg-[#a21e07]"
-                      : "bg-gray-400 text-gray-800 cursor-not-allowed"
+                      ? "bg-[#e77f43] text-white hover:bg-[#3e5fd5]"
+                      : "bg-gray-800 text-white cursor-not-allowed"
                   }`}
                   onClick={() => openReviewPopup(order)}
                   disabled={order.status !== "Delivered"} // Disabled when status is not "Delivered"
@@ -204,7 +205,7 @@ const ReviewPopup = ({
   closeReviewPopup,
 }) => (
   <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-    <div className="bg-[#0f0f0e] rounded-lg p-6 max-w-3xl w-full relative ">
+    <div className="bg-gray-900/50 backdrop-blur-lg rounded-lg p-6 max-w-3xl w-full relative border border-white/10 shadow-md">
       <div className="flex justify-center relative z-10">
         <h2 className="text-xl font-bold mb-4 text-white">
           Review Order #{order._id.slice(-6)}
@@ -214,7 +215,7 @@ const ReviewPopup = ({
         {order.items.map((item) => (
           <div
             key={item.foodId}
-            className="flex items-center text-white gap-4 bg-[#0e0e25] p-4 rounded-lg shadow-md  transition-transform duration-300 hover:translate-y-[-10px] hover:shadow-lg"
+            className="flex items-center text-white gap-4 bg-gray-800/50 backdrop-blur-lg p-4 rounded-lg shadow-md  transition-transform duration-300 hover:translate-y-[-10px] hover:shadow-lg"
           >
             <img
               src={
@@ -241,13 +242,13 @@ const ReviewPopup = ({
       </div>
       <div className="mt-6 flex justify-end gap-4">
         <button
-          className="bg-[#e76f2f] text-black px-4 py-2 rounded-md hover:bg-[#a21e07] transition"
+          className="bg-[#e76f2f] text-white px-4 py-2 rounded-md hover:bg-[#3a5fbd] transition"
           onClick={handleSubmitRating}
         >
           Submit
         </button>
         <button
-          className="bg-[#e76f2f] text-black px-4 py-2 rounded-md hover:bg-[#a21e07] transition"
+          className="bg-[#e76f2f] text-white px-4 py-2 rounded-md hover:bg-[#ce4141] transition"
           onClick={closeReviewPopup}
         >
           Close
