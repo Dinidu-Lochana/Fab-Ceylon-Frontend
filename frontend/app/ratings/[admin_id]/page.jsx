@@ -130,6 +130,7 @@ const Orders = () => {
   const openReviewPopup = (order) => {
     setCurrentOrder(order);
     setShowReviewPopup(true);
+    console.log("fdgfd",order);
   };
 
   const closeReviewPopup = () => {
@@ -218,17 +219,16 @@ const ReviewPopup = ({
             className="flex items-center text-white gap-4 bg-gray-800/50 backdrop-blur-lg p-4 rounded-lg shadow-md  transition-transform duration-300 hover:translate-y-[-10px] hover:shadow-lg"
           >
             <img
-              src={
-                item.image
-                  ? `${process.env.NEXT_PUBLIC_BACKEND_URL_ADDRESS}/${item.image.replace(
-                      "\\",
-                      "/"
-                    )}`
-                  : "/default-image.jpg"
-              }
-              alt={item.foodName || "Food Item"}
-              className="w-20 h-20 rounded-md object-cover"
-            />
+  src={`${process.env.NEXT_PUBLIC_BACKEND_URL_ADDRESS}/${item.image.replace(
+    "\\",
+    "/"
+  )}`}
+  alt={item.foodName}
+  className="object-cover w-40 h-40 rounded-full border-4 border-white shadow-md transition-transform duration-300 ease-in-out hover:scale-110"
+/>
+
+
+
             <div className="flex flex-col">
               <h3 className="text-lg font-bold">{item.foodName || "No Name"}</h3>
               <p>Price: Rs.{item.price}</p>
