@@ -13,9 +13,51 @@ import Boder2 from '@/components/Assets/Boder2.png';
 import CartTop from '@/components/Assets/CartTop.png';
 import delete_icon from '@/components/Assets/delete.png';
 import Cafe_Nuwara_logo from '@/components/Assets/Cafe_Nuwara_logo.png';
+import Rating_Star from '@/components/Assets/rating_star_nuwara.png';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import Link from 'next/link';
+
+const getStars = (rating) => {
+  const roundedRating = parseFloat(rating.toFixed(1)); 
+  const fullStars = Math.floor(roundedRating); // Full stars
+  const fractionalStar = (roundedRating % 1).toFixed(1); // Get fractional part
+
+  const stars = [];
+
+  // Add full stars
+  for (let i = 0; i < fullStars; i++) {
+    stars.push(
+      <div key={`full-${i}`} className="w-6 h-6">
+        <Image src={Rating_Star} alt="Full Star" width={24} height={24} />
+      </div>
+    );
+  }
+
+  // Add fractional star based on the decimal value
+  if (fractionalStar > 0) {
+    stars.push(
+      <div key={`fractional-star`} className="relative w-6 h-6 overflow-hidden">
+        {/* Full star in the background */}
+        <Image src={Rating_Star} alt="Fractional Star" width={24} height={24} />
+        {/* Overlay part based on fractional value */}
+        <div
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: `calc(${fractionalStar} * 100%)`,
+            width: `${(1 - fractionalStar) * 100}%`,
+            height: '100%',
+            backgroundColor: 'black', 
+            zIndex: 1,
+          }}
+        ></div>
+      </div>
+    );
+  }
+
+  return stars;
+};
 
 export default function CafeNuwara({ params }) {
   const foodCategory = params.foodCategory;
@@ -143,23 +185,20 @@ export default function CafeNuwara({ params }) {
                     )
                     .join(' ')}
                 </div>
+                
+                {/* Star Rating and Total Ratings */}
+                <div className="flex items-center mt-4 text-black">
+                  <div className="flex gap-1">{getStars(food.averageRating)}</div>
+                  <span className="ml-2 text-sm font-['Poppins']">
+                    <span className="text-lg font-bold">{food.averageRating.toFixed(1)}</span> 
+                    <span className="text-xs"> ({food.totalRatings})</span>
+                  </span>
+                </div>
+                
                 <div className="w-[339px] h-[87px] left-[15px] top-[200px] absolute text-black text-[15px] font-bold font-['Reem Kufi'] pr-9">
                   {food.description}
                 </div>
-                <div className="left-[15px] top-[280px] absolute justify-start items-center inline-flex">
-                  {Array(food.rating || 4)
-                    .fill(0)
-                    .map((_, starIndex) => (
-                      <Image
-                        key={starIndex}
-                        className="w-[29px] h-[29px]"
-                        src={star_icon}
-                        alt="Rating Star"
-                        width={29}
-                        height={29}
-                      />
-                    ))}
-                </div>
+                
               </div>
               <div className="left-[15px] top-[500px] absolute text-[#bb995b] text-3xl font-bold font-['Poppins']">
                 LKR {food.price}

@@ -96,6 +96,7 @@ const CheckoutPage = () => {
         foodName : item.foodName,
         quantity: item.quantity,
         price: item.price,
+        image: item.image
       })),
       orderType,
       paymentMethod,
