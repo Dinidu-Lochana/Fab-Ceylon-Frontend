@@ -53,7 +53,7 @@ h1.headline{
 }
 
 body {
-  padding: 2vw;
+  padding: 0vw;
   display: flex;
   justify-content: center;
   align-items: center;
