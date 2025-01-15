@@ -1,12 +1,150 @@
-import React from 'react'
+"use client";
 
- const Reservation = () => {
+import Image from "next/image";
+import logo from "../components/Assets/Fabceylon_PVT.png";
+import back from "../components/Assets/LoginSignUp_back_Image.png";
+import React, { useState } from "react";
+import axios from "axios"; // Import Axios
+
+const Home = () => {
+  const [formData, setFormData] = useState({
+    cafe: "Cafe Nuwara",
+    date: "",
+    time: "",
+    people: "",
+    agreeToTerms: false,
+  });
+
+  const [message, setMessage] = useState(""); // To display feedback messages
+
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData({
+      ...formData,
+      [name]: type === "checkbox" ? checked : value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!formData.agreeToTerms) {
+      alert("You must agree to the terms and conditions to make a reservation.");
+      return;
+    }
+
+    try {
+      const response = await axios.post("http://localhost:4000/api/reservations", formData); // Backend API
+      setMessage("Reservation confirmed!"); // Success message
+    } catch (error) {
+      console.error("Error submitting reservation:", error);
+      setMessage("Failed to submit reservation. Please try again.");
+    }
+  };
+
   return (
-    <div className='bg-white h-screen' >
-      <div>
-        <h1>kjbkvjbvlkj</h1>
+    <div
+      className="flex items-center justify-center min-h-screen bg-orange-100"
+      style={{
+        backgroundImage: `url(${back.src})`,
+        backgroundRepeat: "repeat",
+      }}
+    >
+      <div className="w-full max-w-md p-6 bg-white shadow-md rounded-lg">
+        {/* Logo */}
+        <Image src={logo} alt="Logo" width={400} height={200} />
+
+        {/* Form */}
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label htmlFor="cafe" className="block mb-2 text-gray-700">
+              Select Cafe
+            </label>
+            <select
+              id="cafe"
+              name="cafe"
+              value={formData.cafe}
+              onChange={handleChange}
+              className="w-full text-gray-700 px-4 py-2 border rounded-lg focus:ring-2 focus:ring-yellow-500"
+            >
+              <option value="Cafe Nuwara">Cafe Nuwara</option>
+              <option value="Cafe Colombo">FabCeylon Kandy</option>
+              <option value="Cafe Nuwara">FabCeylon Kurunagala</option>
+              
+            </select>
+          </div>
+
+          <div>
+            <label htmlFor="date" className="block mb-2 text-gray-700">
+              Select Date
+            </label>
+            <input
+              type="date"
+              id="date"
+              name="date"
+              value={formData.date}
+              onChange={handleChange}
+              className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-yellow-500"
+            />
+          </div>
+
+          <div>
+            <label htmlFor="time" className="block mb-2 text-gray-700">
+              Select Time
+            </label>
+            <input
+              type="time"
+              id="time"
+              name="time"
+              value={formData.time}
+              onChange={handleChange}
+              className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-yellow-500"
+            />
+          </div>
+
+          <div>
+            <label htmlFor="people" className="block mb-2 text-gray-700">
+              Amount of People
+            </label>
+            <input
+              type="number"
+              id="people"
+              name="people"
+              min="1"
+              value={formData.people}
+              onChange={handleChange}
+              className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-yellow-500"
+              placeholder="Enter number of people"
+            />
+          </div>
+
+          <div className="flex items-center">
+            <input
+              type="checkbox"
+              id="agreeToTerms"
+              name="agreeToTerms"
+              checked={formData.agreeToTerms}
+              onChange={handleChange}
+              className="mr-2"
+            />
+            <label htmlFor="agreeToTerms" className="text-gray-700">
+              I agree to the terms and conditions
+            </label>
+          </div>
+
+          <button
+            type="submit"
+            className="w-full bg-yellow-500 text-white py-2 rounded-lg hover:bg-yellow-600"
+          >
+            Reserve a Table
+          </button>
+        </form>
+
+        {/* Feedback Message */}
+        {message && <p className="mt-4 text-center text-gray-700">{message}</p>}
       </div>
     </div>
-  )
-}
- export default Reservation
+  );
+};
+
+export default Home;

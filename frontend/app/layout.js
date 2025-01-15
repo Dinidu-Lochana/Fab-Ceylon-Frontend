@@ -1,6 +1,6 @@
 import localFont from "next/font/local";
 import "./globals.css";
-import { EB_Garamond, Alegreya } from '@next/font/google';
+import { EB_Garamond } from 'next/font/google';
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -20,10 +20,10 @@ const alegreya = localFont({
 });
 
 const ebGaramond = EB_Garamond({
-  weight: '800',  // Variable weight range
-  subsets: ['latin'],  // Include 'latin' or other subsets as needed
-  variable: '--font-eb-garamond',  // Custom CSS variable for styling
-  display: 'swap', // Optional: improves font loading performance
+  weight: '800',
+  subsets: ['latin'],
+  variable: '--font-eb-garamond',
+  display: 'swap'
 });
 
 // Configure Alegreya with specific weights if needed

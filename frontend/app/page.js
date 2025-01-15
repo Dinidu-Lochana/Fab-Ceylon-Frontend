@@ -9,11 +9,11 @@ import Fabceylon_Grand_logo from "@/components/Assets/Fabceylon_Grand_logo.png";
 import Back_image_2 from "@/components/Assets/Back_image_2.png";
 import Side_back_image from "@/components/Assets/Side_back_image.png";
 
-import { Footer } from '@/components/Footer';
+import { Footer } from './components/Footer';
 import { HeroHighlight, HeroHighlightDemo } from '@/components/HeroHighlight';
 import '@/app/CSS/HomePage.css';
-import Fab_logo_inner from '@/components/Assets/Fab_logo_inner.png';
-import Fab_logo_outer from "@/components/Assets/Fab_logo_outer.png";
+import Fab_logo_inner from './components/Assets/Fab_logo_inner.png';
+import Fab_logo_outer from "./components/Assets/Fab_logo_outer.png";
 import Nuwara_logo_outer from "@/components/Assets/Nuwara_logo_outer.png";
 import Nuwara_logo_inner from "@/components/Assets/Nuwara_logo_inner.png";
 
