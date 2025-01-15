@@ -235,6 +235,15 @@ export default function CafeNuwara({ params }) {
           <div className="w-full text-black text-4xl font-bold font-['Poppins'] mb-5 ml-24 -mt-10">
             Your Cart
           </div>
+          <div className="   flex justify-center items-center">
+                    <Image 
+            src={Cafe_Nuwara_logo}
+            alt="Placeholder Image" 
+            width={360} 
+            height={362} 
+            className="w-[360px] h-[362px opacity-25 mt-10" 
+          />
+                    </div>
           {cartItems.map((item) => (
             <div
               key={item._id}
@@ -271,7 +280,7 @@ export default function CafeNuwara({ params }) {
           <div className="w-full text-black text-xl font-bold font-['Poppins'] mt-5">
             Sub Total Rs. {cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0)}
           </div>
-          <button className="w-[320px] h-[72px] px-[21px] py-5 bg-[#caa767] rounded-[20px] justify-center items-center mt-80">
+          <button className="w-[320px] h-[72px] px-[21px] py-5 bg-[#caa767] rounded-[20px] justify-center items-center mt-3">
             <Link 
               href="/cafenuwara/order/checkout" 
               className="text-lg font-bold text-black">

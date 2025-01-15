@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation";
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import deleteIcon from "@/components/Assets/delete.png";
-import { MainMenuNavBar } from "@/components/MainMenuNavBar";
+import {CafeNuwaraMainMenuNavBar } from "@/components/CafeNuwara-MainMenuBar";
 import { jwtDecode } from "jwt-decode";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -118,10 +118,10 @@ const CheckoutPage = () => {
   };
 
   return (
-    <div>
-      <MainMenuNavBar />
-      <div className="flex flex-col items-center min-h-screen px-4 py-10 text-white bg-gray-900">
-        <div className="w-full max-w-2xl p-6 bg-gray-800 rounded-lg shadow-lg">
+    <div className="elative h-screen">
+      
+      <div className="flex flex-col items-center   text-black bg-[#f0e6d9]">
+        <div className="w-full max-w-2xl p-6 bg-g[#e1d6c1] rounded-lg shadow-lg mt-6 ">
           <h1 className="mb-6 text-3xl font-bold text-orange-400">Your Cart</h1>
           <div className="space-y-4 overflow-y-auto max-h-96">
             {cartItems.map((item) => (

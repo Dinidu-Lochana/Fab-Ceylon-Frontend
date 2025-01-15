@@ -27,7 +27,7 @@ export default function Home() {
         src={Home_back_image}
         layout="fill"
         objectFit="cover"
-        alt="Background Image"
+        alt="Background Image object-cover"
       />
       <NavBar />
 
@@ -43,7 +43,7 @@ export default function Home() {
 
         <div className="right-0 flex items-center justify-between">
           <Image
-            className="right-0 flex items-center justify-between h-full"
+            className="right-0 flex items-center justify-between h-full "
             src={Hero_bugger}
             alt="Burger image"
           />
