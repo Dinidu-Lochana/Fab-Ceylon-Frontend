@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation";
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import deleteIcon from "@/components/Assets/delete.png";
-import { MainMenuNavBar } from "@/components/MainMenuNavBar";
+import {CafeNuwaraMainMenuNavBar } from "@/components/CafeNuwara-MainMenuBar";
 import { jwtDecode } from "jwt-decode";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -26,38 +26,29 @@ const CheckoutPage = () => {
     setCartItems(storedCart);
   }, []);
 
-  const handleAddToCart = (food) => {
-    const cart = JSON.parse(localStorage.getItem('cafe-nuwara-cart')) || [];
-    const existingItem = cart.find((item) => item._id === food._id);
-
-    if (existingItem) {
-      existingItem.quantity += 1; 
-    } else {
-      cart.push({ ...food, quantity: 1 }); 
-    }
-
-    localStorage.setItem('cafe-nuwara-cart', JSON.stringify(cart));
-    setCartItems(cart);
-  };
-  
-  const handleIncreaseQuantity = (foodId) => {
+  const handleIncreaseQuantity = (id) => {
     const updatedCart = cartItems.map((item) =>
-      item._id === foodId ? { ...item, quantity: item.quantity + 1 } : item
+      item.id === id ? { ...item, quantity: item.quantity + 1 } : item
     );
-    localStorage.setItem('cafe-nuwara-cart', JSON.stringify(updatedCart));
+    localStorage.setItem("cafe-nuwara-cart", JSON.stringify(updatedCart));
     setCartItems(updatedCart);
   };
 
-  const handleDecreaseQuantity = (foodId) => {
+  const handleDecreaseQuantity = (id) => {
     const updatedCart = cartItems
       .map((item) =>
-        item._id === foodId && item.quantity > 1
+        item.id === id && item.quantity > 1
           ? { ...item, quantity: item.quantity - 1 }
           : item
       )
       .filter((item) => item.quantity > 0);
+    localStorage.setItem("cafe-nuwara-cart", JSON.stringify(updatedCart));
+    setCartItems(updatedCart);
+  };
 
-    localStorage.setItem('cafe-nuwara-cart', JSON.stringify(updatedCart));
+  const handleDeleteFromCart = (id) => {
+    const updatedCart = cartItems.filter((item) => item.id !== id);
+    localStorage.setItem("cafe-nuwara-cart", JSON.stringify(updatedCart));
     setCartItems(updatedCart);
   };
 
@@ -104,7 +95,6 @@ const CheckoutPage = () => {
         foodName : item.foodName,
         quantity: item.quantity,
         price: item.price,
-        image: item.image
       })),
       orderType,
       paymentMethod,
@@ -128,10 +118,10 @@ const CheckoutPage = () => {
   };
 
   return (
-    <div>
-      <MainMenuNavBar />
-      <div className="flex flex-col items-center min-h-screen px-4 py-10 text-white bg-gray-900">
-        <div className="w-full max-w-2xl p-6 bg-gray-800 rounded-lg shadow-lg">
+    <div className="h-screen elative">
+      
+      <div className="flex flex-col items-center   text-black bg-[#f0e6d9]">
+        <div className="w-full max-w-2xl p-6 bg-g[#e1d6c1] rounded-lg shadow-lg mt-6 ">
           <h1 className="mb-6 text-3xl font-bold text-orange-400">Your Cart</h1>
           <div className="space-y-4 overflow-y-auto max-h-96">
             {cartItems.map((item) => (
@@ -142,14 +132,14 @@ const CheckoutPage = () => {
                 <div className="text-lg font-bold">{item.foodName}</div>
                 <div className="flex items-center space-x-3">
                   <button
-                    onClick={() => handleDecreaseQuantity(item._id)}
+                    onClick={() => handleDecreaseQuantity(item.id)}
                     className="flex items-center justify-center w-8 h-8 text-lg font-bold text-white bg-gray-600 rounded-full"
                   >
                     -
                   </button>
                   <span>{item.quantity}</span>
                   <button
-                    onClick={() => handleIncreaseQuantity(item._id)}
+                    onClick={() => handleIncreaseQuantity(item.id)}
                     className="flex items-center justify-center w-8 h-8 text-lg font-bold text-white bg-gray-600 rounded-full"
                   >
                     +
@@ -163,7 +153,7 @@ const CheckoutPage = () => {
                     src={deleteIcon}
                     alt="Delete"
                     className="w-6 h-6 cursor-pointer"
-                    onClick={() => handleDeleteFromCart(item._id)}
+                    onClick={() => handleDeleteFromCart(item.id)}
                   />
                 </div>
               </div>
