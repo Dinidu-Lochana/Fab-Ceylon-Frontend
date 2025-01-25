@@ -8,15 +8,12 @@ import Fabceylon_logo from "@/components/Assets/Fabceylon_logo.png";
 import Fabceylon_Grand_logo from "@/components/Assets/Fabceylon_Grand_logo.png";
 import Back_image_2 from "@/components/Assets/Back_image_2.png";
 import Side_back_image from "@/components/Assets/Side_back_image.png";
-
+import Link from 'next/link';
 import { Footer } from '@/components/Footer';
 import { HeroHighlight, HeroHighlightDemo } from '@/components/HeroHighlight';
-import '@/app/CSS/HomePage.css';
+import '@/app/CSS/HomePage.css'
 import Fab_logo_inner from '@/components/Assets/Fab_logo_inner.png';
 import Fab_logo_outer from "@/components/Assets/Fab_logo_outer.png";
-import Nuwara_logo_outer from "@/components/Assets/Nuwara_logo_outer.png";
-import Nuwara_logo_inner from "@/components/Assets/Nuwara_logo_inner.png";
-
 import Back_image_middle from "@/components/Assets/Back_image_middle.png"
 import { InfiniteMovingCardsDemo } from '@/components/InfiniteMovingCardDemo';
 
@@ -39,7 +36,7 @@ export default function Home() {
         <div style={{ marginLeft: '100px' }}>
           <h1 className="p-20 font-bold tracking-wider text-7xl font-poppins ml-100">
             CHOOSE THE <br />
-            <span className="text-orange-500">BEST</span> AMONG <br />
+            <span className="text-orange-500 ">BEST</span> AMONG <br />
             BEST <span className="text-orange-500">FOODS...</span>
           </h1>
         </div>
@@ -55,16 +52,18 @@ export default function Home() {
 
       {/* Logos Grid Section */}
       <div className="relative grid grid-cols-4 gap-6 m-20 p-12 h-[30rem] bg-[#111010] rounded-[60px] mx-32 px-12 animate-fadeIn">
-  <div className="relative">
-    <article className="delay-100 animate-slideUp">
-      <Image 
-        className="absolute transition-transform duration-300 transform hover:scale-105"
-        style={{ top: '30px', left: '30px' }}
-        src={Cafe_Nuwara_logo}
-        alt="Cafe Nuwara Logo"
-        height={200}
-        width={200}
-      />
+      <div className="relative">
+      <article className="delay-100 animate-slideUp">
+      <Link href="/cafenuwara/menu/appetizers">
+  <Image
+    className="absolute transition-transform duration-300 transform hover:scale-105"
+    style={{ top: '30px', left: '30px' }}
+    src={Cafe_Nuwara_logo}
+    alt="Cafe Nuwara Logo"
+    height={200}
+    width={200}
+  />
+</Link>
       <a 
         className="absolute text-3xl font-bold text-white transition-transform duration-300 font-poppins hover:scale-105"
         style={{ top: '250px', left: '40px' }}
@@ -76,14 +75,16 @@ export default function Home() {
 
   <div className="relative">
     <article className="delay-200 animate-slideUp">
-      <Image 
-        className="absolute transition-transform duration-300 transform hover:scale-105"
-        style={{ top: '30px', left: '40px' }}
-        src={Fabceylon_logo}
-        alt="Fab Ceylon Kandy Logo"
-        height={200}
-        width={200}
-      />
+    <Link href="/fabceylon-kandy/menu/appetizers">
+  <Image
+    className="absolute transition-transform duration-300 transform hover:scale-105"
+    style={{ top: '30px', left: '40px' }}
+    src={Fabceylon_logo}
+    alt="Fab Ceylon Kandy Logo"
+    height={200}
+    width={200}
+  />
+</Link>
       <a 
         className="absolute text-3xl font-bold text-white transition-transform duration-300 font-poppins hover:scale-105"
         style={{ top: '250px', left: '40px' }}
@@ -101,14 +102,16 @@ export default function Home() {
 
   <div className="relative">
     <article className="delay-300 animate-slideUp">
-      <Image 
-        className="absolute transition-transform duration-300 transform hover:scale-105"
-        style={{ top: '30px', left: '60px' }}
-        src={Fabceylon_Grand_logo}
-        alt="Fab Ceylon Grand Logo"
-        height={200}
-        width={200}
-      />
+    <Link href="/fabceylon-grand/menu/appetizers">
+  <Image
+    className="absolute transition-transform duration-300 transform hover:scale-105"
+    style={{ top: '30px', left: '60px' }}
+    src={Fabceylon_Grand_logo}
+    alt="Fab Ceylon Grand Logo"
+    height={200}
+    width={200}
+  />
+</Link>
       <a 
         className="absolute text-3xl font-bold text-white transition-transform duration-300 font-poppins hover:scale-105"
         style={{ top: '250px', left: '80px' }}
@@ -126,14 +129,16 @@ export default function Home() {
 
   <div className="relative">
     <article className="animate-slideUp delay-400">
-      <Image 
-        className="absolute transition-transform duration-300 transform hover:scale-105"
-        style={{ top: '30px', left: '60px' }}
-        src={Fabceylon_logo}
-        alt="Fab Ceylon Kurunegala Logo"
-        height={200}
-        width={200}
-      />
+    <Link href="/fabceylon-kurunegala/menu/appetizers">
+  <Image
+    className="absolute transition-transform duration-300 transform hover:scale-105"
+    style={{ top: '30px', left: '60px' }}
+    src={Fabceylon_logo}
+    alt="Fab Ceylon Kurunegala Logo"
+    height={200}
+    width={200}
+  />
+</Link>
       <a 
         className="absolute text-3xl font-bold text-white transition-transform duration-300 font-poppins hover:scale-105"
         style={{ top: '250px', left: '70px' }}
@@ -179,18 +184,13 @@ export default function Home() {
 
       {/* Cafe Nuwara Section */}
       <div className="relative flex items-center text-left text-white mt-36 justify-left">
-        <Image 
-            className="absolute top-0 left-0 h-80 w-80 rotate-with-pause-counterclockwise"
-            style={{ top: '0px', left: '130px' }}
-            src={Nuwara_logo_inner}
-            alt="Fab Ceylon Kandy Logo"
-          />
-        <Image 
-            className="absolute top-0 left-0 h-80 w-80 rotate-with-pause-clockwise"
-            src={Nuwara_logo_outer}
-            alt="Fab Ceylon Kandy Logo"
-            style={{ top: '0px', left: '130px',animationDelay: '0.5s' }}
-          />
+      <Image 
+    className="flex items-center justify-between h-80 w-80 ml-28 zoom-animation"
+    src={Cafe_Nuwara_logo}
+    height={600}
+    width={600}
+    alt="Cafe Nuwara Logo"
+  />
         <article>
           <h1 className="font-serif text-4xl font-bold text-center">
             CAFE NUWARA
@@ -238,12 +238,12 @@ export default function Home() {
       {/* Fab Ceylon Grand Section */}
       <div className="relative flex items-center m-8 -mt-12 text-left text-white h-2/3 justify-left ">
         <Image 
-          className="flex items-center justify-between ml-20 h-80 w-80"
+          className="flex items-center justify-between ml-20 -mt-12 h-80 w-80 zoom-animation"
           src={Fabceylon_Grand_logo}
           alt="Fab Ceylon Grand Logo"
         />
         <article>
-          <h1 className="font-serif text-4xl font-bold text-center">
+          <h1 className="mt-16 font-serif text-4xl font-bold text-center">
             FAB CEYLON GRAND
           </h1>
           <p className="p-10 mb-40 ml-48 font-serif text-2xl font-bold tracking-wider">
