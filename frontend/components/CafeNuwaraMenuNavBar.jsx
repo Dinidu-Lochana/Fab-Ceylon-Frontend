@@ -39,8 +39,10 @@ export const CafeNuwaraMenuNavBar = () => {
                           height={80}
                           className="mr-20"
                         />
+
+            {/*Main MEnu Item*/}
             
-            <div className="flex gap-8 text-black text-[30px] font-normal font-['Reem Kufi'] ml-40">
+            <div className="flex gap-8 text-black text-[25px] font-normal font-reemKufi ml-96">
               <div>
                 <Link href="/cafenuwara/menu/appetizers">
                   Menu
@@ -59,13 +61,7 @@ export const CafeNuwaraMenuNavBar = () => {
               </div>
             </div>
             <div className="h-[52px] justify-start items-center gap-[22px] inline-flex ml-10">
-              <Image
-                className="w-[40px] h-[40px]"
-                src={cart_icon}
-                alt="Cart Icon"
-                width={52}
-                height={52}
-              />
+              
               <Image
                 className="w-[40px] h-[40px]"
                 src={user_icon}
@@ -76,6 +72,7 @@ export const CafeNuwaraMenuNavBar = () => {
             </div>
           </div>
         </div>
+        {/*Menu Item*/}
         <div className="pt-10 pl-5 pr-5 overflow-hidden">
           <Image
             src={cafenuwaranav_2}
@@ -86,7 +83,7 @@ export const CafeNuwaraMenuNavBar = () => {
           />
           
           <div className="w-[1500px] h-[120px] relative">
-            <div className="left-[1270px] -mt-20 absolute text-center text-black text-[16px] font-bold font-['Reem Kufi']">
+            <div className="left-[1270px] -mt-28 absolute text-center text-black text-[16px] font-bold font-reemKufi">
               <a href="#" onClick={toggleBeverages}>
                 Beverages
               </a>
@@ -133,63 +130,63 @@ export const CafeNuwaraMenuNavBar = () => {
             </div>
 
             {/* Other menu items */}
-            <div className="left-[40px] -mt-20 absolute text-center text-black text-[16px] font-bold font-['Reem Kufi']">
+            <div className="left-[40px] -mt-28 absolute text-center text-black text-[16px] font-bold font-reemKufi">
               <a href="/cafenuwara/menu/appetizers">Appetizers</a>
             </div>
-            <div className="left-[150px] -mt-20 absolute text-center text-black text-[16px] font-bold font-['Reem Kufi']">
+            <div className="left-[150px] -mt-28 absolute text-center text-black text-[16px] font-bold font-reemKufi">
               <a href="/cafenuwara/menu/salads-soups">
-                Salads
+                Salads &
                 <br />
-                & Soups
+                 Soups
               </a>
             </div>
-            <div className="left-[240px] -mt-20 absolute text-center text-black text-[16px] font-bold font-['Reem Kufi']">
+            <div className="left-[240px] -mt-28 absolute text-center text-black text-[16px] font-bold font-reemKufi">
               <a href="/cafenuwara/menu/pasta-spaghetti">
-                Pasta
+                Pasta &
                 <br />
-                & Spaghetti
+                 Spaghetti
               </a>
             </div>
-            <div className="left-[360px] -mt-20 absolute text-center text-black text-[16px] font-bold font-['Reem Kufi']">
+            <div className="left-[360px] -mt-28 absolute text-center text-black text-[16px] font-bold font-reemKufi">
               <a href="/cafenuwara/menu/noodles">Noodles</a>
             </div>
-            <div className="left-[460px] -mt-20 absolute text-center text-black text-[16px] font-bold font-['Reem Kufi']">
+            <div className="left-[460px] -mt-28 absolute text-center text-black text-[16px] font-bold font-reemKufi">
               <a href="/cafenuwara/menu/kottu">Kottu</a>
             </div>
-            <div className="left-[540px] -mt-20 absolute text-center text-black text-[16px] font-bold font-['Reem Kufi']">
+            <div className="left-[540px] -mt-28 absolute text-center text-black text-[16px] font-bold font-reemKufi">
               <a href="/cafenuwara/menu/fried-rice">
                 Fried
                 <br />
                 Rice
               </a>
             </div>
-            <div className="left-[620px] -mt-20 absolute text-center text-black text-[16px] font-bold font-['Reem Kufi']">
+            <div className="left-[620px] -mt-28 absolute text-center text-black text-[16px] font-bold font-reemKufi">
               <a href="/cafenuwara/menu/biriyani">Biriyani</a>
             </div>
-            <div className="left-[720px] -mt-20 absolute text-center text-black text-[16px] font-bold font-['Reem Kufi']">
+            <div className="left-[720px] -mt-28 absolute text-center text-black text-[16px] font-bold font-reemKufi">
               <a href="/cafenuwara/menu/signature-meals">
                 Signature
                 <br />
                 Meals
               </a>
             </div>
-            <div className="left-[840px] -mt-20 absolute text-center text-black text-[16px] font-bold font-['Reem Kufi']">
+            <div className="left-[840px] -mt-28 absolute text-center text-black text-[16px] font-bold font-reemKufi">
               <a href="/cafenuwara/menu/add-on">Add-On</a>
             </div>
-            <div className="left-[940px] -mt-20 absolute text-center text-black text-[16px] font-bold font-['Reem Kufi']">
+            <div className="left-[940px] -mt-28 absolute text-center text-black text-[16px] font-bold font-reemKufi">
               <a href="/cafenuwara/menu/burgers">Burgers</a>
             </div>
-            <div className="left-[1040px] -mt-20 absolute text-center text-black text-[16px] font-bold font-['Reem Kufi']">
+            <div className="left-[1040px] -mt-28 absolute text-center text-black text-[16px] font-bold font-reemKufi">
               <a href="/cafenuwara/menu/sandwiches-submarines">
                 Sandwiches
                 <br />
                 & Submarines
               </a>
             </div>
-            <div className="left-[1190px] -mt-20 absolute text-center text-black text-[16px] font-bold font-['Reem Kufi']">
+            <div className="left-[1190px] -mt-28 absolute text-center text-black text-[16px] font-bold font-reemKufi">
               <a href="/cafenuwara/menu/bowls">Bowls</a>
             </div>
-            <div className="left-[1370px] -mt-20 absolute text-center text-black text-[16px] font-bold font-['Reem Kufi']">
+            <div className="left-[1370px] -mt-28 absolute text-center text-black text-[16px] font-bold font-reemKufi">
               <a href="/cafenuwara/menu/desserts">Desserts</a>
             </div>
           </div>

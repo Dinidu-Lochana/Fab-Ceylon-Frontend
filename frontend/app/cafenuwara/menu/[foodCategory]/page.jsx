@@ -13,7 +13,6 @@ import Boder2 from '@/components/Assets/Boder2.png';
 import CartTop from '@/components/Assets/CartTop.png';
 import delete_icon from '@/components/Assets/delete.png';
 import Cafe_Nuwara_logo from '@/components/Assets/Cafe_Nuwara_logo.png';
-import Rating_Star from '@/components/Assets/rating_star_nuwara.png';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import Link from 'next/link';
@@ -185,20 +184,33 @@ export default function CafeNuwara({ params }) {
                     )
                     .join(' ')}
                 </div>
-                
-                {/* Star Rating and Total Ratings */}
-                <div className="flex items-center mt-4 text-black">
+
+                 {/* Star Rating and Total Ratings */}
+                 <div className="flex items-center mt-4 text-black">
                   <div className="flex gap-1">{getStars(food.averageRating)}</div>
                   <span className="ml-2 text-sm font-['Poppins']">
                     <span className="text-lg font-bold">{food.averageRating.toFixed(1)}</span> 
                     <span className="text-xs"> ({food.totalRatings})</span>
                   </span>
                 </div>
-                
+
                 <div className="w-[339px] h-[87px] left-[15px] top-[200px] absolute text-black text-[15px] font-bold font-['Reem Kufi'] pr-9">
                   {food.description}
                 </div>
-                
+                <div className="left-[15px] top-[280px] absolute justify-start items-center inline-flex">
+                  {Array(food.rating || 4)
+                    .fill(0)
+                    .map((_, starIndex) => (
+                      <Image
+                        key={starIndex}
+                        className="w-[29px] h-[29px]"
+                        src={star_icon}
+                        alt="Rating Star"
+                        width={29}
+                        height={29}
+                      />
+                    ))}
+                </div>
               </div>
               <div className="left-[15px] top-[500px] absolute text-[#bb995b] text-3xl font-bold font-['Poppins']">
                 LKR {food.price}
