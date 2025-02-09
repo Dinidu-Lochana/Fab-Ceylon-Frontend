@@ -90,7 +90,7 @@ const CheckoutPage = () => {
     }
 
     const orderData = {
-      admin_id: "677c41acdce1036596281448", 
+      admin_id: process.env.NEXT_PUBLIC_FAB_CEYLON_KANDY, 
       userId: userId,
       items: cartItems.map((item) => ({
         foodId: item._id, 
@@ -107,7 +107,7 @@ const CheckoutPage = () => {
 
     try {
       const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL_ADDRESS}/api/customers/order/orderfoods/677c41acdce1036596281448/put-order`,
+        `${process.env.NEXT_PUBLIC_BACKEND_URL_ADDRESS}/api/customers/order/orderfoods/${process.env.NEXT_PUBLIC_FAB_CEYLON_KANDY}/put-order`,
         orderData
       );
 

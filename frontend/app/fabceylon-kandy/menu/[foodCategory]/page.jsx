@@ -64,7 +64,7 @@ export default function KandyMenu({ params }) {
     const fetchFoods = async () => {
       try {
         const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_BACKEND_URL_ADDRESS}/api/customers/getfoods/677c41acdce1036596281448/${foodCategory}`
+          `${process.env.NEXT_PUBLIC_BACKEND_URL_ADDRESS}/api/customers/getfoods/${process.env.NEXT_PUBLIC_FAB_CEYLON_KANDY}/${foodCategory}`
         );
         setFoods(response.data);
       } catch (error) {
