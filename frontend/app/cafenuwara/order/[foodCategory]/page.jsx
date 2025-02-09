@@ -74,7 +74,7 @@ export default function CafeNuwara({ params }) {
     const fetchFoods = async () => {
       try {
         const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_BACKEND_URL_ADDRESS}/api/customers/order/orderfoods/677c4204dce103659628144c/${foodCategory}`
+          `${process.env.NEXT_PUBLIC_BACKEND_URL_ADDRESS}/api/customers/order/orderfoods/${process.env.NEXT_PUBLIC_CAFE_NUWARA}/${foodCategory}`
         );
         setFoods(response.data);
       } catch (error) {
