@@ -13,7 +13,9 @@ const CheckoutPage = () => {
   const [orderType, setOrderType] = useState("Pick-up"); // Default to Pick-up
   const [paymentMethod, setPaymentMethod] = useState("");
   const [formData, setFormData] = useState({
-    orderDescription: "",
+    senderName: "",
+    senderContact: "",
+    orderDescription: ""
   });
 
   const [agreedToTerms, setAgreedToTerms] = useState(false);
@@ -83,10 +85,11 @@ const CheckoutPage = () => {
       }
     }
 
-    if (!orderType || !paymentMethod) {
-      toast.error("Please select a payment method and order type.", { containerId: "ErrorMessage" });
+    if (!orderType || !paymentMethod || !formData.senderName || !formData.senderContact) {
+      toast.error("Please fill in all required fields.", { containerId: "ErrorMessage" });
       return;
     }
+
 
     const orderData = {
       admin_id: process.env.NEXT_PUBLIC_FAB_CEYLON_KURUNEGALA, 
@@ -101,6 +104,10 @@ const CheckoutPage = () => {
       orderType,
       paymentMethod,
       totalAmount, 
+      senderDetails: {
+        name: formData.senderName,
+        contactNumber: formData.senderContact,
+      },
       orderDescription: formData.orderDescription || "", 
     };
 
@@ -166,6 +173,26 @@ const CheckoutPage = () => {
               <span>Total Amount:</span>
               <span>Rs. {totalAmount}.00</span>
             </div>
+          </div>
+
+          <div className="mt-6">
+            <h2 className="mb-2 text-xl font-bold text-orange-400">Sender Details:</h2>
+            <input
+              type="text"
+              name="senderName"
+              value={formData.senderName}
+              onChange={handleInputChange}
+              placeholder="Enter your name"
+              className="w-full px-4 py-3 mb-3 text-gray-900 bg-gray-200 rounded-lg placeholder-italic"
+            />
+            <input
+              type="text"
+              name="senderContact"
+              value={formData.senderContact}
+              onChange={handleInputChange}
+              placeholder="Enter your contact number"
+              className="w-full px-4 py-3 text-gray-900 bg-gray-200 rounded-lg placeholder-italic"
+            />
           </div>
 
           <div className="mt-6">
