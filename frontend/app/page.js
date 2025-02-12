@@ -26,7 +26,7 @@ export default function Home() {
       <Image 
       className='lgs:w-80 lgs:h-80
                mds:w-65 mds:h-65 
-               sms:w-32 sms:h-32'
+               sms:w-30 sms:h-30'
         src={Home_back_image}
         layout="fill"
         objectFit="cover"
