@@ -24,6 +24,9 @@ export default function Home() {
     <div className="relative h-screen bg-black ">
       
       <Image 
+      className='lgs:w-80 lgs:h-80
+               mds:w-65 mds:h-65 
+               sms:w-32 sms:h-32'
         src={Home_back_image}
         layout="fill"
         objectFit="cover"
@@ -32,18 +35,23 @@ export default function Home() {
       <NavBar />
 
       {/* Hero Section */}
-      <div className="relative flex items-center h-screen grid-cols-2 gap-2 text-left text-white justify-left -mt-28">
+      <div className="relative flex items-center h-screen grid-cols-2 gap-2 text-left text-white justify-left -mt-28 sms:ml-64">
         <div style={{ marginLeft: '100px' }}>
-          <h1 className="p-20 font-bold tracking-wider text-7xl font-poppins ml-100">
+          <h1 className="p-20 font-bold tracking-wider text-7xl font-poppins ml-100 mds:text-5xl sms:text-xl sms:ml-10 ">
             CHOOSE THE <br />
             <span className="text-orange-500 ">BEST</span> AMONG <br />
             BEST <span className="text-orange-500">FOODS...</span>
           </h1>
         </div>
 
-        <div className="right-0 flex items-center justify-between">
+        <div className="right-0 flex items-center justify-between sms:-ml-16">
           <Image
-            className="right-0 flex items-center justify-between h-full"
+            className="right-0 flex items-center justify-between 
+           
+               lgs:w-80 lgs:h-80
+               mds:w-65 mds:h-65 
+               sms:w-32 sms:h-32 "
+            
             src={Hero_bugger}
             alt="Burger image"
           />

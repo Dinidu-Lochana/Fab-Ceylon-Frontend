@@ -7,20 +7,20 @@ import user_icon from "./Assets/user_icon.png"
 export const NavBar = () => {
   return (
     <div>
-        <nav className="p-5 flex justify-between items-center ">
+        <nav className="p-5 flex justify-between items-center  ">
         <div className="flex justify-between items-center h-12">
             
         <p className="text-white text-2xl font-bold px-4 ">FABCEYLON (PVT) LTD</p>
         </div>
 
-          <div className="flex items-center space-x-2 text-white" >
+          <div className="flex items-center space-x-2 text-white " >
         
 
           <a href="/login" className="text-white text-2xl font-bold px-4 ">Login</a>
           <a href="/register" className="text-white text-2xl font-bold px-4 ">Register</a>
           
          
-          <div className="flex items-center space-x-10">
+          <div className="flex items-center space-x-10 ">
 
           <button className="relative">
           <Image className="h-8 w-8 m-10 " src={cart_icon} alt="Cart Icon" width={32}   height={32}  />
