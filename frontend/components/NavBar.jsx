@@ -10,14 +10,14 @@ export const NavBar = () => {
         <nav className="p-5 flex justify-between items-center  ">
         <div className="flex justify-between items-center h-12">
             
-        <p className="text-white text-2xl font-bold px-4 ">FABCEYLON (PVT) LTD</p>
+        <p className="text-white text-2xl font-bold px-4 mds:text-xl mds:ml-64 sms:ml-[400px] sms:text-xs">FABCEYLON (PVT) LTD</p>
         </div>
 
-          <div className="flex items-center space-x-2 text-white " >
+          <div className="flex items-center space-x-2 text-white mds:space-x-1 sms:mr-56" >
         
 
-          <a href="/login" className="text-white text-2xl font-bold px-4 ">Login</a>
-          <a href="/register" className="text-white text-2xl font-bold px-4 ">Register</a>
+          <a href="/login" className="text-white text-2xl font-bold px-4 mds:xl sms:text-xs ">Login</a>
+          <a href="/register" className="text-white text-2xl font-bold px-4 mds:xl sms:text-xs ">Register</a>
           
          
           <div className="flex items-center space-x-10 ">
