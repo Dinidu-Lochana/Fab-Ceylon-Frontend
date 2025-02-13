@@ -12,7 +12,7 @@ export const MainMenuNavBar = () => {
   const menuItems = [
     { label: 'HOME', link: '/' },
     { label: 'MENU', link: '/fabceylon-kurunegala/menu/salads-soups' },
-    { label: 'PLACE ORDER', link: '/fabceylon-kurunegala/order/salads-soups' },
+    { label: 'PLACE ORDER', link: '/fabceylon-kurunegala/order' },
     { label: 'RESERVATIONS', link: '#' },
     { label: 'REGISTER', link: '/signup' },
   ];
