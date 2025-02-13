@@ -24,8 +24,8 @@ export default function Home() {
     <div className="relative h-screen bg-black ">
       
       <Image 
-      className='lgs:w-80 lgs:h-80
-               mds:w- mds:h-65 
+      className='
+              
                sms:w-30 sms:h-30'
         src={Home_back_image}
         layout="fill"

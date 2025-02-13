@@ -72,13 +72,7 @@ body {
   align-items: center;
   height: 100vh;
   background: #222;
-  background-image: repeating-linear-gradient(
-    to bottom,
-    transparent 7px,
-    rgba(0, 0, 0, 0.8) 9px,
-    rgba(0, 0, 0, 0.8) 13px,
-    transparent 13px
-  );
+ 
 }
 
 .headline-glow {
