@@ -24,9 +24,7 @@ export default function Home() {
     <div className="relative h-screen bg-black ">
       
       <Image 
-      className='
-              
-               sms:w-30 sms:h-30'
+      className="sms:w-full sms:h-10 mds:w-auto mds:h-auto"
         src={Home_back_image}
         layout="fill"
         objectFit="cover"
@@ -63,7 +61,7 @@ export default function Home() {
   <div className="relative">
     <article className="delay-100 animate-slideUp">
       <Image 
-        className="absolute transition-transform duration-300 transform hover:scale-105"
+        className="absolute transition-transform duration-300 transform hover:scale-105 mds:h-40 w-40"
         style={{ top: '30px', left: '30px' }}
         src={Cafe_Nuwara_logo}
         alt="Cafe Nuwara Logo"
@@ -82,7 +80,7 @@ export default function Home() {
   <div className="relative">
     <article className="delay-200 animate-slideUp">
       <Image 
-        className="absolute transition-transform duration-300 transform hover:scale-105"
+        className="absolute transition-transform duration-300 transform hover:scale-105 mds:h-40 w-40 "
         style={{ top: '30px', left: '40px' }}
         src={Fabceylon_logo}
         alt="Fab Ceylon Kandy Logo"
@@ -107,7 +105,7 @@ export default function Home() {
   <div className="relative">
     <article className="delay-300 animate-slideUp">
       <Image 
-        className="absolute transition-transform duration-300 transform hover:scale-105"
+        className="absolute transition-transform duration-300 transform hover:scale-105 mds:h-40 w-40"
         style={{ top: '30px', left: '60px' }}
         src={Fabceylon_Grand_logo}
         alt="Fab Ceylon Grand Logo"
@@ -132,7 +130,7 @@ export default function Home() {
   <div className="relative">
     <article className="animate-slideUp delay-400">
       <Image 
-        className="absolute transition-transform duration-300 transform hover:scale-105"
+        className="absolute transition-transform duration-300 transform hover:scale-105 mds:h-40 w-40"
         style={{ top: '30px', left: '60px' }}
         src={Fabceylon_logo}
         alt="Fab Ceylon Kurunegala Logo"
