@@ -57,11 +57,12 @@ export default function Home() {
       </div>
 
       {/* Logos Grid Section */}
-      <div className="relative grid grid-cols-4 gap-6 m-20 p-12 h-[30rem] bg-[#111010] rounded-[60px] mx-32 px-12 animate-fadeIn mds-h-[26rem] sms:h-[20rem] sms:ml-60 ">
+      <div className="relative grid grid-cols-4 gap-6 m-20 p-12 h-[30rem] bg-[#111010] rounded-[60px] 
+      mx-32 px-12 animate-fadeIn mds-h-[26rem] sms:h-[20rem] sms:ml-60 sms:mx-60 sms:  xxs:">
   <div className="relative">
     <article className="delay-100 animate-slideUp">
       <Image 
-        className="absolute transition-transform duration-300 transform hover:scale-105 mds:h-40 w-40 sms:h-20 sms:w-20 sms:ml-24"
+        className="absolute transition-transform duration-300 transform hover:scale-105 mds:h-40 w-40 sms:h-20 sms:w-20 sms:ml-12  "
         style={{ top: '30px', left: '30px' }}
         src={Cafe_Nuwara_logo}
         alt="Cafe Nuwara Logo"
@@ -69,8 +70,12 @@ export default function Home() {
         width={200}
       />
       <a 
-        className="absolute text-3xl font-bold text-white transition-transform duration-300 font-poppins hover:scale-105 mds:text-2xl sms:text-xl"
-        style={{ top: '250px', left: '40px' }}
+        className="absolute text-3xl font-bold text-white transition-transform duration-300 font-poppins 
+        hover:scale-105 mds:text-2xl sms:text-[12px] 
+         top-[250px] left-[40px] 
+         sms:top-[130px] sms:left-[80px]"
+       
+        
       >
         Cafe Nuwara
       </a>
@@ -80,7 +85,7 @@ export default function Home() {
   <div className="relative">
     <article className="delay-200 animate-slideUp">
       <Image 
-        className="absolute transition-transform duration-300 transform hover:scale-105 mds:h-40 w-40 sms:h-20 sms:w-20 "
+        className="absolute transition-transform duration-300 transform hover:scale-105 mds:h-40 w-40 sms:h-20 sms:w-20 sms:-ml-10"
         style={{ top: '30px', left: '40px' }}
         src={Fabceylon_logo}
         alt="Fab Ceylon Kandy Logo"
@@ -88,14 +93,18 @@ export default function Home() {
         width={200}
       />
       <a 
-        className="absolute text-3xl font-bold text-white transition-transform duration-300 font-poppins hover:scale-105 mds:text-2xl"
-        style={{ top: '250px', left: '40px' }}
+        className="absolute text-3xl font-bold text-white transition-transform duration-300 font-poppins hover:scale-105 mds:text-2xl sms:text-[12px]
+         top-[250px] left-[40px] 
+         sms:top-[130px] sms:left-[10px]"
+        style={{ }}
       >
         Fab Ceylon
       </a>
       <a 
-        className="absolute text-3xl font-bold text-white transition-transform duration-300 font-poppins hover:scale-105 mds:text-2xl"
-        style={{ top: '290px', left: '60px' }}
+        className="absolute text-3xl font-bold text-white transition-transform duration-300 font-poppins hover:scale-105 mds:text-2xl 
+        sms:text-[12px]
+        top-[290px] left-[60px]  sms:top-[145px] sms:left-[18px]"
+        
       >
         Kandy
       </a>
@@ -105,7 +114,9 @@ export default function Home() {
   <div className="relative">
     <article className="delay-300 animate-slideUp">
       <Image 
-        className="absolute transition-transform duration-300 transform hover:scale-105 mds:h-40 w-40 sms:h-20 sms:w-20"
+        className="absolute transition-transform duration-300 transform hover:scale-105 
+        mds:h-40 w-40 sms:h-20 sms:w-20
+        sms:-ml-32"
         style={{ top: '30px', left: '60px' }}
         src={Fabceylon_Grand_logo}
         alt="Fab Ceylon Grand Logo"
@@ -113,14 +124,16 @@ export default function Home() {
         width={200}
       />
       <a 
-        className="absolute text-3xl font-bold text-white transition-transform duration-300 font-poppins hover:scale-105 mds:text-2xl"
-        style={{ top: '250px', left: '80px' }}
+        className="absolute text-3xl font-bold text-white transition-transform duration-300 font-poppins hover:scale-105 mds:text-2xl sms:text-[12px]
+         top-[250px] left-[80px]  sms:top-[130px] sms:left-[-60px]"
+        
       >
         Fab Ceylon
       </a>
       <a 
-        className="absolute text-3xl font-bold text-white transition-transform duration-300 font-poppins hover:scale-105 mds:text-2xl"
-        style={{ top: '290px', left: '100px' }}
+        className="absolute text-3xl font-bold text-white transition-transform duration-300 font-poppins hover:scale-105 mds:text-2xl sms:text-[12px]
+         top-[290px] left-[100px]  sms:top-[145px] sms:left-[-60px]"
+       
       >
         Grand
       </a>
@@ -130,7 +143,7 @@ export default function Home() {
   <div className="relative">
     <article className="animate-slideUp delay-400">
       <Image 
-        className="absolute transition-transform duration-300 transform hover:scale-105 mds:h-40 w-40 sms:h-20 sms:w-20"
+        className="absolute transition-transform duration-300 transform hover:scale-105 mds:h-40 w-40 sms:h-20 sms:w-20 sms:-ml-52"
         style={{ top: '30px', left: '60px' }}
         src={Fabceylon_logo}
         alt="Fab Ceylon Kurunegala Logo"
@@ -138,8 +151,9 @@ export default function Home() {
         width={200}
       />
       <a 
-        className="absolute text-3xl font-bold text-white transition-transform duration-300 font-poppins hover:scale-105 mds:text-2xl"
-        style={{ top: '250px', left: '70px' }}
+        className="absolute text-3xl font-bold text-white transition-transform duration-300 font-poppins hover:scale-105 mds:text-2xl sms:text-[12px] 
+        top-[250px] left-[70px]  sms:top-[130px] sms:left-[-160px]"
+        
       >
         Fab Ceylon Kurunegala
       </a>
