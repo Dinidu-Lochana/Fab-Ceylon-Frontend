@@ -24,7 +24,7 @@ module.exports = {
         lgs: { max: '1279px' }, // Large screens (desktop)
         mds: { max: '1024px' }, // Medium screens (tablet)
         sms: { max: '767px' }, 
-        xxs: { max: '570px' },
+        xxs: { max: '480px' },
         
       },
       colors: {

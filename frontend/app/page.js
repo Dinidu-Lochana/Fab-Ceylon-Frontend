@@ -58,11 +58,12 @@ export default function Home() {
 
       {/* Logos Grid Section */}
       <div className="relative grid grid-cols-4 gap-6 m-20 p-12 h-[30rem] bg-[#111010] rounded-[60px] 
-      mx-32 px-12 animate-fadeIn mds-h-[26rem] sms:h-[20rem] sms:ml-60 sms:mx-60 sms:  xxs:">
+      mx-32 px-12 animate-fadeIn mds-h-[26rem] sms:h-[20rem] sms:ml-60 sms:gap-28 ">
   <div className="relative">
     <article className="delay-100 animate-slideUp">
       <Image 
-        className="absolute transition-transform duration-300 transform hover:scale-105 mds:h-40 w-40 sms:h-20 sms:w-20 sms:ml-12  "
+        className="absolute transition-transform duration-300 transform hover:scale-105 
+        mds:h-40 w-40 sms:h-20 sms:w-20 sms:ml-12 xxs:ml-28  "
         style={{ top: '30px', left: '30px' }}
         src={Cafe_Nuwara_logo}
         alt="Cafe Nuwara Logo"
@@ -71,7 +72,7 @@ export default function Home() {
       />
       <a 
         className="absolute text-3xl font-bold text-white transition-transform duration-300 font-poppins 
-        hover:scale-105 mds:text-2xl sms:text-[12px] 
+        hover:scale-105 mds:text-2xl sms:text-[12px] xxs:ml-20
          top-[250px] left-[40px] 
          sms:top-[130px] sms:left-[80px]"
        
@@ -85,7 +86,8 @@ export default function Home() {
   <div className="relative">
     <article className="delay-200 animate-slideUp">
       <Image 
-        className="absolute transition-transform duration-300 transform hover:scale-105 mds:h-40 w-40 sms:h-20 sms:w-20 sms:-ml-10"
+        className="absolute transition-transform duration-300 transform hover:scale-105 
+        mds:h-40 w-40 sms:h-20 sms:w-20 sms:-ml-10 xxs:ml-1"
         style={{ top: '30px', left: '40px' }}
         src={Fabceylon_logo}
         alt="Fab Ceylon Kandy Logo"
@@ -95,7 +97,7 @@ export default function Home() {
       <a 
         className="absolute text-3xl font-bold text-white transition-transform duration-300 font-poppins hover:scale-105 mds:text-2xl sms:text-[12px]
          top-[250px] left-[40px] 
-         sms:top-[130px] sms:left-[10px]"
+         sms:top-[130px] sms:left-[10px] xxs:ml-9"
         style={{ }}
       >
         Fab Ceylon
@@ -103,7 +105,7 @@ export default function Home() {
       <a 
         className="absolute text-3xl font-bold text-white transition-transform duration-300 font-poppins hover:scale-105 mds:text-2xl 
         sms:text-[12px]
-        top-[290px] left-[60px]  sms:top-[145px] sms:left-[18px]"
+        top-[290px] left-[60px]  sms:top-[145px] sms:left-[18px] xxs:ml-9"
         
       >
         Kandy
@@ -143,7 +145,8 @@ export default function Home() {
   <div className="relative">
     <article className="animate-slideUp delay-400">
       <Image 
-        className="absolute transition-transform duration-300 transform hover:scale-105 mds:h-40 w-40 sms:h-20 sms:w-20 sms:-ml-52"
+        className="absolute transition-transform duration-300 transform hover:scale-105 
+        mds:h-40 w-40 sms:h-20 sms:w-20 sms:-ml-52 xxs:"
         style={{ top: '30px', left: '60px' }}
         src={Fabceylon_logo}
         alt="Fab Ceylon Kurunegala Logo"
