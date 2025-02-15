@@ -57,7 +57,7 @@ export default function Home() {
       </div>
 
       {/* Logos Grid Section */}
-      <div className="relative grid grid-cols-4 gap-6 m-20 p-12 h-[30rem] bg-[#111010] rounded-[60px] mx-32 px-12 animate-fadeIn mds-h-[26rem] sms:h-[20rem]">
+      <div className="relative grid grid-cols-4 gap-6 m-20 p-12 h-[30rem] bg-[#111010] rounded-[60px] mx-32 px-12 animate-fadeIn mds-h-[26rem] sms:h-[20rem] sms:ml-60 ">
   <div className="relative">
     <article className="delay-100 animate-slideUp">
       <Image 
@@ -69,7 +69,7 @@ export default function Home() {
         width={200}
       />
       <a 
-        className="absolute text-3xl font-bold text-white transition-transform duration-300 font-poppins hover:scale-105 mds:text-2xl"
+        className="absolute text-3xl font-bold text-white transition-transform duration-300 font-poppins hover:scale-105 mds:text-2xl sms:text-xl"
         style={{ top: '250px', left: '40px' }}
       >
         Cafe Nuwara
@@ -80,7 +80,7 @@ export default function Home() {
   <div className="relative">
     <article className="delay-200 animate-slideUp">
       <Image 
-        className="absolute transition-transform duration-300 transform hover:scale-105 mds:h-40 w-40 "
+        className="absolute transition-transform duration-300 transform hover:scale-105 mds:h-40 w-40 sms:h-20 sms:w-20 "
         style={{ top: '30px', left: '40px' }}
         src={Fabceylon_logo}
         alt="Fab Ceylon Kandy Logo"
@@ -105,7 +105,7 @@ export default function Home() {
   <div className="relative">
     <article className="delay-300 animate-slideUp">
       <Image 
-        className="absolute transition-transform duration-300 transform hover:scale-105 mds:h-40 w-40"
+        className="absolute transition-transform duration-300 transform hover:scale-105 mds:h-40 w-40 sms:h-20 sms:w-20"
         style={{ top: '30px', left: '60px' }}
         src={Fabceylon_Grand_logo}
         alt="Fab Ceylon Grand Logo"
@@ -130,7 +130,7 @@ export default function Home() {
   <div className="relative">
     <article className="animate-slideUp delay-400">
       <Image 
-        className="absolute transition-transform duration-300 transform hover:scale-105 mds:h-40 w-40"
+        className="absolute transition-transform duration-300 transform hover:scale-105 mds:h-40 w-40 sms:h-20 sms:w-20"
         style={{ top: '30px', left: '60px' }}
         src={Fabceylon_logo}
         alt="Fab Ceylon Kurunegala Logo"
