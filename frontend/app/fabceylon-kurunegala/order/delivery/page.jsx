@@ -84,6 +84,8 @@ export default function EnterAddress() {
         setIsDeliveryAccepted(accepted);
 
         if (accepted) {
+            localStorage.setItem('approvedAddress', address); // Store the approved address
+            setIsDeliveryAccepted(true);
             toast.success('Delivery is available in your area!', { containerId: 'successMessage' });
 
             // if delivery is accepted

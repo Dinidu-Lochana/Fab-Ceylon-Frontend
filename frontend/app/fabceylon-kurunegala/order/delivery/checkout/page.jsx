@@ -29,6 +29,7 @@ const CheckoutPage = () => {
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem("fab-kurunegala-delivery-cart")) || [];
     setCartItems(storedCart);
+    const address = localStorage.getItem('approvedAddress'); 
   }, []);
 
   // Synchronize receiver details with sender details when sameAsSender is true
@@ -266,7 +267,11 @@ const CheckoutPage = () => {
           </div>
 
           <div className="mt-6">
+          
             <h2 className="mb-2 text-xl font-bold text-orange-400">Address Details:</h2>
+            <h2 className="mb-2 text-gray-200 font text-l">
+                Order Delivering to : {localStorage.getItem('approvedAddress')}
+            </h2>
             <input
               type="text"
               name="receiverAddress"
