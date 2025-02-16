@@ -24,7 +24,7 @@ const CheckoutPage = () => {
   const router = useRouter();
 
   useEffect(() => {
-    const storedCart = JSON.parse(localStorage.getItem("fab-kurunegala-pickup-cart")) || [];
+    const storedCart = JSON.parse(localStorage.getItem("fab-kurunegala-delivery-cart")) || [];
     setCartItems(storedCart);
   }, []);
 
@@ -32,7 +32,7 @@ const CheckoutPage = () => {
     const updatedCart = cartItems.map((item) =>
       item._id === foodId ? { ...item, quantity: item.quantity + 1 } : item
     );
-    localStorage.setItem('fab-kurunegala-pickup-cart', JSON.stringify(updatedCart));
+    localStorage.setItem('fab-kurunegala-delivery-cart', JSON.stringify(updatedCart));
     setCartItems(updatedCart);
   };
 
@@ -45,13 +45,13 @@ const CheckoutPage = () => {
       )
       .filter((item) => item.quantity > 0);
 
-    localStorage.setItem('fab-kurunegala-pickup-cart', JSON.stringify(updatedCart));
+    localStorage.setItem('fab-kurunegala-delivery-cart', JSON.stringify(updatedCart));
     setCartItems(updatedCart);
   };
 
   const handleDeleteFromCart = (foodId) => {
     const updatedCart = cartItems.filter((item) => item._id !== foodId);
-    localStorage.setItem('fab-kurunegala-pickup-cart', JSON.stringify(updatedCart));
+    localStorage.setItem('fab-kurunegala-delivery-cart', JSON.stringify(updatedCart));
     setCartItems(updatedCart);
   };
 
@@ -118,7 +118,7 @@ const CheckoutPage = () => {
       );
 
       toast.success("Successfully created Order!", { containerId: "successMessage" });
-      localStorage.removeItem("fab-kurunegala-pickup-cart"); 
+      localStorage.removeItem("fab-kurunegala-delivery-cart"); 
       router.push("/fabceylon-kurunegala");
     } catch (error) {
       console.error("Error creating order:", error);

@@ -4,11 +4,12 @@ import Image from 'next/image';
 import MenuBack_image from '@/components/Assets/MenuBack_image.jpg';
 import delete_icon from '@/components/Assets/delete.png';
 import Rating_Star from '@/components/Assets/rating_star.png';
-import { MenuNavBar } from '@/components/Fab-Kurunegala-Pickup-Navbar';
+import { MenuNavBar } from '@/components/Fab-Kurunegala-Order-Navbar';
 import { MainMenuNavBar } from '@/components/MainMenuNavBar';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 const getStars = (rating) => {
   const roundedRating = parseFloat(rating.toFixed(1)); 
@@ -55,9 +56,19 @@ export default function KandyMenu({ params }) {
   const foodCategory = params.foodCategory;
   const [cartItems, setCartItems] = useState([]);
   const [foods, setFoods] = useState([]);
+  const isDeliveryAccepted = localStorage.getItem('deliveryAccepted')=== 'true';
+  const router = useRouter();
 
   useEffect(() => {
-    const storedCart = JSON.parse(localStorage.getItem('fab-kurunegala-pickup-cart')) || [];
+    
+    if (!isDeliveryAccepted) {
+        // Navigate to the next page if delivery is accepted
+        router.push('/fabceylon-kurunegala/order/delivery');
+    }
+}, [isDeliveryAccepted, router]);
+
+  useEffect(() => {
+    const storedCart = JSON.parse(localStorage.getItem('fab-kurunegala-delivery-cart')) || [];
     setCartItems(storedCart);
   }, []);
 
@@ -77,7 +88,7 @@ export default function KandyMenu({ params }) {
   }, [foodCategory]);
 
   const handleAddToCart = (food) => {
-    const cart = JSON.parse(localStorage.getItem('fab-kurunegala-pickup-cart')) || [];
+    const cart = JSON.parse(localStorage.getItem('fab-kurunegala-delivery-cart')) || [];
     const existingItem = cart.find((item) => item._id === food._id);
 
     if (existingItem) {
@@ -86,7 +97,7 @@ export default function KandyMenu({ params }) {
       cart.push({ ...food, quantity: 1 }); 
     }
 
-    localStorage.setItem('fab-kurunegala-pickup-cart', JSON.stringify(cart));
+    localStorage.setItem('fab-kurunegala-delivery-cart', JSON.stringify(cart));
     setCartItems(cart);
   };
 
@@ -94,7 +105,7 @@ export default function KandyMenu({ params }) {
     const updatedCart = cartItems.map((item) =>
       item._id === foodId ? { ...item, quantity: item.quantity + 1 } : item
     );
-    localStorage.setItem('fab-kurunegala-pickup-cart', JSON.stringify(updatedCart));
+    localStorage.setItem('fab-kurunegala-delivery-cart', JSON.stringify(updatedCart));
     setCartItems(updatedCart);
   };
 
@@ -107,13 +118,13 @@ export default function KandyMenu({ params }) {
       )
       .filter((item) => item.quantity > 0);
 
-    localStorage.setItem('fab-kurunegala-pickup-cart', JSON.stringify(updatedCart));
+    localStorage.setItem('fab-kurunegala-delivery-cart', JSON.stringify(updatedCart));
     setCartItems(updatedCart);
   };
 
   const handleDeleteFromCart = (foodId) => {
     const updatedCart = cartItems.filter((item) => item._id !== foodId);
-    localStorage.setItem('fab-kurunegala-pickup-cart', JSON.stringify(updatedCart));
+    localStorage.setItem('fab-kurunegala-delivery-cart', JSON.stringify(updatedCart));
     setCartItems(updatedCart);
   };
 

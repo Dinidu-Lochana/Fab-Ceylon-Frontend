@@ -9,6 +9,7 @@ import Fabceylon_logo from "@/components/Assets/Fabceylon_logo.png";
 import 'leaflet/dist/leaflet.css';
 import { ToastContainer, toast } from 'react-toastify';  
 import 'react-toastify/dist/ReactToastify.css';  
+import { useRouter } from 'next/navigation';  // Use this instead of 'next/router'
 
 const CAFE_COORDS = { lat: 7.4893, lng: 80.3653 };
 const DELIVERY_RADIUS_KM = 5;
@@ -32,6 +33,7 @@ export default function EnterAddress() {
     const [userCoords, setUserCoords] = useState(null);
     const [isDeliveryAccepted, setIsDeliveryAccepted] = useState(null);
     const [error, setError] = useState('');
+    const router = useRouter();  // Use the router from next/navigation
 
     useEffect(() => {
         const storedDeliveryStatus = localStorage.getItem('deliveryAccepted');
@@ -81,9 +83,11 @@ export default function EnterAddress() {
         localStorage.setItem('deliveryAccepted', accepted.toString());
         setIsDeliveryAccepted(accepted);
 
-       
         if (accepted) {
             toast.success('Delivery is available in your area!', { containerId: 'successMessage' });
+
+            // if delivery is accepted
+            router.push('/fabceylon-kurunegala/order/delivery/appetizers');
         } else {
             toast.error('Sorry, delivery is not available in your area.', { containerId: 'ErrorMessage' });
         }
