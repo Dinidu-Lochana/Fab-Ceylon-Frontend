@@ -10,16 +10,19 @@ import { toast } from "react-toastify";
 
 const CheckoutPage = () => {
   const [cartItems, setCartItems] = useState([]);
-  const [orderType, setOrderType] = useState("Pick-up"); // Default to Pick-up
+  const [orderType, setOrderType] = useState("Delivery");
   const [paymentMethod, setPaymentMethod] = useState("");
   const [formData, setFormData] = useState({
     senderName: "",
     senderContact: "",
-    orderDescription: ""
+    receiverName: "",
+    receiverContact: "",
+    receiverAddress: "",
+    orderDescription: "",
   });
 
   const [agreedToTerms, setAgreedToTerms] = useState(false);
-
+  const [sameAsSender, setSameAsSender] = useState(false);
 
   const router = useRouter();
 
@@ -32,7 +35,7 @@ const CheckoutPage = () => {
     const updatedCart = cartItems.map((item) =>
       item._id === foodId ? { ...item, quantity: item.quantity + 1 } : item
     );
-    localStorage.setItem('fab-kurunegala-delivery-cart', JSON.stringify(updatedCart));
+    localStorage.setItem("fab-kurunegala-delivery-cart", JSON.stringify(updatedCart));
     setCartItems(updatedCart);
   };
 
@@ -45,18 +48,36 @@ const CheckoutPage = () => {
       )
       .filter((item) => item.quantity > 0);
 
-    localStorage.setItem('fab-kurunegala-delivery-cart', JSON.stringify(updatedCart));
+    localStorage.setItem("fab-kurunegala-delivery-cart", JSON.stringify(updatedCart));
     setCartItems(updatedCart);
   };
 
   const handleDeleteFromCart = (foodId) => {
     const updatedCart = cartItems.filter((item) => item._id !== foodId);
-    localStorage.setItem('fab-kurunegala-delivery-cart', JSON.stringify(updatedCart));
+    localStorage.setItem("fab-kurunegala-delivery-cart", JSON.stringify(updatedCart));
     setCartItems(updatedCart);
   };
 
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSameAsSenderChange = (e) => {
+    const isChecked = e.target.checked;
+    setSameAsSender(isChecked);
+    if (isChecked) {
+      setFormData((prevData) => ({
+        ...prevData,
+        receiverName: prevData.senderName,
+        receiverContact: prevData.senderContact,
+      }));
+    } else {
+      setFormData((prevData) => ({
+        ...prevData,
+        receiverName: "",
+        receiverContact: "",
+      }));
+    }
   };
 
   const totalAmount = cartItems.reduce(
@@ -65,12 +86,13 @@ const CheckoutPage = () => {
   );
 
   const addOrder = async () => {
-
     if (!agreedToTerms) {
-      toast.error("You must agree to the Terms and Conditions to proceed.", { containerId: "ErrorMessage" });
+      toast.error("You must agree to the Terms and Conditions to proceed.", {
+        containerId: "ErrorMessage",
+      });
       return;
     }
-    
+
     const token = localStorage.getItem("user");
     let userId = null;
 
@@ -80,35 +102,48 @@ const CheckoutPage = () => {
         userId = decodedToken._id;
       } catch (error) {
         console.error("Error decoding token:", error);
-        toast.error("Invalid user session. Please log in again.", { containerId: "ErrorMessage" });
+        toast.error("Invalid user session. Please log in again.", {
+          containerId: "ErrorMessage",
+        });
         return;
       }
     }
 
-    if (!orderType || !paymentMethod || !formData.senderName || !formData.senderContact) {
-      toast.error("Please fill in all required fields.", { containerId: "ErrorMessage" });
+    if (
+      !orderType ||
+      !paymentMethod ||
+      !formData.senderName ||
+      !formData.senderContact
+    ) {
+      toast.error("Please fill in all required fields.", {
+        containerId: "ErrorMessage",
+      });
       return;
     }
 
-
     const orderData = {
-      admin_id: process.env.NEXT_PUBLIC_FAB_CEYLON_KURUNEGALA, 
+      admin_id: process.env.NEXT_PUBLIC_FAB_CEYLON_KURUNEGALA,
       userId: userId,
       items: cartItems.map((item) => ({
-        foodId: item._id, 
-        foodName : item.foodName,
+        foodId: item._id,
+        foodName: item.foodName,
         quantity: item.quantity,
         price: item.price,
-        image: item.image
+        image: item.image,
       })),
       orderType,
       paymentMethod,
-      totalAmount, 
+      totalAmount,
       senderDetails: {
         name: formData.senderName,
         contactNumber: formData.senderContact,
       },
-      orderDescription: formData.orderDescription || "", 
+      receiverDetails: {
+        name: formData.receiverName,
+        contactNumber: formData.receiverContact,
+        address: formData.receiverAddress,
+      },
+      orderDescription: formData.orderDescription || "",
     };
 
     try {
@@ -117,12 +152,16 @@ const CheckoutPage = () => {
         orderData
       );
 
-      toast.success("Successfully created Order!", { containerId: "successMessage" });
-      localStorage.removeItem("fab-kurunegala-delivery-cart"); 
+      toast.success("Successfully created Order!", {
+        containerId: "successMessage",
+      });
+      localStorage.removeItem("fab-kurunegala-delivery-cart");
       router.push("/fabceylon-kurunegala");
     } catch (error) {
       console.error("Error creating order:", error);
-      toast.error(error.response?.data?.message || "An error occurred.", { containerId: "ErrorMessage" });
+      toast.error(error.response?.data?.message || "An error occurred.", {
+        containerId: "ErrorMessage",
+      });
     }
   };
 
@@ -196,19 +235,54 @@ const CheckoutPage = () => {
           </div>
 
           <div className="mt-6">
+            <div className="flex items-center mb-2 space-x-2">
+              <input
+                type="checkbox"
+                id="sameAsSender"
+                checked={sameAsSender}
+                onChange={handleSameAsSenderChange}
+                className="w-5 h-5"
+              />
+              <label htmlFor="sameAsSender" className="text-sm text-gray-400">
+                Same as Sender Details
+              </label>
+            </div>
+            <h2 className="mb-2 text-xl font-bold text-orange-400">Receiver Details:</h2>
+            <input
+              type="text"
+              name="receiverName"
+              value={formData.receiverName}
+              onChange={handleInputChange}
+              placeholder="Enter Receiver name"
+              className="w-full px-4 py-3 mb-3 text-gray-900 bg-gray-200 rounded-lg placeholder-italic"
+              disabled={sameAsSender}
+            />
+            <input
+              type="text"
+              name="receiverContact"
+              value={formData.receiverContact}
+              onChange={handleInputChange}
+              placeholder="Enter Receiver contact number"
+              className="w-full px-4 py-3 text-gray-900 bg-gray-200 rounded-lg placeholder-italic"
+              disabled={sameAsSender}
+            />
+          </div>
+
+          <div className="mt-6">
+            <h2 className="mb-2 text-xl font-bold text-orange-400">Address Details:</h2>
+            <input
+              type="text"
+              name="receiverAddress"
+              value={formData.receiverAddress}
+              onChange={handleInputChange}
+              placeholder="Enter Receiver Address"
+              className="w-full px-4 py-3 mb-3 text-gray-900 bg-gray-200 rounded-lg placeholder-italic"
+            />
+          </div>
+
+          <div className="mt-6">
             <h2 className="mb-2 text-xl font-bold text-orange-400">Order Type:</h2>
             <div className="flex space-x-4">
-              <label className="flex items-center space-x-2">
-                <input
-                  type="radio"
-                  name="orderType"
-                  value="Pick-up"
-                  checked={orderType === "Pick-up"}
-                  onChange={(e) => setOrderType(e.target.value)}
-                  className="w-5 h-5"
-                />
-                <span>Pick-up</span>
-              </label>
               <label className="flex items-center space-x-2">
                 <input
                   type="radio"
@@ -284,18 +358,18 @@ const CheckoutPage = () => {
               .
             </label>
           </div>
-                    
 
           <button
             onClick={addOrder}
             disabled={!agreedToTerms}
             className={`w-full py-3 mt-6 text-lg font-bold text-white rounded-lg transition ${
-              agreedToTerms ? "bg-orange-500 hover:bg-orange-600" : "bg-gray-600 cursor-not-allowed"
+              agreedToTerms
+                ? "bg-orange-500 hover:bg-orange-600"
+                : "bg-gray-600 cursor-not-allowed"
             }`}
           >
             Proceed to Checkout
           </button>
-
         </div>
       </div>
     </div>

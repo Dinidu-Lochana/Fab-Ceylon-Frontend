@@ -261,7 +261,7 @@ export default function KandyMenu({ params }) {
               <button
                 className="w-[200px] h-[50px] bg-[#eb650f] text-white text-xl font-bold font-['Poppins'] rounded-[10px] hover:bg-[#d4550d] transition-colors"
               >
-                <Link href="/fabceylon-kurunegala/order/checkout">
+                <Link href="/fabceylon-kurunegala/order/pickup/checkout">
                   Checkout
                 </Link>
               </button>
