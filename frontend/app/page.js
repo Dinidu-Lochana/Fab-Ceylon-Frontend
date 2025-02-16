@@ -167,15 +167,16 @@ export default function Home() {
 
 
       {/* Background Image Section */}
-      <div className="relative flex items-center justify-center h-2/3 ">
+      <div className="relative flex items-center justify-center h-2/3  mds:h-1/3 mds:ml-36 sms:">
         <Image 
           src={Back_image_middle}
+          className='mds:w-1/5'
           layout="fill"
           objectFit="cover"
           alt="Background Image"
         /> 
-        <div className="absolute z-10 text-white ml-[400px] mr-20 ">
-        <p className="items-center justify-between p-20 text-4xl font-bold tracking-wider opacity-100 font-poppins ml-30 ">
+        <div className="absolute z-10 text-white ml-[400px] mr-20 mds:ml-[200px]">
+        <p className="items-center justify-between p-20 text-4xl font-bold tracking-wider opacity-100 font-poppins ml-30 mds:text-2xl sms:text-xl">
           Fab Ceylon Cafe and Restaurant offers a unique culinary experience
           with authentic Sri Lankan cuisine. The cozy restaurant features 
           traditional recipes and fresh ingredients, serving flavorful curries,
