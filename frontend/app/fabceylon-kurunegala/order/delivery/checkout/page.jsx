@@ -32,7 +32,7 @@ const CheckoutPage = () => {
     const address = localStorage.getItem('approvedAddress'); 
   }, []);
 
-  // Synchronize receiver details with sender details when sameAsSender is true
+  
   useEffect(() => {
     if (sameAsSender) {
       setFormData((prevData) => ({
