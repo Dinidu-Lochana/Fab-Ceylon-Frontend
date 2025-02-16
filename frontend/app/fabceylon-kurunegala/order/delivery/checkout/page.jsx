@@ -31,6 +31,17 @@ const CheckoutPage = () => {
     setCartItems(storedCart);
   }, []);
 
+  // Synchronize receiver details with sender details when sameAsSender is true
+  useEffect(() => {
+    if (sameAsSender) {
+      setFormData((prevData) => ({
+        ...prevData,
+        receiverName: prevData.senderName,
+        receiverContact: prevData.senderContact,
+      }));
+    }
+  }, [formData.senderName, formData.senderContact, sameAsSender]);
+
   const handleIncreaseQuantity = (foodId) => {
     const updatedCart = cartItems.map((item) =>
       item._id === foodId ? { ...item, quantity: item.quantity + 1 } : item
@@ -63,21 +74,7 @@ const CheckoutPage = () => {
   };
 
   const handleSameAsSenderChange = (e) => {
-    const isChecked = e.target.checked;
-    setSameAsSender(isChecked);
-    if (isChecked) {
-      setFormData((prevData) => ({
-        ...prevData,
-        receiverName: prevData.senderName,
-        receiverContact: prevData.senderContact,
-      }));
-    } else {
-      setFormData((prevData) => ({
-        ...prevData,
-        receiverName: "",
-        receiverContact: "",
-      }));
-    }
+    setSameAsSender(e.target.checked);
   };
 
   const totalAmount = cartItems.reduce(
