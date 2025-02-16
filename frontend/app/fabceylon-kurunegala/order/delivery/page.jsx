@@ -2,95 +2,160 @@
 import React, { useState, useEffect } from 'react';
 import { MainMenuNavBar } from '@/components/MainMenuNavBar';
 import { motion } from 'framer-motion';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import L from 'leaflet';
+import LocationMark from '@/components/Assets/mark.png';
+import Fabceylon_logo from "@/components/Assets/Fabceylon_logo.png";
+import 'leaflet/dist/leaflet.css';
+import { ToastContainer, toast } from 'react-toastify';  
+import 'react-toastify/dist/ReactToastify.css';  
+
+const CAFE_COORDS = { lat: 7.4893, lng: 80.3653 };
+const DELIVERY_RADIUS_KM = 5;
+
+const customUserIcon = new L.Icon({
+    iconUrl: LocationMark.src,
+    iconSize: [40, 40],
+    iconAnchor: [20, 40],
+    popupAnchor: [0, -35],
+});
+
+const cafeIcon = new L.Icon({
+    iconUrl: Fabceylon_logo.src,
+    iconSize: [50, 50],
+    iconAnchor: [25, 50],
+    popupAnchor: [0, -45],
+});
 
 export default function EnterAddress() {
     const [address, setAddress] = useState('');
+    const [userCoords, setUserCoords] = useState(null);
     const [isDeliveryAccepted, setIsDeliveryAccepted] = useState(null);
+    const [error, setError] = useState('');
 
     useEffect(() => {
-        // Check localStorage for existing delivery acceptance status
         const storedDeliveryStatus = localStorage.getItem('deliveryAccepted');
         if (storedDeliveryStatus !== null) {
             setIsDeliveryAccepted(storedDeliveryStatus === 'true');
         }
     }, []);
 
-    const handleConfirmAddress = (e) => {
+    const fetchUserCoordinates = async (address) => {
+        try {
+            const response = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`);
+            const data = await response.json();
+            if (data.length === 0) {
+                setError('Address not found. Please enter a valid address.');
+                return null;
+            }
+            return { lat: parseFloat(data[0].lat), lng: parseFloat(data[0].lon) };
+        } catch (error) {
+            setError('Failed to fetch location data.');
+            return null;
+        }
+    };
+
+    const calculateDistance = (lat1, lon1, lat2, lon2) => {
+        const R = 6371;
+        const dLat = (lat2 - lat1) * (Math.PI / 180);
+        const dLon = (lon2 - lon1) * (Math.PI / 180);
+        const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                  Math.cos(lat1 * (Math.PI / 180)) * Math.cos(lat2 * (Math.PI / 180)) *
+                  Math.sin(dLon / 2) * Math.sin(dLon / 2);
+        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        return R * c;
+    };
+
+    const handleConfirmAddress = async (e) => {
         e.preventDefault();
+        setError('');
+        setIsDeliveryAccepted(null);
 
-        // Mock condition: Accepts delivery only if address contains "Main St"
-        const accepted = address.toLowerCase().includes('main st');
+        const coords = await fetchUserCoordinates(address);
+        if (!coords) return;
 
-        // Store in localStorage
+        setUserCoords(coords);
+        const distance = calculateDistance(CAFE_COORDS.lat, CAFE_COORDS.lng, coords.lat, coords.lng);
+        const accepted = distance <= DELIVERY_RADIUS_KM;
+
         localStorage.setItem('deliveryAccepted', accepted.toString());
-
-        // Update state
         setIsDeliveryAccepted(accepted);
+
+       
+        if (accepted) {
+            toast.success('Delivery is available in your area!', { containerId: 'successMessage' });
+        } else {
+            toast.error('Sorry, delivery is not available in your area.', { containerId: 'ErrorMessage' });
+        }
     };
 
     return (
         <div>
             <MainMenuNavBar />
-            <div className="flex flex-col items-center justify-center min-h-screen text-white bg-black">
+            <div className="flex flex-col items-center w-full min-h-screen bg-black">
                 
-                {/* Animated Heading */}
-                <motion.h2 
-                    className="mt-2 mb-6 text-3xl font-semibold"
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, ease: 'easeInOut' }}
-                >
-                    Enter Delivery Location
-                </motion.h2>
+                {/* Map Section */}
+                <div className="w-full max-w-4xl mt-4 overflow-hidden rounded-lg shadow-lg" style={{ borderRadius: '20px' }}>
+                    <MapContainer center={[CAFE_COORDS.lat, CAFE_COORDS.lng]} zoom={13} className="w-full" style={{ height: '400px', borderRadius: '20px' }}>
+                        <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+                        
+                        {/* Cafe Marker with FabCeylon Logo */}
+                        <Marker position={[CAFE_COORDS.lat, CAFE_COORDS.lng]} icon={cafeIcon}>
+                            <Popup>
+                                <div className="text-center">
+                                    <img src={Fabceylon_logo.src} alt="Fab Ceylon" className="mx-auto mb-2 h-7 w-7"/>
+                                    <p><strong>Fab Ceylon - Kurunegala</strong></p>
+                                </div>
+                            </Popup>
+                        </Marker>
 
-                {/* Address Form */}
-                <motion.form 
-                    className="p-6 bg-gray-800 rounded-lg shadow-lg w-80"
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.5, ease: 'easeOut' }}
-                    onSubmit={handleConfirmAddress}
-                >
-                    {/* Address Input */}
-                    <motion.div 
-                        className="mb-4"
-                        initial={{ opacity: 0, x: -10 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 0.2 }}
+                        {/* User Location Marker */}
+                        {userCoords && (
+                            <Marker position={[userCoords.lat, userCoords.lng]} icon={customUserIcon}>
+                                <Popup>Your Location</Popup>
+                            </Marker>
+                        )}
+                    </MapContainer>
+                </div>
+
+                {/* Address Form Section */}
+                <div className="w-full max-w-4xl px-4 mt-4">
+                    <h2 className="mb-2 text-2xl font-semibold text-center text-gray-100">Enter Delivery Location</h2>
+                    <motion.form 
+                        className="flex items-center w-full p-4 bg-gray-800 rounded-lg shadow-lg bg-opacity-90"
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.5, ease: 'easeOut' }}
+                        onSubmit={handleConfirmAddress}
                     >
-                        <label className="block mb-2 text-sm font-medium">Enter Your Street Here</label>
-                        <input 
+                        {/* Address Input */}
+                        <motion.input 
                             type="text" 
                             value={address} 
                             onChange={(e) => setAddress(e.target.value)} 
-                            className="w-full p-2 text-black rounded-lg outline-none focus:ring-2 focus:ring-[#eb650f]" 
-                            placeholder="123 Main St"
+                            className="w-4/5 p-2  bg-gray-200 text-black rounded-lg outline-none focus:ring-2 focus:ring-[#eb650f] mr-4"
+                            placeholder="No6/8, Dambulla Road, Kurunegala, Sri Lanka"
                         />
-                    </motion.div>
 
-                    {/* Submit Button */}
-                    <motion.button 
-                        type="submit"
-                        className="w-full p-2 font-semibold text-black transition-transform duration-300 bg-[#eb650f] rounded-lg hover:bg-opacity-90 hover:scale-105"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                    >
-                        Confirm Address
-                    </motion.button>
-                </motion.form>
+                        {/* Confirm Button */}
+                        <motion.button 
+                            type="submit"
+                            className="w-1/5 p-2 font-semibold text-black bg-[#eb650f] rounded-lg hover:bg-opacity-90 transition-transform duration-300"
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                        >
+                            Confirm
+                        </motion.button>
+                    </motion.form>
 
-                {/* Delivery Acceptance Message */}
-                {isDeliveryAccepted !== null && (
-                    <motion.div 
-                        className={`mt-4 p-3 rounded-lg text-center ${isDeliveryAccepted ? 'bg-green-500' : 'bg-red-500'}`}
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ duration: 0.5 }}
-                    >
-                        {isDeliveryAccepted ? 'Delivery is available in your area! 🚀' : 'Sorry, delivery is not available in your area. 😞'}
-                    </motion.div>
-                )}
+                    {/* Error Message */}
+                    {error && <div className="p-3 mt-4 text-center bg-red-500 rounded-lg">{error}</div>}
+                </div>
             </div>
+
+            {/* Toast Containers for Success and Error Messages */}
+            <ToastContainer containerId="successMessage" />
+            <ToastContainer containerId="ErrorMessage" />
         </div>
     );
 }
