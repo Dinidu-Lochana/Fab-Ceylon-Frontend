@@ -167,7 +167,7 @@ export default function Home() {
 
 
       {/* Background Image Section */}
-      <div className="relative flex items-center justify-center h-2/3  mds:h-1/3 mds:ml-36 sms:">
+      <div className="relative flex items-center justify-center h-2/3  mds:h-1/3 mds:ml-36 sms:ml-56">
         <Image 
           src={Back_image_middle}
           className='mds:w-1/5'
@@ -315,3 +315,8 @@ export default function Home() {
     
   );
 }
+
+
+
+
+
