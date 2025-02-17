@@ -51,18 +51,65 @@
 
 /* FABCEYLON Light*/
 
-h1.headline{
-  font-size: calc(20px + 18vh);
-  line-height: calc(20px + 20vh);
-/*   text-shadow: 0 0 5px #f562ff, 0 0 15px #f562ff, 0 0 25px #f562ff,
-    0 0 20px #f562ff, 0 0 30px #890092, 0 0 80px #890092, 0 0 80px #890092;
-  color: #fccaff; */
-  text-shadow: 0 0 5px #EB650F, 0 0 15px #EB650F, 0 0 20px #EB650F, 0 0 40px #EB650F, 0 0 60px #EB650F, 0 0 10px #EB650F, 0 0 98px #EB650F;
-    color: #fff6a9;
-  
+h1.headline {
+  /* Responsive font size and line height */
+  font-size: calc(16px + 8vw); /* Adjust based on viewport width */
+  line-height: calc(20px + 10vw); /* Adjust based on viewport width */
+
+  /* Glow effect */
+  text-shadow: 
+    0 0 5px #EB650F, 
+    0 0 15px #EB650F, 
+    0 0 20px #EB650F, 
+    0 0 40px #EB650F, 
+    0 0 60px #EB650F, 
+    0 0 10px #EB650F, 
+    0 0 98px #EB650F;
+  color: #fff6a9;
+
+  /* Center alignment */
   text-align: center;
+
+  /* Animation */
   animation: blink 12s infinite;
   -webkit-animation: blink 12s infinite;
+}
+
+/* Blink animation */
+@keyframes blink {
+  20%, 24%, 55% {
+    color: #fff6a9;
+    text-shadow: 
+      0 0 5px #EB650F, 
+      0 0 15px #EB650F, 
+      0 0 20px #EB650F, 
+      0 0 40px #EB650F, 
+      0 0 60px #EB650F, 
+      0 0 10px #EB650F, 
+      0 0 98px #EB650F;
+  }
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    color: transparent;
+    text-shadow: none;
+  }
+}
+
+@-webkit-keyframes blink {
+  20%, 24%, 55% {
+    color: #fff6a9;
+    text-shadow: 
+      0 0 5px #EB650F, 
+      0 0 15px #EB650F, 
+      0 0 20px #EB650F, 
+      0 0 40px #EB650F, 
+      0 0 60px #EB650F, 
+      0 0 10px #EB650F, 
+      0 0 98px #EB650F;
+  }
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    color: transparent;
+    text-shadow: none;
+  }
 }
 
 body {
