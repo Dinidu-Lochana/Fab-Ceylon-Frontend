@@ -170,7 +170,7 @@ export default function Home() {
       <div className="relative flex items-center justify-center h-2/3  mds:h-1/3 mds:ml-36 sms:ml-56">
         <Image 
           src={Back_image_middle}
-          className='mds:w-1/5'
+          className='mds:w-1/5 '
           layout="fill"
           objectFit="cover"
           alt="Background Image"
@@ -198,29 +198,29 @@ export default function Home() {
       </div>
 
 
-      {/* Cafe Nuwara Section */}
-      <div className="relative flex items-center text-left text-white mt-36 justify-left">
-      <Image 
-    className="flex items-center justify-between h-80 w-80 ml-28 zoom-animation"
+    {/* Cafe Nuwara Section */}
+<div className="relative flex items-center text-left text-white mt-36 justify-left">
+  <Image 
+    className="flex items-center justify-between h-80 w-80 ml-28 zoom-animation mds:h-[200px] mds:ml-40"
     src={Cafe_Nuwara_logo}
     height={600}
     width={600}
     alt="Cafe Nuwara Logo"
   />
-        <article>
-          <h1 className="font-serif text-4xl font-bold text-center">
-            CAFE NUWARA
-          </h1>
-          <p className="p-10 ml-48 mr-20 font-serif text-2xl font-bold tracking-wider">
-            Cafe Nuwara is a cozy, charming spot that offers a delightful blend 
-            of rich coffee and delicious bites in a warm, inviting atmosphere. 
-            Whether you're looking to catch up with friends or enjoy some quiet 
-            time, this cafe provides the perfect setting with its comfortable 
-            seating and friendly service. A hidden gem for coffee lovers and 
-            food enthusiasts alike.
-          </p>
-        </article>
-      </div>
+  <article>
+    <h1 className="font-serif text-4xl font-bold text-center mds:text-3xl">
+      CAFE NUWARA
+    </h1>
+    <p className="p-10 ml-48 mr-20 font-serif text-2xl font-bold tracking-wider mds:text-xl mds:ml-5 mds:mr-5 mds:break-words">
+      Cafe Nuwara is a cozy, charming spot that offers a delightful blend 
+      of rich coffee and delicious bites in a warm, inviting atmosphere. 
+      Whether you're looking to catch up with friends or enjoy some quiet 
+      time, this cafe provides the perfect setting with its comfortable 
+      seating and friendly service. A hidden gem for coffee lovers and 
+      food enthusiasts alike.
+    </p>
+  </article>
+</div>
 
       {/* Fab Ceylon Kandy Section */}
       <div className="relative flex items-center h-full m-8 -mt-20 text-left text-white h-2/3 justify-left ">
