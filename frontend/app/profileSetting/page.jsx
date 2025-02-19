@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
@@ -8,43 +8,16 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useRouter } from 'next/navigation';
 
 import Fabceylon_PVT from '@/components/Assets/Fabceylon_PVT.png';
-import user_icon from '@/components/Assets/User_Icon_login.png';
 import background_image from '@/components/Assets/LoginSignUp_back_Image.png';
 
 const ProfileSettingsCustomer = () => {
   const router = useRouter();
   const [formData, setFormData] = useState({
-    contactNumber: '',
     newContactNumber: '',
     password: '',
     newPassword: '',
     confirmPassword: '',
   });
-
-  useEffect(() => {
-    const fetchUserProfile = async () => {
-      try {
-        const user = JSON.parse(localStorage.getItem('user'));
-        if (!user) {
-          router.push('/profileSetting');
-          return;
-        }
-        const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL_ADDRESS}/api/customers/profile`, {
-          headers: { Authorization: `Bearer ${user.token}` },
-        });
-        setFormData({
-          contactNumber: response.data.contactNumber,
-          newContactNumber: '',
-          password: '',
-          newPassword: '',
-          confirmPassword: '',
-        });
-      } catch (error) {
-        toast.error('Failed to load profile', { containerId: 'ErrorMessage' });
-      }
-    };
-    fetchUserProfile();
-  }, [router]);
 
   const changeHandler = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -53,24 +26,38 @@ const ProfileSettingsCustomer = () => {
   const updateProfile = async () => {
     try {
       const user = JSON.parse(localStorage.getItem('user'));
-      if (formData.newPassword !== formData.confirmPassword) {
+  
+      if (!user || !user.createdToken) {
+        toast.error("Unauthorized access. Please log in.", { containerId: 'ErrorMessage' });
+        router.push("/login");
+        return;
+      }
+  
+      if (formData.newPassword && formData.newPassword !== formData.confirmPassword) {
         toast.error('Passwords do not match', { containerId: 'ErrorMessage' });
         return;
       }
+  
       await axios.put(
         `${process.env.NEXT_PUBLIC_BACKEND_URL_ADDRESS}/api/customers/update-profile`,
         {
-          newContactNumber: formData.newContactNumber,
-          newPassword: formData.newPassword,
+          newContactNumber: formData.newContactNumber || undefined,
+          newPassword: formData.newPassword || undefined,
         },
-        { headers: { Authorization: `Bearer ${user.token}` } }
+        { 
+          headers: { 
+            Authorization: `Bearer ${user.createdToken}` 
+          } 
+        }
       );
+  
       toast.success('Profile updated successfully', { containerId: 'successMessage' });
     } catch (error) {
+      console.error("Update Profile Error:", error);
       toast.error(error.response?.data?.error || 'An error occurred', { containerId: 'ErrorMessage' });
     }
   };
-
+  
   return (
     <div
       className="w-full h-screen bg-[#ded2b7] pt-[100px] bg-cover bg-center"
