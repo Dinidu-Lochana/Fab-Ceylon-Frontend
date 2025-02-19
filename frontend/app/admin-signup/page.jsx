@@ -3,9 +3,9 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import Fabceylon_PVT from '@/components/Assets/Fabceylon_PVT.png';
-import user_icon from '@/components/Assets/User_Icon_login.png';
-import lock from '@/components/Assets/Lock.png';
+import Fabceylon_PVT from '@components/Assets/Fabceylon_PVT';
+import user_icon from '@/assetsComponents/User_Icon_login.png';
+import lock from '@/assetsComponents/Lock.png';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
