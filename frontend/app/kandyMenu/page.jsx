@@ -1,6 +1,6 @@
 'use client';
 import React from 'react'
-import MenuBack_image from '@/components/Assets/MenuBack_image.jpg';
+import MenuBack_image from '../../components/Assets/MenuBack_image.jpg';
 import Image from 'next/image';
 
 

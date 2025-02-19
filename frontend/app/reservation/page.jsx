@@ -1,9 +1,10 @@
 "use client";
+import { useState } from "react";
 
 import Image from "next/image";
-import logo from '@/components/Assets/rating_star_nuwara.png';
-import logo from '@/components/Assets/import Rating_Star from ';
-import axios from "axios"; // Import Axios
+import logo from '../../components/Assets/Fabceylon_logo.png';
+import back from '../../components/Assets/back.png'
+import axios from "axios"; 
 
 
 const Home = () => {

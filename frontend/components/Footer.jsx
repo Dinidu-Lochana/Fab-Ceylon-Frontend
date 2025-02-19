@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from 'next/image';
-import Footer_back_image from '@/components/Assets/Footer_back_image.png'
+import Footer_back_image from './Assets/Footer_back_image.png'
 
 export const Footer = () => {
   return (

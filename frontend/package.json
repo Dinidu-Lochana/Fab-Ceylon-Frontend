@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@next/font": "^14.2.15",
     "@tabler/icons-react": "^3.19.0",
     "axios": "^1.7.9",
     "class-variance-authority": "^0.7.0",
