@@ -199,7 +199,7 @@ export default function Home() {
 
 
     {/* Cafe Nuwara Section */}
-<div className="relative flex items-center text-left text-white mt-36 justify-left">
+<div className="relative flex items-center text-left text-white mt-36 justify-left ">
   <Image 
     className="flex items-center justify-between h-80 w-80 ml-28 zoom-animation mds:h-[200px] mds:ml-40"
     src={Cafe_Nuwara_logo}
