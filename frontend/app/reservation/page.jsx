@@ -1,10 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import logo from "../components/Assets/Fabceylon_PVT.png";
-import back from "../components/Assets/LoginSignUp_back_Image.png";
-import React, { useState } from "react";
+import logo from '@/components/Assets/rating_star_nuwara.png';
+import logo from '@/components/Assets/import Rating_Star from ';
 import axios from "axios"; // Import Axios
+
 
 const Home = () => {
   const [formData, setFormData] = useState({
