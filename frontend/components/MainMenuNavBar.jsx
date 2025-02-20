@@ -2,9 +2,9 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import cart_icon from "./Assets/cart_icon.png"
-import user_icon from "./Assets/user_icon.png"
-import Fabceylon_logo from '@/components/Assets/Fabceylon_logo.png'
+import cart_icon from "../components/Assets/cart_icon.png"
+import user_icon from "../components/Assets/user_icon.png"
+import Fabceylon_logo from '../components/Assets/Fabceylon_logo.png'
 
 export const MainMenuNavBar = () => {
   return (
@@ -38,7 +38,10 @@ export const MainMenuNavBar = () => {
               PLACE ORDER
             </Link>
           </div>
-          <div className="text-[#caa767] text-[20px] font-medium font-['Poppins']">RESERVATIONS</div>
+          <div className="text-[#caa767] text-[20px] font-medium font-['Poppins']">
+            <Link href="/fabceylon-kurunegala/reservations">
+            RESERVATIONS
+            </Link></div>
           <div className="text-[#caa767] text-[20px] font-medium font-['Poppins']">
           <Link href="/login">
               LOGIN

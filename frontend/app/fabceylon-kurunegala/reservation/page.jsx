@@ -1,8 +1,8 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
-import logo from '../../components/Assets/Fabceylon_PVT.png';
-import back from '../../components/Assets/back.png';
+import logo from '../../../components/Assets/Fabceylon_logo.png';
+import back from '../../../components/Assets/back.png';
 import axios from "axios"; 
 
 const Home = () => {
