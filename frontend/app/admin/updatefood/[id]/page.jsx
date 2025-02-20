@@ -16,9 +16,11 @@ const UpdateFood = ({ params }) => {
     const [formData, setFormData] = useState({
         foodName: "",
         price: "",
+        packagingPrice:"",
         description: "",
         foodCategory: "",
         isDeliveryAvailable: "",
+        isExtraAddCheeseAvailable:"",
         image: "" // Contains the base64 of the previous image
     });
 
@@ -151,6 +153,18 @@ const UpdateFood = ({ params }) => {
                     </div>
 
                     <div className="mb-4">
+                        <label className="block mb-2 text-sm font-medium text-gray-700">Package Price</label>
+                        <input
+                            type="number"
+                            name="packagingPrice"
+                            value={formData.packagingPrice}
+                            onChange={changeHandler}
+                            className="w-full h-10 px-3 text-sm text-gray-800 bg-white border border-gray-300 rounded-xl"
+                            placeholder="Price"
+                        />
+                    </div>
+
+                    <div className="mb-4">
                         <label className="block mb-2 text-sm font-medium text-gray-700">Description</label>
                         <textarea
                             name="description"
@@ -202,6 +216,20 @@ const UpdateFood = ({ params }) => {
                             <option value="0">No</option>
                         </select>
                     </div>
+
+                    <div className="mb-4">
+                        <label className="block mb-2 text-sm font-medium text-gray-700">Extra Cheese Available?</label>
+                        <select
+                            name="isExtraAddCheeseAvailable"
+                            value={formData.isExtraAddCheeseAvailable}
+                            onChange={changeHandler}
+                            className="w-full h-10 px-3 text-sm text-gray-800 bg-white border border-gray-300 rounded-xl">
+                            <option value="" disabled>Is Extra Cheese Available?</option>
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
+                        </select>
+                    </div>
+                    
 
                     <button
                         type="button"
