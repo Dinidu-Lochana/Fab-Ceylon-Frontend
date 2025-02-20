@@ -46,7 +46,7 @@ export const CafeNuwaraNavBar = () => {
                 </Link>
               </div>
               <div>
-                <Link href="/cafenuwara/order/appetizers">
+                <Link href="/cafenuwara/order">
                   Place Order
                 </Link>
               </div>
