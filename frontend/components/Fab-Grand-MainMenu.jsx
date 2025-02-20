@@ -13,7 +13,7 @@ export const GrandMainMenuNavBar = () => {
   const menuItems = [
     { label: 'HOME', link: '/' },
     { label: 'MENU', link: '/fabceylon-grand/menu/salads-soups' },
-    { label: 'PLACE ORDER', link: '/fabceylon-grand/order/salads-soups' },
+    { label: 'PLACE ORDER', link: '/fabceylon-grand/order' },
     { label: 'RESERVATIONS', link: '#' },
     { label: 'REGISTER', link: '/signup' },
   ];

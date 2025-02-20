@@ -180,17 +180,7 @@ const CheckoutPage = () => {
                 />
                 <span>Pick-up</span>
               </label>
-              <label className="flex items-center space-x-2">
-                <input
-                  type="radio"
-                  name="orderType"
-                  value="Delivery"
-                  checked={orderType === "Delivery"}
-                  onChange={(e) => setOrderType(e.target.value)}
-                  className="w-5 h-5"
-                />
-                <span>Delivery</span>
-              </label>
+              
             </div>
           </div>
 

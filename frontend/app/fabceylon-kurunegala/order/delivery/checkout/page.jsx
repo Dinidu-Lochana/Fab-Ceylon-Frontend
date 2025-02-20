@@ -302,17 +302,7 @@ const CheckoutPage = () => {
           <div className="mt-6">
             <h2 className="mb-2 text-xl font-bold text-orange-400">Payment Method:</h2>
             <div className="flex space-x-4">
-              <label className="flex items-center space-x-2">
-                <input
-                  type="radio"
-                  name="paymentMethod"
-                  value="Cash"
-                  checked={paymentMethod === "Cash"}
-                  onChange={(e) => setPaymentMethod(e.target.value)}
-                  className="w-5 h-5"
-                />
-                <span>Cash Payment</span>
-              </label>
+              
               <label className="flex items-center space-x-2">
                 <input
                   type="radio"
