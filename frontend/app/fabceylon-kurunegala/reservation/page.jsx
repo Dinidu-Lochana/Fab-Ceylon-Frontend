@@ -1,13 +1,14 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
-import logo from '../../../components/Assets/Fabceylon_logo.png';
-import back from '../../../components/Assets/back.png';
-import axios from "axios"; 
+import logo from "../../../components/Assets/fab_kurunegala.png";
+import back from "../../../components/Assets/back.png";
+import axios from "axios";
 
 const Home = () => {
   const [formData, setFormData] = useState({
     cafe: "Cafe Nuwara",
+    email: "",
     date: "",
     time: "",
     people: "",
@@ -34,52 +35,57 @@ const Home = () => {
     }
 
     if (!formData.agreeToTerms) {
-      setMessage("You must agree to the terms and conditions to make a reservation.");
+      setMessage(
+        "You must agree to the terms and conditions to make a reservation."
+      );
       return;
     }
 
     try {
-      const response = await axios.post("http://localhost:4000/api/reservations", formData);
+      await axios.post("http://localhost:4000/api/reservations", formData);
       setMessage("Reservation confirmed!");
     } catch (error) {
-      setMessage(error.response?.data?.message || "Failed to submit reservation. Please try again.");
+      setMessage(
+        error.response?.data?.message ||
+          "Failed to submit reservation. Please try again."
+      );
     }
   };
 
   return (
+    
+    
     <div
-      className="flex items-center justify-center min-h-screen bg-orange-100"
+      className="flex items-center justify-center min-h-screen bg-gray-500"
       style={{
         backgroundImage: `url(${back.src})`,
-        
         backgroundRepeat: "repeat",
       }}
     >
-      <div className="w-full max-w-md p-6 bg-white shadow-md rounded-lg">
-        {/* Logo */}
+      <div className="w-full max-w-md p-6 bg-gray-800 border border-orange-500 shadow-md rounded-lg">
+        {/* Logo */} 
+        <div className="flex justify-center mb-4 p-10">
         <Image src={logo} alt="Logo" width={400} height={200} />
-
+        </div>
         {/* Form */}
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4 p-10">
           <div>
-            <label htmlFor="cafe" className="block mb-2 text-gray-700">
-              Select Cafe
+            <label htmlFor="email" className="block mb-2 text-white">
+              Email
             </label>
-            <select
-              id="cafe"
-              name="cafe"
-              value={formData.cafe}
+            <input
+              type="email"
+              id="email"
+              name="email" // Added name attribute
+              value={formData.email}
               onChange={handleChange}
-              className="w-full text-gray-700 px-4 py-2 border rounded-lg focus:ring-2 focus:ring-yellow-500"
-            >
-              <option value="Cafe Nuwara">Cafe Nuwara</option>
-              <option value="FabCeylon Kandy">FabCeylon Kandy</option>
-              <option value="FabCeylon Kurunagala">FabCeylon Kurunagala</option>
-            </select>
+              className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-yellow-500"
+              placeholder="Enter your Email"
+            />
           </div>
 
           <div>
-            <label htmlFor="date" className="block mb-2 text-gray-700">
+            <label htmlFor="date" className="block mb-2 text-white">
               Select Date
             </label>
             <input
@@ -93,7 +99,7 @@ const Home = () => {
           </div>
 
           <div>
-            <label htmlFor="time" className="block mb-2 text-gray-700">
+            <label htmlFor="time" className="block mb-2 text-white">
               Select Time
             </label>
             <input
@@ -107,7 +113,7 @@ const Home = () => {
           </div>
 
           <div>
-            <label htmlFor="people" className="block mb-2 text-gray-700">
+            <label htmlFor="people" className="block mb-2 text-white">
               Amount of People
             </label>
             <input
@@ -131,14 +137,14 @@ const Home = () => {
               onChange={handleChange}
               className="mr-2"
             />
-            <label htmlFor="agreeToTerms" className="text-gray-700">
+            <label htmlFor="agreeToTerms" className="text-white">
               I agree to the terms and conditions
             </label>
           </div>
 
           <button
             type="submit"
-            className="w-full bg-yellow-500 text-white py-2 rounded-lg hover:bg-yellow-600"
+            className="w-full bg-orange-500 text-white py-2 rounded-lg hover:bg-yellow-600"
           >
             Reserve a Table
           </button>

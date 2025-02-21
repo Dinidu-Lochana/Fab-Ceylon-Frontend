@@ -5,31 +5,28 @@ const { default: flattenColorPalette } = require("tailwindcss/lib/util/flattenCo
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  // Enable dark mode using the 'class' strategy
   darkMode: ["class"],
-  // Define paths where Tailwind should scan for classes
   content: [
     './pages/**/*.{js,jsx}',
     './components/**/*.{js,jsx}',
     './app/**/*.{js,jsx}',
     './src/**/*.{js,jsx}',
   ],
-  // Optional prefix for Tailwind classes (empty here)
   prefix: "",
   theme: {
     container: {
-      // Center the container
       center: true,
-      // Add padding to the container
       padding: "2rem",
-      screens: {
-        // Define custom breakpoint for 2xl screens
-        "2xl": "1400px",
-      },
+      
     },
     extend: {
-      
-      // Extend default colors using HSL for custom themes
+      screens: {
+        lgs: { max: '1279px' }, // Large screens (desktop)
+        mds: { max: '1024px' }, // Medium screens (tablet)
+        sms: { max: '767px' }, 
+        xxs: { max: '480px' },
+        
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -65,13 +62,11 @@ module.exports = {
           foreground: "hsl(var(--card-foreground))",
         },
       },
-      // Define custom border radius sizes
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
-      // Define custom keyframes
       keyframes: {
         scroll: {
           to: {
@@ -79,17 +74,25 @@ module.exports = {
           },
         },
       },
-      // Define custom animations
       animation: {
         scroll:
           "scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite",
       },
+      // Extend fontFamily to include 'myfont'
+      fontFamily: {
+        ptserif: ['PTSerif', 'sans-serif'], // Replace 'sans-serif' with a fallback font
+      },
+      fontFamily: {
+        postNoe: ['PostNoe', 'PTSerif'], // Replace 'sans-serif' with a fallback font
+      },
+      fontFamily: {
+        reemKufi: ['ReemKufi', 'Georgia'], // Replace 'sans-serif' with a fallback font
+      },
+     
     },
   },
   plugins: [
-    // Add custom color variables to root
     addVariablesForColors,
-    // Define a custom plugin to add 'bg-dot-thick' utility
     function ({ matchUtilities, theme }) {
       matchUtilities(
         {

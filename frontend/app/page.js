@@ -24,6 +24,7 @@ export default function Home() {
   return (
     <div className="relative h-screen bg-black">
       <Image 
+      className="sms:w-full sms:h-10 mds:w-auto mds:h-auto"
         src={Home_back_image}
         layout="fill"
         objectFit="cover"
@@ -32,18 +33,23 @@ export default function Home() {
       <NavBar />
 
       {/* Hero Section */}
-      <div className="relative flex items-center h-screen grid-cols-2 gap-2 text-left text-white justify-left -mt-28">
+      <div className="relative flex items-center h-screen grid-cols-2 gap-2 text-left text-white justify-left -mt-28 sms:ml-64 ">
         <div style={{ marginLeft: '100px' }}>
-          <h1 className="p-20 font-bold tracking-wider text-7xl font-poppins ml-100">
+          <h1 className="p-20 font-bold tracking-wider text-7xl font-poppins ml-100 mds:text-5xl sms:text-xl sms:ml-10 sms:-mt-96 ">
             CHOOSE THE <br />
             <span className="text-orange-500">BEST</span> AMONG <br />
             BEST <span className="text-orange-500">FOODS...</span>
           </h1>
         </div>
 
-        <div className="right-0 flex items-center justify-between">
+        <div className="right-0 flex items-center justify-between sms:-ml-16 sms:-mt-80">
           <Image
-            className="right-0 flex items-center justify-between h-full"
+            className="right-0 flex items-center justify-between sms:-mt-48
+           
+               lgs:w-80 lgs:h-80
+               mds:w-65 mds:h-65 
+               sms:w-32 sms:h-32 "
+            
             src={Hero_bugger}
             alt="Burger image"
           />
@@ -71,6 +77,35 @@ export default function Home() {
           </article>
         </div>
 
+  <div className="relative">
+    <article className="delay-200 animate-slideUp">
+      <Image 
+        className="absolute transition-transform duration-300 transform hover:scale-105 
+        mds:h-40 w-40 sms:h-20 sms:w-20 sms:-ml-10 xxs:ml-1"
+        style={{ top: '30px', left: '40px' }}
+        src={Fabceylon_logo}
+        alt="Fab Ceylon Kandy Logo"
+        height={200}
+        width={200}
+      />
+      <a 
+        className="absolute text-3xl font-bold text-white transition-transform duration-300 font-poppins hover:scale-105 mds:text-2xl sms:text-[12px]
+         top-[250px] left-[40px] 
+         sms:top-[130px] sms:left-[10px] xxs:ml-9"
+        style={{ }}
+      >
+        Fab Ceylon
+      </a>
+      <a 
+        className="absolute text-3xl font-bold text-white transition-transform duration-300 font-poppins hover:scale-105 mds:text-2xl 
+        sms:text-[12px]
+        top-[290px] left-[60px]  sms:top-[145px] sms:left-[18px] xxs:ml-9"
+        
+      >
+        Kandy
+      </a>
+    </article>
+  </div>
         <div className="relative">
           <article className="delay-200 animate-slideUp">
             <Image 
@@ -145,6 +180,7 @@ export default function Home() {
       <div className="relative flex items-center justify-center h-2/3">
         <Image 
           src={Back_image_middle}
+          className='mds:w-1/5 '
           layout="fill"
           objectFit="cover"
           alt="Background Image"
@@ -230,12 +266,12 @@ export default function Home() {
       {/* Fab Ceylon Grand Section */}
       <div className="relative flex items-center m-8 -mt-12 text-left text-white justify-left">
         <Image 
-          className="flex items-center justify-between ml-20 h-80 w-80"
+          className="flex items-center justify-between ml-20 -mt-12 h-80 w-80 zoom-animation"
           src={Fabceylon_Grand_logo}
           alt="Fab Ceylon Grand Logo"
         />
         <article>
-          <h1 className="font-serif text-4xl font-bold text-center">
+          <h1 className="mt-16 font-serif text-4xl font-bold text-center">
             FAB CEYLON GRAND
           </h1>
           <p className="p-10 mb-40 ml-48 font-serif text-2xl font-bold tracking-wider">
@@ -288,3 +324,8 @@ export default function Home() {
     </div>
   );
 }
+
+
+
+
+

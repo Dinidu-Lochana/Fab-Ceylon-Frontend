@@ -1,6 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400..900;1,400..900&family=PT+Serif+Caption:ital@0;1&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Reem+Kufi:wght@400..700&display=swap');
+
+body {
+  font-family: 'Reem Kufi', sans-serif;
+}
 
 @layer base {
   :root {
@@ -64,7 +69,7 @@
     @apply border-border;
   }
   body {
-    @apply bg-[#f8f7f7] text-foreground;
+    @apply bg-[#f0e6d9] text-foreground;
   }
 }
 
@@ -93,4 +98,28 @@
   font-family: 'EB Garamond', serif;
   font-weight: 700; /* Set weight as needed */
   font-style: normal;
+}
+
+@font-face {
+  font-family: 'PTSerif';
+  src: 
+       url('/fonts/PTSerifCaption-Italic.woff') format('woff');
+  font-weight: normal; /* or bold, etc. */
+  font-style: normal; /* or italic, etc. */
+}
+
+@font-face {
+  font-family: 'PostNoe';
+  src: 
+       url('/fonts/PostNoBillsColombo-ExtraBold.woff') format('woff');
+  font-weight: Bold; /* or bold, etc. */
+  font-style: normal; /* or italic, etc. */
+}
+
+@font-face {
+  font-family: 'ReemKufi';
+  src: 
+       url('/fonts/ReemKufi-Regular.woff') format('woff');
+  font-weight: Bold; /* or bold, etc. */
+  font-style: normal; /* or italic, etc. */
 }
