@@ -8,7 +8,7 @@ import Sidebar from "../../../components/reservation-sidebar";
 
 const Home = () => {
   const [formData, setFormData] = useState({
-    cafe: "Cafe Nuwara",
+    cafe: "Fab Ceylon Grand",
     email: "",
     date: "",
     time: "",
@@ -72,7 +72,7 @@ const Home = () => {
   return (
     <div className="flex min-h-screen bg-gray-500">
     {/* Sidebar */}
-        <div className="absolute top-0 right-10 m-4">
+        <div className="absolute top-0 right- m-4">
           <Sidebar notifications={notifications} />
         </div>
 

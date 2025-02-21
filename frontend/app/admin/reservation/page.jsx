@@ -1,5 +1,6 @@
 "use client";
 
+import axios from "axios";
 import React, { useState, useEffect } from "react";
 
 const AdminReservations = () => {
@@ -7,18 +8,9 @@ const AdminReservations = () => {
 
   useEffect(() => {
     // Fetch reservations from the server or local storage
-    const fetchedReservations = [
-      {
-        id: 1,
-        cafe: "Cafe Nuwara",
-        date: "2023-10-01",
-        time: "18:00",
-        people: 4,
-        agreeToTerms: true,
-      },
-      
-    ];
-    setReservations(fetchedReservations);
+
+    fetchData();
+
   }, []);
 
   const handleApprove = (id) => {
@@ -32,6 +24,21 @@ const AdminReservations = () => {
   const handleDelete = (id) => {
     setReservations(reservations.filter((reservation) => reservation.id !== id));
   };
+
+  const fetchData = async() => {
+    try{
+      const api = process.env.NEXT_PUBLIC_BACKEND_URL_ADDRESS
+      const response = await axios.get(api + '/api/getall/reservations');
+
+      console.log(response);
+
+      if(response.data.code === 200){
+        setReservations(response.data.data);
+      }
+    }catch(error){
+      console.error(error);
+    }
+  }
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-orange-100">
