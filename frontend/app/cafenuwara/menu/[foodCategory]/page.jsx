@@ -215,6 +215,13 @@ export default function CafeNuwara({ params }) {
               <div className="left-[15px] top-[500px] absolute text-[#bb995b] text-3xl font-bold font-['Poppins']">
                 LKR {food.price}
               </div>
+
+              {/* Extra Add Cheese */}
+              {food.isExtraAddCheeseAvailable && (
+                  <div className="text-white text-xl font-bold font-['Poppins'] mt-2">
+                    Extra Add Cheese + LKR 200
+                  </div>
+                )}
               
               <Image
                 className="w-[179px] h-[152px] ml-[140px]"
