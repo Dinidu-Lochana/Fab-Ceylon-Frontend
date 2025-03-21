@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation";
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import deleteIcon from "@/components/Assets/delete.png";
-import { GrandMainMenuNavBar } from '@/components/Fab-Grand-MainMenu';
+import { MainMenuNavBar } from "@/components/MainMenuNavBar";
 import { jwtDecode } from "jwt-decode";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -13,7 +13,9 @@ const CheckoutPage = () => {
   const [orderType, setOrderType] = useState("Pick-up"); // Default to Pick-up
   const [paymentMethod, setPaymentMethod] = useState("");
   const [formData, setFormData] = useState({
-    orderDescription: "",
+    senderName: "",
+    senderContact: "",
+    orderDescription: ""
   });
 
   const [agreedToTerms, setAgreedToTerms] = useState(false);
@@ -22,7 +24,7 @@ const CheckoutPage = () => {
   const router = useRouter();
 
   useEffect(() => {
-    const storedCart = JSON.parse(localStorage.getItem("fab-grand-cart")) || [];
+    const storedCart = JSON.parse(localStorage.getItem("fab-kurunegala-pickup-cart")) || [];
     setCartItems(storedCart);
   }, []);
 
@@ -30,7 +32,7 @@ const CheckoutPage = () => {
     const updatedCart = cartItems.map((item) =>
       item._id === foodId ? { ...item, quantity: item.quantity + 1 } : item
     );
-    localStorage.setItem('fab-grand-cart', JSON.stringify(updatedCart));
+    localStorage.setItem('fab-kurunegala-pickup-cart', JSON.stringify(updatedCart));
     setCartItems(updatedCart);
   };
 
@@ -43,13 +45,13 @@ const CheckoutPage = () => {
       )
       .filter((item) => item.quantity > 0);
 
-    localStorage.setItem('fab-grand-cart', JSON.stringify(updatedCart));
+    localStorage.setItem('fab-kurunegala-pickup-cart', JSON.stringify(updatedCart));
     setCartItems(updatedCart);
   };
 
   const handleDeleteFromCart = (foodId) => {
     const updatedCart = cartItems.filter((item) => item._id !== foodId);
-    localStorage.setItem('fab-grand-cart', JSON.stringify(updatedCart));
+    localStorage.setItem('fab-kurunegala-pickup-cart', JSON.stringify(updatedCart));
     setCartItems(updatedCart);
   };
 
@@ -83,13 +85,14 @@ const CheckoutPage = () => {
       }
     }
 
-    if (!orderType || !paymentMethod) {
-      toast.error("Please select a payment method and order type.", { containerId: "ErrorMessage" });
+    if (!orderType || !paymentMethod || !formData.senderName || !formData.senderContact) {
+      toast.error("Please fill in all required fields.", { containerId: "ErrorMessage" });
       return;
     }
 
+
     const orderData = {
-      admin_id: process.env.NEXT_PUBLIC_FAB_CEYLON_GRAND, 
+      admin_id: process.env.NEXT_PUBLIC_FAB_CEYLON_KURUNEGALA, 
       userId: userId,
       items: cartItems.map((item) => ({
         foodId: item._id, 
@@ -101,17 +104,21 @@ const CheckoutPage = () => {
       orderType,
       paymentMethod,
       totalAmount, 
+      senderDetails: {
+        name: formData.senderName,
+        contactNumber: formData.senderContact,
+      },
       orderDescription: formData.orderDescription || "", 
     };
 
     try {
       const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL_ADDRESS}/api/customers/order/orderfoods/${process.env.NEXT_PUBLIC_FAB_CEYLON_GRAND}/put-order`,
+        `${process.env.NEXT_PUBLIC_BACKEND_URL_ADDRESS}/api/customers/order/orderfoods/${process.env.NEXT_PUBLIC_FAB_CEYLON_KURUNEGALA}/put-order`,
         orderData
       );
 
       toast.success("Successfully created Order!", { containerId: "successMessage" });
-      localStorage.removeItem("fab-grand-cart"); 
+      localStorage.removeItem("fab-kurunegala-pickup-cart"); 
       router.push("/fabceylon-kurunegala");
     } catch (error) {
       console.error("Error creating order:", error);
@@ -121,7 +128,7 @@ const CheckoutPage = () => {
 
   return (
     <div>
-      <GrandMainMenuNavBar />
+      <MainMenuNavBar />
       <div className="flex flex-col items-center min-h-screen px-4 py-10 text-white bg-gray-900">
         <div className="w-full max-w-2xl p-6 bg-gray-800 rounded-lg shadow-lg">
           <h1 className="mb-6 text-3xl font-bold text-orange-400">Your Cart</h1>
@@ -169,6 +176,26 @@ const CheckoutPage = () => {
           </div>
 
           <div className="mt-6">
+            <h2 className="mb-2 text-xl font-bold text-orange-400">Sender Details:</h2>
+            <input
+              type="text"
+              name="senderName"
+              value={formData.senderName}
+              onChange={handleInputChange}
+              placeholder="Enter your name"
+              className="w-full px-4 py-3 mb-3 text-gray-900 bg-gray-200 rounded-lg placeholder-italic"
+            />
+            <input
+              type="text"
+              name="senderContact"
+              value={formData.senderContact}
+              onChange={handleInputChange}
+              placeholder="Enter your contact number"
+              className="w-full px-4 py-3 text-gray-900 bg-gray-200 rounded-lg placeholder-italic"
+            />
+          </div>
+
+          <div className="mt-6">
             <h2 className="mb-2 text-xl font-bold text-orange-400">Order Type:</h2>
             <div className="flex space-x-4">
               <label className="flex items-center space-x-2">
@@ -182,7 +209,17 @@ const CheckoutPage = () => {
                 />
                 <span>Pick-up</span>
               </label>
-              
+              <label className="flex items-center space-x-2">
+                <input
+                  type="radio"
+                  name="orderType"
+                  value="Delivery"
+                  checked={orderType === "Delivery"}
+                  onChange={(e) => setOrderType(e.target.value)}
+                  className="w-5 h-5"
+                />
+                <span>Delivery</span>
+              </label>
             </div>
           </div>
 

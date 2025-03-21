@@ -24,6 +24,7 @@ export default function Home() {
     <div className="relative h-screen bg-black ">
       
       <Image 
+      className="sms:w-full sms:h-10 mds:w-auto mds:h-auto"
         src={Home_back_image}
         layout="fill"
         objectFit="cover"
@@ -32,18 +33,23 @@ export default function Home() {
       <NavBar />
 
       {/* Hero Section */}
-      <div className="relative flex items-center h-screen grid-cols-2 gap-2 text-left text-white justify-left -mt-28">
+      <div className="relative flex items-center h-screen grid-cols-2 gap-2 text-left text-white justify-left -mt-28 sms:ml-64 ">
         <div style={{ marginLeft: '100px' }}>
-          <h1 className="p-20 font-bold tracking-wider text-7xl font-poppins ml-100">
+          <h1 className="p-20 font-bold tracking-wider text-7xl font-poppins ml-100 mds:text-5xl sms:text-xl sms:ml-10 sms:-mt-96 ">
             CHOOSE THE <br />
             <span className="text-orange-500 ">BEST</span> AMONG <br />
             BEST <span className="text-orange-500">FOODS...</span>
           </h1>
         </div>
 
-        <div className="right-0 flex items-center justify-between">
+        <div className="right-0 flex items-center justify-between sms:-ml-16 sms:-mt-80">
           <Image
-            className="right-0 flex items-center justify-between h-full"
+            className="right-0 flex items-center justify-between sms:-mt-48
+           
+               lgs:w-80 lgs:h-80
+               mds:w-65 mds:h-65 
+               sms:w-32 sms:h-32 "
+            
             src={Hero_bugger}
             alt="Burger image"
           />
@@ -51,11 +57,13 @@ export default function Home() {
       </div>
 
       {/* Logos Grid Section */}
-      <div className="relative grid grid-cols-4 gap-6 m-20 p-12 h-[30rem] bg-[#111010] rounded-[60px] mx-32 px-12 animate-fadeIn">
+      <div className="relative grid grid-cols-4 gap-6 m-20 p-12 h-[30rem] bg-[#111010] rounded-[60px] 
+      mx-32 px-12 animate-fadeIn mds-h-[26rem] sms:h-[20rem] sms:ml-60 sms:gap-28 ">
   <div className="relative">
     <article className="delay-100 animate-slideUp">
       <Image 
-        className="absolute transition-transform duration-300 transform hover:scale-105"
+        className="absolute transition-transform duration-300 transform hover:scale-105 
+        mds:h-40 w-40 sms:h-20 sms:w-20 sms:ml-12 xxs:ml-28  "
         style={{ top: '30px', left: '30px' }}
         src={Cafe_Nuwara_logo}
         alt="Cafe Nuwara Logo"
@@ -63,8 +71,12 @@ export default function Home() {
         width={200}
       />
       <a 
-        className="absolute text-3xl font-bold text-white transition-transform duration-300 font-poppins hover:scale-105"
-        style={{ top: '250px', left: '40px' }}
+        className="absolute text-3xl font-bold text-white transition-transform duration-300 font-poppins 
+        hover:scale-105 mds:text-2xl sms:text-[12px] xxs:ml-20
+         top-[250px] left-[40px] 
+         sms:top-[130px] sms:left-[80px]"
+       
+        
       >
         Cafe Nuwara
       </a>
@@ -74,7 +86,8 @@ export default function Home() {
   <div className="relative">
     <article className="delay-200 animate-slideUp">
       <Image 
-        className="absolute transition-transform duration-300 transform hover:scale-105"
+        className="absolute transition-transform duration-300 transform hover:scale-105 
+        mds:h-40 w-40 sms:h-20 sms:w-20 sms:-ml-10 xxs:ml-1"
         style={{ top: '30px', left: '40px' }}
         src={Fabceylon_logo}
         alt="Fab Ceylon Kandy Logo"
@@ -82,14 +95,18 @@ export default function Home() {
         width={200}
       />
       <a 
-        className="absolute text-3xl font-bold text-white transition-transform duration-300 font-poppins hover:scale-105"
-        style={{ top: '250px', left: '40px' }}
+        className="absolute text-3xl font-bold text-white transition-transform duration-300 font-poppins hover:scale-105 mds:text-2xl sms:text-[12px]
+         top-[250px] left-[40px] 
+         sms:top-[130px] sms:left-[10px] xxs:ml-9"
+        style={{ }}
       >
         Fab Ceylon
       </a>
       <a 
-        className="absolute text-3xl font-bold text-white transition-transform duration-300 font-poppins hover:scale-105"
-        style={{ top: '290px', left: '60px' }}
+        className="absolute text-3xl font-bold text-white transition-transform duration-300 font-poppins hover:scale-105 mds:text-2xl 
+        sms:text-[12px]
+        top-[290px] left-[60px]  sms:top-[145px] sms:left-[18px] xxs:ml-9"
+        
       >
         Kandy
       </a>
@@ -99,7 +116,9 @@ export default function Home() {
   <div className="relative">
     <article className="delay-300 animate-slideUp">
       <Image 
-        className="absolute transition-transform duration-300 transform hover:scale-105"
+        className="absolute transition-transform duration-300 transform hover:scale-105 
+        mds:h-40 w-40 sms:h-20 sms:w-20
+        sms:-ml-32"
         style={{ top: '30px', left: '60px' }}
         src={Fabceylon_Grand_logo}
         alt="Fab Ceylon Grand Logo"
@@ -107,14 +126,16 @@ export default function Home() {
         width={200}
       />
       <a 
-        className="absolute text-3xl font-bold text-white transition-transform duration-300 font-poppins hover:scale-105"
-        style={{ top: '250px', left: '80px' }}
+        className="absolute text-3xl font-bold text-white transition-transform duration-300 font-poppins hover:scale-105 mds:text-2xl sms:text-[12px]
+         top-[250px] left-[80px]  sms:top-[130px] sms:left-[-60px]"
+        
       >
         Fab Ceylon
       </a>
       <a 
-        className="absolute text-3xl font-bold text-white transition-transform duration-300 font-poppins hover:scale-105"
-        style={{ top: '290px', left: '100px' }}
+        className="absolute text-3xl font-bold text-white transition-transform duration-300 font-poppins hover:scale-105 mds:text-2xl sms:text-[12px]
+         top-[290px] left-[100px]  sms:top-[145px] sms:left-[-60px]"
+       
       >
         Grand
       </a>
@@ -124,7 +145,8 @@ export default function Home() {
   <div className="relative">
     <article className="animate-slideUp delay-400">
       <Image 
-        className="absolute transition-transform duration-300 transform hover:scale-105"
+        className="absolute transition-transform duration-300 transform hover:scale-105 
+        mds:h-40 w-40 sms:h-20 sms:w-20 sms:-ml-52 xxs:"
         style={{ top: '30px', left: '60px' }}
         src={Fabceylon_logo}
         alt="Fab Ceylon Kurunegala Logo"
@@ -132,8 +154,9 @@ export default function Home() {
         width={200}
       />
       <a 
-        className="absolute text-3xl font-bold text-white transition-transform duration-300 font-poppins hover:scale-105"
-        style={{ top: '250px', left: '70px' }}
+        className="absolute text-3xl font-bold text-white transition-transform duration-300 font-poppins hover:scale-105 mds:text-2xl sms:text-[12px] 
+        top-[250px] left-[70px]  sms:top-[130px] sms:left-[-160px]"
+        
       >
         Fab Ceylon Kurunegala
       </a>
@@ -144,15 +167,16 @@ export default function Home() {
 
 
       {/* Background Image Section */}
-      <div className="relative flex items-center justify-center h-2/3 ">
+      <div className="relative flex items-center justify-center h-2/3  mds:h-1/3 mds:ml-36 sms:ml-56">
         <Image 
           src={Back_image_middle}
+          className='mds:w-1/5 '
           layout="fill"
           objectFit="cover"
           alt="Background Image"
         /> 
-        <div className="absolute z-10 text-white ml-[400px] mr-20 ">
-        <p className="items-center justify-between p-20 text-4xl font-bold tracking-wider opacity-100 font-poppins ml-30 ">
+        <div className="absolute z-10 text-white ml-[400px] mr-20 mds:ml-[200px]">
+        <p className="items-center justify-between p-20 text-4xl font-bold tracking-wider opacity-100 font-poppins ml-30 mds:text-2xl sms:text-xl">
           Fab Ceylon Cafe and Restaurant offers a unique culinary experience
           with authentic Sri Lankan cuisine. The cozy restaurant features 
           traditional recipes and fresh ingredients, serving flavorful curries,
@@ -174,29 +198,29 @@ export default function Home() {
       </div>
 
 
-      {/* Cafe Nuwara Section */}
-      <div className="relative flex items-center text-left text-white mt-36 justify-left">
-      <Image 
-    className="flex items-center justify-between h-80 w-80 ml-28 zoom-animation"
+    {/* Cafe Nuwara Section */}
+<div className="relative flex items-center text-left text-white mt-36 justify-left ">
+  <Image 
+    className="flex items-center justify-between h-80 w-80 ml-28 zoom-animation mds:h-[200px] mds:ml-40"
     src={Cafe_Nuwara_logo}
     height={600}
     width={600}
     alt="Cafe Nuwara Logo"
   />
-        <article>
-          <h1 className="font-serif text-4xl font-bold text-center">
-            CAFE NUWARA
-          </h1>
-          <p className="p-10 ml-48 mr-20 font-serif text-2xl font-bold tracking-wider">
-            Cafe Nuwara is a cozy, charming spot that offers a delightful blend 
-            of rich coffee and delicious bites in a warm, inviting atmosphere. 
-            Whether you're looking to catch up with friends or enjoy some quiet 
-            time, this cafe provides the perfect setting with its comfortable 
-            seating and friendly service. A hidden gem for coffee lovers and 
-            food enthusiasts alike.
-          </p>
-        </article>
-      </div>
+  <article>
+    <h1 className="font-serif text-4xl font-bold text-center mds:text-3xl">
+      CAFE NUWARA
+    </h1>
+    <p className="p-10 ml-48 mr-20 font-serif text-2xl font-bold tracking-wider mds:text-xl mds:ml-5 mds:mr-5 mds:break-words">
+      Cafe Nuwara is a cozy, charming spot that offers a delightful blend 
+      of rich coffee and delicious bites in a warm, inviting atmosphere. 
+      Whether you're looking to catch up with friends or enjoy some quiet 
+      time, this cafe provides the perfect setting with its comfortable 
+      seating and friendly service. A hidden gem for coffee lovers and 
+      food enthusiasts alike.
+    </p>
+  </article>
+</div>
 
       {/* Fab Ceylon Kandy Section */}
       <div className="relative flex items-center h-full m-8 -mt-20 text-left text-white h-2/3 justify-left ">
@@ -291,3 +315,8 @@ export default function Home() {
     
   );
 }
+
+
+
+
+

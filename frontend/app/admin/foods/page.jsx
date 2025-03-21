@@ -85,11 +85,15 @@ const ViewFoods = () => {
                 {food.foodName}
               </h2>
               <p className="mt-1 text-gray-600">Price: Rs.{food.price}.00</p>
+              <p className="mt-1 text-gray-600">Package Price: Rs.{food.packagingPrice}.00</p>
               <p className="mt-1 text-gray-500">
                 {food.foodCategory.replace(/-&-/g, " & ")}
               </p>
               <p className="mt-1 text-gray-600">
                 Delivery Available: {food.isDeliveryAvailable ? "Yes" : "No"}
+              </p>
+              <p className="mt-1 text-gray-600">
+                Extra Add Cheese Available: {food.isExtraAddCheeseAvailable ? "Yes" : "No"}
               </p>
               <p className="mt-2 text-gray-500">{food.description}</p>
             </div>

@@ -22,8 +22,9 @@ module.exports = {
     extend: {
       screens: {
         lgs: { max: '1279px' }, // Large screens (desktop)
-        mds: { max: '1023px' }, // Medium screens (tablet)
+        mds: { max: '1024px' }, // Medium screens (tablet)
         sms: { max: '767px' }, 
+        xxs: { max: '480px' },
         
       },
       colors: {
