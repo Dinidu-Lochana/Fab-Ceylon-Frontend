@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@next/font": "^14.2.15",
+    "@stripe/react-stripe-js": "^3.5.1",
+    "@stripe/stripe-js": "^6.1.0",
     "@tabler/icons-react": "^3.19.0",
     "axios": "^1.7.9",
     "class-variance-authority": "^0.7.0",
