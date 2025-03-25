@@ -240,7 +240,7 @@ const fetchmonthOrderCountOrderType = async(admin_id, startYear, startMonth, end
 
 
     return (
-        <div className="bg-gray-900 min-h-screen p-6 grid grid-cols-1 gap-6">
+        <div className="grid min-h-screen grid-cols-1 gap-6 p-6 bg-gray-900">
             {/* Orders by Admin */}
             <Card>
                 <CardContent>
@@ -258,7 +258,7 @@ const fetchmonthOrderCountOrderType = async(admin_id, startYear, startMonth, end
         <h2 className="text-xl font-semibold">Orders by Admin Month</h2>
         
         {/* Start Year and Month */}
-        <div className="flex-row space-x-2 mb-2">
+        <div className="flex-row mb-2 space-x-2">
             <Input 
                 type="month" 
                 value={startYear + '-' + startMonth} 
@@ -274,7 +274,7 @@ const fetchmonthOrderCountOrderType = async(admin_id, startYear, startMonth, end
         </div>
 
         {/* End Year and Month */}
-        <div className="flex space-x-2 mb-2">
+        <div className="flex mb-2 space-x-2">
             <Input 
                 type="month" 
                 value={endYear + '-' + endMonth} 
@@ -329,7 +329,7 @@ const fetchmonthOrderCountOrderType = async(admin_id, startYear, startMonth, end
         <h2 className="text-xl font-semibold">Orders by Admin Month Food Name</h2>
         
         {/* Start Year and Month */}
-        <div className="flex space-x-2 mb-2">
+        <div className="flex mb-2 space-x-2">
             <Input 
                 type="month" 
                 value={startYear + '-' + startMonth} 
@@ -345,7 +345,7 @@ const fetchmonthOrderCountOrderType = async(admin_id, startYear, startMonth, end
         </div>
 
         {/* End Year and Month */}
-        <div className="flex space-x-2 mb-2">
+        <div className="flex mb-2 space-x-2">
             <Input 
                 type="month" 
                 value={endYear + '-' + endMonth} 
@@ -360,7 +360,7 @@ const fetchmonthOrderCountOrderType = async(admin_id, startYear, startMonth, end
             />
         </div>
 
-        <div className="flex space-x-2 mb-2">
+        <div className="flex mb-2 space-x-2">
     <Input 
         type="text" 
         value={foodName} 
@@ -412,7 +412,7 @@ const fetchmonthOrderCountOrderType = async(admin_id, startYear, startMonth, end
         <h2 className="text-xl font-semibold">Orders by Admin Month</h2>
         
         {/* Start Year and Month */}
-        <div className="flex space-x-2 mb-2">
+        <div className="flex mb-2 space-x-2">
             <Input 
                 type="month" 
                 value={startYear + '-' + startMonth} 
@@ -428,7 +428,7 @@ const fetchmonthOrderCountOrderType = async(admin_id, startYear, startMonth, end
         </div>
 
         {/* End Year and Month */}
-        <div className="flex space-x-2 mb-2">
+        <div className="flex mb-2 space-x-2">
             <Input 
                 type="month" 
                 value={endYear + '-' + endMonth} 
@@ -443,7 +443,7 @@ const fetchmonthOrderCountOrderType = async(admin_id, startYear, startMonth, end
             />
         </div>
  
-        <div className="flex space-x-2 mb-2">
+        <div className="flex mb-2 space-x-2">
     <Input 
         type="text" 
         value={foodCategory} 
@@ -498,7 +498,7 @@ const fetchmonthOrderCountOrderType = async(admin_id, startYear, startMonth, end
         <h2 className="text-xl font-semibold">Orders by Admin Month</h2>
         
         {/* Start Year and Month */}
-        <div className="flex space-x-2 mb-2">
+        <div className="flex mb-2 space-x-2">
             <Input 
                 type="month" 
                 value={startYear + '-' + startMonth} 
@@ -514,7 +514,7 @@ const fetchmonthOrderCountOrderType = async(admin_id, startYear, startMonth, end
         </div>
 
         {/* End Year and Month */}
-        <div className="flex space-x-2 mb-2">
+        <div className="flex mb-2 space-x-2">
             <Input 
                 type="month" 
                 value={endYear + '-' + endMonth} 
@@ -529,7 +529,7 @@ const fetchmonthOrderCountOrderType = async(admin_id, startYear, startMonth, end
             />
         </div>
  
-        <div className="flex space-x-2 mb-2">
+        <div className="flex mb-2 space-x-2">
     <Input 
         type="text" 
         value={orderType} 
