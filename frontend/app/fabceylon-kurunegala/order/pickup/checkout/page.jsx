@@ -12,7 +12,6 @@ import { Elements, CardElement, useStripe, useElements } from "@stripe/react-str
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
 
-
 // Card Payment Component
 const CardPaymentForm = ({ totalAmount, onPaymentComplete, disabled }) => {
   const stripe = useStripe();
@@ -382,17 +381,7 @@ const CheckoutPage = () => {
                 />
                 <span>Pick-up</span>
               </label>
-              <label className="flex items-center space-x-2">
-                <input
-                  type="radio"
-                  name="orderType"
-                  value="Delivery"
-                  checked={orderType === "Delivery"}
-                  onChange={(e) => setOrderType(e.target.value)}
-                  className="w-5 h-5"
-                />
-                <span>Delivery</span>
-              </label>
+              
             </div>
           </div>
 
