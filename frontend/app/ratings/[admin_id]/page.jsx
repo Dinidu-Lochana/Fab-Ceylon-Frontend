@@ -60,7 +60,7 @@ const Orders = () => {
 
       try {
         const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_BACKEND_URL_ADDRESS}/api/customers/rating/getOrders/${userId}/${admin_id}`
+          `${process.env.NEXT_PUBLIC_BACKEND_URL_ADDRESS}/api/customers/rating/getorders/${userId}/${admin_id}`
         );
         console.log("Backend URL:", process.env.NEXT_PUBLIC_BACKEND_URL_ADDRESS);
 
@@ -140,8 +140,8 @@ const Orders = () => {
 
   return (
     <div className="bg-gray-900 min-h-screen text-[#f8f6f6] p-6">
-      <h1 className="text-center text-2xl font-bold mb-8">Your Orders</h1>
-      <div className="flex flex-wrap gap-6 justify-center">
+      <h1 className="mb-8 text-2xl font-bold text-center">Your Orders</h1>
+      <div className="flex flex-wrap justify-center gap-6">
         {orders.length > 0 ? (
           orders.map((order) => (
             <div
@@ -149,23 +149,23 @@ const Orders = () => {
               className="relative bg-transparent border border-[rgb(60,57,56)] rounded-2xl p-4 w-64 h-80 shadow-md transition-transform duration-300 hover:translate-y-[-10px] hover:shadow-lg"
             >
               {/* Apply backdrop blur to the background */}
-              <div className="absolute inset-0 bg-gray-800/30 backdrop-blur-md rounded-2xl border border-white/20 shadow-lg"></div>
+              <div className="absolute inset-0 border shadow-lg bg-gray-800/30 backdrop-blur-md rounded-2xl border-white/20"></div>
 
 
               {/* Add custom spacing */}
-              <div className="flex justify-center relative z-10 mb-4">
-                <h2 className="text-xl font-serif">Order #{order._id.slice(-6)}</h2>
+              <div className="relative z-10 flex justify-center mb-4">
+                <h2 className="font-serif text-xl">Order #{order._id.slice(-6)}</h2>
               </div>
-              <div className="flex justify-center relative z-10 mb-4">
+              <div className="relative z-10 flex justify-center mb-4">
                 <p>Date: {new Date(order.createdAt).toLocaleString()}</p>
               </div>
-              <div className="flex justify-center relative z-10 mb-4">
+              <div className="relative z-10 flex justify-center mb-4">
                 <p>Total Amount: Rs.{order.totalAmount}</p>
               </div>
-              <div className="flex justify-center relative z-10 mb-4">
+              <div className="relative z-10 flex justify-center mb-4">
                 <p>Status: {order.status}</p>
               </div>
-              <div className="flex justify-center relative z-10">
+              <div className="relative z-10 flex justify-center">
                 <button
                   className={`mt-4 px-4 py-2 rounded-md transition ${
                     order.status === "Delivered"
@@ -205,10 +205,10 @@ const ReviewPopup = ({
   handleSubmitRating,
   closeReviewPopup,
 }) => (
-  <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-    <div className="bg-gray-900/50 backdrop-blur-lg rounded-lg p-6 max-w-3xl w-full relative border border-white/10 shadow-md">
-      <div className="flex justify-center relative z-10">
-        <h2 className="text-xl font-bold mb-4 text-white">
+  <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+    <div className="relative w-full max-w-3xl p-6 border rounded-lg shadow-md bg-gray-900/50 backdrop-blur-lg border-white/10">
+      <div className="relative z-10 flex justify-center">
+        <h2 className="mb-4 text-xl font-bold text-white">
           Review Order #{order._id.slice(-6)}
         </h2>
       </div>
@@ -219,12 +219,12 @@ const ReviewPopup = ({
             className="flex items-center text-white gap-4 bg-gray-800/50 backdrop-blur-lg p-4 rounded-lg shadow-md  transition-transform duration-300 hover:translate-y-[-10px] hover:shadow-lg"
           >
             <img
-  src={`${process.env.NEXT_PUBLIC_BACKEND_URL_ADDRESS}/${item.image.replace(
-    "\\",
-    "/"
-  )}`}
-  alt={item.foodName}
-  className="object-cover w-40 h-40 rounded-full border-4 border-white shadow-md transition-transform duration-300 ease-in-out hover:scale-110"
+              src={`${process.env.NEXT_PUBLIC_BACKEND_URL_ADDRESS}/${item.image.replace(
+                "\\",
+                "/"
+              )}`}
+              alt={item.foodName}
+  className="object-cover w-40 h-40 transition-transform duration-300 ease-in-out border-4 border-white rounded-full shadow-md hover:scale-110"
 />
 
 
@@ -240,7 +240,7 @@ const ReviewPopup = ({
           </div>
         ))}
       </div>
-      <div className="mt-6 flex justify-end gap-4">
+      <div className="flex justify-end gap-4 mt-6">
         <button
           className="bg-[#e76f2f] text-white px-4 py-2 rounded-md hover:bg-[#3a5fbd] transition"
           onClick={handleSubmitRating}

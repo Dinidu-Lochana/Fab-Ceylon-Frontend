@@ -30,6 +30,19 @@
     transform: rotate(-360deg);
   }
 }
+@keyframes zoomInOut {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+.zoom-animation {
+  animation: zoomInOut 7s infinite ease-in-out;
+}
+
 
 .rotate-with-pause-counterclockwise {
   animation: rotateWithPauseCounterClockwise 5s ease-in-out infinite;
@@ -38,34 +51,75 @@
 
 /* FABCEYLON Light*/
 
-h1.headline{
-  font-size: calc(20px + 18vh);
-  line-height: calc(20px + 20vh);
-/*   text-shadow: 0 0 5px #f562ff, 0 0 15px #f562ff, 0 0 25px #f562ff,
-    0 0 20px #f562ff, 0 0 30px #890092, 0 0 80px #890092, 0 0 80px #890092;
-  color: #fccaff; */
-  text-shadow: 0 0 5px #EB650F, 0 0 15px #EB650F, 0 0 20px #EB650F, 0 0 40px #EB650F, 0 0 60px #EB650F, 0 0 10px #EB650F, 0 0 98px #EB650F;
-    color: #fff6a9;
-  
+h1.headline {
+  /* Responsive font size and line height */
+  font-size: calc(16px + 8vw); /* Adjust based on viewport width */
+  line-height: calc(20px + 10vw); /* Adjust based on viewport width */
+
+  /* Glow effect */
+  text-shadow: 
+    0 0 5px #EB650F, 
+    0 0 15px #EB650F, 
+    0 0 20px #EB650F, 
+    0 0 40px #EB650F, 
+    0 0 60px #EB650F, 
+    0 0 10px #EB650F, 
+    0 0 98px #EB650F;
+  color: #fff6a9;
+
+  /* Center alignment */
   text-align: center;
+
+  /* Animation */
   animation: blink 12s infinite;
   -webkit-animation: blink 12s infinite;
 }
 
+/* Blink animation */
+@keyframes blink {
+  20%, 24%, 55% {
+    color: #fff6a9;
+    text-shadow: 
+      0 0 5px #EB650F, 
+      0 0 15px #EB650F, 
+      0 0 20px #EB650F, 
+      0 0 40px #EB650F, 
+      0 0 60px #EB650F, 
+      0 0 10px #EB650F, 
+      0 0 98px #EB650F;
+  }
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    color: transparent;
+    text-shadow: none;
+  }
+}
+
+@-webkit-keyframes blink {
+  20%, 24%, 55% {
+    color: #fff6a9;
+    text-shadow: 
+      0 0 5px #EB650F, 
+      0 0 15px #EB650F, 
+      0 0 20px #EB650F, 
+      0 0 40px #EB650F, 
+      0 0 60px #EB650F, 
+      0 0 10px #EB650F, 
+      0 0 98px #EB650F;
+  }
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    color: transparent;
+    text-shadow: none;
+  }
+}
+
 body {
-  padding: 2vw;
+  padding: 0vw;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
   background: #222;
-  background-image: repeating-linear-gradient(
-    to bottom,
-    transparent 7px,
-    rgba(0, 0, 0, 0.8) 9px,
-    rgba(0, 0, 0, 0.8) 13px,
-    transparent 13px
-  );
+ 
 }
 
 .headline-glow {

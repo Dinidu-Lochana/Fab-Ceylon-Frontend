@@ -111,7 +111,7 @@ const LoginAdmin = () => {
         {/* Sign Up Link */}
         <p className="mt-4 text-sm font-medium text-center">
           Don't have an Account?&nbsp;
-          <a href="/admin/signup" className="font-bold text-gray-800">
+          <a href="/admin-signup" className="font-bold text-gray-800">
             Sign Up
           </a>
         </p>

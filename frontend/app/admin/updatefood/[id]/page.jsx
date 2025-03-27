@@ -16,9 +16,17 @@ const UpdateFood = ({ params }) => {
     const [formData, setFormData] = useState({
         foodName: "",
         price: "",
+<<<<<<< HEAD
         description: "",
         foodCategory: "",
         isDeliveryAvailable: "",
+=======
+        packagingPrice:"",
+        description: "",
+        foodCategory: "",
+        isDeliveryAvailable: "",
+        isExtraAddCheeseAvailable:"",
+>>>>>>> 4e25e367453dd3dbc91797f570fe309e25323746
         image: "" // Contains the base64 of the previous image
     });
 
@@ -79,7 +87,11 @@ const UpdateFood = ({ params }) => {
             );
 
             toast.success("Successfully updated Food", { containerId: 'successMessage' });
+<<<<<<< HEAD
             router.push("/foods");
+=======
+            router.push("/admin/foods");
+>>>>>>> 4e25e367453dd3dbc91797f570fe309e25323746
         } catch (error) {
             toast.error(error.response?.data?.error || "An error occurred", { containerId: 'ErrorMessage' });
         }
@@ -151,6 +163,21 @@ const UpdateFood = ({ params }) => {
                     </div>
 
                     <div className="mb-4">
+<<<<<<< HEAD
+=======
+                        <label className="block mb-2 text-sm font-medium text-gray-700">Package Price</label>
+                        <input
+                            type="number"
+                            name="packagingPrice"
+                            value={formData.packagingPrice}
+                            onChange={changeHandler}
+                            className="w-full h-10 px-3 text-sm text-gray-800 bg-white border border-gray-300 rounded-xl"
+                            placeholder="Price"
+                        />
+                    </div>
+
+                    <div className="mb-4">
+>>>>>>> 4e25e367453dd3dbc91797f570fe309e25323746
                         <label className="block mb-2 text-sm font-medium text-gray-700">Description</label>
                         <textarea
                             name="description"
@@ -169,11 +196,32 @@ const UpdateFood = ({ params }) => {
                             onChange={changeHandler}
                             className="w-full h-10 px-3 text-sm text-gray-800 bg-white border border-gray-300 rounded-xl">
                             <option value="" disabled>Select Category</option>
+<<<<<<< HEAD
                             <option value="Appetizer">Appetizer</option>
                             <option value="Main Course">Main Course</option>
                             <option value="Dessert">Dessert</option>
                             <option value="Beverage">Beverage</option>
                             <option value="Salad">Salad</option>
+=======
+                        <option value="appetizers">Appetizers</option>
+                        <option value="salads-soups">Salads & Soups</option>
+                        <option value="add-on">Add-On</option>
+                        <option value="bowls">Bowls</option>
+                        <option value="pasta-spaghetti">Pasta & Spaghetti</option>
+                        <option value="noodles">Noodles</option>
+                        <option value="kottu">Kottu</option>
+                        <option value="fried-rice">Fried Rice</option>
+                        <option value="biriyani">Biriyani</option>
+                        <option value="signature-meals">Signature Meals</option>
+                        <option value="burgers">Burgers</option>
+                        <option value="sandwiches-submarines">Sandwiches & Submarines</option>
+                        <option value="desserts">Desserts</option>
+                        <option value="iced-coffee-iced-tea">Iced Coffee & Iced Tea</option>
+                        <option value="hot-beverages">Hot Beverages</option>
+                        <option value="bubble-tea">Bubble Tea</option>
+                        <option value="mojito">Mojito</option>
+                        <option value="milk-shakes">Milk Shakes</option>
+>>>>>>> 4e25e367453dd3dbc91797f570fe309e25323746
                         </select>
                     </div>
 
@@ -190,6 +238,23 @@ const UpdateFood = ({ params }) => {
                         </select>
                     </div>
 
+<<<<<<< HEAD
+=======
+                    <div className="mb-4">
+                        <label className="block mb-2 text-sm font-medium text-gray-700">Extra Cheese Available?</label>
+                        <select
+                            name="isExtraAddCheeseAvailable"
+                            value={formData.isExtraAddCheeseAvailable}
+                            onChange={changeHandler}
+                            className="w-full h-10 px-3 text-sm text-gray-800 bg-white border border-gray-300 rounded-xl">
+                            <option value="" disabled>Is Extra Cheese Available?</option>
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
+                        </select>
+                    </div>
+                    
+
+>>>>>>> 4e25e367453dd3dbc91797f570fe309e25323746
                     <button
                         type="button"
                         onClick={updateFood}

@@ -47,15 +47,16 @@ const LoginCustomer = () => {
       className="w-full h-screen bg-[#ded2b7] pt-[100px] bg-cover bg-center"
       style={{ backgroundImage: `url(${background_image.src})` }}
     >
-      <div className="w-[400px] h-[500px] bg-[#FFFDF7] mx-auto p-[20px] px-[60px] rounded-[30px] shadow-lg">
+      {/* Responsive Container */}
+      <div className="w-[90%] sm:w-[400px] h-auto sm:h-[500px] bg-[#FFFDF7] mx-auto p-[20px] sm:px-[60px] rounded-[30px] shadow-lg">
         <Image
-          className="mt-1 h-[20vh] w-[200px] mx-auto"
+          className="mt-1 h-[20vh] w-[150px] sm:w-[200px] mx-auto"
           src={Fabceylon_PVT}
           alt="Fab Ceylon Logo"
           width={200}
           height={100}
         />
-        <h1 className="text-center mt-5 mb-4 text-[26px] font-bold font-serif">Login</h1>
+        <h1 className="text-center mt-5 mb-4 text-[22px] sm:text-[26px] font-bold font-serif">Login</h1>
         <div className="flex flex-col gap-[5px] mt-[10px]">
           <div className="relative mb-[10px]">
             <Image
@@ -96,11 +97,11 @@ const LoginCustomer = () => {
         </div>
         <button
           onClick={login}
-          className="w-full h-[35px] bg-[#E1D6C1] mt-[30px] text-[20px] font-semibold rounded-[20px] cursor-pointer hover:bg-[#d1c4b4] transition-all"
+          className="w-full h-[35px] bg-[#E1D6C1] mt-[30px] text-[18px] sm:text-[20px] font-semibold rounded-[20px] cursor-pointer hover:bg-[#d1c4b4] transition-all"
         >
           Login
         </button>
-        <p className="mt-[20px] text-[15px] font-medium flex justify-center">
+        <p className="mt-[20px] text-[14px] sm:text-[15px] font-medium flex justify-center">
           Don't have an Account?{' '}
           <a href="/signup" className="ml-1 font-extrabold text-blue-500 hover:underline">
             Sign Up
