@@ -309,6 +309,7 @@ export default function Home() {
       
       <div className='-mt-60'>
         <InfiniteMovingCardsDemo />
+        
       </div>
 
     </div>
