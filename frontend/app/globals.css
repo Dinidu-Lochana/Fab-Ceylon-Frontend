@@ -94,3 +94,17 @@
   font-weight: 700; /* Set weight as needed */
   font-style: normal;
 }
+
+@layer utilities {
+  .input-style {
+    @apply h-[40px] w-full bg-[#D9D9D9] rounded-[20px] text-[14px] pl-[50px] border border-[#c9c9c9] text-[#333] placeholder:text-[#888] placeholder:text-[12px];
+  }
+
+  .input-icon {
+    @apply absolute transform -translate-y-1/2 left-3 top-1/2;
+  }
+
+  .submit-button {
+    @apply w-full h-[40px] bg-[#E1D6C1] text-[18px] font-semibold font-sans rounded-[20px] hover:bg-[#d4c6b1] transition ease-in-out;
+  }
+}
