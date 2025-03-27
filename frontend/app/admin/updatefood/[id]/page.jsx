@@ -16,11 +16,17 @@ const UpdateFood = ({ params }) => {
     const [formData, setFormData] = useState({
         foodName: "",
         price: "",
+<<<<<<< HEAD
+        description: "",
+        foodCategory: "",
+        isDeliveryAvailable: "",
+=======
         packagingPrice:"",
         description: "",
         foodCategory: "",
         isDeliveryAvailable: "",
         isExtraAddCheeseAvailable:"",
+>>>>>>> 4e25e367453dd3dbc91797f570fe309e25323746
         image: "" // Contains the base64 of the previous image
     });
 
@@ -81,7 +87,11 @@ const UpdateFood = ({ params }) => {
             );
 
             toast.success("Successfully updated Food", { containerId: 'successMessage' });
+<<<<<<< HEAD
+            router.push("/foods");
+=======
             router.push("/admin/foods");
+>>>>>>> 4e25e367453dd3dbc91797f570fe309e25323746
         } catch (error) {
             toast.error(error.response?.data?.error || "An error occurred", { containerId: 'ErrorMessage' });
         }
@@ -153,6 +163,8 @@ const UpdateFood = ({ params }) => {
                     </div>
 
                     <div className="mb-4">
+<<<<<<< HEAD
+=======
                         <label className="block mb-2 text-sm font-medium text-gray-700">Package Price</label>
                         <input
                             type="number"
@@ -165,6 +177,7 @@ const UpdateFood = ({ params }) => {
                     </div>
 
                     <div className="mb-4">
+>>>>>>> 4e25e367453dd3dbc91797f570fe309e25323746
                         <label className="block mb-2 text-sm font-medium text-gray-700">Description</label>
                         <textarea
                             name="description"
@@ -183,6 +196,13 @@ const UpdateFood = ({ params }) => {
                             onChange={changeHandler}
                             className="w-full h-10 px-3 text-sm text-gray-800 bg-white border border-gray-300 rounded-xl">
                             <option value="" disabled>Select Category</option>
+<<<<<<< HEAD
+                            <option value="Appetizer">Appetizer</option>
+                            <option value="Main Course">Main Course</option>
+                            <option value="Dessert">Dessert</option>
+                            <option value="Beverage">Beverage</option>
+                            <option value="Salad">Salad</option>
+=======
                         <option value="appetizers">Appetizers</option>
                         <option value="salads-soups">Salads & Soups</option>
                         <option value="add-on">Add-On</option>
@@ -201,6 +221,7 @@ const UpdateFood = ({ params }) => {
                         <option value="bubble-tea">Bubble Tea</option>
                         <option value="mojito">Mojito</option>
                         <option value="milk-shakes">Milk Shakes</option>
+>>>>>>> 4e25e367453dd3dbc91797f570fe309e25323746
                         </select>
                     </div>
 
@@ -217,6 +238,8 @@ const UpdateFood = ({ params }) => {
                         </select>
                     </div>
 
+<<<<<<< HEAD
+=======
                     <div className="mb-4">
                         <label className="block mb-2 text-sm font-medium text-gray-700">Extra Cheese Available?</label>
                         <select
@@ -231,6 +254,7 @@ const UpdateFood = ({ params }) => {
                     </div>
                     
 
+>>>>>>> 4e25e367453dd3dbc91797f570fe309e25323746
                     <button
                         type="button"
                         onClick={updateFood}
