@@ -1,11 +1,11 @@
 "use client";
 import React, { useState } from 'react';
 import Image from 'next/image';
-import cafenuwara_nav from '@/components/Assets/cafenuwara_nav.png';
-import Cafe_Nuwara_logo from '@/components/Assets/Nuwara _Logo_flat.png';
-import cart_icon from './Assets/cart_icon.png';
-import user_icon from './Assets/user_icon.png';
-import cafenuwaranav_2 from '@/components/Assets/cafenuwaranav_2.png';
+import cafenuwara_nav from '../components/Assets/cafenuwara_nav.png';
+import Cafe_Nuwara_logo from '../components/Assets/Nuwara _Logo_flat.png';
+import cart_icon from '../components/Assets/cart_icon.png';
+import user_icon from '../components/Assets/user_icon.png';
+import cafenuwaranav_2 from '../components/Assets/cafenuwaranav_2.png';
 import Link from 'next/link';
 
 export const CafeNuwaraNavBar = () => {
@@ -50,7 +50,9 @@ export const CafeNuwaraNavBar = () => {
                   Place Order
                 </Link>
               </div>
-              <div>Reservation</div>
+              <div>
+                <Link href="/cafenuwara/reservations">
+                Reservation</Link></div>
               <div>
                 <Link href="/signup">
                   Register

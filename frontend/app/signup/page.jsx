@@ -7,12 +7,12 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import Fabceylon_PVT from '@/components/Assets/Fabceylon_PVT.png';
-import user_icon from '@/components/Assets/User_Icon_login.png';
-import user_icon2 from '@/components/Assets/User_Icon_login2.png';
+import Fabceylon_PVT from '../../components/Assets/Fabceylon_PVT.png';
+import user_icon from '../../components/Assets/User_Icon_login.png';
+import user_icon2 from '../../components/Assets/User_Icon_login2.png';
 
-import lock from '@/components/Assets/Lock.png';
-import background_image from '@/components/Assets/LoginSignUp_back_Image.png';
+import lock from '../../components/Assets/Lock.png';
+import background_image from '../../components/Assets/LoginSignUp_back_Image.png';
 
 const SignUpCustomer = () => {
   const router = useRouter();

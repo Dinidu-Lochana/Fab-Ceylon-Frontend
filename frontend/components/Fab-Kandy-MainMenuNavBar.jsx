@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import cart_icon from "./Assets/cart_icon.png";
-import user_icon from "./Assets/user_icon.png";
-import Fabceylon_logo from '@/components/Assets/Fabceylon_logo.png';
+import cart_icon from "../components/Assets/cart_icon.png";
+import user_icon from "../components/Assets/user_icon.png";
+import Fabceylon_logo from '../components/Assets/Fabceylon_logo.png';
 
 export const KandyMainMenuNavBar = () => {
   const [activeItem, setActiveItem] = useState(''); // Tracks the active menu item
@@ -13,7 +13,7 @@ export const KandyMainMenuNavBar = () => {
     { label: 'HOME', link: '/' },
     { label: 'MENU', link: '/fabceylon-kandy/menu/salads-soups' },
     { label: 'PLACE ORDER', link: '/fabceylon-kandy/order/salads-soups' },
-    { label: 'RESERVATIONS', link: '#' },
+    { label: 'RESERVATIONS', link: '/fabceylon-kandy/reservations' },
     { label: 'REGISTER', link: '/signup' },
   ];
 

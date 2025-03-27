@@ -1,11 +1,18 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
+<<<<<<< HEAD:frontend/app/fabceylon-kurunegala/order/[foodCategory]/page.jsx
+import MenuBack_image from '../../../../components/Assets/MenuBack_image.jpg';
+import delete_icon from '../.././../../components/Assets/delete.png';
+import { MenuNavBar } from '../../../../components/MenuNavBar';
+import { MainMenuNavBar } from '../../../../components/MainMenuNavBar';
+=======
 import MenuBack_image from '@/components/Assets/MenuBack_image.jpg';
 import delete_icon from '@/components/Assets/delete.png';
 import Rating_Star from '@/components/Assets/rating_star.png';
 import { MenuNavBar } from '@/components/Fab-Kurunegala-Pickup-Navbar';
 import { MainMenuNavBar } from '@/components/MainMenuNavBar';
+>>>>>>> 882276d791b8c021397eff51b3919e4a13e247b1:frontend/app/fabceylon-kurunegala/order/pickup/[foodCategory]/page.jsx
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import Link from 'next/link';

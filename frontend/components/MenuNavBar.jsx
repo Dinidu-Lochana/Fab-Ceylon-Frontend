@@ -3,6 +3,7 @@ import Link from 'next/link';
 
 export const MenuNavBar = () => {
   const [beveragesOpen, setBeveragesOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const toggleBeverages = () => {
     setBeveragesOpen(!beveragesOpen);
@@ -12,115 +13,190 @@ export const MenuNavBar = () => {
     setBeveragesOpen(false);
   };
 
+  const menuItems = [
+    { name: "Salads & Soups", href: "/fabceylon-kurunegala/order/salads-soups" },
+    { name: "Appetizers", href: "/fabceylon-kurunegala/order/appetizers" },
+    { name: "Pasta & Spaghetti", href: "/fabceylon-kurunegala/order/pasta-spaghetti" },
+    { name: "Noodles", href: "/fabceylon-kurunegala/order/noodles" },
+    { name: "Kottu", href: "/fabceylon-kurunegala/order/kottu" },
+    { name: "Fried Rice", href: "/fabceylon-kurunegala/order/fried-rice" },
+    { name: "Biriyani", href: "/fabceylon-kurunegala/order/biriyani" },
+    { name: "Signature Meals", href: "/fabceylon-kurunegala/order/signature-meals" },
+    { name: "Burgers", href: "/fabceylon-kurunegala/order/burgers" },
+    { name: "Sandwiches & Submarines", href: "/fabceylon-kurunegala/order/sandwiches-submarines" },
+    { name: "Desserts", href: "/fabceylon-kurunegala/order/desserts" },
+  ];
+
   return (
-    <div>
-      {/* Main Menu Items */}
-      
+    <div className="w-full shadow-md">
+      {/* Desktop Menu */}
+      <div className="hidden lg:flex w-full h-16 items-center justify-between px-4 relative">
+        {menuItems.map((item, index) => (
+          <Link key={index} href={item.href}>
+            <div className="menu-item px-2 text-center">
+              {item.name}
+            </div>
+          </Link>
+        ))}
 
-
-      <div className="w-[1500px] h-[200px] relative">
-
-        
-
-          {/* Beverages Dropdown */}
-          <div className="w-[1500px] h-[120px] relative">
-            <div className="menu-item left-[1200px] absolute text-center">
-              <a href="#" onClick={toggleBeverages}>
-                Beverages
-              </a>
-              {beveragesOpen && (
-                <div
-                  className="absolute top-[30px] left-0 min-w-[180px] bg-[rgba(0,0,0,0.8)] shadow-lg p-4 rounded-lg h-[130px]"
-                  onMouseLeave={closeBeverages}
-                >
-                  <div className="flex-col gap-3 h-[100px]">
-                    <Link href="/fabceylon-kurunegala/order/iced-coffee-iced-tea">
-                      <div className="text-[#eb650f] text-[14px] font-bold hover:text-white cursor-pointer">
-                        Iced Tea & Coffee
-                      </div>
-                    </Link>
-                    <Link href="/fabceylon-kurunegala/order/hot-beverages">
-                      <div className="text-[#eb650f] text-[14px] font-bold hover:text-white cursor-pointer">
-                        Hot Beverages
-                      </div>
-                    </Link>
-                    <Link href="/fabceylon-kurunegala/order/bubble-tea">
-                      <div className="text-[#eb650f] text-[14px] font-bold hover:text-white cursor-pointer">
-                        Bubble Tea
-                      </div>
-                    </Link>
-                    <Link href="/fabceylon-kurunegala/order/mojito">
-                      <div className="text-[#eb650f] text-[14px] font-bold hover:text-white cursor-pointer">
-                        Mojito
-                      </div>
-                    </Link>
-                    <Link href="/fabceylon-kurunegala/order/milk-shakes">
-                      <div className="text-[#eb650f] text-[14px] font-bold hover:text-white cursor-pointer">
-                        Milk Shakes
-                      </div>
-                    </Link>
+        {/* Beverages Dropdown */}
+        <div className="relative">
+          <div 
+            className="menu-item px-2 text-center cursor-pointer"
+            onClick={toggleBeverages}
+            onMouseEnter={() => setBeveragesOpen(true)}
+          >
+            Beverages
+          </div>
+          {beveragesOpen && (
+            <div
+              className="absolute right-0 top-full min-w-[180px] bg-[rgba(0,0,0,0.9)] shadow-lg p-4 rounded-lg z-50"
+              onMouseLeave={closeBeverages}
+            >
+              <div className="flex flex-col gap-3">
+                <Link href="/fabceylon-kurunegala/order/iced-coffee-iced-tea">
+                  <div className="text-[#eb650f] text-sm font-bold hover:text-white cursor-pointer">
+                    Iced Tea & Coffee
                   </div>
+                </Link>
+                <Link href="/fabceylon-kurunegala/order/hot-beverages">
+                  <div className="text-[#eb650f] text-sm font-bold hover:text-white cursor-pointer">
+                    Hot Beverages
+                  </div>
+                </Link>
+                <Link href="/fabceylon-kurunegala/order/bubble-tea">
+                  <div className="text-[#eb650f] text-sm font-bold hover:text-white cursor-pointer">
+                    Bubble Tea
+                  </div>
+                </Link>
+                <Link href="/fabceylon-kurunegala/order/mojito">
+                  <div className="text-[#eb650f] text-sm font-bold hover:text-white cursor-pointer">
+                    Mojito
+                  </div>
+                </Link>
+                <Link href="/fabceylon-kurunegala/order/milk-shakes">
+                  <div className="text-[#eb650f] text-sm font-bold hover:text-white cursor-pointer">
+                    Milk Shakes
+                  </div>
+                </Link>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Mobile Menu Button */}
+      <div className="lg:hidden flex justify-between items-center h-16 px-4">
+        <button 
+          className="text-[#eb650f] focus:outline-none"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+        >
+          <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+
+      {/* Mobile Menu */}
+      {mobileMenuOpen && (
+        <div className="lg:hidden  pb-4">
+          <div className="flex flex-col space-y-3 px-4">
+            {menuItems.map((item, index) => (
+              <Link key={index} href={item.href}>
+                <div 
+                  className="menu-item-mobile py-2 border-b border-gray-100"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {item.name}
+                </div>
+              </Link>
+            ))}
+            
+            {/* Beverages in Mobile */}
+            <div className="py-2 border-b border-gray-100">
+              <div 
+                className="menu-item-mobile cursor-pointer"
+                onClick={toggleBeverages}
+              >
+                Beverages
+              </div>
+              {beveragesOpen && (
+                <div className="pl-4 mt-2 flex flex-col gap-2">
+                  <Link href="/fabceylon-kurunegala/order/iced-coffee-iced-tea">
+                    <div 
+                      className="text-[#eb650f] text-sm font-bold hover:text-[#d4430f] cursor-pointer"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      Iced Tea & Coffee
+                    </div>
+                  </Link>
+                  <Link href="/fabceylon-kurunegala/order/hot-beverages">
+                    <div 
+                      className="text-[#eb650f] text-sm font-bold hover:text-[#d4430f] cursor-pointer"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      Hot Beverages
+                    </div>
+                  </Link>
+                  <Link href="/fabceylon-kurunegala/order/bubble-tea">
+                    <div 
+                      className="text-[#eb650f] text-sm font-bold hover:text-[#d4430f] cursor-pointer"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      Bubble Tea
+                    </div>
+                  </Link>
+                  <Link href="/fabceylon-kurunegala/order/mojito">
+                    <div 
+                      className="text-[#eb650f] text-sm font-bold hover:text-[#d4430f] cursor-pointer"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      Mojito
+                    </div>
+                  </Link>
+                  <Link href="/fabceylon-kurunegala/order/milk-shakes">
+                    <div 
+                      className="text-[#eb650f] text-sm font-bold hover:text-[#d4430f] cursor-pointer"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      Milk Shakes
+                    </div>
+                  </Link>
                 </div>
               )}
             </div>
           </div>
-       
-
-
-        <Link href="/fabceylon-kurunegala/order/appetizers">
-          <div className="menu-item left-[140px]">Appetizers</div>
-        </Link>
-        <Link href="/fabceylon-kurunegala/order/salads-soups">
-          <div className="menu-item left-[20px]">Salads & Soups</div>
-        </Link>
-        <Link href="/fabceylon-kurunegala/order/pasta-spaghetti">
-          <div className="menu-item left-[260px]">Pasta & Spaghetti</div>
-        </Link>
-        <Link href="/fabceylon-kurunegala/order/noodles">
-          <div className="menu-item left-[370px]">Noodles</div>
-        </Link>
-        <Link href="/fabceylon-kurunegala/order/kottu">
-          <div className="menu-item left-[470px]">Kottu</div>
-        </Link>
-        <Link href="/fabceylon-kurunegala/order/fried-rice">
-          <div className="menu-item left-[580px]">Fried Rice</div>
-        </Link>
-        <Link href="/fabceylon-kurunegala/order/biriyani">
-          <div className="menu-item left-[690px]">Biriyani</div>
-        </Link>
-        <Link href="/fabceylon-kurunegala/order/signature-meals">
-          <div className="menu-item left-[800px]">Signature Meals</div>
-        </Link>
-        <Link href="/fabceylon-kurunegala/order/burgers">
-          <div className="menu-item left-[910px]">Burgers</div>
-        </Link>
-        <Link href="/fabceylon-kurunegala/order/sandwiches-submarines">
-          <div className="menu-item left-[1050px]">Sandwiches & Submarines</div>
-        </Link>
-        <Link href="/fabceylon-kurunegala/order/desserts">
-          <div className="menu-item left-[1330px]">Desserts</div>
-        </Link>
-
-        
-      </div>
+        </div>
+      )}
 
       <style jsx>{`
         .menu-item {
-          width: 125px;
-          top: 16px;
-          position: absolute;
-          text-align: center;
           color: #eb650f;
-          font-size: 1.2rem;
-          font-weight: semi-bold;
+          font-size: 20px;
+          font-weight: 600;
           font-family: 'Poppins', sans-serif;
           cursor: pointer;
           transition: transform 0.3s ease, color 0.3s ease;
+          white-space: nowrap;
         }
 
         .menu-item:hover {
-          transform: scale(1.2); /* Enlarges the text slightly */
-          color: #d4430f; /* Changes the color on hover */
+          transform: scale(1.1);
+          color: #d4430f;
+        }
+
+        .menu-item-mobile {
+          color: #eb650f;
+          font-size: 0.5rem;
+          font-weight: 600;
+          font-family: 'Poppins', sans-serif;
+          cursor: pointer;
+          transition: transform 0.3s ease, color 0.3s ease;
+          white-space: nowrap;
+        }
+
+        .menu-item-mobile:hover {
+          color: #d4430f;
         }
       `}</style>
     </div>

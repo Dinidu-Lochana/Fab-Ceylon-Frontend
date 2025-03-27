@@ -2,7 +2,7 @@
 
 import React from "react";
 import { InfiniteMovingCards } from "./ui/infinite-moving-cards";
-import stars from "@/components/Assets/stars.png";
+import stars from "./Assets/stars.png";
 import { Stars } from "lucide-react";
 
 export function InfiniteMovingCardsDemo() {

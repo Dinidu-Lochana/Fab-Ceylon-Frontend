@@ -1,11 +1,11 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import MenuBack_image from '@/components/Assets/MenuBack_image.jpg';
-import delete_icon from '@/components/Assets/delete.png';
-import Rating_Star from '@/components/Assets/rating_star.png';
-import { KandyOderNavBar } from '@/components/Fab-Kandy-PlaceOrderNavBar';
-import { KandyMainMenuNavBar } from '@/components/Fab-Kandy-MainMenuNavBar';
+import MenuBack_image from '../../../../components/Assets/MenuBack_image.jpg';
+import delete_icon from '../../../../components/Assets/delete.png';
+import Rating_Star from '../../../../components/Assets/rating_star.png';
+import { KandyOderNavBar } from '../../../../components/Fab-Kandy-PlaceOrderNavBar';
+import { KandyMainMenuNavBar } from '../../../../components/Fab-Kandy-MainMenuNavBar';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import Link from 'next/link';

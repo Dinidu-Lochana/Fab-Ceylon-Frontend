@@ -1,10 +1,10 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import MenuBack_image from '@/components/Assets/MenuBack_image.jpg';
-import Rating_Star from '@/components/Assets/rating_star.png';
-import { FabKurungalaMenuNavBar } from '@/components/Fab-Kurungala-MenuNavBar';
-import { MainMenuNavBar } from '@/components/MainMenuNavBar';
+import MenuBack_image from '../../components/Assets/MenuBack_image.jpg';
+import delete_icon from '../../components/Assets/delete.png';
+import { FabKurungalaMenuNavBar } from '../../../../components/Fab-Kurungala-MenuNavBar';
+import { MainMenuNavBar } from '../../../../components/MainMenuNavBar';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 

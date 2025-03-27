@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import cart_icon from "./Assets/cart_icon.png"
-import user_icon from "./Assets/user_icon.png"
-import Fabceylon_logo from '@/components/Assets/fab_grand.png'
-import Fabceylon_Grand_logo from "@/components/Assets/Fabceylon_Grand_logo.png";
+import cart_icon from "../components/Assets/cart_icon.png"
+import user_icon from "../components/Assets/user_icon.png"
+import Fabceylon_logo from '../components/Assets/fab_grand.png'
+import Fabceylon_Grand_logo from "../components/Assets/fab_grand.png";
 
 export const GrandMainMenuNavBar = () => {
   const [activeItem, setActiveItem] = useState(''); // Tracks the active menu item
@@ -14,13 +14,14 @@ export const GrandMainMenuNavBar = () => {
     { label: 'HOME', link: '/' },
     { label: 'MENU', link: '/fabceylon-grand/menu/salads-soups' },
     { label: 'PLACE ORDER', link: '/fabceylon-grand/order/salads-soups' },
-    { label: 'RESERVATIONS', link: '#' },
+    { label: 'RESERVATIONS', link: '/fabceylon-grand/reservations' },
     { label: 'REGISTER', link: '/signup' },
   ];
 
   return (
     <div className="relative">
-      <div className="flex items-center h-[150px] ml-[20px]">
+      <div className="flex items-center h-[150px] ml-[20px] justify-between sm:px-0 md:px-5 lg:px-10">
+        <div className=' flex flex-row gap-5 items-center'>
         <Image
           className="w-[55px] h-[40px] ml-10"
           src={Fabceylon_logo}
@@ -30,6 +31,7 @@ export const GrandMainMenuNavBar = () => {
         />
         <div className="w-[323px] text-[#eb650f] text-[40px] font-extrabold font-serif ml-10">
           FAB CEYLON Grand
+        </div>
         </div>
 
         <div className="flex items-center gap-8 ml-60">

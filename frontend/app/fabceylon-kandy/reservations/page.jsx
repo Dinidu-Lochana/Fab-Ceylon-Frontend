@@ -1,9 +1,9 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
-import logo from '../../components/Assets/Fabceylon_PVT.png';
-import back from '../../components/Assets/back.png';
-import axios from "axios"; 
+import logo from "../../../components/Assets/Fabceylon_logo.png";
+import back from "../../../components/Assets/back.png";
+import axios from "axios";
 
 const Home = () => {
   const [formData, setFormData] = useState({
@@ -34,35 +34,41 @@ const Home = () => {
     }
 
     if (!formData.agreeToTerms) {
-      setMessage("You must agree to the terms and conditions to make a reservation.");
+      setMessage(
+        "You must agree to the terms and conditions to make a reservation."
+      );
       return;
     }
 
     try {
-      const response = await axios.post("http://localhost:4000/api/reservations", formData);
+      await axios.post("http://localhost:4000/api/reservations", formData);
       setMessage("Reservation confirmed!");
     } catch (error) {
-      setMessage(error.response?.data?.message || "Failed to submit reservation. Please try again.");
+      setMessage(
+        error.response?.data?.message ||
+          "Failed to submit reservation. Please try again."
+      );
     }
   };
 
   return (
     <div
-      className="flex items-center justify-center min-h-screen bg-orange-100"
+      className="flex items-center p-10 justify-center min-h-screen bg-[#b38f6b]"
       style={{
         backgroundImage: `url(${back.src})`,
-        
         backgroundRepeat: "repeat",
       }}
     >
-      <div className="w-full max-w-md p-6 bg-white shadow-md rounded-lg">
+      <div className="w-full max-w-md p-6 bg-[#271b0f] shadow-md rounded-lg">
         {/* Logo */}
-        <Image src={logo} alt="Logo" width={400} height={200} />
+            <div className="flex justify-center mb-4">
+              <Image src={logo} alt="Logo" width={200} height={100} />
+            </div>
 
-        {/* Form */}
-        <form onSubmit={handleSubmit} className="space-y-4">
+            {/* Form */}
+        <form onSubmit={handleSubmit} className="space-y-4 p-10">
           <div>
-            <label htmlFor="cafe" className="block mb-2 text-gray-700">
+            <label htmlFor="cafe" className="block mb-2 text-white">
               Select Cafe
             </label>
             <select
@@ -138,7 +144,7 @@ const Home = () => {
 
           <button
             type="submit"
-            className="w-full bg-yellow-500 text-white py-2 rounded-lg hover:bg-yellow-600"
+            className="w-full bg-orange-500 text-white py-2 rounded-lg hover:bg-yellow-600"
           >
             Reserve a Table
           </button>
@@ -148,6 +154,8 @@ const Home = () => {
         {message && <p className="mt-4 text-center text-gray-700">{message}</p>}
       </div>
     </div>
+
+    
   );
 };
 

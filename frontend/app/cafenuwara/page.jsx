@@ -1,16 +1,16 @@
 import React from 'react';
 import Image from 'next/image';
-import cafenuwara_nav from '@/components/Assets/cafenuwara_nav.png';
-import { CafeNuwaraNavBar } from '@/components/CafeNuwraNavBar';
-import CafeNuwaraHero_Image from '@/components/Assets/CafeNuwaraHero_Image.png';
-import Elephant_1 from '@/components/Assets/Elephant_1.png';
-import Elephant_2 from '@/components/Assets/Elephant_2.png';
-import Bugger2 from '@/components/Assets/Bugger2.jpg';
-import star_icon from '@/components/Assets/star_icon.png';
-import Boder from '@/components/Assets/Boder.png';
-import Boder2 from '@/components/Assets/Boder2.png';
-import CartTop from '@/components/Assets/CartTop.png';
-import Cafe_Nuwara_logo from '@/components/Assets/Cafe_Nuwara_logo.png';
+import cafenuwara_nav from '../../components/Assets/cafenuwara_nav.png';
+import { CafeNuwaraNavBar } from '../../components/CafeNuwraNavBar';
+import CafeNuwaraHero_Image from '../../components/Assets/CafeNuwaraHero_Image.png';
+import Elephant_1 from '../../components/Assets/Elephant_1.png';
+import Elephant_2 from '../../components/Assets/Elephant_2.png';
+import Bugger2 from '../../components/Assets/Bugger2.jpg';
+import star_icon from '../../components/Assets/star_icon.png';
+import Boder from '../../components/Assets/Boder.png';
+import Boder2 from '../../components/Assets/Boder2.png';
+import CartTop from '../../components/Assets/CartTop.png';
+import Cafe_Nuwara_logo from '../../components/Assets/Cafe_Nuwara_logo.png';
 
 export default function CafeNuwara() {
   return (

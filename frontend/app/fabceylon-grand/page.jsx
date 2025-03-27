@@ -1,12 +1,12 @@
 'use client';
 import React from 'react';
-import MenuBack_image from '@/components/Assets/MenuBack_image.jpg';
-import Bugger from '@/components/Assets/Bugger.png';
+import MenuBack_image from '../../components/Assets/MenuBack_image.jpg';
+import Bugger from '../../components/Assets/Bugger.png';
 import Image from 'next/image';
-import star_icon from '@/components/Assets/star_icon.png';
-import delete_icon from '@/components/Assets/delete.png';
-import { MenuNavBar } from '@/components/MenuNavBar';
-import { GrandMainMenuNavBar } from '@/components/Fab-Grand-MainMenu';
+import star_icon from '../../components/Assets/star_icon.png';
+import delete_icon from '../../components/Assets/delete.png';
+import { MenuNavBar } from '../../components/MenuNavBar';
+import { GrandMainMenuNavBar } from '../../components/Fab-Grand-MainMenu';
 
 export default function KandyMenu() {
   const [cartItems, setCartItems] = React.useState([]);

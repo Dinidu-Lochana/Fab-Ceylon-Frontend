@@ -1,9 +1,9 @@
 "use client";
 
-import { cn } from "@/lib/utils";
+import { cn } from "../../lib/utils";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
-import Stars from "@/components/Assets/Stars.png";
+import Stars from "../Assets/Stars.png";
 
 export const InfiniteMovingCards = ({
   items,
