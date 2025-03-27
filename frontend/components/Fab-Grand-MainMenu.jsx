@@ -1,21 +1,41 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-
-import cart_icon from "./Assets/cart_icon.png"
-import user_icon from "./Assets/user_icon.png"
-import Fabceylon_logo from '@/components/Assets/fab_grand.png'
-import Fabceylon_Grand_logo from "@/components/Assets/Fabceylon_Grand_logo.png";
+import { useRouter } from 'next/navigation';
+import cart_icon from './Assets/cart_icon.png';
+import user_icon from './Assets/user_icon.png';
+import Fabceylon_logo from '@/components/Assets/fab_grand.png';
+import Fabceylon_Grand_logo from '@/components/Assets/Fabceylon_Grand_logo.png';
 
 export const GrandMainMenuNavBar = () => {
-  const [activeItem, setActiveItem] = useState(''); // Tracks the active menu item
+  const router = useRouter();
+  const [activeItem, setActiveItem] = useState('');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    // Check if user is logged in
+    const user = localStorage.getItem('user');
+    setIsLoggedIn(!!user);
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem('user');
+    setIsLoggedIn(false);
+    router.refresh(); // Refresh page to update UI
+  };
 
   const menuItems = [
     { label: 'HOME', link: '/' },
     { label: 'MENU', link: '/fabceylon-grand/menu/salads-soups' },
     { label: 'PLACE ORDER', link: '/fabceylon-grand/order' },
     { label: 'RESERVATIONS', link: '#' },
-    { label: 'REGISTER', link: '/signup' },
+    ...(isLoggedIn
+      ? [
+          { label: 'MY ORDERS', link: `/ratings/${process.env.NEXT_PUBLIC_FAB_CEYLON_GRAND}` },
+          { label: 'LOGOUT', action: handleLogout },
+        ]
+      : [{ label: 'LOGIN', link: '/login' }]
+    ),
   ];
 
   return (
@@ -32,30 +52,42 @@ export const GrandMainMenuNavBar = () => {
           FAB CEYLON Grand
         </div>
 
-        <div className="flex items-center gap-8 ml-60">
-          {menuItems.map((item, index) => (
-            <div
-              key={index}
-              className={`relative group text-[20px] font-medium font-['Poppins'] cursor-pointer ${
-                activeItem === item.label ? 'text-[#caa767]' : 'text-[#caa767]'
-              }`}
-              onClick={() => setActiveItem(item.label)} // Set active item on click
-            >
-              <Link href={item.link}>{item.label}</Link>
-              {/* Up Line */}
-              <span
-                className={`absolute bottom-[100%] left-0 h-[2px] bg-[#caa767] transition-all duration-300 ease-in-out ${
-                  activeItem === item.label ? 'w-full' : 'w-0 group-hover:w-full'
+        <div className="flex items-center gap-8 ml-[60px]">
+          {menuItems.map((item, index) =>
+            item.link ? (
+              // Use Link for items with a valid href
+              <div
+                key={index}
+                className={`relative group text-[20px] font-medium font-['Poppins'] cursor-pointer ${
+                  activeItem === item.label ? 'text-[#caa767]' : 'text-[#caa767]'
                 }`}
-              ></span>
-              {/* Down Line */}
-              <span
-                className={`absolute top-full left-0 h-[2px] bg-[#caa767] transition-all duration-300 ease-in-out ${
-                  activeItem === item.label ? 'w-full' : 'w-0 group-hover:w-full'
-                }`}
-              ></span>
-            </div>
-          ))}
+                onClick={() => setActiveItem(item.label)} // Set active item on click
+              >
+                <Link href={item.link}>{item.label}</Link>
+                {/* Up Line */}
+                <span
+                  className={`absolute bottom-[100%] left-0 h-[2px] bg-[#caa767] transition-all duration-300 ease-in-out ${
+                    activeItem === item.label ? 'w-full' : 'w-0 group-hover:w-full'
+                  }`}
+                ></span>
+                {/* Down Line */}
+                <span
+                  className={`absolute top-full left-0 h-[2px] bg-[#caa767] transition-all duration-300 ease-in-out ${
+                    activeItem === item.label ? 'w-full' : 'w-0 group-hover:w-full'
+                  }`}
+                ></span>
+              </div>
+            ) : (
+              // Use button for items with an action (like Logout)
+              <button
+                key={index}
+                onClick={item.action}
+                className="text-[20px] font-medium font-['Poppins'] text-[#caa767] cursor-pointer"
+              >
+                {item.label}
+              </button>
+            )
+          )}
 
           <div className="h-[52px] justify-start items-center gap-[22px] inline-flex ml-20">
             <Image
