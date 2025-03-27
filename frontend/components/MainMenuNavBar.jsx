@@ -83,11 +83,11 @@ export const MainMenuNavBar = () => {
         </div>
 
         {/* Mobile Menu */}
-        <div className={`${isMobileMenuOpen ? 'block' : 'hidden'} lg:hidden bg-white pb-4`}>
+        <div className={`${isMobileMenuOpen ? 'block' : 'hidden'} lg:hidden  pb-4`}>
           <div className="flex flex-col space-y-3 px-4">
             <Link 
               href="/" 
-              className="text-[#caa767] text-base font-medium font-['Poppins'] hover:text-[#eb650f] py-2 border-b border-gray-100"
+              className="text-[#caa767] text-base font-medium font-['Poppins'] hover:text-[#eb650f] py-2 border-b "
               onClick={() => setIsMobileMenuOpen(false)}
             >
               HOME

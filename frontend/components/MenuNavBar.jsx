@@ -28,7 +28,7 @@ export const MenuNavBar = () => {
   ];
 
   return (
-    <div className="w-full bg-white shadow-md">
+    <div className="w-full shadow-md">
       {/* Desktop Menu */}
       <div className="hidden lg:flex w-full h-16 items-center justify-between px-4 relative">
         {menuItems.map((item, index) => (
@@ -99,7 +99,7 @@ export const MenuNavBar = () => {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-white pb-4">
+        <div className="lg:hidden  pb-4">
           <div className="flex flex-col space-y-3 px-4">
             {menuItems.map((item, index) => (
               <Link key={index} href={item.href}>

@@ -14,13 +14,14 @@ export const GrandMainMenuNavBar = () => {
     { label: 'HOME', link: '/' },
     { label: 'MENU', link: '/fabceylon-grand/menu/salads-soups' },
     { label: 'PLACE ORDER', link: '/fabceylon-grand/order/salads-soups' },
-    { label: 'RESERVATIONS', link: '#' },
+    { label: 'RESERVATIONS', link: '/fabceylon-grand/reservations' },
     { label: 'REGISTER', link: '/signup' },
   ];
 
   return (
     <div className="relative">
-      <div className="flex items-center h-[150px] ml-[20px]">
+      <div className="flex items-center h-[150px] ml-[20px] justify-between sm:px-0 md:px-5 lg:px-10">
+        <div className=' flex flex-row gap-5 items-center'>
         <Image
           className="w-[55px] h-[40px] ml-10"
           src={Fabceylon_logo}
@@ -30,6 +31,7 @@ export const GrandMainMenuNavBar = () => {
         />
         <div className="w-[323px] text-[#eb650f] text-[40px] font-extrabold font-serif ml-10">
           FAB CEYLON Grand
+        </div>
         </div>
 
         <div className="flex items-center gap-8 ml-60">

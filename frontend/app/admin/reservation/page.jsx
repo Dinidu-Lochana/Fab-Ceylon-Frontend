@@ -7,38 +7,68 @@ const AdminReservations = () => {
   const [reservations, setReservations] = useState([]);
 
   useEffect(() => {
-    // Fetch reservations from the server or local storage
-
     fetchData();
-
   }, []);
 
-  const handleApprove = (id) => {
-    alert(`Reservation ${id} approved`);
-  };
+  const fetchData = async () => {
+    try {
+      const api = process.env.NEXT_PUBLIC_BACKEND_URL_ADDRESS;
+      const response = await axios.get(`${api}/api/getall/reservations`);
 
-  const handleReject = (id) => {
-    alert(`Reservation ${id} rejected`);
-  };
-
-  const handleDelete = (id) => {
-    setReservations(reservations.filter((reservation) => reservation.id !== id));
-  };
-
-  const fetchData = async() => {
-    try{
-      const api = process.env.NEXT_PUBLIC_BACKEND_URL_ADDRESS
-      const response = await axios.get(api + '/api/getall/reservations');
-
-      console.log(response);
-
-      if(response.data.code === 200){
-        setReservations(response.data.data);
+      console.log(response)
+      
+      if (response.data.reservations) {
+        setReservations(response.data.reservations);
       }
-    }catch(error){
-      console.error(error);
+    } catch (error) {
+      console.error("Error fetching reservations:", error);
     }
-  }
+  };
+
+  const handleApprove = async (id) => {
+    try {
+      const api = process.env.NEXT_PUBLIC_BACKEND_URL_ADDRESS;
+      const response = await axios.put(`${api}/api/reservations/${id}/approve`);
+      
+      if (response.status === 200) {
+        alert(`Reservation ${id} approved`);
+        fetchData(); // Refresh the list
+      }
+    } catch (error) {
+      console.error("Error approving reservation:", error);
+      alert("Failed to approve reservation");
+    }
+  };
+
+  const handleReject = async (id) => {
+    try {
+      const api = process.env.NEXT_PUBLIC_BACKEND_URL_ADDRESS;
+      const response = await axios.put(`${api}/api/reservations/${id}/reject`);
+      
+      if (response.status === 200) {
+        alert(`Reservation ${id} rejected`);
+        fetchData(); // Refresh the list
+      }
+    } catch (error) {
+      console.error("Error rejecting reservation:", error);
+      alert("Failed to reject reservation");
+    }
+  };
+
+  const handleDelete = async (id) => {
+    try {
+      const api = process.env.NEXT_PUBLIC_BACKEND_URL_ADDRESS;
+      const response = await axios.delete(`${api}/api/reservations/${id}`);
+      
+      if (response.status === 200) {
+        alert(`Reservation ${id} deleted`);
+        setReservations(reservations.filter((reservation) => reservation.id !== id));
+      }
+    } catch (error) {
+      console.error("Error deleting reservation:", error);
+      alert("Failed to delete reservation");
+    }
+  };
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-orange-100">
@@ -54,32 +84,36 @@ const AdminReservations = () => {
               <th className="px-4 py-2">Date</th>
               <th className="px-4 py-2">Time</th>
               <th className="px-4 py-2">People</th>
+              <th className="px-4 py-2">Status</th>
               <th className="px-4 py-2">Actions</th>
             </tr>
           </thead>
           <tbody>
             {reservations.map((reservation) => (
-              <tr key={reservation.id}>
-                <td className="px-4 py-2 border">{reservation.id}</td>
+              <tr key={reservation._id}>
+                <td className="px-4 py-2 border">{reservation._id}</td>
                 <td className="px-4 py-2 border">{reservation.cafe}</td>
                 <td className="px-4 py-2 border">{reservation.date}</td>
                 <td className="px-4 py-2 border">{reservation.time}</td>
                 <td className="px-4 py-2 border">{reservation.people}</td>
+                <td className="px-4 py-2 border">{reservation.status || 'Pending'}</td>
                 <td className="px-4 py-2 border">
                   <button
-                    onClick={() => handleApprove(reservation.id)}
+                    onClick={() => handleApprove(reservation._id)}
                     className="px-2 py-1 mr-2 text-white bg-green-500 rounded"
+                    disabled={reservation.status === 'approved'}
                   >
                     Approve
                   </button>
                   <button
-                    onClick={() => handleReject(reservation.id)}
+                    onClick={() => handleReject(reservation._id)}
                     className="px-2 py-1 mr-2 text-white bg-yellow-500 rounded"
+                    disabled={reservation.status === 'rejected'}
                   >
                     Reject
                   </button>
                   <button
-                    onClick={() => handleDelete(reservation.id)}
+                    onClick={() => handleDelete(reservation._id)}
                     className="px-2 py-1 text-white bg-red-500 rounded"
                   >
                     Delete
