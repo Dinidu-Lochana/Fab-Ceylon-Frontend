@@ -154,7 +154,7 @@ export default function KandyMenu({ params }) {
                 </div>
 
                 {/* Price */}
-                <div className="text-[#eb650f] text-2xl font-bold font-['Poppins'] mt-6">
+                <div className="text-[#eb650f] text-2xl font-bold font-['Poppins'] mt-6 ">
                   LKR {food.price}
                 </div>
 
