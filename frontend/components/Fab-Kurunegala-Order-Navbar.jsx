@@ -108,7 +108,7 @@ export const MenuNavBar = () => {
         .menu-item {
           width: 125px;
           top: 16px;
-          position: absolute;
+          position: flex;
           text-align: center;
           color: #eb650f;
           font-size: 1.2rem;
