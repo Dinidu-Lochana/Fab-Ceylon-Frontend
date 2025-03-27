@@ -7,10 +7,15 @@ import cart_icon from './Assets/cart_icon.png';
 import user_icon from './Assets/user_icon.png';
 import cafenuwaranav_2 from '@/components/Assets/cafenuwaranav_2.png';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 
 export const CafeNuwaraNavBar = () => {
   const [beveragesOpen, setBeveragesOpen] = useState(false); // State to toggle the flow box for beverages
-
+  const router = useRouter();
+    const [activeItem, setActiveItem] = useState('');
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    
   const toggleBeverages = () => {
     setBeveragesOpen(!beveragesOpen);
   };
@@ -18,6 +23,18 @@ export const CafeNuwaraNavBar = () => {
   const closeBeverages = () => {
     setBeveragesOpen(false);
   };
+
+  useEffect(() => {
+      // Check if user is logged in
+      const user = localStorage.getItem('user');
+      setIsLoggedIn(!!user);
+    }, []);
+  
+    const handleLogout = () => {
+      localStorage.removeItem('user');
+      setIsLoggedIn(false);
+      router.refresh(); // Refresh page to update UI
+    };
 
   return (
     <div>
@@ -39,7 +56,7 @@ export const CafeNuwaraNavBar = () => {
               className="mr-20"
             />
             
-            <div className="flex gap-8 text-black text-[25px] font-normal font-reemKufi ml-96">
+            <div className="flex gap-8 text-black text-[25px] font-normal font-reemKufi ml-[300px]">
             <div>
                 <Link href="/cafenuwara/menu/appetizers">
                   Menu
@@ -52,10 +69,27 @@ export const CafeNuwaraNavBar = () => {
               </div>
               <div>Reservation</div>
               <div>
-                <Link href="/signup">
-                  Register
-                </Link>
-              </div>
+  {isLoggedIn
+    ? [
+        { label: 'My orders', link: `/ratings/${process.env.NEXT_PUBLIC_FAB_CEYLON_KURUNEGALA}` },
+        { label: 'Logout', action: handleLogout },
+      ].map((item, index) => (
+        <a
+          key={index}
+          href={item.link || '#'}
+          onClick={item.action || null}
+          style={{ marginRight: '16px', display: 'inline-block' }}
+        >
+          {item.label}
+        </a>
+      ))
+    : [{ label: 'Login', link: '/login' }].map((item, index) => (
+        <a key={index} href={item.link}>{item.label}</a>
+      ))
+  }
+</div>
+
+
             </div>
             <div className="h-[52px] justify-start items-center gap-[22px] inline-flex ml-10">
              

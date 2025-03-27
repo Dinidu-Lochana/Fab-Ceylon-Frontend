@@ -1,13 +1,16 @@
 'use client'; // Add this line to mark this file as a client component
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+
 import cafenuwara_nav from '@/components/Assets/cafenuwara_nav.png';
 import Cafe_Nuwara_logo from '@/components/Assets/Nuwara _Logo_flat.png';
 import cart_icon from './Assets/cart_icon.png';
 import user_icon from './Assets/user_icon.png';
 import cafenuwaranav_2 from '@/components/Assets/cafenuwaranav_2.png';
-import Link from 'next/link';
+
 
 export const CafeNuwaraMainMenuNavBar = () => {
   const [beveragesOpen, setBeveragesOpen] = useState(false); // State to toggle the flow box for beverages
@@ -55,8 +58,8 @@ export const CafeNuwaraMainMenuNavBar = () => {
               </div>
               <div>Reservation</div>
               <div>
-                <Link href="/signup">
-                  Register
+                <Link href="/login">
+                  Login
                 </Link>
               </div>
             </div>

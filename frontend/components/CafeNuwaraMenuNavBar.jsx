@@ -1,5 +1,4 @@
-'use client'; // Add this line to mark this file as a client component
-
+"use client";
 import React, { useState } from 'react';
 import Image from 'next/image';
 import cafenuwara_nav from '@/components/Assets/cafenuwara_nav.png';
@@ -8,10 +7,15 @@ import cart_icon from './Assets/cart_icon.png';
 import user_icon from './Assets/user_icon.png';
 import cafenuwaranav_2 from '@/components/Assets/cafenuwaranav_2.png';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 
-export const CafeNuwaraMenuNavBar = () => {
+export const CafeNuwaraNavBar = () => {
   const [beveragesOpen, setBeveragesOpen] = useState(false); // State to toggle the flow box for beverages
-
+  const router = useRouter();
+    const [activeItem, setActiveItem] = useState('');
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    
   const toggleBeverages = () => {
     setBeveragesOpen(!beveragesOpen);
   };
@@ -19,6 +23,18 @@ export const CafeNuwaraMenuNavBar = () => {
   const closeBeverages = () => {
     setBeveragesOpen(false);
   };
+
+  useEffect(() => {
+      // Check if user is logged in
+      const user = localStorage.getItem('user');
+      setIsLoggedIn(!!user);
+    }, []);
+  
+    const handleLogout = () => {
+      localStorage.removeItem('user');
+      setIsLoggedIn(false);
+      router.refresh(); // Refresh page to update UI
+    };
 
   return (
     <div>
@@ -33,35 +49,50 @@ export const CafeNuwaraMenuNavBar = () => {
           />
           <div className="absolute top-0 left-0 w-full h-full flex items-center mt-[20px] ml-24">
             <Image
-                          src={Cafe_Nuwara_logo}
-                          alt="Cafe Nuwara Logo"
-                          width={220}
-                          height={80}
-                          className="mr-20"
-                        />
-
-            {/*Main MEnu Item*/}
+              src={Cafe_Nuwara_logo}
+              alt="Cafe Nuwara Logo"
+              width={220}
+              height={80}
+              className="mr-20"
+            />
             
-            <div className="flex gap-8 text-black text-[25px] font-normal font-reemKufi ml-96">
-              <div>
+            <div className="flex gap-8 text-black text-[25px] font-normal font-reemKufi ml-[300px]">
+            <div>
                 <Link href="/cafenuwara/menu/appetizers">
                   Menu
                 </Link>
               </div>
               <div>
-                <Link href="/cafenuwara/order">
+                <Link href="/cafenuwara/menu">
                   Place Order
                 </Link>
               </div>
               <div>Reservation</div>
               <div>
-                <Link href="/signup">
-                  Register
-                </Link>
-              </div>
+  {isLoggedIn
+    ? [
+        { label: 'My Orders', link: `/ratings/${process.env.NEXT_PUBLIC_FAB_CEYLON_KURUNEGALA}` },
+        { label: 'Logout', action: handleLogout },
+      ].map((item, index) => (
+        <a
+          key={index}
+          href={item.link || '#'}
+          onClick={item.action || null}
+          style={{ marginRight: '16px', display: 'inline-block' }}
+        >
+          {item.label}
+        </a>
+      ))
+    : [{ label: 'Login', link: '/login' }].map((item, index) => (
+        <a key={index} href={item.link}>{item.label}</a>
+      ))
+  }
+</div>
+
+
             </div>
             <div className="h-[52px] justify-start items-center gap-[22px] inline-flex ml-10">
-              
+             
               <Image
                 className="w-[40px] h-[40px]"
                 src={user_icon}
@@ -72,7 +103,6 @@ export const CafeNuwaraMenuNavBar = () => {
             </div>
           </div>
         </div>
-        {/*Menu Item*/}
         <div className="pt-10 pl-5 pr-5 overflow-hidden">
           <Image
             src={cafenuwaranav_2}
@@ -135,16 +165,16 @@ export const CafeNuwaraMenuNavBar = () => {
             </div>
             <div className="left-[150px] -mt-28 absolute text-center text-black text-[16px] font-bold font-reemKufi">
               <a href="/cafenuwara/menu/salads-soups">
-                Salads &
+                Salads
                 <br />
-                 Soups
+                & Soups
               </a>
             </div>
             <div className="left-[240px] -mt-28 absolute text-center text-black text-[16px] font-bold font-reemKufi">
               <a href="/cafenuwara/menu/pasta-spaghetti">
-                Pasta &
+                Pasta
                 <br />
-                 Spaghetti
+                & Spaghetti
               </a>
             </div>
             <div className="left-[360px] -mt-28 absolute text-center text-black text-[16px] font-bold font-reemKufi">
