@@ -12,7 +12,7 @@ export const KandyMainMenuNavBar = () => {
   const menuItems = [
     { label: 'HOME', link: '/' },
     { label: 'MENU', link: '/fabceylon-kandy/menu/salads-soups' },
-    { label: 'PLACE ORDER', link: '/fabceylon-kandy/order/salads-soups' },
+    { label: 'PLACE ORDER', link: '/fabceylon-kandy/order' },
     { label: 'RESERVATIONS', link: '#' },
     { label: 'REGISTER', link: '/signup' },
   ];

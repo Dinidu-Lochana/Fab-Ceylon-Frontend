@@ -15,8 +15,10 @@ const AddFood = () => {
     const [formData, setFormData] = useState({
         foodName: '',
         price: '',
+        packagingPrice:'',
         description: '',
         foodCategory: '',
+        isExtraAddCheeseAvailable:'',
         isDeliveryAvailable: ''
     });
 
@@ -47,9 +49,11 @@ const AddFood = () => {
         const formDataObj = new FormData();
         formDataObj.append('foodName', formData.foodName);
         formDataObj.append('price', formData.price);
+        formDataObj.append('packagingPrice', formData.packagingPrice);
         formDataObj.append('description', formData.description);
         formDataObj.append('foodCategory', formData.foodCategory);
         formDataObj.append('isDeliveryAvailable', formData.isDeliveryAvailable);
+        formDataObj.append('isExtraAddCheeseAvailable', formData.isExtraAddCheeseAvailable);
         formDataObj.append('image', file); 
         formDataObj.append('admin_id', adminId);
 
@@ -124,6 +128,18 @@ const AddFood = () => {
                     />
                 </div>
 
+                {/*Package Price Input */}
+                <div className="mb-4">
+                    <input
+                        type="number"
+                        placeholder="Package Price"
+                        name="packagingPrice"
+                        value={formData.packagingPrice}
+                        onChange={changeHandler}
+                        className="h-[40px] w-full bg-white border border-[#c9c9c9] rounded-[20px] text-[14px] pl-2 text-[#333]"
+                    />
+                </div>
+
                 {/* Description Textarea */}
                 <div className="mb-4">
                     <textarea
@@ -181,6 +197,21 @@ const AddFood = () => {
                         <option value="0">No</option>
                     </select>
                 </div>
+
+                {/* Extra Cheese Available Dropdown */}
+                <div className="mb-4">
+                    <select
+                        name="isExtraAddCheeseAvailable"
+                        value={formData. isExtraAddCheeseAvailable}
+                        onChange={changeHandler}
+                        className="h-[40px] w-full bg-white border border-[#c9c9c9] rounded-[20px] text-[14px] pl-2 text-[#333]"
+                    >
+                        <option value="" disabled>Is Extra Add Cheese Available?</option>
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+
 
                 {/* Add Food Button - changed color to blue */}
                 <div className="mt-6">

@@ -158,6 +158,13 @@ export default function KandyMenu({ params }) {
                   LKR {food.price}
                 </div>
 
+                {/* Extra Add Cheese */}
+                {food.isExtraAddCheeseAvailable && (
+                  <div className="text-white text-xl font-bold font-['Poppins'] mt-2">
+                    Extra Add Cheese + LKR 200
+                  </div>
+                )}
+
                 
               </div>
             ))}
