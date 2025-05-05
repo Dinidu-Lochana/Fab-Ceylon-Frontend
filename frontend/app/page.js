@@ -47,11 +47,7 @@ export default function Home() {
 
         <div className="right-0 flex items-center justify-between sms:-ml-16 sms:-mt-80">
           <Image
-            className="right-0 flex items-center justify-between sms:-mt-48
-           
-               lgs:w-80 lgs:h-80
-               mds:w-65 mds:h-65 
-               sms:w-32 sms:h-32 "
+            className="right-0 flex items-center justify-between sms:-mt-48 lgs:w-80 lgs:h-80 mds:w-65 mds:h-65 sms:w-32 sms:h-32 "
             
             src={Hero_bugger}
             alt="Burger image"
@@ -65,8 +61,7 @@ export default function Home() {
   <div className="relative">
     <article className="delay-100 animate-slideUp">
       <Image 
-        className="absolute transition-transform duration-300 transform hover:scale-105 
-        mds:h-40 w-40 sms:h-20 sms:w-20 sms:ml-12 xxs:ml-28  "
+        className="absolute w-40 transition-transform duration-300 transform hover:scale-105 mds:h-40 sms:h-20 sms:w-20 sms:ml-12 xxs:ml-28 "
         style={{ top: '30px', left: '30px' }}
         src={Cafe_Nuwara_logo}
         alt="Cafe Nuwara Logo"
@@ -89,8 +84,7 @@ export default function Home() {
   <div className="relative">
     <article className="delay-200 animate-slideUp">
       <Image 
-        className="absolute transition-transform duration-300 transform hover:scale-105 
-        mds:h-40 w-40 sms:h-20 sms:w-20 sms:-ml-10 xxs:ml-1"
+        className="absolute w-40 transition-transform duration-300 transform hover:scale-105 mds:h-40 sms:h-20 sms:w-20 sms:-ml-10 xxs:ml-1"
         style={{ top: '30px', left: '40px' }}
         src={Fabceylon_logo}
         alt="Fab Ceylon Kandy Logo"
@@ -119,9 +113,7 @@ export default function Home() {
   <div className="relative">
     <article className="delay-300 animate-slideUp">
       <Image 
-        className="absolute transition-transform duration-300 transform hover:scale-105 
-        mds:h-40 w-40 sms:h-20 sms:w-20
-        sms:-ml-32"
+        className="absolute w-40 transition-transform duration-300 transform hover:scale-105 mds:h-40 sms:h-20 sms:w-20 sms:-ml-32"
         style={{ top: '30px', left: '60px' }}
         src={Fabceylon_Grand_logo}
         alt="Fab Ceylon Grand Logo"
@@ -148,8 +140,7 @@ export default function Home() {
   <div className="relative">
     <article className="animate-slideUp delay-400">
       <Image 
-        className="absolute transition-transform duration-300 transform hover:scale-105 
-        mds:h-40 w-40 sms:h-20 sms:w-20 sms:-ml-52 xxs:"
+        className="absolute w-40 transition-transform duration-300 transform hover:scale-105 mds:h-40 sms:h-20 sms:w-20 sms:-ml-52 xxs:"
         style={{ top: '30px', left: '60px' }}
         src={Fabceylon_logo}
         alt="Fab Ceylon Kurunegala Logo"
@@ -170,7 +161,7 @@ export default function Home() {
 
 
       {/* Background Image Section */}
-      <div className="relative flex items-center justify-center h-2/3  mds:h-1/3 mds:ml-36 sms:ml-56">
+      <div className="relative flex items-center justify-center h-2/3 mds:h-1/3 mds:ml-36 sms:ml-56">
         <Image 
           src={Back_image_middle}
           className='mds:w-1/5 '
@@ -312,14 +303,10 @@ export default function Home() {
       
       <div className='-mt-60'>
         <InfiniteMovingCardsDemo />
+        
       </div>
 
     </div>
     
   );
 }
-
-
-
-
-

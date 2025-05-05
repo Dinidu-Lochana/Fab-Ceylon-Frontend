@@ -1,7 +1,9 @@
 // pages/admin-dashboard.js
 
 import Image from 'next/image';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
+import { AdminNavBar } from '@/components/Admin-Navbar';
+
 
 export default function AdminDashboard() {
   const router = useRouter();

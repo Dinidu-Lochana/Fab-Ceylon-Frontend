@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
+import { AdminNavBar } from '@/components/Admin-Navbar';
 import "react-toastify/dist/ReactToastify.css";
 
 const ViewOrders = () => {
@@ -124,6 +125,7 @@ const ViewOrders = () => {
 
   return (
     <div className="max-w-[1600px] mx-auto px-5 py-6 font-sans bg-white">
+      <AdminNavBar/>
       <h1 className="mb-6 text-2xl font-bold text-center">Orders</h1>
       <div className="overflow-x-auto">
         <table className="min-w-full border border-collapse border-gray-300 table-auto">

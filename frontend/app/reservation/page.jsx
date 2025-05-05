@@ -1,9 +1,9 @@
 "use client";
-
+import { useState } from "react";
 import Image from "next/image";
-import logo from "@/components/Assets/Fabceylon_PVT.png";
-import back from "@/components/Assets/LoginSignUp_back_Image.png";
-import React, { useState } from "react";
+import logo from '../../components/Assets/Fabceylon_PVT.png';
+import back from '../../components/Assets/Back_image_2.png';
+import axios from "axios"; 
 
 const Home = () => {
   const [formData, setFormData] = useState({
@@ -14,7 +14,7 @@ const Home = () => {
     agreeToTerms: false,
   });
 
-  const [message, setMessage] = useState(""); // To display feedback messages
+  const [message, setMessage] = useState(""); // Feedback messages
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -27,16 +27,22 @@ const Home = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Validation for empty fields
+    if (!formData.date || !formData.time || !formData.people) {
+      setMessage("Please fill in all the fields.");
+      return;
+    }
+
     if (!formData.agreeToTerms) {
-      alert("You must agree to the terms and conditions to make a reservation.");
+      setMessage("You must agree to the terms and conditions to make a reservation.");
       return;
     }
 
     try {
+      const response = await axios.post("http://localhost:4000/api/reservations", formData);
       setMessage("Reservation confirmed!");
     } catch (error) {
-      console.error("Error submitting reservation:", error);
-      setMessage("Failed to submit reservation. Please try again.");
+      setMessage(error.response?.data?.message || "Failed to submit reservation. Please try again.");
     }
   };
 
@@ -45,6 +51,7 @@ const Home = () => {
       className="flex items-center justify-center min-h-screen bg-orange-100"
       style={{
         backgroundImage: `url(${back.src})`,
+        
         backgroundRepeat: "repeat",
       }}
     >
@@ -66,8 +73,8 @@ const Home = () => {
               className="w-full px-4 py-2 text-gray-700 border rounded-lg focus:ring-2 focus:ring-yellow-500"
             >
               <option value="Cafe Nuwara">Cafe Nuwara</option>
-              <option value="Cafe Colombo">FabCeylon Kandy</option>
-              <option value="Cafe Nuwara">FabCeylon Kurunagala</option>
+              <option value="FabCeylon Kandy">FabCeylon Kandy</option>
+              <option value="FabCeylon Kurunagala">FabCeylon Kurunagala</option>
             </select>
           </div>
 

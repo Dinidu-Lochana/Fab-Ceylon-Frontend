@@ -5,7 +5,7 @@ import axios from 'axios'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { jwtDecode } from 'jwt-decode';
-
+import { AdminNavBar } from '@/components/Admin-Navbar';
 
 
 const AddFood = () => {
@@ -77,6 +77,7 @@ const AddFood = () => {
 
     return (
         <div className="relative flex items-center justify-center w-full min-h-screen bg-gray-100">
+            <AdminNavBar/>
             <div className="absolute w-[680px] bg-white top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-12 shadow-lg rounded-md mb-5">
                 <h1 className="mb-6 text-2xl font-bold text-center">Add Food</h1>
 
