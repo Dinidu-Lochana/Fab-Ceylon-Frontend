@@ -5,6 +5,7 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Link from "next/link";
+import { AdminNavBar } from '@/components/Admin-Navbar';
 
 const ViewFoods = () => {
   const [foods, setFoods] = useState([]);
@@ -64,6 +65,7 @@ const ViewFoods = () => {
 
   return (
     <div className="max-w-[1600px] mx-auto px-5 py-6 font-sans bg-white">
+      <AdminNavBar/>
       <h1 className="mb-6 text-2xl font-bold text-center">Foods</h1>
       <div className="flex flex-wrap gap-5">
         {foods.map((food) => (

@@ -7,6 +7,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { jwtDecode } from 'jwt-decode';
 import Image from 'next/image';
+import { AdminNavBar } from '@/components/Admin-Navbar';
 
 const UpdateFood = ({ params }) => {
     const router = useRouter();
@@ -93,6 +94,7 @@ const UpdateFood = ({ params }) => {
 
     return (
         <div className="relative w-full min-h-screen bg-gray-100 parent">
+            <AdminNavBar/>
             <div className="absolute inset-0 flex items-center justify-center child">
                 <form className="w-full max-w-2xl p-10 bg-white rounded-lg shadow-md">
                     <h1 className="mb-6 text-2xl font-semibold text-center">Update Food</h1>

@@ -7,7 +7,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 import { toast } from "react-toastify";
-
+import { AdminNavBar } from '@/components/Admin-Navbar';
 import {  Legend } from "recharts";
 
 
@@ -73,7 +73,7 @@ export default function OrderAnalysis() {
             console.log("asmm", admin_id);
             console.log("s", startDate);
             console.log("e", endDate);
-            const url = `http://localhost:4000/api/ordercount/orders/count/${admin_id}?startDate=${startDate}&endDate=${endDate}`;
+            const url = `${process.env.NEXT_PUBLIC_BACKEND_URL_ADDRESS}/api/ordercount/orders/count/${admin_id}?startDate=${startDate}&endDate=${endDate}`;
             console.log("Request URL:", url); // Debugging log
             const response = await axios.get(url, {
                 headers: {
@@ -90,7 +90,7 @@ export default function OrderAnalysis() {
 
     const fetchOrderTypeCount = async (admin_id, orderType, startDate, endDate)=>{
         try{
-            const url=`http://localhost:4000/api/ordercount/orders/count/type/${admin_id}?orderType=${orderType}&startDate=${startDate}&endDate=${endDate}`
+            const url=`${process.env.NEXT_PUBLIC_BACKEND_URL_ADDRESS}/api/ordercount/orders/count/type/${admin_id}?orderType=${orderType}&startDate=${startDate}&endDate=${endDate}`
            const response=await axios.get(url, {
             headers: {
                 'Content-Type': 'application/json', // Ensures the correct content type
@@ -108,7 +108,7 @@ export default function OrderAnalysis() {
     // Fetch order count by food
 const fetchOrderCountByFood = async (admin_id, foodName, startDate, endDate) => {  
     try {
-        const url = `http://localhost:4000/api/ordercount/orders/count/food/${admin_id}?foodName=${foodName}&startDate=${startDate}&endDate=${endDate}`;
+        const url = `${process.env.NEXT_PUBLIC_BACKEND_URL_ADDRESS}/api/ordercount/orders/count/food/${admin_id}?foodName=${foodName}&startDate=${startDate}&endDate=${endDate}`;
         
         const response = await axios.get(url, {
             headers: {
@@ -131,7 +131,7 @@ const fetchOrderCountByCategory = async (admin_id, foodCategory, startDate, endD
         console.log('dsfgdfg',foodCategory);
         console.log('WEW',startDate);
         console.log('ertrtr',endDate);
-        const url = `http://localhost:4000/api/ordercount/orders/count/category/${admin_id}?foodCategory=${foodCategory}&startDate=${startDate}&endDate=${endDate}`;
+        const url = `${process.env.NEXT_PUBLIC_BACKEND_URL_ADDRESS}/api/ordercount/orders/count/category/${admin_id}?foodCategory=${foodCategory}&startDate=${startDate}&endDate=${endDate}`;
         console.log("Request URL:", url);
         const response = await axios.post(url, {
             headers: {
@@ -150,7 +150,7 @@ const fetchOrderCountByCategory = async (admin_id, foodCategory, startDate, endD
 const fetchmonthOrderCount = async(admin_id, startYear, startMonth, endYear, endMonth) =>{
     try{
     
-    const url = `http://localhost:4000/api/ordercount/orders/month/count/${admin_id}?startYear=${startYear}&startMonth=${startMonth}&endYear=${endYear}&endMonth=${endMonth}`;
+    const url = `${process.env.NEXT_PUBLIC_BACKEND_URL_ADDRESS}/api/ordercount/orders/month/count/${admin_id}?startYear=${startYear}&startMonth=${startMonth}&endYear=${endYear}&endMonth=${endMonth}`;
 
     const response = await axios.get(url, {
         headers: {
@@ -172,7 +172,7 @@ const fetchmonthOrderCount = async(admin_id, startYear, startMonth, endYear, end
 const fetchmonthOrderCountFoodName = async(admin_id, startYear, startMonth, endYear, endMonth, foodName) =>{
     try{
     
-    const url = `http://localhost:4000/api/ordercount/orders/month/count/food/${admin_id}?startYear=${startYear}&startMonth=${startMonth}&endYear=${endYear}&endMonth=${endMonth}&foodName=${foodName}`;
+    const url = `${process.env.NEXT_PUBLIC_BACKEND_URL_ADDRESS}/api/ordercount/orders/month/count/food/${admin_id}?startYear=${startYear}&startMonth=${startMonth}&endYear=${endYear}&endMonth=${endMonth}&foodName=${foodName}`;
 
     const response = await axios.get(url, {
         headers: {
@@ -194,7 +194,7 @@ const fetchmonthOrderCountFoodName = async(admin_id, startYear, startMonth, endY
 const fetchmonthOrderCountFoodCategory = async(admin_id, startYear, startMonth, endYear, endMonth, foodCategory) =>{
     try{
     
-    const url = `http://localhost:4000/api/ordercount/orders/month/count/category/${admin_id}?startYear=${startYear}&startMonth=${startMonth}&endYear=${endYear}&endMonth=${endMonth}&foodCategory=${foodCategory}`;
+    const url = `${process.env.NEXT_PUBLIC_BACKEND_URL_ADDRESS}/api/ordercount/orders/month/count/category/${admin_id}?startYear=${startYear}&startMonth=${startMonth}&endYear=${endYear}&endMonth=${endMonth}&foodCategory=${foodCategory}`;
 
     const response = await axios.get(url, {
         headers: {
@@ -217,7 +217,7 @@ const fetchmonthOrderCountFoodCategory = async(admin_id, startYear, startMonth, 
 const fetchmonthOrderCountOrderType = async(admin_id, startYear, startMonth, endYear, endMonth, orderType) =>{
     try{
     
-    const url = `http://localhost:4000/api/ordercount/orders/month/count/type/${admin_id}?startYear=${startYear}&startMonth=${startMonth}&endYear=${endYear}&endMonth=${endMonth}&orderType=${orderType}`;
+    const url = `${process.env.NEXT_PUBLIC_BACKEND_URL_ADDRESS}/api/ordercount/orders/month/count/type/${admin_id}?startYear=${startYear}&startMonth=${startMonth}&endYear=${endYear}&endMonth=${endMonth}&orderType=${orderType}`;
 
     const response = await axios.get(url, {
         headers: {
@@ -241,6 +241,7 @@ const fetchmonthOrderCountOrderType = async(admin_id, startYear, startMonth, end
 
     return (
         <div className="grid min-h-screen grid-cols-1 gap-6 p-6 bg-gray-900">
+            <AdminNavBar/>
             {/* Orders by Admin */}
             <Card>
                 <CardContent>
