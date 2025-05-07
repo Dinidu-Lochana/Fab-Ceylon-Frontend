@@ -82,7 +82,7 @@ const CardPaymentForm = ({ totalAmount, onPaymentComplete, disabled }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className="p-4 bg-gray-700 rounded-lg">
+      <div className="p-4 bg-gray-950 rounded-lg">
         <CardElement options={cardElementOptions} />
       </div>
       {error && <div className="mt-2 text-red-500">{error}</div>}
@@ -290,7 +290,7 @@ const CheckoutPage = () => {
             {cartItems.map((item) => (
               <div
                 key={item.id}
-                className="flex items-center justify-between p-4 bg-gray-700 rounded-lg"
+                className="flex items-center justify-between p-4 bg-[] rounded-lg"
               >
                 <div className="text-lg font-bold">{item.foodName}</div>
                 <div className="flex items-center space-x-3">

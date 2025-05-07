@@ -15,28 +15,31 @@ import FooterCafeNuwara from '@/components/FooterCafeNuwara';
 
 export default function CafeNuwara() {
   return (
-    <div>
-      <div className="relative h-screen bg-[#f0e6d9]">
+    <div className="bg-[#f0e6d9] min-h-screen">
+      {/* NavBar */}
+      <div className="relative">
         <CafeNuwaraNavBar />
       </div>
+
+      {/* Hero Section */}
       <div className="w-[370px] h-[370px] relative -mt-72 ml-28">
         <Image
           src={CafeNuwaraHero_Image}
-          alt="Placeholder"
+          alt="Hero"
           layout="fill"
           objectFit="contain"
         />
         <div className="w-[189px] h-[189px] relative ml-[450px]">
           <Image
             src={Elephant_1}
-            alt="Placeholder"
+            alt="Elephant 1"
             layout="fill"
             objectFit="contain"
           />
           <div className="w-[215px] h-[215px] relative ml-44">
             <Image
               src={Elephant_2}
-              alt="Placeholder"
+              alt="Elephant 2"
               layout="fill"
               objectFit="contain"
               className="-mt-2"
@@ -49,17 +52,18 @@ export default function CafeNuwara() {
         <div className="w-[370px] h-[370px] relative -mt-48 ml-[925px]">
           <Image
             src={CafeNuwaraHero_Image}
-            alt="Placeholder"
+            alt="Hero Right"
             layout="fill"
             objectFit="contain"
           />
         </div>
       </div>
-      {/* Cards and Cart Container */}
+
+      {/* Cards and Cart Section */}
       <div className="flex flex-row justify-center items-start gap-10 mt-32">
         {/* Card Grid Section */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
-          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((_, index) => (
+          {[...Array(10)].map((_, index) => (
             <div
               key={index}
               className="w-[320px] h-[700px] relative bg-[#e1d6c1] rounded-[20px] flex-col justify-start items-start inline-flex"
@@ -67,7 +71,7 @@ export default function CafeNuwara() {
               <Image
                 className="w-[179px] h-[152px] mt-1"
                 src={Boder}
-                alt="Border Image"
+                alt="Border"
                 width={179}
                 height={152}
               />
@@ -75,7 +79,7 @@ export default function CafeNuwara() {
                 <Image
                   className="w-[200px] h-[200px] left-14 top-[-80px] absolute rounded-full border-4 border-[#caa767]"
                   src={Bugger2}
-                  alt="Product Image"
+                  alt="Product"
                   width={200}
                   height={200}
                 />
@@ -94,7 +98,7 @@ export default function CafeNuwara() {
                         key={starIndex}
                         className="w-[29px] h-[29px]"
                         src={star_icon}
-                        alt="Rating Star"
+                        alt="Star"
                         width={29}
                         height={29}
                       />
@@ -112,45 +116,48 @@ export default function CafeNuwara() {
               <Image
                 className="w-[179px] h-[152px] ml-[140px]"
                 src={Boder2}
-                alt="Rotated Border Image"
+                alt="Bottom Border"
                 width={179}
                 height={152}
               />
             </div>
           ))}
         </div>
+
         {/* Cart Section */}
         <div className="w-[370px] h-[700px] px-5 py-10 bg-[#e1d6c1] rounded-[20px] border-4 border-white flex flex-col items-start">
-        <Image 
-  src={CartTop} 
-  alt="Placeholder" 
-  width={284} 
-  height={160} 
-  className="w-[250px] h-40 -mt-20 ml-10" 
-/>
+          <Image
+            src={CartTop}
+            alt="Cart Header"
+            width={284}
+            height={160}
+            className="w-[250px] h-40 -mt-20 ml-10"
+          />
           <div className="w-full text-black text-4xl font-bold font-['Poppins'] mb-5 ml-24 -mt-10">
             Your Cart
           </div>
-          <div className="   flex justify-center items-center">
-          <Image 
-  src={Cafe_Nuwara_logo}
-  alt="Placeholder Image" 
-  width={360} 
-  height={362} 
-  className="w-[360px] h-[362px opacity-25 mt-10" 
-/>
+          <div className="flex justify-center items-center">
+            <Image
+              src={Cafe_Nuwara_logo}
+              alt="Cart Logo"
+              width={360}
+              height={362}
+              className="w-[360px] h-[362px] opacity-25 mt-10"
+            />
           </div>
           <div className="w-full text-black text-xl font-bold font-['Poppins'] mt-5">
             Sub Total Rs. 0.00
           </div>
-          <div class="w-[300px] h-[72px] px-[21px] py-5 bg-[#caa767] rounded-[20px] justify-center items-center gap-2.5 inline-flex mt-10">
-    <div class="text-black text-xl font-bold font-['Poppins']">Check OUt                Rs. 0.00</div>
-</div>
+          <div className="w-[300px] h-[72px] px-[21px] py-5 bg-[#caa767] rounded-[20px] justify-center items-center gap-2.5 inline-flex mt-10">
+            <div className="text-black text-xl font-bold font-['Poppins']">
+              Check Out Rs. 0.00
+            </div>
+          </div>
         </div>
       </div>
-      <div>
+
+      {/* Footer */}
       <FooterCafeNuwara />
-      </div>
     </div>
   );
 }
