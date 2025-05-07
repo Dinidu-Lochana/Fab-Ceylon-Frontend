@@ -14,8 +14,7 @@ const Orders = () => {
   const [currentOrder, setCurrentOrder] = useState(null);
   const router = useRouter();
   
-  const{ admin_id}=useParams();
-
+  const { admin_id } = useParams();
 
   const getUserIdFromToken = () => {
     const userData = localStorage.getItem("user");
@@ -25,22 +24,18 @@ const Orders = () => {
     }
 
     try {
-      const parsedUserData = JSON.parse(userData); // Parse the user data
-      const token = parsedUserData.createdToken; // Extract the createdToken
-
-      console.log("Token:", token);
+      const parsedUserData = JSON.parse(userData);
+      const token = parsedUserData.createdToken;
 
       if (!token) {
         toast.error("Token is missing in user data.");
         return null;
       }
 
-      const decodedToken = jwtDecode(token); // Decode the token
-      console.log("Decoded Token:", decodedToken); // Log the decoded token
-
-      return decodedToken._id || decodedToken.userId || null; // Return the userId or _id based on the token structure
+      const decodedToken = jwtDecode(token);
+      return decodedToken._id || decodedToken.userId || null;
     } catch (error) {
-      console.error("Error decoding token:", error); // Log error to debug further
+      console.error("Error decoding token:", error);
       toast.error("Invalid token. Please log in again.");
       return null;
     }
@@ -48,12 +43,8 @@ const Orders = () => {
 
   const userId = getUserIdFromToken();
 
-
   useEffect(() => {
-    console.log("Backend URL:", process.env.NEXT_PUBLIC_BACKEND_URL_ADDRESS);
-
     const fetchOrders = async () => {
-      console.log("userId:", userId, "admin_id:", admin_id);
       if (!userId || !admin_id) {
         return;
       }
@@ -62,7 +53,7 @@ const Orders = () => {
         const response = await axios.get(
           `${process.env.NEXT_PUBLIC_BACKEND_URL_ADDRESS}/api/customers/rating/getorders/${userId}/${admin_id}`
         );
-        console.log("Backend URL:", process.env.NEXT_PUBLIC_BACKEND_URL_ADDRESS);
+        
 
         const fetchedOrders = response.data;
         setOrders(fetchedOrders);
@@ -94,6 +85,7 @@ const Orders = () => {
 
     const token = localStorage.getItem("customer");
 
+    // Create the base payload
     const ratingPayload = {
       _id: currentOrder._id,
       userId,
@@ -112,25 +104,51 @@ const Orders = () => {
       orderType: currentOrder.orderType,
       paymentMethod: currentOrder.paymentMethod,
       orderDescription: currentOrder.orderDescription,
+      // Add all order properties to make sure we include everything required
+      ...(currentOrder.receiverName && { receiverName: currentOrder.receiverName }),
+      ...(currentOrder.receiverContact && { receiverContact: currentOrder.receiverContact }),
+      ...(currentOrder.receiverAddress && { receiverAddress: currentOrder.receiverAddress }),
+      // If the order type is delivery, ensure we have the required fields
+      ...(currentOrder.orderType === "Delivery" && {
+        receiverName: currentOrder.receiverName || "Customer",
+        receiverContact: currentOrder.receiverContact || "Not provided",
+        receiverAddress: currentOrder.receiverAddress || "Not provided"
+      })
     };
+
+    console.log("Submitting rating payload:", ratingPayload);
 
     try {
       await axios.patch(
         `${process.env.NEXT_PUBLIC_BACKEND_URL_ADDRESS}/api/customers/rating/submitFoodRating`,
         ratingPayload,
-        { headers: { Authorization: `Bearer ${token}` } }
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        }
       );
+      
       toast.success("Ratings submitted successfully!");
       closeReviewPopup();
+      
+      // Refresh orders after successful submission
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL_ADDRESS}/api/customers/rating/getorders/${userId}/${admin_id}`
+      );
+      
+      setOrders(response.data);
     } catch (error) {
-      toast.error("Failed to submit ratings. Please try again.");
+      console.error("Rating submission error:", error.response?.data || error.message);
+      toast.error(`Failed to submit ratings: ${error.response?.data?.message || error.message}`);
+
     }
   };
 
   const openReviewPopup = (order) => {
     setCurrentOrder(order);
     setShowReviewPopup(true);
-    console.log("fdgfd",order);
+    console.log("Order data:", order);
   };
 
   const closeReviewPopup = () => {
@@ -138,50 +156,103 @@ const Orders = () => {
     setCurrentOrder(null);
   };
 
+  // Function to format date
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', { 
+      day: 'numeric', 
+      month: 'short', 
+      year: 'numeric' 
+    });
+  };
+
+  // Function to get status color
+  const getStatusColor = (status) => {
+    switch(status) {
+      case "Delivered":
+        return "bg-green-500";
+      case "Pending":
+        return "bg-yellow-500";
+      case "Processing":
+        return "bg-blue-500";
+      case "Cancelled":
+        return "bg-red-500";
+      default:
+        return "bg-gray-500";
+    }
+  };
+
   return (
-    <div className="bg-gray-900 min-h-screen text-[#f8f6f6] p-6">
-      <h1 className="mb-8 text-2xl font-bold text-center">Your Orders</h1>
-      <div className="flex flex-wrap justify-center gap-6">
+    <div className="min-h-screen p-6 text-white bg-gradient-to-b from-gray-900 to-gray-800">
+      <div className="mx-auto max-w-7xl">
+        <h1 className="mb-10 text-3xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-pink-600">My Order History</h1>
+        
         {orders.length > 0 ? (
-          orders.map((order) => (
-            <div
-              key={order._id}
-              className="relative bg-transparent border border-[rgb(60,57,56)] rounded-2xl p-4 w-64 h-80 shadow-md transition-transform duration-300 hover:translate-y-[-10px] hover:shadow-lg"
-            >
-              {/* Apply backdrop blur to the background */}
-              <div className="absolute inset-0 border shadow-lg bg-gray-800/30 backdrop-blur-md rounded-2xl border-white/20"></div>
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {orders.map((order) => (
+              <div
+                key={order._id}
+                className="relative overflow-hidden group"
+              >
+                <div className="absolute inset-0 transition-all duration-300 border shadow-lg bg-gradient-to-br from-gray-800/80 to-gray-900/90 backdrop-blur-md rounded-xl border-gray-700/50 group-hover:border-orange-500/50 group-hover:shadow-orange-500/20"></div>
+                
+                <div className="relative z-10 flex flex-col h-full p-6">
+                  <div className="flex items-center justify-between mb-6">
+                    <div className="flex items-center space-x-2">
+                      <div className="w-3 h-3 bg-orange-500 rounded-full animate-pulse"></div>
+                      <h2 className="text-xl font-semibold text-orange-400">#{order._id.slice(-6)}</h2>
+                    </div>
+                    <span className={`px-3 py-1 text-xs rounded-full ${getStatusColor(order.status)} text-white font-medium`}>
+                      {order.status}
+                    </span>
 
-
-              {/* Add custom spacing */}
-              <div className="relative z-10 flex justify-center mb-4">
-                <h2 className="font-serif text-xl">Order #{order._id.slice(-6)}</h2>
+                  </div>
+                  
+                  <div className="flex-grow space-y-4">
+                    <div className="flex justify-between pb-2 border-b border-gray-700/50">
+                      <span className="text-gray-400">Date</span>
+                      <span className="font-medium">{formatDate(order.createdAt)}</span>
+                    </div>
+                    
+                    <div className="flex justify-between pb-2 border-b border-gray-700/50">
+                      <span className="text-gray-400">Amount</span>
+                      <span className="font-medium text-green-400">Rs.{order.totalAmount?.toFixed(2) || "0.00"}</span>
+                    </div>
+                    
+                    <div className="flex justify-between pb-2 border-b border-gray-700/50">
+                      <span className="text-gray-400">Items</span>
+                      <span className="font-medium">{order.items?.length || 0}</span>
+                    </div>
+                    
+                    <div className="flex justify-between pb-2 border-b border-gray-700/50">
+                      <span className="text-gray-400">Type</span>
+                      <span className="font-medium">{order.orderType || "Not specified"}</span>
+                    </div>
+                  </div>
+                  
+                  <div className="flex justify-center mt-6">
+                    <button
+                      className={`px-6 py-2 rounded-lg transition-all duration-300 transform ${
+                        order.status === "Delivered"
+                          ? "bg-gradient-to-r from-orange-500 to-pink-600 hover:from-pink-600 hover:to-orange-500 shadow-md hover:shadow-orange-500/50 text-white hover:scale-105"
+                          : "bg-gray-700 text-gray-400 cursor-not-allowed"
+                      }`}
+                      onClick={() => order.status === "Delivered" && openReviewPopup(order)}
+                      disabled={order.status !== "Delivered"}
+                    >
+                      {order.status === "Delivered" ? "Rate & Review" : "Awaiting Delivery"}
+                    </button>
+                  </div>
+                </div>
               </div>
-              <div className="relative z-10 flex justify-center mb-4">
-                <p>Date: {new Date(order.createdAt).toLocaleString()}</p>
-              </div>
-              <div className="relative z-10 flex justify-center mb-4">
-                <p>Total Amount: Rs.{order.totalAmount}</p>
-              </div>
-              <div className="relative z-10 flex justify-center mb-4">
-                <p>Status: {order.status}</p>
-              </div>
-              <div className="relative z-10 flex justify-center">
-                <button
-                  className={`mt-4 px-4 py-2 rounded-md transition ${
-                    order.status === "Delivered"
-                      ? "bg-[#e77f43] text-white hover:bg-[#3e5fd5]"
-                      : "bg-gray-800 text-white cursor-not-allowed"
-                  }`}
-                  onClick={() => openReviewPopup(order)}
-                  disabled={order.status !== "Delivered"} // Disabled when status is not "Delivered"
-                >
-                  Review
-                </button>
-              </div>
-            </div>
-          ))
+            ))}
+          </div>
         ) : (
-          <p>No orders found.</p>
+          <div className="flex flex-col items-center justify-center p-12 border bg-gray-800/50 backdrop-blur-md rounded-xl border-gray-700/50">
+            <div className="mb-4 text-6xl">📦</div>
+            <p className="text-xl text-gray-300">No orders found yet</p>
+            <p className="mt-2 text-gray-400">Your order history will appear here once you place orders</p>
+          </div>
         )}
       </div>
 
@@ -205,53 +276,71 @@ const ReviewPopup = ({
   handleSubmitRating,
   closeReviewPopup,
 }) => (
-  <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-    <div className="relative w-full max-w-3xl p-6 border rounded-lg shadow-md bg-gray-900/50 backdrop-blur-lg border-white/10">
-      <div className="relative z-10 flex justify-center">
-        <h2 className="mb-4 text-xl font-bold text-white">
-          Review Order #{order._id.slice(-6)}
-        </h2>
+  <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70 backdrop-blur-sm">
+    <div className="relative w-full max-w-4xl p-8 border shadow-2xl rounded-xl bg-gradient-to-br from-gray-900 to-gray-800 border-gray-700/50">
+      <div className="absolute top-4 right-4">
+        <button 
+          onClick={closeReviewPopup}
+          className="text-gray-400 transition-colors hover:text-white"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
       </div>
-      <div className="flex flex-col gap-4">
+      
+      <div className="relative z-10 mb-8">
+        <h2 className="text-2xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-pink-600">
+          Rate Your Order #{order._id.slice(-6)}
+        </h2>
+        <p className="mt-2 text-center text-gray-400">Let us know how you enjoyed your food</p>
+      </div>
+      
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
         {order.items.map((item) => (
           <div
             key={item.foodId}
-            className="flex items-center text-white gap-4 bg-gray-800/50 backdrop-blur-lg p-4 rounded-lg shadow-md  transition-transform duration-300 hover:translate-y-[-10px] hover:shadow-lg"
+            className="flex flex-col overflow-hidden transition-all duration-300 border shadow-lg bg-gray-800/50 rounded-xl md:flex-row hover:shadow-orange-500/20 border-gray-700/50 hover:border-orange-500/50"
           >
-            <img
-              src={`${process.env.NEXT_PUBLIC_BACKEND_URL_ADDRESS}/${item.image.replace(
-                "\\",
-                "/"
-              )}`}
-              alt={item.foodName}
-  className="object-cover w-40 h-40 transition-transform duration-300 ease-in-out border-4 border-white rounded-full shadow-md hover:scale-110"
-/>
-
-
-
-            <div className="flex flex-col">
-              <h3 className="text-lg font-bold">{item.foodName || "No Name"}</h3>
-              <p>Price: Rs.{item.price}</p>
-              <RatingReview
-                rating={ratings[item.foodId] || 0}
-                setRating={(newRating) => handleRatingChange(item.foodId, newRating)}
+            <div className="relative overflow-hidden md:w-1/3">
+              <img
+                src={`${process.env.NEXT_PUBLIC_BACKEND_URL_ADDRESS}/${item.image?.replace("\\", "/")}`}
+                alt={item.foodName}
+                className="object-cover w-full h-full transition-transform duration-500 transform aspect-square hover:scale-110"
+                onError={(e) => {
+                  e.target.src = "/placeholder-food.png"; // Fallback image
+                  e.target.onerror = null;
+                }}
               />
+              <div className="absolute bottom-0 left-0 right-0 p-2 bg-gradient-to-t from-black/80 to-transparent">
+                <p className="text-xs font-semibold text-white">Rs.{item.price}</p>
+              </div>
+            </div>
+            
+            <div className="flex flex-col justify-between p-4 md:w-2/3">
+              <div>
+                <h3 className="mb-1 text-lg font-semibold text-white">{item.foodName || "No Name"}</h3>
+                <p className="mb-4 text-sm text-gray-300">Quantity: {item.quantity}</p>
+              </div>
+              
+              <div>
+                <p className="mb-2 text-sm text-gray-400">Rate this item:</p>
+                <RatingReview
+                  rating={ratings[item.foodId] || 0}
+                  setRating={(newRating) => handleRatingChange(item.foodId, newRating)}
+                />
+              </div>
             </div>
           </div>
         ))}
       </div>
-      <div className="flex justify-end gap-4 mt-6">
+      
+      <div className="flex justify-end mt-8">
         <button
-          className="bg-[#e76f2f] text-white px-4 py-2 rounded-md hover:bg-[#3a5fbd] transition"
+          className="px-8 py-3 font-medium text-white transition-all duration-300 transform rounded-lg shadow-md bg-gradient-to-r from-orange-500 to-pink-600 hover:from-pink-600 hover:to-orange-500 hover:shadow-orange-500/50 hover:scale-105"
           onClick={handleSubmitRating}
         >
-          Submit
-        </button>
-        <button
-          className="bg-[#e76f2f] text-white px-4 py-2 rounded-md hover:bg-[#ce4141] transition"
-          onClick={closeReviewPopup}
-        >
-          Close
+          Submit Ratings
         </button>
       </div>
     </div>
@@ -259,19 +348,21 @@ const ReviewPopup = ({
 );
 
 const RatingReview = ({ rating, setRating }) => (
-  <div className="flex gap-2 text-xl">
+  <div className="flex gap-1">
     {[1, 2, 3, 4, 5].map((star) => (
       <span
         key={star}
-        className={`cursor-pointer ${
-          rating >= star ? "text-yellow-400" : "text-gray-300 "
+        className={`cursor-pointer transition-all duration-200 transform hover:scale-110 ${
+          rating >= star ? "text-yellow-400" : "text-gray-500"
         }`}
         onClick={() => setRating(star)}
       >
-        ★
+        <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8" viewBox="0 0 20 20" fill="currentColor">
+          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+        </svg>
       </span>
     ))}
   </div>
 );
 
-export default Orders;
+export default Orders;
