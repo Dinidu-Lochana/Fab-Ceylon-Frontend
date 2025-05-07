@@ -1,5 +1,5 @@
-# Use Node.js LTS version as the base image
-FROM node:18-alpine
+# Docker for the Node Server
+FROM node:20.16.0
 
 # Set working directory
 WORKDIR /app
@@ -20,4 +20,4 @@ RUN npm run build
 EXPOSE 3000
 
 # Start the application
-CMD ["npm", "start"] 
+CMD [ "npm","run", "dev" ]
