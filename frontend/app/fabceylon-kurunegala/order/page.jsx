@@ -11,7 +11,7 @@ export default function OrderTypeSelection() {
     return (
         <div>
             <MainMenuNavBar />
-            <div className="flex flex-col items-center justify-center min-h-screen text-white bg-black">
+            <div className="flex flex-col items-center justify-center min-h-screen text-white bg-[#111010]">
                 {/* Heading with Animation */}
                 <motion.h2 
                     className="mt-1 mb-4 text-3xl font-semibold"

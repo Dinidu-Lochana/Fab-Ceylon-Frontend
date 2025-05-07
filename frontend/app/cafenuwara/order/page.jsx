@@ -10,7 +10,7 @@ import pickupImage from '@/components/Assets/pickup_icon.png'; // Pickup image
 export default function OrderTypeSelection() {
     return (
         <div>
-            <CafeNuwaraMainMenuNavBar />
+            
             <div className="flex flex-col items-center justify-center min-h-screen text-white bg-black">
                 {/* Heading with Animation */}
                 <motion.h2 

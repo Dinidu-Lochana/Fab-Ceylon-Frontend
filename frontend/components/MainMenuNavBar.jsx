@@ -1,10 +1,11 @@
+'use client';
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
-import cart_icon from "./Assets/cart_icon.png";
-import user_icon from "./Assets/user_icon.png";
+import cart_icon from './Assets/cart_icon.png';
+import user_icon from './Assets/user_icon.png';
 import Fabceylon_logo from '@/components/Assets/fab_kurunegala.png';
 
 export const MainMenuNavBar = () => {
@@ -13,7 +14,6 @@ export const MainMenuNavBar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    // Check if user is logged in
     const user = localStorage.getItem('user');
     setIsLoggedIn(!!user);
   }, []);
@@ -21,7 +21,7 @@ export const MainMenuNavBar = () => {
   const handleLogout = () => {
     localStorage.removeItem('user');
     setIsLoggedIn(false);
-    router.refresh(); // Refresh page to update UI
+    router.refresh();
   };
 
   const menuItems = [
@@ -37,47 +37,48 @@ export const MainMenuNavBar = () => {
       : [{ label: 'LOGIN', link: '/login' }]
     ),
   ];
-  
 
   return (
-    <div className="relative">
-      <div className="flex items-center h-[150px] ml-[20px]">
+    <div className="relative w-full shadow-md z-50">
+      <div className="flex items-center justify-between h-[150px] max-w-7xl mx-auto px-6">
+        {/* Logo */}
         <Image
-          className="w-[260px] h-[45px] ml-10"
+          className="w-[260px] h-[45px]"
           src={Fabceylon_logo}
           alt="Fab Ceylon Logo"
-          width={352}
-          height={352}
+          width={260}
+          height={45}
         />
 
-        <div className="flex items-center gap-8 ml-60">
+        {/* Menu Items */}
+        <div className="flex items-center gap-10">
           {menuItems.map((item, index) => (
             <div
               key={index}
-              className={`relative group text-[20px] font-medium font-['Poppins'] cursor-pointer ${
+              className={`relative group text-[18px] font-medium font-['Poppins'] cursor-pointer ${
                 activeItem === item.label ? 'text-[#caa767]' : 'text-[#caa767]'
               }`}
               onClick={() => {
                 if (item.action) {
-                  item.action(); // Call action for logout
+                  item.action();
                 } else {
                   setActiveItem(item.label);
-                  router.push(item.link); // Navigate if it's a link
+                  router.push(item.link);
                 }
               }}
             >
               {item.link ? (
                 <Link href={item.link}>{item.label}</Link>
               ) : (
-                <span>{item.label}</span> // Render text instead of a broken link
+                <span>{item.label}</span>
               )}
-              {/* Up Line */}
+              {/* Top Line */}
               <span
                 className={`absolute bottom-[100%] left-0 h-[2px] bg-[#caa767] transition-all duration-300 ease-in-out ${
                   activeItem === item.label ? 'w-full' : 'w-0 group-hover:w-full'
                 }`}
               ></span>
-              {/* Down Line */}
+              {/* Bottom Line */}
               <span
                 className={`absolute top-full left-0 h-[2px] bg-[#caa767] transition-all duration-300 ease-in-out ${
                   activeItem === item.label ? 'w-full' : 'w-0 group-hover:w-full'
@@ -86,13 +87,14 @@ export const MainMenuNavBar = () => {
             </div>
           ))}
 
-          <div className="h-[52px] justify-start items-center gap-[22px] inline-flex ml-20">
+          {/* User Icon */}
+          <div className="ml-6">
             <Image
               className="w-[40px] h-[40px]"
               src={user_icon}
               alt="User Icon"
-              width={52}
-              height={52}
+              width={40}
+              height={40}
             />
           </div>
         </div>

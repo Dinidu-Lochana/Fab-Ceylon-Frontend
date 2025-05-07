@@ -1,3 +1,4 @@
+'use client';
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -13,7 +14,6 @@ export const KandyMainMenuNavBar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    // Check if user is logged in
     const user = localStorage.getItem('user');
     setIsLoggedIn(!!user);
   }, []);
@@ -21,7 +21,7 @@ export const KandyMainMenuNavBar = () => {
   const handleLogout = () => {
     localStorage.removeItem('user');
     setIsLoggedIn(false);
-    router.refresh(); // Refresh page to update UI
+    router.refresh();
   };
 
   const menuItems = [
@@ -39,38 +39,39 @@ export const KandyMainMenuNavBar = () => {
   ];
 
   return (
-    <div className="relative">
-      <div className="flex items-center h-[150px] ml-[20px]">
-        <Image
-          className="w-[45px] h-[45px] ml-10"
-          src={Fabceylon_logo}
-          alt="Fab Ceylon Logo"
-          width={52}
-          height={52}
-        />
-        <div className="w-[323px] text-[#eb650f] text-[40px] font-extrabold font-serif ml-10">
-          FAB CEYLON
+    <div className="relative bg-transparent  w-full z-50">
+      <div className="flex items-center justify-between h-[150px] max-w-7xl mx-auto px-6">
+        {/* Logo and Title */}
+        <div className="flex items-center gap-4">
+          <Image
+            className="w-[45px] h-[45px]"
+            src={Fabceylon_logo}
+            alt="Fab Ceylon Logo"
+            width={45}
+            height={45}
+          />
+          <div className="text-[#eb650f] text-[36px] font-extrabold font-serif">
+            FAB CEYLON
+          </div>
         </div>
 
-        <div className="flex items-center gap-8 ml-[60px]">
-          {menuItems.map((item, index) => (
+        {/* Navigation Menu */}
+        <div className="flex items-center gap-8">
+          {menuItems.map((item, index) =>
             item.link ? (
-              // Use Link for items with a valid href
               <div
                 key={index}
-                className={`relative group text-[20px] font-medium font-['Poppins'] cursor-pointer ${
+                className={`relative group text-[18px] font-medium font-['Poppins'] cursor-pointer ${
                   activeItem === item.label ? 'text-[#caa767]' : 'text-[#caa767]'
                 }`}
                 onClick={() => setActiveItem(item.label)}
               >
                 <Link href={item.link}>{item.label}</Link>
-                {/* Up Line */}
                 <span
                   className={`absolute bottom-[100%] left-0 h-[2px] bg-[#caa767] transition-all duration-300 ease-in-out ${
                     activeItem === item.label ? 'w-full' : 'w-0 group-hover:w-full'
                   }`}
                 ></span>
-                {/* Down Line */}
                 <span
                   className={`absolute top-full left-0 h-[2px] bg-[#caa767] transition-all duration-300 ease-in-out ${
                     activeItem === item.label ? 'w-full' : 'w-0 group-hover:w-full'
@@ -78,24 +79,24 @@ export const KandyMainMenuNavBar = () => {
                 ></span>
               </div>
             ) : (
-              // Use button for items with an action (like Logout)
               <button
                 key={index}
                 onClick={item.action}
-                className="text-[20px] font-medium font-['Poppins'] text-[#caa767] cursor-pointer"
+                className="text-[18px] font-medium font-['Poppins'] text-[#caa767] cursor-pointer"
               >
                 {item.label}
               </button>
             )
-          ))}
+          )}
 
-          <div className="h-[52px] justify-start items-center gap-[22px] inline-flex ml-20">
+          {/* User Icon */}
+          <div className="ml-6">
             <Image
               className="w-[40px] h-[40px]"
               src={user_icon}
               alt="User Icon"
-              width={52}
-              height={52}
+              width={40}
+              height={40}
             />
           </div>
         </div>
