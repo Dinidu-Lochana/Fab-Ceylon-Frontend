@@ -11,6 +11,7 @@ import Boder from '@/components/Assets/Boder.png';
 import Boder2 from '@/components/Assets/Boder2.png';
 import CartTop from '@/components/Assets/CartTop.png';
 import Cafe_Nuwara_logo from '@/components/Assets/Cafe_Nuwara_logo.png';
+import FooterCafeNuwara from '@/components/FooterCafeNuwara';
 
 export default function CafeNuwara() {
   return (
@@ -146,6 +147,9 @@ export default function CafeNuwara() {
     <div class="text-black text-xl font-bold font-['Poppins']">Check OUt                Rs. 0.00</div>
 </div>
         </div>
+      </div>
+      <div>
+      <FooterCafeNuwara />
       </div>
     </div>
   );
