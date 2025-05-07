@@ -11,7 +11,7 @@ export default function OrderTypeSelection() {
     return (
         <div>
             
-            <div className="flex flex-col items-center justify-center min-h-screen text-white ">
+            <div className="flex flex-col items-center justify-center min-h-screen text-black ">
                 {/* Heading with Animation */}
                 <motion.h2 
                     className="mt-1 mb-4 text-3xl font-semibold"

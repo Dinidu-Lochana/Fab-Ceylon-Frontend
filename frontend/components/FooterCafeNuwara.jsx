@@ -1,10 +1,9 @@
-// components/Footer.jsx
 import Link from "next/link";
 import { Facebook, Instagram, Twitter, Mail, Phone } from "lucide-react";
 
 const FooterNuwara = () => {
   return (
-    <footer className="w-full bg-[#efeded] text-black pt-12 px-6 mt-20">
+    <footer className="w-full border-t-[8px] border-black bg-[#f0e6d9] text-black pt-12 px-6 mt-20">
       <div className="max-w-7xl mx-auto grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
         {/* About Section */}
         <div>
