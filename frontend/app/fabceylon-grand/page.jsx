@@ -5,8 +5,8 @@ import Bugger from '@/components/Assets/Bugger.png';
 import Image from 'next/image';
 import star_icon from '@/components/Assets/star_icon.png';
 import delete_icon from '@/components/Assets/delete.png';
-import { MenuNavBar } from '@/components/MenuNavBar';
-import { GrandMainMenuNavBar } from '@/components/Fab-Grand-MainMenu';
+import  GrandAMainNavBar  from '@/components/Fab-Grand-MainMenu';
+import {GrandMenuNavBar} from '@/components/Fab-Grand-MenuNavBar'
 
 export default function KandyMenu() {
   const [cartItems, setCartItems] = React.useState([]);
@@ -59,32 +59,44 @@ export default function KandyMenu() {
 
   return (
     <div>
-      <div className="relative h-screen bg-black">
-        <Image
-          src={MenuBack_image}
-          layout="fill"
-          objectFit="cover"
-          alt="Background Image"
-        />
-        <GrandMainMenuNavBar />
-        <MenuNavBar />
-
-        <div className="relative gap-2 text-left text-white">
-          <div style={{ marginLeft: '100px' }}>
-            <h1 className="pt-40 ml-32 font-bold tracking-wider text-7xl font-poppins">
-              CHOOSE <br />
-              <span className="text-white ml-28 mt-72">&</span> <br />
-              <span className="ml-8 text-white">ENJOY...</span>
-            </h1>
-          </div>
+      <div className="relative min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900">
+        <div className="relative z-50">
+          <GrandAMainNavBar />
+          <GrandMenuNavBar />
         </div>
-      </div>
 
-      <div className="relative bg-black">
-        <div className="text-[#eb650f] text-8xl font-bold font-['Poppins'] bg-black text-center">
-          <h1>Burger</h1>
-          <div className="text-white text-4xl font-bold font-['Poppins'] mt-10">
-            It is good time for the great taste of burgers
+        {/* Fullscreen Hero Section */}
+        <div className="relative w-full h-1/2 overflow-hidden mt-10">
+          <video
+            src="/videos/heroVideo.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="absolute top-0 left-0 w-full h-full object-cover opacity-50 z-0"
+          />
+          <div className="absolute inset-0 bg-black/30 z-10" />
+          <div className="relative z-20 flex flex-col justify-center items-center h-full text-center px-4">
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-extrabold font-serif uppercase tracking-wide bg-gradient-to-r from-amber-800 via-orange-700 to-amber-700 bg-clip-text text-transparent leading-tight mb-6">
+              Choose <br />& <br />Enjoy...
+            </h1>
+            <p className="text-lg sm:text-xl text-white font-medium max-w-2xl">
+              Discover the authentic flavors of Sri Lankan cuisine in our classic cafe atmosphere
+            </p>
+            <div className="grid grid-cols-3 gap-4 mt-8 max-w-md w-full">
+              <div className="text-center p-3 bg-white/80 rounded-lg backdrop-blur-sm">
+                <div className="text-2xl font-bold text-amber-700">50+</div>
+                <div className="text-sm text-gray-700">Menu Items</div>
+              </div>
+              <div className="text-center p-3 bg-white/80 rounded-lg backdrop-blur-sm">
+                <div className="text-2xl font-bold text-amber-700">4.8★</div>
+                <div className="text-sm text-gray-700">Rating</div>
+              </div>
+              <div className="text-center p-3 bg-white/80 rounded-lg backdrop-blur-sm">
+                <div className="text-2xl font-bold text-amber-700">15min</div>
+                <div className="text-sm text-gray-700">Prep Time</div>
+              </div>
+            </div>
           </div>
         </div>
 

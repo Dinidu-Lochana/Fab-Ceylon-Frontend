@@ -2,126 +2,194 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 
 export const GrandMenuNavBar = () => {
-  const [beveragesOpen, setBeveragesOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState(null);
 
-  const toggleBeverages = () => {
-    setBeveragesOpen(!beveragesOpen);
+  const toggleDropdown = (category) => {
+    setOpenDropdown(openDropdown === category ? null : category);
   };
 
-  const closeBeverages = () => {
-    setBeveragesOpen(false);
+  const closeDropdown = () => {
+    setOpenDropdown(null);
   };
 
   return (
-    <div>
+    <div className="w-full max-w-[1500px] mx-auto p-4">
       {/* Main Menu Items */}
-      <div className="w-[1500px] h-[200px] relative">
-
-        {/* Beverages Dropdown */}
-        <div className="w-[1500px] h-[120px] relative">
-          <div className="menu-item left-[1200px] absolute text-center">
-            <a href="#" onClick={toggleBeverages}>
-              Beverages
-            </a>
-            {beveragesOpen && (
-              <div
-                className="absolute top-[30px] left-0 min-w-[180px] bg-[rgba(0,0,0,0.8)] shadow-lg p-4 rounded-lg h-[130px]"
-                onMouseLeave={closeBeverages}
-              >
-                <div className="flex-col gap-3 h-[100px]">
-                  <Link href="/fabceylon-grand/menu/iced-coffee-iced-tea">
-                    <div className="text-[#eb650f] text-[14px] font-bold hover:text-white cursor-pointer">
-                      Iced Tea & Coffee
-                    </div>
-                  </Link>
-                  <Link href="/fabceylon-grand/menu/hot-beverages">
-                    <div className="text-[#eb650f] text-[14px] font-bold hover:text-white cursor-pointer">
-                      Hot Beverages
-                    </div>
-                  </Link>
-                  <Link href="/fabceylon-grand/menu/bubble-tea">
-                    <div className="text-[#eb650f] text-[14px] font-bold hover:text-white cursor-pointer">
-                      Bubble Tea
-                    </div>
-                  </Link>
-                  <Link href="/fabceylon-grand/menu/mojito">
-                    <div className="text-[#eb650f] text-[14px] font-bold hover:text-white cursor-pointer">
-                      Mojito
-                    </div>
-                  </Link>
-                  <Link href="/fabceylon-grand/menu/milk-shakes">
-                    <div className="text-[#eb650f] text-[14px] font-bold hover:text-white cursor-pointer">
-                      Milk Shakes
-                    </div>
-                  </Link>
-                </div>
-              </div>
-            )}
-          </div>
+      <div className="flex flex-wrap items-center justify-center gap-4">
+        
+        {/* Appetizers Dropdown */}
+       <div className="relative">
+          <Link href="/fabceylon-grand/menu/appetizers">
+            <div className="cursor-pointer menu-button">
+              Appetizers
+            </div>
+          </Link>
         </div>
 
-        <Link href="/fabceylon-grand/menu/appetizers">
-          <div className="menu-item left-[140px]">Appetizers</div>
-        </Link>
-        <Link href="/fabceylon-grand/menu/salads-soups">
-          <div className="menu-item left-[20px]">Salads & Soups</div>
-        </Link>
-        <Link href="/fabceylon-grand/menu/pasta-spaghetti">
-          <div className="menu-item left-[260px]">Pasta & Spaghetti</div>
-        </Link>
-        <Link href="/fabceylon-grand/menu/noodles">
-          <div className="menu-item left-[370px]">Noodles</div>
-        </Link>
-        <Link href="/fabceylon-grand/menu/kottu">
-          <div className="menu-item left-[460px]">Kottu</div>
-        </Link>
-        <Link href="/fabceylon-grand/menu/fried-rice">
-          <div className="menu-item left-[540px] text-center">
-            <span>Fried</span>
-            <br />
-            <span>Rice</span>
-          </div>
-        </Link>
-
-        <Link href="/fabceylon-grand/menu/biriyani">
-          <div className="menu-item left-[630px]">Biriyani</div>
-        </Link>
-        <Link href="/fabceylon-grand/menu/signature-meals">
-          <div className="menu-item left-[730px]">Signature Meals</div>
-        </Link>
-        <Link href="/fabceylon-grand/menu/add-on">
-          <div className="menu-item left-[830px]">Add-On</div>
-        </Link>
         
-        <Link href="/fabceylon-grand/menu/burgers">
-          <div className="menu-item left-[930px]">Burgers</div>
-        </Link>
-        <Link href="/fabceylon-grand/menu/sandwiches-submarines">
-          <div className="menu-item left-[1060px]">Sandwiches & Submarines</div>
-        </Link>
-        <Link href="/fabceylon-grand/menu/desserts">
-          <div className="menu-item left-[1340px]">Desserts</div>
-        </Link>
+        {/* Salads & Soups */}
+        <div className="relative">
+          <Link href="/fabceylon-grand/menu/salads-soups">
+            <div className="cursor-pointer menu-button">Salads & Soups</div>
+          </Link>
+        </div>
+          
+        {/* Pasta & Spaghetti */}
+        <div className="relative">
+          <Link href="/fabceylon-grand/menu/pasta-spaghetti">
+            <div className="cursor-pointer menu-button">Pasta & Spaghetti</div>
+          </Link>
+        </div>
+          
+        {/* Noodles */}
+        <div className="relative">
+          <Link href="/fabceylon-grand/menu/noodles">
+            <div className="cursor-pointer menu-button">Noodles</div>
+          </Link>
+        </div>
+          
+        {/* Kottu */}
+        <div className="relative">
+          <Link href="/fabceylon-grand/menu/kottu">
+            <div className="cursor-pointer menu-button">Kottu</div>
+          </Link>
+        </div>
+          
+        {/* Fried Rice */}
+        <div className="relative">
+          <Link href="/fabceylon-grand/menu/fried-rice">
+            <div className="cursor-pointer menu-button">Fried Rice</div>
+          </Link>
+        </div>
+          
+        {/* Biriyani */}
+        <div className="relative">
+          <Link href="/fabceylon-grand/menu/biriyani">
+            <div className="cursor-pointer menu-button">Biriyani</div>
+          </Link>
+        </div>
+          
+        {/* Signature Meals */}
+        <div className="relative">
+          <Link href="/fabceylon-grand/menu/signature-meals">
+            <div className="cursor-pointer menu-button">Signature Meals</div>
+          </Link>
+        </div>
+          
+        {/* Burgers */}
+        <div className="relative">
+          <Link href="/fabceylon-grand/menu/burgers">
+            <div className="cursor-pointer menu-button">Burgers</div>
+          </Link>
+        </div>
+          
+        {/* Sandwiches & Submarines */}
+        <div className="relative">
+          <Link href="/fabceylon-grand/menu/sandwiches-submarines">
+            <div className="cursor-pointer menu-button">Sandwiches & Submarines</div>
+          </Link>
+        </div>
+
+
+        {/* Beverages Dropdown */}
+        <div className="relative">
+          <div 
+            className="cursor-pointer menu-button"
+            onClick={() => toggleDropdown('beverages')}
+          >
+            Beverages
+          </div>
+          {openDropdown === 'beverages' && (
+            <div
+              className="absolute top-[60px] left-0 min-w-[200px] bg-black/80 backdrop-blur-sm shadow-lg p-4 rounded-lg z-10"
+              onMouseLeave={closeDropdown}
+            >
+              <div className="flex flex-col gap-3">
+                <Link href="/fabceylon-grand/menu/iced-coffee-iced-tea">
+                  <div className="dropdown-item">
+                    Iced Tea & Coffee
+                  </div>
+                </Link>
+                <Link href="/fabceylon-grand/menu/hot-beverages">
+                  <div className="dropdown-item">
+                    Hot Beverages
+                  </div>
+                </Link>
+                <Link href="/fabceylon-grand/menu/bubble-tea">
+                  <div className="dropdown-item">
+                    Bubble Tea
+                  </div>
+                </Link>
+                <Link href="/fabceylon-grand/menu/mojito">
+                  <div className="dropdown-item">
+                    Mojito
+                  </div>
+                </Link>
+                <Link href="/fabceylon-grand/menu/milk-shakes">
+                  <div className="dropdown-item">
+                    Milk Shakes
+                  </div>
+                </Link>
+              </div>
+            </div>
+          )}
+        </div>
+        
+        {/* Desserts */}
+        <div className="relative">
+          <Link href="/fabceylon-grand/menu/desserts">
+            <div className="cursor-pointer menu-button">Desserts</div>
+          </Link>
+        </div>
+
 
       </div>
 
       <style jsx>{`
-        .menu-item {
-          width: 125px;
-          top: 16px;
-          position: absolute;
-          text-align: center;
+        .menu-button {
+          background: transparent;
           color: #eb650f;
-          font-size: 1.2rem;
-          font-weight: semi-bold;
+          padding: 12px 20px;
+          border-radius: 25px;
+          font-size: 1rem;
+          font-weight: 600;
           font-family: 'Poppins', sans-serif;
+          text-align: center;
+          min-width: 120px;
           cursor: pointer;
-          transition: transform 0.3s ease, color 0.3s ease;
+          transition: all 0.3s ease;
+          box-shadow: 0 4px 15px rgba(235, 101, 15, 0.2);
+          border: 2px solid #eb650f;
         }
 
-        .menu-item:hover {
-          transform: scale(1.2); /* Enlarges the text slightly */
-          color: #d4430f; /* Changes the color on hover */
+        .menu-button:hover {
+          transform: translateY(-2px) scale(1.05);
+          box-shadow: 0 8px 25px rgba(235, 101, 15, 0.4);
+          background: rgba(235, 101, 15, 0.1);
+          border-color: #ff7420;
+          color: #ff7420;
+        }
+
+        .menu-button:active {
+          transform: translateY(0) scale(1.02);
+          box-shadow: 0 4px 15px rgba(235, 101, 15, 0.4);
+        }
+
+        .dropdown-item {
+          color: #eb650f;
+          font-size: 14px;
+          font-weight: 600;
+          padding: 8px 12px;
+          border-radius: 15px;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          background: transparent;
+        }
+
+        .dropdown-item:hover {
+          color: white;
+          background: rgba(235, 101, 15, 0.2);
+          transform: translateX(5px);
         }
       `}</style>
     </div>
