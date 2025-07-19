@@ -6,7 +6,7 @@ import Image from 'next/image';
 
 import delete_icon from '@/components/Assets/delete.png';
 import { FabKandyMenuNavBar } from '@/components/Fab-Kandy-MenuNavBar';
-import { KandyMainMenuNavBar } from '@/components/Fab-Kandy-MainMenuNavBar';
+import  KandyMainMenuNavBar  from '@/components/Fab-Kandy-MainMenuNavBar';
 
 
 export default function KandyMenu() {

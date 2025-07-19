@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { KandyMainMenuNavBar } from '@/components/Fab-Kandy-MainMenuNavBar';
+import  KandyMainMenuNavBar from '@/components/Fab-Kandy-MainMenuNavBar';
 import Image from 'next/image';
 import Link from 'next/link'; 
 import { motion } from 'framer-motion';

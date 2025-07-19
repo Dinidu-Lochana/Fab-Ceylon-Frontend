@@ -9,7 +9,7 @@ import { useParams } from 'next/navigation';
 
 import delete_icon from '@/components/Assets/delete.png';
 import { FabKandyMenuNavBar } from '@/components/Fab-Kandy-MenuNavBar';
-import { KandyMainMenuNavBar } from '@/components/Fab-Kandy-MainMenuNavBar';
+import  KandyMainMenuNavBar  from '@/components/Fab-Kandy-MainMenuNavBar';
 
 const getStars = (rating) => {
   const roundedRating = parseFloat(rating.toFixed(1)); 

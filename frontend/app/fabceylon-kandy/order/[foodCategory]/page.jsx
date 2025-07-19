@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { useParams } from 'next/navigation';
 import delete_icon from '@/components/Assets/delete.png';
 import {FabKandyMenuNavBar}  from '@/components/Fab-Kandy-OrderNavBar';
-import { KandyMainMenuNavBar } from '@/components/Fab-Kandy-MainMenuNavBar';
+import KandyMainMenuNavBar  from '@/components/Fab-Kandy-MainMenuNavBar';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import Link from 'next/link';
