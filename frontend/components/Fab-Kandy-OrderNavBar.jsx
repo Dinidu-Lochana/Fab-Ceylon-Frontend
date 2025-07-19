@@ -19,7 +19,7 @@ export const FabKandyMenuNavBar = () => {
         
         {/* Appetizers Dropdown */}
        <div className="relative">
-          <Link href="/fabceylon-kandy/menu/appetizers">
+          <Link href="/fabceylon-kandy/order/appetizers">
             <div className="cursor-pointer menu-button">
               Appetizers
             </div>
@@ -29,63 +29,63 @@ export const FabKandyMenuNavBar = () => {
         
         {/* Salads & Soups */}
         <div className="relative">
-          <Link href="/fabceylon-kandy/menu/salads-soups">
+          <Link href="/fabceylon-kandy/order/salads-soups">
             <div className="cursor-pointer menu-button">Salads & Soups</div>
           </Link>
         </div>
           
         {/* Pasta & Spaghetti */}
         <div className="relative">
-          <Link href="/fabceylon-kandy/menu/pasta-spaghetti">
+          <Link href="/fabceylon-kandy/order/pasta-spaghetti">
             <div className="cursor-pointer menu-button">Pasta & Spaghetti</div>
           </Link>
         </div>
           
         {/* Noodles */}
         <div className="relative">
-          <Link href="/fabceylon-kandy/menu/noodles">
+          <Link href="/fabceylon-kandy/order/noodles">
             <div className="cursor-pointer menu-button">Noodles</div>
           </Link>
         </div>
           
         {/* Kottu */}
         <div className="relative">
-          <Link href="/fabceylon-kandy/menu/kottu">
+          <Link href="/fabceylon-kandy/order/kottu">
             <div className="cursor-pointer menu-button">Kottu</div>
           </Link>
         </div>
           
         {/* Fried Rice */}
         <div className="relative">
-          <Link href="/fabceylon-kandy/menu/fried-rice">
+          <Link href="/fabceylon-kandy/order/fried-rice">
             <div className="cursor-pointer menu-button">Fried Rice</div>
           </Link>
         </div>
           
         {/* Biriyani */}
         <div className="relative">
-          <Link href="/fabceylon-kandy/menu/biriyani">
+          <Link href="/fabceylon-kandy/order/biriyani">
             <div className="cursor-pointer menu-button">Biriyani</div>
           </Link>
         </div>
           
         {/* Signature Meals */}
         <div className="relative">
-          <Link href="/fabceylon-kandy/menu/signature-meals">
+          <Link href="/fabceylon-kandy/order/signature-meals">
             <div className="cursor-pointer menu-button">Signature Meals</div>
           </Link>
         </div>
           
         {/* Burgers */}
         <div className="relative">
-          <Link href="/fabceylon-kandy/menu/burgers">
+          <Link href="/fabceylon-kandy/order/burgers">
             <div className="cursor-pointer menu-button">Burgers</div>
           </Link>
         </div>
           
         {/* Sandwiches & Submarines */}
         <div className="relative">
-          <Link href="/fabceylon-kandy/menu/sandwiches-submarines">
+          <Link href="/fabceylon-kandy/order/sandwiches-submarines">
             <div className="cursor-pointer menu-button">Sandwiches & Submarines</div>
           </Link>
         </div>
@@ -105,27 +105,27 @@ export const FabKandyMenuNavBar = () => {
               onMouseLeave={closeDropdown}
             >
               <div className="flex flex-col gap-3">
-                <Link href="/fabceylon-kandy/menu/iced-coffee-iced-tea">
+                <Link href="/fabceylon-kandy/order/iced-coffee-iced-tea">
                   <div className="dropdown-item">
                     Iced Tea & Coffee
                   </div>
                 </Link>
-                <Link href="/fabceylon-kandy/menu/hot-beverages">
+                <Link href="/fabceylon-kandy/order/hot-beverages">
                   <div className="dropdown-item">
                     Hot Beverages
                   </div>
                 </Link>
-                <Link href="/fabceylon-kandy/menu/bubble-tea">
+                <Link href="/fabceylon-kandy/order/bubble-tea">
                   <div className="dropdown-item">
                     Bubble Tea
                   </div>
                 </Link>
-                <Link href="/fabceylon-kandy/menu/mojito">
+                <Link href="/fabceylon-kandy/order/mojito">
                   <div className="dropdown-item">
                     Mojito
                   </div>
                 </Link>
-                <Link href="/fabceylon-kandy/menu/milk-shakes">
+                <Link href="/fabceylon-kandy/order/milk-shakes">
                   <div className="dropdown-item">
                     Milk Shakes
                   </div>
@@ -137,7 +137,7 @@ export const FabKandyMenuNavBar = () => {
         
         {/* Desserts */}
         <div className="relative">
-          <Link href="/fabceylon-kandy/menu/desserts">
+          <Link href="/fabceylon-kandy/order/desserts">
             <div className="cursor-pointer menu-button">Desserts</div>
           </Link>
         </div>

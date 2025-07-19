@@ -3,10 +3,11 @@ import React from 'react';
 import MenuBack_image from '@/components/Assets/MenuBack_image.jpg';
 import Bugger from '@/components/Assets/Bugger.png';
 import Image from 'next/image';
-import star_icon from '@/components/Assets/star_icon.png';
+
 import delete_icon from '@/components/Assets/delete.png';
-import { MenuNavBar } from '@/components/MenuNavBar';
+import { FabKandyMenuNavBar } from '@/components/Fab-Kandy-MenuNavBar';
 import { KandyMainMenuNavBar } from '@/components/Fab-Kandy-MainMenuNavBar';
+
 
 export default function KandyMenu() {
   const [cartItems, setCartItems] = React.useState([]);
@@ -59,64 +60,84 @@ export default function KandyMenu() {
 
   return (
     <div>
-      <div className="relative h-screen bg-black">
-        <Image
-          src={MenuBack_image}
-          layout="fill"
-          objectFit="cover"
-          alt="Background Image"
-        />
-        <KandyMainMenuNavBar />
-        <MenuNavBar />
+      <div className="relative min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900">
+        <div className="relative z-10">
+          <KandyMainMenuNavBar />
+          <FabKandyMenuNavBar />
+        </div>
 
-        <div className="relative gap-2 text-left text-white">
-          <div style={{ marginLeft: '100px' }}>
-            <h1 className="pt-40 ml-32 font-bold tracking-wider text-7xl font-poppins">
-              CHOOSE <br />
-              <span className="text-white ml-28 mt-72">&</span> <br />
-              <span className="ml-8 text-white">ENJOY...</span>
-            </h1>
+        {/* Fullscreen Hero Section */}
+      <div className="relative w-full mt-10 overflow-hidden h-1/2">
+        <video
+          src="/videos/heroVideo.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute top-0 left-0 z-0 object-cover w-full h-full opacity-50"
+        />
+        <div className="absolute inset-0 z-10 bg-black/30" />
+        <div className="relative z-20 flex flex-col items-center justify-center h-full px-4 text-center">
+          <h1 className="mb-6 font-serif text-5xl font-extrabold leading-tight tracking-wide text-transparent uppercase sm:text-6xl lg:text-7xl xl:text-8xl bg-gradient-to-r from-amber-800 via-orange-700 to-amber-700 bg-clip-text">
+            Choose <br />& <br />Enjoy...
+          </h1>
+          <p className="max-w-2xl text-lg font-medium text-white sm:text-xl">
+            Discover the authentic flavors of Sri Lankan cuisine in our classic cafe atmosphere
+          </p>
+          <div className="grid w-full max-w-md grid-cols-3 gap-4 mt-8">
+            <div className="p-3 text-center rounded-lg bg-white/80 backdrop-blur-sm">
+              <div className="text-2xl font-bold text-amber-700">50+</div>
+              <div className="text-sm text-gray-700">Menu Items</div>
+            </div>
+            <div className="p-3 text-center rounded-lg bg-white/80 backdrop-blur-sm">
+              <div className="text-2xl font-bold text-amber-700">4.8★</div>
+              <div className="text-sm text-gray-700">Rating</div>
+            </div>
+            <div className="p-3 text-center rounded-lg bg-white/80 backdrop-blur-sm">
+              <div className="text-2xl font-bold text-amber-700">15min</div>
+              <div className="text-sm text-gray-700">Prep Time</div>
+            </div>
           </div>
         </div>
       </div>
 
-      <div className="relative bg-black">
-        <div className="text-[#eb650f] text-8xl font-bold font-['Poppins'] bg-black text-center">
-          <h1>Burger</h1>
-          <div className="text-white text-4xl font-bold font-['Poppins'] mt-10">
-            It is good time for the great taste of burgers
-          </div>
-        </div>
+        
 
-        <div className="flex flex-row items-start justify-center gap-10 mt-10">
-          <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
+      
+
+        <div className="flex flex-col items-start justify-center gap-6 mt-6 lg:flex-row sm:gap-8 lg:gap-10 sm:mt-8 lg:mt-10">
+          <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 sm:gap-8 lg:gap-10 lg:flex-1">
             {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((_, index) => (
               <div
                 key={index}
-                className="w-[320px] h-[780px] px-[43px] pt-[25.50px] pb-[38.50px] bg-[#110c0c] rounded-[30px] flex flex-col items-start gap-5"
+                className="w-full bg-[#110c0c] rounded-[30px] flex flex-col items-center p-4 sm:p-6 lg:p-8 min-h-[600px] sm:min-h-[700px] lg:min-h-[780px]"
               >
-                <Image
-                  className="w-[200px] h-[200px] rounded-full border-4 border-white ml-4"
-                  src={Bugger}
-                  alt="Chicken Burger"
-                />
-                <div className="text-white text-4xl font-bold font-['Poppins'] mt-5">
+                <div className="w-32 h-32 sm:w-40 sm:h-40 lg:w-[200px] lg:h-[200px] rounded-full border-4 border-white overflow-hidden mb-4 sm:mb-6">
+                  <Image
+                    src={Bugger}
+                    alt="Chicken Burger"
+                    width={200}
+                    height={200}
+                    className="object-cover w-full h-full"
+                  />
+                </div>
+                <div className="text-white text-2xl sm:text-3xl lg:text-4xl font-bold font-['Poppins'] text-center mb-4 sm:mb-6">
                   Chicken Burger
                 </div>
-                <div className="text-[#eb650f] text-2xl font-bold font-['Poppins'] mt-6">
+                <div className="text-[#eb650f] text-xl sm:text-2xl font-bold font-['Poppins'] mb-6 sm:mb-8">
                   LKR 750
                 </div>
                 <div
                   onClick={() =>
                     handleAddToCart({
-                      id: index, // Replace with unique ID in a real application
+                      id: index,
                       name: 'Chicken Burger',
                       price: 750,
                     })
                   }
-                  className="h-[40px] px-[23px] py-[9px] bg-[#eb650f] rounded-[20px] flex justify-center items-center mt-8 cursor-pointer"
+                  className="w-full sm:w-auto px-4 sm:px-6 lg:px-[23px] py-2 sm:py-3 lg:py-[9px] bg-[#eb650f] rounded-[20px] flex justify-center items-center cursor-pointer hover:bg-[#d45500] transition-colors"
                 >
-                  <div className="text-black text-[20px] font-bold font-['Poppins']">
+                  <div className="text-black text-lg sm:text-xl lg:text-[20px] font-bold font-['Poppins']">
                     ADD
                   </div>
                 </div>
@@ -124,46 +145,45 @@ export default function KandyMenu() {
             ))}
           </div>
 
-          <div className="w-[397px] h-[780px] px-5 py-10 bg-[#110d0d] rounded-[20px] border-4 border-white flex flex-col items-start">
-            <div className="w-full text-[#eb650f] text-5xl font-bold font-['Poppins'] mb-5">
+          <div className="w-full lg:w-[397px] bg-[#110d0d] rounded-[20px] border-4 border-white flex flex-col p-4 sm:p-6 lg:px-5 lg:py-10 min-h-[400px] sm:min-h-[500px] lg:min-h-[780px]">
+            <div className="w-full text-[#eb650f] text-3xl sm:text-4xl lg:text-5xl font-bold font-['Poppins'] mb-4 sm:mb-5">
               Your Cart
             </div>
-            <div className="w-full flex flex-col gap-4 overflow-y-auto h-[360px]">
+            <div className="flex flex-col flex-1 w-full gap-3 overflow-y-auto sm:gap-4">
               {cartItems.map((item) => (
                 <div
                   key={item.id}
-                  className="w-full flex justify-between items-center text-white text-xl font-bold font-['Poppins']"
+                  className="w-full flex justify-between items-center text-white text-base sm:text-lg lg:text-xl font-bold font-['Poppins'] py-2"
                 >
-                  <span>{item.name}</span>
-                  <div className="flex items-center gap-2">
-                  <button
+                  <span className="flex-1 min-w-0 mr-2 truncate">{item.name}</span>
+                  <div className="flex items-center gap-1 sm:gap-2">
+                    <button
                       onClick={() => handleDecreaseQuantity(item.id)}
-                      className="px-2 py-1 font-bold text-white"
+                      className="flex items-center justify-center w-6 h-6 font-bold text-white bg-gray-800 rounded-full sm:w-8 sm:h-8 hover:bg-gray-700"
                     >
                       -
                     </button>
-                    <span>{item.quantity}</span>
+                    <span className="w-6 text-center">{item.quantity}</span>
                     <button
                       onClick={() => handleIncreaseQuantity(item.id)}
-                      className="px-2 py-1 font-bold text-white"
+                      className="flex items-center justify-center w-6 h-6 font-bold text-white bg-gray-800 rounded-full sm:w-8 sm:h-8 hover:bg-gray-700"
                     >
                       +
                     </button>
-
                   </div>
-                  <div className="flex items-center gap-2">
-                    <span>Rs. {item.price * item.quantity}</span>
+                  <div className="flex items-center gap-2 ml-2">
+                    <span className="text-sm sm:text-base">Rs. {item.price * item.quantity}</span>
                     <Image
                       src={delete_icon}
                       alt="Delete"
-                      className="w-6 h-6 cursor-pointer"
+                      className="w-5 h-5 cursor-pointer sm:w-6 sm:h-6 hover:opacity-80"
                       onClick={() => handleDeleteFromCart(item.id)}
                     />
                   </div>
                 </div>
               ))}
             </div>
-            <div className="w-full text-white text-xl font-bold font-['Poppins'] mt-5">
+            <div className="w-full text-white text-lg sm:text-xl font-bold font-['Poppins'] mt-4 sm:mt-5 pt-3 border-t border-gray-700">
               Total: Rs.{' '}
               {cartItems.reduce(
                 (total, item) => total + item.price * item.quantity,
