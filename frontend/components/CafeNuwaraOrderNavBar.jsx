@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 
-export const CafeNuwaraMenuNavBar = () => {
+export const CafeNuwraOrderNavBar = () => {
   const [openDropdown, setOpenDropdown] = useState(null);
 
   const toggleDropdown = (category) => {
@@ -19,61 +19,61 @@ export const CafeNuwaraMenuNavBar = () => {
         
         {/* Menu Links */}
         <div className="relative">
-          <Link href="/cafenuwara/menu/appetizers">
+          <Link href="/cafenuwara/order/appetizers">
             <div className="cursor-pointer menu-button">Appetizers</div>
           </Link>
         </div>
 
         <div className="relative">
-          <Link href="/cafenuwara/menu/salads-soups">
+          <Link href="/cafenuwara/order/salads-soups">
             <div className="cursor-pointer menu-button">Salads & Soups</div>
           </Link>
         </div>
 
         <div className="relative">
-          <Link href="/cafenuwara/menu/pasta-spaghetti">
+          <Link href="/cafenuwara/order/pasta-spaghetti">
             <div className="cursor-pointer menu-button">Pasta & Spaghetti</div>
           </Link>
         </div>
 
         <div className="relative">
-          <Link href="/cafenuwara/menu/noodles">
+          <Link href="/cafenuwara/order/noodles">
             <div className="cursor-pointer menu-button">Noodles</div>
           </Link>
         </div>
 
         <div className="relative">
-          <Link href="/cafenuwara/menu/kottu">
+          <Link href="/cafenuwara/order/kottu">
             <div className="cursor-pointer menu-button">Kottu</div>
           </Link>
         </div>
 
         <div className="relative">
-          <Link href="/cafenuwara/menu/fried-rice">
+          <Link href="/cafenuwara/order/fried-rice">
             <div className="cursor-pointer menu-button">Fried Rice</div>
           </Link>
         </div>
 
         <div className="relative">
-          <Link href="/cafenuwara/menu/biriyani">
+          <Link href="/cafenuwara/order/biriyani">
             <div className="cursor-pointer menu-button">Biriyani</div>
           </Link>
         </div>
 
         <div className="relative">
-          <Link href="/cafenuwara/menu/signature-meals">
+          <Link href="/cafenuwara/order/signature-meals">
             <div className="cursor-pointer menu-button">Signature Meals</div>
           </Link>
         </div>
 
         <div className="relative">
-          <Link href="/cafenuwara/menu/burgers">
+          <Link href="/cafenuwara/order/burgers">
             <div className="cursor-pointer menu-button">Burgers</div>
           </Link>
         </div>
 
         <div className="relative">
-          <Link href="/cafenuwara/menu/sandwiches-submarines">
+          <Link href="/cafenuwara/order/sandwiches-submarines">
             <div className="cursor-pointer menu-button">Sandwiches & Submarines</div>
           </Link>
         </div>
@@ -92,19 +92,19 @@ export const CafeNuwaraMenuNavBar = () => {
               onMouseLeave={closeDropdown}
             >
               <div className="flex flex-col gap-3">
-                <Link href="/cafenuwara/menu/iced-coffee-iced-tea">
+                <Link href="/cafenuwara/order/iced-coffee-iced-tea">
                   <div className="dropdown-item">Iced Tea & Coffee</div>
                 </Link>
-                <Link href="/cafenuwara/menu/hot-beverages">
+                <Link href="/cafenuwara/order/hot-beverages">
                   <div className="dropdown-item">Hot Beverages</div>
                 </Link>
-                <Link href="/cafenuwara/menu/bubble-tea">
+                <Link href="/cafenuwara/order/bubble-tea">
                   <div className="dropdown-item">Bubble Tea</div>
                 </Link>
-                <Link href="/cafenuwara/menu/mojito">
+                <Link href="/cafenuwara/order/mojito">
                   <div className="dropdown-item">Mojito</div>
                 </Link>
-                <Link href="/cafenuwara/menu/milk-shakes">
+                <Link href="/cafenuwara/order/milk-shakes">
                   <div className="dropdown-item">Milk Shakes</div>
                 </Link>
               </div>
@@ -113,7 +113,7 @@ export const CafeNuwaraMenuNavBar = () => {
         </div>
 
         <div className="relative">
-          <Link href="/cafenuwara/menu/desserts">
+          <Link href="/cafenuwara/order/desserts">
             <div className="cursor-pointer menu-button">Desserts</div>
           </Link>
         </div>
