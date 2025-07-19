@@ -1,12 +1,18 @@
 'use client';
+
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import MenuBack_image from '@/components/Assets/MenuBack_image.jpg';
-import Rating_Star from '@/components/Assets/rating_star.png';
+import Bugger from '@/components/Assets/Bugger.png';
+import star_icon from '@/components/Assets/star_icon.png';
+import delete_icon from '@/components/Assets/delete.png';
+import KurunagalMainNavBar from '@/components/Fab-Kurunegala-Main-Navbar';
 import { FabKurungalaMenuNavBar } from '@/components/Fab-Kurungala-MenuNavBar';
-import { MainMenuNavBar } from '@/components/MainMenuNavBar';
+import { useParams } from 'next/navigation';
+import Rating_Star from '@/components/Assets/star_icon.png'; // Assuming you're using this for stars
 import axios from 'axios';
-import { toast } from 'react-toastify';
+import { toast } from 'react-toastify'; // Only if you're using toast
+
 
 
 const getStars = (rating) => {
@@ -52,8 +58,8 @@ const getStars = (rating) => {
 
 
 
-export default function KandyMenu({ params }) {
-  const foodCategory = params.foodCategory;
+export default function KurunagalaMenu({ params }) {
+  const { foodCategory } = useParams();
   const [cartItems, setCartItems] = useState([]);
   const [foods, setFoods] = useState([]);
 
@@ -79,26 +85,47 @@ export default function KandyMenu({ params }) {
 
   return (
     <div>
-      <div className="relative h-screen bg-black">
-        <Image
-          src={MenuBack_image}
-          layout="fill"
-          objectFit="cover"
-          alt="Background Image"
-        />
-        <MainMenuNavBar />
-        <FabKurungalaMenuNavBar />
+      <div className="relative min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900">
+        <div className="relative z-50">
+          <KurunagalMainNavBar />
+          <FabKurungalaMenuNavBar />
+        </div>
 
-        <div className="relative gap-2 text-left text-white">
-          <div style={{ marginLeft: '100px' }}>
-            <h1 className="pt-40 ml-32 font-bold tracking-wider text-7xl font-poppins">
-              CHOOSE <br />
-              <span className="text-white ml-28 mt-72">&</span> <br />
-              <span className="ml-8 text-white">ENJOY...</span>
+        {/* Fullscreen Hero Section */}
+        <div className="relative w-full mt-10 overflow-hidden h-1/2">
+          <video
+            src="/videos/heroVideo.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="absolute top-0 left-0 z-0 object-cover w-full h-full opacity-50"
+          />
+          <div className="absolute inset-0 z-10 bg-black/30" />
+          <div className="relative z-20 flex flex-col items-center justify-center h-full px-4 text-center">
+            <h1 className="mb-6 font-serif text-5xl font-extrabold leading-tight tracking-wide text-transparent uppercase sm:text-6xl lg:text-7xl xl:text-8xl bg-gradient-to-r from-amber-800 via-orange-700 to-amber-700 bg-clip-text">
+              Choose <br />& <br />Enjoy...
             </h1>
+            <p className="max-w-2xl text-lg font-medium text-white sm:text-xl">
+              Discover the authentic flavors of Sri Lankan cuisine in our classic cafe atmosphere
+            </p>
+            <div className="grid w-full max-w-md grid-cols-3 gap-4 mt-8">
+              <div className="p-3 text-center rounded-lg bg-white/80 backdrop-blur-sm">
+                <div className="text-2xl font-bold text-amber-700">50+</div>
+                <div className="text-sm text-gray-700">Menu Items</div>
+              </div>
+              <div className="p-3 text-center rounded-lg bg-white/80 backdrop-blur-sm">
+                <div className="text-2xl font-bold text-amber-700">4.8★</div>
+                <div className="text-sm text-gray-700">Rating</div>
+              </div>
+              <div className="p-3 text-center rounded-lg bg-white/80 backdrop-blur-sm">
+                <div className="text-2xl font-bold text-amber-700">15min</div>
+                <div className="text-sm text-gray-700">Prep Time</div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+        </div>
 
       <div className="relative bg-black">
         <div className="text-[#eb650f] text-7xl font-bold font-['Poppins'] bg-black text-center">
@@ -154,16 +181,9 @@ export default function KandyMenu({ params }) {
                 </div>
 
                 {/* Price */}
-                <div className="text-[#eb650f] text-2xl font-bold font-['Poppins'] mt-6">
+                <div className="text-[#eb650f] text-2xl font-bold font-['Poppins'] mt-6 ">
                   LKR {food.price}
                 </div>
-
-                {/* Extra Add Cheese */}
-                {food.isExtraAddCheeseAvailable && (
-                  <div className="text-white text-xl font-bold font-['Poppins'] mt-2">
-                    Extra Add Cheese + LKR 200
-                  </div>
-                )}
 
                 
               </div>

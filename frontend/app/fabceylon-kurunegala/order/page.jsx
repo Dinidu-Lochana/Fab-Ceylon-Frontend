@@ -1,17 +1,18 @@
 'use client';
 import React from 'react';
-import { MainMenuNavBar } from '@/components/MainMenuNavBar';
 import Image from 'next/image';
 import Link from 'next/link'; 
 import { motion } from 'framer-motion';
 import deliveryImage from '@/components/Assets/delivery_icon.png'; // Delivery image
-import pickupImage from '@/components/Assets/pickup_icon.png'; // Pickup image
+import pickupImage from '@/components/Assets/pickup_icon.png'; 
+import KurunagalMainNavBar from '@/components/Fab-Kurunegala-Main-Navbar';
 
 export default function OrderTypeSelection() {
     return (
         <div>
-            <MainMenuNavBar />
-            <div className="flex flex-col items-center justify-center min-h-screen text-white bg-black">
+            <div className='bg-gradient-to-b from-gray-900 via-black to-gray-900'>
+            < KurunagalMainNavBar />
+            <div className="flex flex-col items-center justify-center min-h-screen text-white ">
                 {/* Heading with Animation */}
                 <motion.h2 
                     className="mt-1 mb-4 text-3xl font-semibold"
@@ -50,6 +51,7 @@ export default function OrderTypeSelection() {
                         </div>
                     </Link>
                 </div>
+            </div>
             </div>
         </div>
     );

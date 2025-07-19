@@ -1,6 +1,6 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import { MainMenuNavBar } from '@/components/MainMenuNavBar';
+import KurunagalMainNavBar from '@/components/Fab-Kurunegala-Main-Navbar';
 import { motion } from 'framer-motion';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
@@ -96,9 +96,9 @@ export default function EnterAddress() {
     };
 
     return (
-        <div>
-            <MainMenuNavBar />
-            <div className="flex flex-col items-center w-full min-h-screen bg-black">
+        <div className='bg-gradient-to-b from-gray-900 via-black to-gray-900'>
+            <KurunagalMainNavBar />
+            <div className="flex flex-col items-center w-full min-h-screen ">
                 
                 {/* Map Section */}
                 <div className="w-full max-w-4xl mt-4 overflow-hidden rounded-lg shadow-lg" style={{ borderRadius: '20px' }}>

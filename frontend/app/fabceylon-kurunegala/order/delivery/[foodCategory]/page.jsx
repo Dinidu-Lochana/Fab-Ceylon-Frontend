@@ -1,24 +1,24 @@
 'use client';
+
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import MenuBack_image from '@/components/Assets/MenuBack_image.jpg';
 import delete_icon from '@/components/Assets/delete.png';
 import Rating_Star from '@/components/Assets/rating_star.png';
-import { MenuNavBar } from '@/components/Fab-Kurunegala-Order-Navbar';
-import { MainMenuNavBar } from '@/components/MainMenuNavBar';
+import { FabKurungalaMenuNavBar } from '@/components/Fab-Kurunegala-Dilvery-Navbar';
+import KurunagalMainNavBar from '@/components/Fab-Kurunegala-Main-Navbar';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
 const getStars = (rating) => {
-  const roundedRating = parseFloat(rating.toFixed(1)); 
-  const fullStars = Math.floor(roundedRating); // Full stars
-  const fractionalStar = (roundedRating % 1).toFixed(1); // Get fractional part
+  const roundedRating = parseFloat(rating.toFixed(1));
+  const fullStars = Math.floor(roundedRating);
+  const fractionalStar = (roundedRating % 1).toFixed(1);
 
   const stars = [];
 
-  // Add full stars
   for (let i = 0; i < fullStars; i++) {
     stars.push(
       <div key={`full-${i}`} className="w-6 h-6">
@@ -27,13 +27,10 @@ const getStars = (rating) => {
     );
   }
 
-  // Add fractional star based on the decimal value
   if (fractionalStar > 0) {
     stars.push(
       <div key={`fractional-star`} className="relative w-6 h-6 overflow-hidden">
-        {/* Full star in the background */}
         <Image src={Rating_Star} alt="Fractional Star" width={24} height={24} />
-        {/* Overlay part based on fractional value */}
         <div
           style={{
             position: 'absolute',
@@ -41,7 +38,7 @@ const getStars = (rating) => {
             left: `calc(${fractionalStar} * 100%)`,
             width: `${(1 - fractionalStar) * 100}%`,
             height: '100%',
-            backgroundColor: 'black', 
+            backgroundColor: 'black',
             zIndex: 1,
           }}
         ></div>
@@ -56,16 +53,14 @@ export default function KandyMenu({ params }) {
   const foodCategory = params.foodCategory;
   const [cartItems, setCartItems] = useState([]);
   const [foods, setFoods] = useState([]);
-  const isDeliveryAccepted = localStorage.getItem('deliveryAccepted')=== 'true';
+  const isDeliveryAccepted = typeof window !== "undefined" && localStorage.getItem('deliveryAccepted') === 'true';
   const router = useRouter();
 
   useEffect(() => {
-    
     if (!isDeliveryAccepted) {
-        // Navigate to the next page if delivery is accepted
-        router.push('/fabceylon-kurunegala/order/delivery');
+      router.push('/fabceylon-kurunegala/order/delivery');
     }
-}, [isDeliveryAccepted, router]);
+  }, [isDeliveryAccepted, router]);
 
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem('fab-kurunegala-delivery-cart')) || [];
@@ -92,9 +87,9 @@ export default function KandyMenu({ params }) {
     const existingItem = cart.find((item) => item._id === food._id);
 
     if (existingItem) {
-      existingItem.quantity += 1; 
+      existingItem.quantity += 1;
     } else {
-      cart.push({ ...food, quantity: 1 }); 
+      cart.push({ ...food, quantity: 1 });
     }
 
     localStorage.setItem('fab-kurunegala-delivery-cart', JSON.stringify(cart));
@@ -130,40 +125,58 @@ export default function KandyMenu({ params }) {
 
   return (
     <div>
-      {/* Background and Navigation */}
-      <div className="relative h-screen bg-black">
-        <Image
-          src={MenuBack_image}
-          layout="fill"
-          objectFit="cover"
-          alt="Background Image"
-        />
-        <MainMenuNavBar />
-        <MenuNavBar />
+      <div className="relative min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900">
+        <div className="relative z-50">
+          <KurunagalMainNavBar />
+          <FabKurungalaMenuNavBar />
+        </div>
 
-        <div className="relative gap-2 text-left text-white">
-          <div style={{ marginLeft: '100px' }}>
-            <h1 className="pt-40 ml-32 font-bold tracking-wider text-7xl font-poppins">
-              CHOOSE <br />
-              <span className="text-white ml-28 mt-72">&</span> <br />
-              <span className="ml-8 text-white">ENJOY...</span>
+        {/* Fullscreen Hero Section */}
+        <div className="relative w-full mt-10 overflow-hidden h-1/2">
+          <video
+            src="/videos/heroVideo.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="absolute top-0 left-0 z-0 object-cover w-full h-full opacity-50"
+          />
+          <div className="absolute inset-0 z-10 bg-black/30" />
+          <div className="relative z-20 flex flex-col items-center justify-center h-full px-4 text-center">
+            <h1 className="mb-6 font-serif text-5xl font-extrabold leading-tight tracking-wide text-transparent uppercase sm:text-6xl lg:text-7xl xl:text-8xl bg-gradient-to-r from-amber-800 via-orange-700 to-amber-700 bg-clip-text">
+              Choose <br />& <br />Enjoy...
             </h1>
+            <p className="max-w-2xl text-lg font-medium text-white sm:text-xl">
+              Discover the authentic flavors of Sri Lankan cuisine in our classic cafe atmosphere
+            </p>
+            <div className="grid w-full max-w-md grid-cols-3 gap-4 mt-8">
+              <div className="p-3 text-center rounded-lg bg-white/80 backdrop-blur-sm">
+                <div className="text-2xl font-bold text-amber-700">50+</div>
+                <div className="text-sm text-gray-700">Menu Items</div>
+              </div>
+              <div className="p-3 text-center rounded-lg bg-white/80 backdrop-blur-sm">
+                <div className="text-2xl font-bold text-amber-700">4.8★</div>
+                <div className="text-sm text-gray-700">Rating</div>
+              </div>
+              <div className="p-3 text-center rounded-lg bg-white/80 backdrop-blur-sm">
+                <div className="text-2xl font-bold text-amber-700">15min</div>
+                <div className="text-sm text-gray-700">Prep Time</div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-
-      {/* Food Category and List */}
-        <div className="relative bg-black">
-          
-          <div className="text-[#eb650f] text-7xl font-bold font-['Poppins'] bg-black text-center">
-            <h1>{foodCategory.replace(/-/g, ' ').toUpperCase()}</h1>
-
-          <div className="text-white text-3xl font-bold font-['Poppins'] mt-10">
-            It is a good time for the great taste of {foodCategory.replace(/-/g, ' ')}
-          </div>
         </div>
 
-        <div className="flex flex-row items-start justify-center gap-10 mt-10">
+      {/* Category and Food List */}
+      <div className="relative text-center bg-black">
+        <h1 className="text-[#eb650f] text-7xl font-bold font-['Poppins']">
+          {foodCategory.replace(/-/g, ' ').toUpperCase()}
+        </h1>
+        <div className="text-white text-3xl font-bold font-['Poppins'] mt-10">
+          It is a good time for the great taste of {foodCategory.replace(/-/g, ' ')}
+        </div>
+
+        <div className="flex flex-row items-start justify-center gap-10 px-4 mt-10">
           {/* Foods */}
           <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
             {foods.map((food) => (
@@ -173,29 +186,22 @@ export default function KandyMenu({ params }) {
               >
                 <div className="w-[200px] h-[200px] overflow-hidden rounded-full border-4 border-white mx-auto">
                   <img
-                    src={`${process.env.NEXT_PUBLIC_BACKEND_URL_ADDRESS}/${food.image.replace(
-                      "\\",
-                      "/"
-                    )}`}
+                    src={`${process.env.NEXT_PUBLIC_BACKEND_URL_ADDRESS}/${food.image.replace("\\", "/")}`}
                     alt={food.foodName}
                     className="object-cover w-full h-full"
                   />
                 </div>
 
                 <div className="text-white text-4xl font-bold font-['Poppins'] mt-5">
-                  {food.foodName
-                    .split(' ')
-                    .map((word) =>
-                      word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
-                    )
-                    .join(' ')}
+                  {food.foodName.split(' ').map((word) =>
+                    word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+                  ).join(' ')}
                 </div>
 
-                {/* Star Rating and Total Ratings */}
                 <div className="flex items-center mt-4 text-white">
                   <div className="flex gap-1">{getStars(food.averageRating)}</div>
                   <span className="ml-2 text-sm font-['Poppins']">
-                    <span className="text-lg font-bold">{food.averageRating.toFixed(1)}</span> 
+                    <span className="text-lg font-bold">{food.averageRating.toFixed(1)}</span>
                     <span className="text-xs"> ({food.totalRatings})</span>
                   </span>
                 </div>
@@ -212,9 +218,7 @@ export default function KandyMenu({ params }) {
                   tabIndex={0}
                   className="h-[40px] px-[23px] py-[9px] bg-[#eb650f] rounded-[20px] flex justify-center items-center mt-8 cursor-pointer"
                 >
-                  <div className="text-black text-[20px] font-bold font-['Poppins']">
-                    ADD
-                  </div>
+                  <div className="text-black text-[20px] font-bold font-['Poppins']">ADD</div>
                 </div>
               </div>
             ))}
@@ -233,19 +237,9 @@ export default function KandyMenu({ params }) {
                 >
                   <span>{item.foodName}</span>
                   <div className="flex items-center gap-2">
-                    <button
-                      onClick={() => handleDecreaseQuantity(item._id)}
-                      className="px-2 py-1 font-bold text-white"
-                    >
-                      -
-                    </button>
+                    <button onClick={() => handleDecreaseQuantity(item._id)}>-</button>
                     <span>{item.quantity}</span>
-                    <button
-                      onClick={() => handleIncreaseQuantity(item._id)}
-                      className="px-2 py-1 font-bold text-white"
-                    >
-                      +
-                    </button>
+                    <button onClick={() => handleIncreaseQuantity(item._id)}>+</button>
                   </div>
                   <div className="flex items-center gap-2">
                     <span>Rs. {item.price * item.quantity}</span>
@@ -260,22 +254,14 @@ export default function KandyMenu({ params }) {
               ))}
             </div>
             <div className="w-full text-white text-xl font-bold font-['Poppins'] mt-5">
-              Total: Rs.{' '}
-              {cartItems.reduce(
-                (total, item) => total + item.price * item.quantity,
-                0
-              )}
-              .00
+              Total: Rs. {cartItems.reduce((total, item) => total + item.price * item.quantity, 0)}.00
             </div>
-            {/* Checkout Button */}
             <div className="flex justify-center w-full mt-5">
-              <button
-                className="w-[200px] h-[50px] bg-[#eb650f] text-white text-xl font-bold font-['Poppins'] rounded-[10px] hover:bg-[#d4550d] transition-colors"
-              >
-                <Link href="/fabceylon-kurunegala/order/delivery/checkout">
+              <Link href="/fabceylon-kurunegala/order/delivery/checkout">
+                <button className="w-[200px] h-[50px] bg-[#eb650f] text-white text-xl font-bold font-['Poppins'] rounded-[10px] hover:bg-[#d4550d] transition-colors">
                   Checkout
-                </Link>
-              </button>
+                </button>
+              </Link>
             </div>
           </div>
         </div>

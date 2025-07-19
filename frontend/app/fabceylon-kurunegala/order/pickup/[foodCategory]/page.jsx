@@ -4,8 +4,8 @@ import Image from 'next/image';
 import MenuBack_image from '@/components/Assets/MenuBack_image.jpg';
 import delete_icon from '@/components/Assets/delete.png';
 import Rating_Star from '@/components/Assets/rating_star.png';
-import { MenuNavBar } from '@/components/Fab-Kurunegala-Pickup-Navbar';
-import { MainMenuNavBar } from '@/components/MainMenuNavBar';
+import KurunagalMainNavBar from '@/components/Fab-Kurunegala-Main-Navbar';
+import {FabKurungalaMenuNavBar} from '@/components/Fab-Kurunegala-Pickup_Navbar'
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import Link from 'next/link';
@@ -119,27 +119,47 @@ export default function KandyMenu({ params }) {
 
   return (
     <div>
-      {/* Background and Navigation */}
-      <div className="relative h-screen bg-black">
-        <Image
-          src={MenuBack_image}
-          layout="fill"
-          objectFit="cover"
-          alt="Background Image"
-        />
-        <MainMenuNavBar />
-        <MenuNavBar />
+      <div className="relative min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900">
+        <div className="relative z-50">
+          <KurunagalMainNavBar />
+          <FabKurungalaMenuNavBar />
+        </div>
 
-        <div className="relative gap-2 text-left text-white">
-          <div style={{ marginLeft: '100px' }}>
-            <h1 className="pt-40 ml-32 font-bold tracking-wider text-7xl font-poppins">
-              CHOOSE <br />
-              <span className="text-white ml-28 mt-72">&</span> <br />
-              <span className="ml-8 text-white">ENJOY...</span>
+        {/* Fullscreen Hero Section */}
+        <div className="relative w-full mt-10 overflow-hidden h-1/2">
+          <video
+            src="/videos/heroVideo.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="absolute top-0 left-0 z-0 object-cover w-full h-full opacity-50"
+          />
+          <div className="absolute inset-0 z-10 bg-black/30" />
+          <div className="relative z-20 flex flex-col items-center justify-center h-full px-4 text-center">
+            <h1 className="mb-6 font-serif text-5xl font-extrabold leading-tight tracking-wide text-transparent uppercase sm:text-6xl lg:text-7xl xl:text-8xl bg-gradient-to-r from-amber-800 via-orange-700 to-amber-700 bg-clip-text">
+              Choose <br />& <br />Enjoy...
             </h1>
+            <p className="max-w-2xl text-lg font-medium text-white sm:text-xl">
+              Discover the authentic flavors of Sri Lankan cuisine in our classic cafe atmosphere
+            </p>
+            <div className="grid w-full max-w-md grid-cols-3 gap-4 mt-8">
+              <div className="p-3 text-center rounded-lg bg-white/80 backdrop-blur-sm">
+                <div className="text-2xl font-bold text-amber-700">50+</div>
+                <div className="text-sm text-gray-700">Menu Items</div>
+              </div>
+              <div className="p-3 text-center rounded-lg bg-white/80 backdrop-blur-sm">
+                <div className="text-2xl font-bold text-amber-700">4.8★</div>
+                <div className="text-sm text-gray-700">Rating</div>
+              </div>
+              <div className="p-3 text-center rounded-lg bg-white/80 backdrop-blur-sm">
+                <div className="text-2xl font-bold text-amber-700">15min</div>
+                <div className="text-sm text-gray-700">Prep Time</div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+        </div>
 
       {/* Food Category and List */}
         <div className="relative bg-black">

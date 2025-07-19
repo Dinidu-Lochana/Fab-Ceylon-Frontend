@@ -3,104 +3,10 @@ import { useRouter } from "next/navigation";
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import deleteIcon from "@/components/Assets/delete.png";
-import { MainMenuNavBar } from "@/components/MainMenuNavBar";
+import KurunagalMainNavBar from '@/components/Fab-Kurunegala-Main-Navbar';
 import { jwtDecode } from "jwt-decode";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { loadStripe } from "@stripe/stripe-js";
-import { Elements, CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
-
-
-const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
-
-
-// Card Payment Component
-const CardPaymentForm = ({ totalAmount, onPaymentComplete, disabled }) => {
-  const stripe = useStripe();
-  const elements = useElements();
-  const [isProcessing, setIsProcessing] = useState(false);
-  const [error, setError] = useState(null);
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    if (!stripe || !elements) {
-      return;
-    }
-
-    setIsProcessing(true);
-    setError(null);
-
-    try {
-      // Get client secret from your backend
-      const { data } = await axios.post(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL_ADDRESS}/api/payments/create-payment-intent`,
-        { amount: totalAmount }
-      );
-
-      const clientSecret = data.clientSecret;
-
-      // Use the client secret to confirm the payment
-      const result = await stripe.confirmCardPayment(clientSecret, {
-        payment_method: {
-          card: elements.getElement(CardElement),
-          billing_details: {
-            // You could optionally collect and pass billing details here
-          },
-        },
-      });
-
-      if (result.error) {
-        setError(result.error.message);
-        toast.error(`Payment failed: ${result.error.message}`, { containerId: "ErrorMessage" });
-      } else if (result.paymentIntent.status === 'succeeded') {
-        toast.success("Payment successful!", { containerId: "successMessage" });
-        onPaymentComplete(result.paymentIntent.id);
-      }
-    } catch (err) {
-      setError(err.message);
-      toast.error(`Error: ${err.message}`, { containerId: "ErrorMessage" });
-    } finally {
-      setIsProcessing(false);
-    }
-  };
-
-  const cardElementOptions = {
-    style: {
-      base: {
-        fontSize: '16px',
-        color: '#ffffff',
-        '::placeholder': {
-          color: '#aab7c4',
-        },
-      },
-      invalid: {
-        color: '#fa755a',
-        iconColor: '#fa755a',
-      },
-    },
-  };
-
-  return (
-    <form onSubmit={handleSubmit}>
-      <div className="p-4 bg-gray-700 rounded-lg">
-        <CardElement options={cardElementOptions} />
-      </div>
-      {error && <div className="mt-2 text-red-500">{error}</div>}
-      <button
-        type="submit"
-        disabled={!stripe || isProcessing || disabled}
-        className={`w-full py-3 mt-4 text-lg font-bold text-white rounded-lg transition ${
-          !stripe || isProcessing || disabled
-            ? "bg-gray-600 cursor-not-allowed"
-            : "bg-orange-500 hover:bg-orange-600"
-        }`}
-      >
-        {isProcessing ? "Processing..." : "Pay Now"}
-      </button>
-    </form>
-  );
-};
 
 const CheckoutPage = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -117,9 +23,6 @@ const CheckoutPage = () => {
 
   const [agreedToTerms, setAgreedToTerms] = useState(false);
   const [sameAsSender, setSameAsSender] = useState(false);
-  const [paymentIntentId, setPaymentIntentId] = useState(null);
-  const [orderId, setOrderId] = useState(null);
-  const [isPaymentComplete, setIsPaymentComplete] = useState(false);
 
   const router = useRouter();
 
@@ -131,11 +34,6 @@ const CheckoutPage = () => {
 
   
   useEffect(() => {
-    if (paymentMethod !== "Card") {
-      setPaymentIntentId(null);
-      setIsPaymentComplete(false);
-    }
-    
     if (sameAsSender) {
       setFormData((prevData) => ({
         ...prevData,
@@ -143,7 +41,7 @@ const CheckoutPage = () => {
         receiverContact: prevData.senderContact,
       }));
     }
-  }, [formData.senderName, formData.senderContact, sameAsSender], [paymentMethod]);
+  }, [formData.senderName, formData.senderContact, sameAsSender]);
 
   const handleIncreaseQuantity = (foodId) => {
     const updatedCart = cartItems.map((item) =>
@@ -185,58 +83,7 @@ const CheckoutPage = () => {
     0
   );
 
-  const handlePaymentComplete = (paymentId) => {
-    setPaymentIntentId(paymentId);
-    setIsPaymentComplete(true);
-    
-    // If we already have an order ID, update the order with payment info
-    if (orderId) {
-      updateOrderWithPayment(orderId, paymentId);
-    }
-  };
-
-  const updateOrderWithPayment = async (orderId, paymentId) => {
-    try {
-      await axios.post(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL_ADDRESS}/api/payments/payment-success`,
-        { orderId, paymentIntentId: paymentId }
-      );
-    } catch (error) {
-      console.error("Error updating order with payment:", error);
-      toast.error("Error updating payment status", { containerId: "ErrorMessage" });
-    }
-  };
-
-  const validateOrderData = () => {
-      if (!agreedToTerms) {
-        toast.error("You must agree to the Terms and Conditions to proceed.", { containerId: "ErrorMessage" });
-        return false;
-      }
-      
-      if (!orderType || !paymentMethod || !formData.senderName || !formData.senderContact) {
-        toast.error("Please fill in all required fields.", { containerId: "ErrorMessage" });
-        return false;
-      }
-  
-      // Validate delivery details if orderType is Delivery
-      if (orderType === "Delivery" && (!formData.receiverName || !formData.receiverContact || !formData.receiverAddress)) {
-        toast.error("Please fill in all receiver details for delivery.", { containerId: "ErrorMessage" });
-        return false;
-      }
-  
-      // Check if payment is complete for Card payment
-      if (paymentMethod === "Card" && !isPaymentComplete) {
-        toast.error("Please complete the payment before proceeding.", { containerId: "ErrorMessage" });
-        return false;
-      }
-  
-      return true;
-    };
-
   const addOrder = async () => {
-    
-    if (!validateOrderData()) return;
-    
     if (!agreedToTerms) {
       toast.error("You must agree to the Terms and Conditions to proceed.", {
         containerId: "ErrorMessage",
@@ -303,15 +150,6 @@ const CheckoutPage = () => {
         orderData
       );
 
-       // Save the order ID
-       const newOrderId = response.data._id;
-       setOrderId(newOrderId);
- 
-       // If payment is already complete, update the order with payment info
-       if (isPaymentComplete && paymentIntentId) {
-         await updateOrderWithPayment(newOrderId, paymentIntentId);
-       }
-
       toast.success("Successfully created Order!", {
         containerId: "successMessage",
       });
@@ -326,9 +164,9 @@ const CheckoutPage = () => {
   };
 
   return (
-    <div>
-      <MainMenuNavBar />
-      <div className="flex flex-col items-center min-h-screen px-4 py-10 text-white bg-gray-900">
+    <div className="bg-gradient-to-b from-gray-900 via-black to-gray-900">
+      <KurunagalMainNavBar />
+      <div className="flex flex-col items-center min-h-screen px-4 py-10 text-white bg-gradient-to-b from-gray-900 via-black to-gray-900">
         <div className="w-full max-w-2xl p-6 bg-gray-800 rounded-lg shadow-lg">
           <h1 className="mb-6 text-3xl font-bold text-orange-400">Your Cart</h1>
           <div className="space-y-4 overflow-y-auto max-h-96">
@@ -464,7 +302,17 @@ const CheckoutPage = () => {
           <div className="mt-6">
             <h2 className="mb-2 text-xl font-bold text-orange-400">Payment Method:</h2>
             <div className="flex space-x-4">
-              
+              <label className="flex items-center space-x-2">
+                <input
+                  type="radio"
+                  name="paymentMethod"
+                  value="Cash"
+                  checked={paymentMethod === "Cash"}
+                  onChange={(e) => setPaymentMethod(e.target.value)}
+                  className="w-5 h-5"
+                />
+                <span>Cash Payment</span>
+              </label>
               <label className="flex items-center space-x-2">
                 <input
                   type="radio"
@@ -479,40 +327,18 @@ const CheckoutPage = () => {
             </div>
           </div>
 
-           {/* Stripe Card Element (for Card payment) */}
-                    {paymentMethod === "Card" && (
-                      <div className="mt-6">
-                        <h2 className="mb-2 text-xl font-bold text-orange-400">Card Details:</h2>
-                        <Elements stripe={stripePromise}>
-                          <CardPaymentForm 
-                            totalAmount={totalAmount}
-                            onPaymentComplete={handlePaymentComplete}
-                            disabled={!agreedToTerms}
-                          />
-                        </Elements>
-                        {isPaymentComplete && (
-                          <div className="mt-2 text-green-400">
-                            ✓ Payment complete
-                          </div>
-                        )}
-                      </div>
-                    )}
-          
-
-          {/* Order Description */}
           <div className="mt-6">
             <h2 className="mb-2 text-xl font-bold text-orange-400">Order Description:</h2>
-            <textarea
+            <input
+              type="text"
               name="orderDescription"
               value={formData.orderDescription}
               onChange={handleInputChange}
               placeholder="Enter order description (Ex: Don't add onions...)"
               className="w-full px-4 py-3 text-gray-900 bg-gray-200 rounded-lg placeholder-italic"
-              rows="2"
             />
           </div>
 
-          {/* Terms and Conditions Checkbox */}
           <div className="flex items-center mt-6 space-x-2">
             <input
               type="checkbox"
@@ -534,21 +360,18 @@ const CheckoutPage = () => {
               .
             </label>
           </div>
-          
-          {/* Submit Button (show only if using cash payment OR card payment is complete) */}
-          {(paymentMethod !== "Card" || isPaymentComplete) && (
-            <button
-              onClick={addOrder}
-              disabled={!agreedToTerms || cartItems.length === 0}
-              className={`w-full py-3 mt-6 text-lg font-bold text-white rounded-lg transition ${
-                agreedToTerms && cartItems.length > 0 
-                  ? "bg-orange-500 hover:bg-orange-600" 
-                  : "bg-gray-600 cursor-not-allowed"
-              }`}
-            >
-              Place Order
-            </button>
-          )}
+
+          <button
+            onClick={addOrder}
+            disabled={!agreedToTerms}
+            className={`w-full py-3 mt-6 text-lg font-bold text-white rounded-lg transition ${
+              agreedToTerms
+                ? "bg-orange-500 hover:bg-orange-600"
+                : "bg-gray-600 cursor-not-allowed"
+            }`}
+          >
+            Proceed to Checkout
+          </button>
         </div>
       </div>
     </div>
