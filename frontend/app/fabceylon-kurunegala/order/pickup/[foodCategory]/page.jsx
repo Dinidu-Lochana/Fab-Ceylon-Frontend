@@ -20,7 +20,7 @@ const getStars = (rating) => {
   // Add full stars
   for (let i = 0; i < fullStars; i++) {
     stars.push(
-      <div key={`full-${i}`} className="w-6 h-6">
+      <div key={`full-${i}`} className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6">
         <Image src={Rating_Star} alt="Full Star" width={24} height={24} />
       </div>
     );
@@ -29,7 +29,7 @@ const getStars = (rating) => {
   // Add fractional star based on the decimal value
   if (fractionalStar > 0) {
     stars.push(
-      <div key={`fractional-star`} className="relative w-6 h-6 overflow-hidden">
+      <div key={`fractional-star`} className="relative w-4 h-4 overflow-hidden sm:w-5 sm:h-5 md:w-6 md:h-6">
         {/* Full star in the background */}
         <Image src={Rating_Star} alt="Fractional Star" width={24} height={24} />
         {/* Overlay part based on fractional value */}
@@ -126,7 +126,7 @@ export default function KandyMenu({ params }) {
         </div>
 
         {/* Fullscreen Hero Section */}
-        <div className="relative w-full mt-10 overflow-hidden h-1/2">
+        <div className="relative w-full mt-10 overflow-hidden h-[50vh] sm:h-[60vh] md:h-[70vh] lg:h-1/2">
           <video
             src="/videos/heroVideo.mp4"
             autoPlay
@@ -137,24 +137,24 @@ export default function KandyMenu({ params }) {
           />
           <div className="absolute inset-0 z-10 bg-black/30" />
           <div className="relative z-20 flex flex-col items-center justify-center h-full px-4 text-center">
-            <h1 className="mb-6 font-serif text-5xl font-extrabold leading-tight tracking-wide text-transparent uppercase sm:text-6xl lg:text-7xl xl:text-8xl bg-gradient-to-r from-amber-800 via-orange-700 to-amber-700 bg-clip-text">
+            <h1 className="mb-4 font-serif text-3xl font-extrabold leading-tight tracking-wide text-transparent uppercase sm:mb-6 sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl bg-gradient-to-r from-amber-800 via-orange-700 to-amber-700 bg-clip-text">
               Choose <br />& <br />Enjoy...
             </h1>
-            <p className="max-w-2xl text-lg font-medium text-white sm:text-xl">
+            <p className="max-w-2xl px-4 text-sm font-medium text-white sm:text-base md:text-lg lg:text-xl">
               Discover the authentic flavors of Sri Lankan cuisine in our classic cafe atmosphere
             </p>
-            <div className="grid w-full max-w-md grid-cols-3 gap-4 mt-8">
-              <div className="p-3 text-center rounded-lg bg-white/80 backdrop-blur-sm">
-                <div className="text-2xl font-bold text-amber-700">50+</div>
-                <div className="text-sm text-gray-700">Menu Items</div>
+            <div className="grid w-full max-w-xs grid-cols-3 gap-2 px-4 mt-4 sm:max-w-md sm:gap-4 sm:mt-8">
+              <div className="p-2 text-center rounded-lg sm:p-3 bg-white/80 backdrop-blur-sm">
+                <div className="text-lg font-bold sm:text-xl md:text-2xl text-amber-700">50+</div>
+                <div className="text-xs text-gray-700 sm:text-sm">Menu Items</div>
               </div>
-              <div className="p-3 text-center rounded-lg bg-white/80 backdrop-blur-sm">
-                <div className="text-2xl font-bold text-amber-700">4.8★</div>
-                <div className="text-sm text-gray-700">Rating</div>
+              <div className="p-2 text-center rounded-lg sm:p-3 bg-white/80 backdrop-blur-sm">
+                <div className="text-lg font-bold sm:text-xl md:text-2xl text-amber-700">4.8★</div>
+                <div className="text-xs text-gray-700 sm:text-sm">Rating</div>
               </div>
-              <div className="p-3 text-center rounded-lg bg-white/80 backdrop-blur-sm">
-                <div className="text-2xl font-bold text-amber-700">15min</div>
-                <div className="text-sm text-gray-700">Prep Time</div>
+              <div className="p-2 text-center rounded-lg sm:p-3 bg-white/80 backdrop-blur-sm">
+                <div className="text-lg font-bold sm:text-xl md:text-2xl text-amber-700">15min</div>
+                <div className="text-xs text-gray-700 sm:text-sm">Prep Time</div>
               </div>
             </div>
           </div>
@@ -162,113 +162,121 @@ export default function KandyMenu({ params }) {
         </div>
 
       {/* Food Category and List */}
-        <div className="relative bg-black">
+        <div className="relative px-4 bg-black sm:px-6 lg:px-8">
           
-          <div className="text-[#eb650f] text-7xl font-bold font-['Poppins'] bg-black text-center">
+          <div className="text-[#eb650f] text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold font-['Poppins'] bg-black text-center py-8">
             <h1>{foodCategory.replace(/-/g, ' ').toUpperCase()}</h1>
 
-          <div className="text-white text-3xl font-bold font-['Poppins'] mt-10">
+          <div className="text-white text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold font-['Poppins'] mt-4 sm:mt-6 lg:mt-10">
             It is a good time for the great taste of {foodCategory.replace(/-/g, ' ')}
           </div>
         </div>
 
-        <div className="flex flex-row items-start justify-center gap-10 mt-10">
+        <div className="flex flex-col items-start justify-center gap-6 pb-10 mt-6 lg:flex-row lg:gap-10 lg:mt-10">
           {/* Foods */}
-          <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
-            {foods.map((food) => (
-              <div
-                key={food._id}
-                className="w-[320px] h-[780px] px-[43px] pt-[25.50px] pb-[38.50px] bg-[#110c0c] rounded-[30px] flex flex-col items-start gap-5"
-              >
-                <div className="w-[200px] h-[200px] overflow-hidden rounded-full border-4 border-white mx-auto">
-                  <img
-                    src={`${process.env.NEXT_PUBLIC_BACKEND_URL_ADDRESS}/${food.image.replace(
-                      "\\",
-                      "/"
-                    )}`}
-                    alt={food.foodName}
-                    className="object-cover w-full h-full"
-                  />
-                </div>
-
-                <div className="text-white text-4xl font-bold font-['Poppins'] mt-5">
-                  {food.foodName
-                    .split(' ')
-                    .map((word) =>
-                      word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
-                    )
-                    .join(' ')}
-                </div>
-
-                {/* Star Rating and Total Ratings */}
-                <div className="flex items-center mt-4 text-white">
-                  <div className="flex gap-1">{getStars(food.averageRating)}</div>
-                  <span className="ml-2 text-sm font-['Poppins']">
-                    <span className="text-lg font-bold">{food.averageRating.toFixed(1)}</span> 
-                    <span className="text-xs"> ({food.totalRatings})</span>
-                  </span>
-                </div>
-
-                <div className="text-white text-xl font font-['Poppins'] mt-5">
-                  {food.description}
-                </div>
-                <div className="text-[#eb650f] text-2xl font-bold font-['Poppins'] mt-6">
-                  LKR {food.price}
-                </div>
+          <div className="w-full lg:flex-1">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3 sm:gap-6 lg:gap-8 xl:gap-10 justify-items-center">
+              {foods.map((food) => (
                 <div
-                  onClick={() => handleAddToCart(food)}
-                  role="button"
-                  tabIndex={0}
-                  className="h-[40px] px-[23px] py-[9px] bg-[#eb650f] rounded-[20px] flex justify-center items-center mt-8 cursor-pointer"
+                  key={food._id}
+                  className="w-full max-w-[320px] min-h-[600px] sm:min-h-[700px] lg:min-h-[780px] px-6 sm:px-8 lg:px-[43px] pt-4 sm:pt-6 lg:pt-[25.50px] pb-6 sm:pb-8 lg:pb-[38.50px] bg-[#110c0c] rounded-[20px] sm:rounded-[25px] lg:rounded-[30px] flex flex-col items-start gap-3 sm:gap-4 lg:gap-5"
                 >
-                  <div className="text-black text-[20px] font-bold font-['Poppins']">
-                    ADD
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Cart */}
-          <div className="w-[397px] h-[780px] px-5 py-10 bg-[#110d0d] rounded-[20px] border-4 border-white flex flex-col items-start">
-            <div className="w-full text-[#eb650f] text-5xl font-bold font-['Poppins'] mb-5">
-              Your Cart
-            </div>
-            <div className="w-full flex flex-col gap-4 overflow-y-auto h-[360px]">
-              {cartItems.map((item) => (
-                <div
-                  key={item._id}
-                  className="w-full flex justify-between items-center text-white text-xl font-bold font-['Poppins']"
-                >
-                  <span>{item.foodName}</span>
-                  <div className="flex items-center gap-2">
-                    <button
-                      onClick={() => handleDecreaseQuantity(item._id)}
-                      className="px-2 py-1 font-bold text-white"
-                    >
-                      -
-                    </button>
-                    <span>{item.quantity}</span>
-                    <button
-                      onClick={() => handleIncreaseQuantity(item._id)}
-                      className="px-2 py-1 font-bold text-white"
-                    >
-                      +
-                    </button>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span>Rs. {item.price * item.quantity}</span>
-                    <Image
-                      src={delete_icon}
-                      alt="Delete"
-                      className="w-6 h-6 cursor-pointer"
-                      onClick={() => handleDeleteFromCart(item._id)}
+                  <div className="w-[140px] h-[140px] sm:w-[160px] sm:h-[160px] lg:w-[200px] lg:h-[200px] overflow-hidden rounded-full border-2 sm:border-3 lg:border-4 border-white mx-auto">
+                    <img
+                      src={`${process.env.NEXT_PUBLIC_BACKEND_URL_ADDRESS}/${food.image.replace(
+                        "\\",
+                        "/"
+                      )}`}
+                      alt={food.foodName}
+                      className="object-cover w-full h-full"
                     />
+                  </div>
+
+                  <div className="text-white text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold font-['Poppins'] mt-2 sm:mt-3 lg:mt-5 text-center sm:text-left w-full">
+                    {food.foodName
+                      .split(' ')
+                      .map((word) =>
+                        word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+                      )
+                      .join(' ')}
+                  </div>
+
+                  {/* Star Rating and Total Ratings */}
+                  <div className="flex items-center justify-center w-full mt-2 text-white sm:mt-3 lg:mt-4 sm:justify-start">
+                    <div className="flex gap-1">{getStars(food.averageRating)}</div>
+                    <span className="ml-2 text-xs sm:text-sm font-['Poppins']">
+                      <span className="text-sm font-bold sm:text-base lg:text-lg">{food.averageRating.toFixed(1)}</span> 
+                      <span className="text-xs"> ({food.totalRatings})</span>
+                    </span>
+                  </div>
+
+                  <div className="text-white text-sm sm:text-base lg:text-lg xl:text-xl font font-['Poppins'] mt-2 sm:mt-3 lg:mt-5 text-center sm:text-left">
+                    {food.description}
+                  </div>
+                  <div className="text-[#eb650f] text-lg sm:text-xl lg:text-2xl font-bold font-['Poppins'] mt-3 sm:mt-4 lg:mt-6 text-center sm:text-left w-full">
+                    LKR {food.price}
+                  </div>
+                  <div
+                    onClick={() => handleAddToCart(food)}
+                    role="button"
+                    tabIndex={0}
+                    className="h-[35px] sm:h-[40px] px-4 sm:px-6 lg:px-[23px] py-2 sm:py-[9px] bg-[#eb650f] rounded-[15px] sm:rounded-[20px] flex justify-center items-center mt-4 sm:mt-6 lg:mt-8 cursor-pointer w-full sm:w-auto mx-auto sm:mx-0 hover:bg-[#d4550d] transition-colors"
+                  >
+                    <div className="text-black text-base sm:text-lg lg:text-[20px] font-bold font-['Poppins']">
+                      ADD
+                    </div>
                   </div>
                 </div>
               ))}
             </div>
-            <div className="w-full text-white text-xl font-bold font-['Poppins'] mt-5">
+          </div>
+
+          {/* Cart */}
+          <div className="w-full lg:w-[397px] lg:min-w-[350px] xl:w-[397px] min-h-[400px] lg:min-h-[780px] px-4 sm:px-5 py-6 sm:py-8 lg:py-10 bg-[#110d0d] rounded-[15px] sm:rounded-[20px] border-2 sm:border-3 lg:border-4 border-white flex flex-col">
+            <div className="w-full text-[#eb650f] text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold font-['Poppins'] mb-4 sm:mb-5 text-center lg:text-left">
+              Your Cart
+            </div>
+            <div className="w-full flex flex-col gap-3 sm:gap-4 overflow-y-auto h-[200px] sm:h-[250px] lg:h-[360px] scrollbar-thin scrollbar-thumb-[#eb650f] scrollbar-track-gray-800">
+              {cartItems.length === 0 ? (
+                <div className="text-white text-center text-sm sm:text-base lg:text-lg font-['Poppins'] mt-4">
+                  Your cart is empty
+                </div>
+              ) : (
+                cartItems.map((item) => (
+                  <div
+                    key={item._id}
+                    className="w-full flex flex-col sm:flex-row justify-between items-start sm:items-center text-white text-sm sm:text-base lg:text-lg xl:text-xl font-bold font-['Poppins'] gap-2 sm:gap-0 p-2 bg-black/30 rounded-lg"
+                  >
+                    <span className="flex-1 text-xs sm:text-sm lg:text-base xl:text-lg">{item.foodName}</span>
+                    <div className="flex items-center gap-2 sm:gap-3">
+                      <div className="flex items-center gap-1 sm:gap-2 bg-[#eb650f] rounded-md px-2 py-1">
+                        <button
+                          onClick={() => handleDecreaseQuantity(item._id)}
+                          className="px-1 text-sm font-bold text-black rounded sm:text-base hover:bg-black/20"
+                        >
+                          -
+                        </button>
+                        <span className="text-black text-sm sm:text-base lg:text-lg font-bold min-w-[20px] text-center">{item.quantity}</span>
+                        <button
+                          onClick={() => handleIncreaseQuantity(item._id)}
+                          className="px-1 text-sm font-bold text-black rounded sm:text-base hover:bg-black/20"
+                        >
+                          +
+                        </button>
+                      </div>
+                      <span className="text-[#eb650f] text-sm sm:text-base lg:text-lg font-bold">Rs. {item.price * item.quantity}</span>
+                      <Image
+                        src={delete_icon}
+                        alt="Delete"
+                        className="w-4 h-4 transition-opacity cursor-pointer sm:w-5 sm:h-5 lg:w-6 lg:h-6 hover:opacity-70"
+                        onClick={() => handleDeleteFromCart(item._id)}
+                      />
+                    </div>
+                  </div>
+                ))
+              )}
+            </div>
+            <div className="w-full text-white text-lg sm:text-xl font-bold font-['Poppins'] mt-4 sm:mt-5 text-center lg:text-left border-t border-[#eb650f] pt-4">
               Total: Rs.{' '}
               {cartItems.reduce(
                 (total, item) => total + item.price * item.quantity,
@@ -277,9 +285,9 @@ export default function KandyMenu({ params }) {
               .00
             </div>
             {/* Checkout Button */}
-            <div className="flex justify-center w-full mt-5">
+            <div className="flex justify-center w-full mt-4 sm:mt-5">
               <button
-                className="w-[200px] h-[50px] bg-[#eb650f] text-white text-xl font-bold font-['Poppins'] rounded-[10px] hover:bg-[#d4550d] transition-colors"
+                className="w-full h-[45px] sm:h-[50px] bg-[#eb650f] text-white text-lg sm:text-xl font-bold font-['Poppins'] rounded-[8px] sm:rounded-[10px] hover:bg-[#d4550d] transition-colors"
               >
                 <Link href="/fabceylon-kurunegala/order/pickup/checkout">
                   Checkout
