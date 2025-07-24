@@ -120,31 +120,33 @@ export default function CafeNuwara() {
         </div>
         {/* Cart Section */}
         <div className="w-[370px] h-[700px] px-5 py-10 bg-[#e1d6c1] rounded-[20px] border-4 border-white flex flex-col items-start">
-        <Image 
-  src={CartTop} 
-  alt="Placeholder" 
-  width={284} 
-  height={160} 
-  className="w-[250px] h-40 -mt-20 ml-10" 
-/>
+          <Image
+            src={CartTop}
+            alt="Placeholder"
+            width={284}
+            height={160}
+            className="w-[250px] h-40 -mt-20 ml-10"
+          />
           <div className="w-full text-black text-4xl font-bold font-['Poppins'] mb-5 ml-24 -mt-10">
             Your Cart
           </div>
-          <div className="   flex justify-center items-center">
-          <Image 
-  src={Cafe_Nuwara_logo}
-  alt="Placeholder Image" 
-  width={360} 
-  height={362} 
-  className="w-[360px] h-[362px opacity-25 mt-10" 
-/>
+          <div className="flex justify-center items-center">
+            <Image
+              src={Cafe_Nuwara_logo}
+              alt="Placeholder Image"
+              width={360}
+              height={362}
+              className="w-[360px] h-[362px] opacity-25 mt-10"
+            />
           </div>
           <div className="w-full text-black text-xl font-bold font-['Poppins'] mt-5">
             Sub Total Rs. 0.00
           </div>
-          <div class="w-[300px] h-[72px] px-[21px] py-5 bg-[#caa767] rounded-[20px] justify-center items-center gap-2.5 inline-flex mt-10">
-    <div class="text-black text-xl font-bold font-['Poppins']">Check OUt                Rs. 0.00</div>
-</div>
+          <div className="w-[300px] h-[72px] px-[21px] py-5 bg-[#caa767] rounded-[20px] justify-center items-center gap-2.5 inline-flex mt-10">
+            <div className="text-black text-xl font-bold font-['Poppins']">
+              Check OUt Rs. 0.00
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -1,323 +1,197 @@
 'use client';
 import Image from 'next/image';
 import Home_back_image from '../components/Assets/Home_back_image.png';
-import { NavBar } from '@/components/NavBar';
+import NavBar from '@/components/NavBar';
 import Hero_bugger from "@/components/Assets/Hero_bugger.png";
 import Cafe_Nuwara_logo from "@/components/Assets/Cafe_Nuwara_logo.png";
 import Fabceylon_logo from "@/components/Assets/Fabceylon_logo.png";
 import Fabceylon_Grand_logo from "@/components/Assets/Fabceylon_Grand_logo.png";
-import Back_image_2 from "@/components/Assets/Back_image_2.png";
-import Side_back_image from "@/components/Assets/Side_back_image.png";
-
-import { Footer } from '@/components/Footer';
-import { HeroHighlight, HeroHighlightDemo } from '@/components/HeroHighlight';
-import '@/app/CSS/HomePage.css'
 import Fab_logo_inner from '@/components/Assets/Fab_logo_inner.png';
 import Fab_logo_outer from "@/components/Assets/Fab_logo_outer.png";
-import Back_image_middle from "@/components/Assets/Back_image_middle.png"
+import Back_image_middle from "@/components/Assets/Back_image_middle.png";
 import { InfiniteMovingCardsDemo } from '@/components/InfiniteMovingCardDemo';
-
+import '@/app/CSS/HomePage.css';
 
 export default function Home() {
-  
   return (
-    <div className="relative h-screen bg-black ">
-      
-      <Image 
-      className="sms:w-full sms:h-10 mds:w-auto mds:h-auto"
-        src={Home_back_image}
-        layout="fill"
-        objectFit="cover"
-        alt="Background Image"
-      />
+    <div className="relative min-h-screen bg-black overflow-x-hidden">
+      {/* Background Image */}
+      <div className="absolute inset-0 -z-10 ">
+        <Image
+          src={Home_back_image}
+          fill
+          style={{ objectFit: 'cover' }}
+          alt="Background Image"
+          priority
+        />
+      </div>
       <NavBar />
 
       {/* Hero Section */}
-      <div className="relative flex items-center h-screen grid-cols-2 gap-2 text-left text-white justify-left -mt-28 sms:ml-64 ">
-        <div style={{ marginLeft: '100px' }}>
-          <h1 className="p-20 font-bold tracking-wider text-7xl font-poppins ml-100 mds:text-5xl sms:text-xl sms:ml-10 sms:-mt-96 ">
+      <section className="flex flex-col-reverse md:flex-row items-center justify-between px-4 md:px-20 pt-24 md:pt-32 pb-10 md:pb-0 text-white">
+        <div className="w-full md:w-1/2 flex flex-col items-start">
+          <h1 className="font-bold tracking-wider text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-poppins mb-6">
             CHOOSE THE <br />
-            <span className="text-orange-500 ">BEST</span> AMONG <br />
+            <span className="text-orange-500">BEST</span> AMONG <br />
             BEST <span className="text-orange-500">FOODS...</span>
           </h1>
         </div>
-
-        <div className="right-0 flex items-center justify-between sms:-ml-16 sms:-mt-80">
+        <div className="w-full md:w-1/2 flex justify-center md:justify-end mb-8 md:mb-0">
           <Image
-            className="right-0 flex items-center justify-between sms:-mt-48
-           
-               lgs:w-80 lgs:h-80
-               mds:w-65 mds:h-65 
-               sms:w-32 sms:h-32 "
-            
+            className="w-40 h-40 sm:w-56 sm:h-56 md:w-72 md:h-72 lg:w-96 lg:h-96"
             src={Hero_bugger}
             alt="Burger image"
           />
         </div>
-      </div>
+      </section>
 
       {/* Logos Grid Section */}
-      <div className="relative grid grid-cols-4 gap-6 m-20 p-12 h-[30rem] bg-[#111010] rounded-[60px] 
-      mx-32 px-12 animate-fadeIn mds-h-[26rem] sms:h-[20rem] sms:ml-60 sms:gap-28 ">
-  <div className="relative">
-    <article className="delay-100 animate-slideUp">
-      <Image 
-        className="absolute transition-transform duration-300 transform hover:scale-105 
-        mds:h-40 w-40 sms:h-20 sms:w-20 sms:ml-12 xxs:ml-28  "
-        style={{ top: '30px', left: '30px' }}
-        src={Cafe_Nuwara_logo}
-        alt="Cafe Nuwara Logo"
-        height={200}
-        width={200}
-      />
-      <a 
-        className="absolute text-3xl font-bold text-white transition-transform duration-300 font-poppins 
-        hover:scale-105 mds:text-2xl sms:text-[12px] xxs:ml-20
-         top-[250px] left-[40px] 
-         sms:top-[130px] sms:left-[80px]"
-       
-        
-      >
-        Cafe Nuwara
-      </a>
-    </article>
-  </div>
-
-  <div className="relative">
-    <article className="delay-200 animate-slideUp">
-      <Image 
-        className="absolute transition-transform duration-300 transform hover:scale-105 
-        mds:h-40 w-40 sms:h-20 sms:w-20 sms:-ml-10 xxs:ml-1"
-        style={{ top: '30px', left: '40px' }}
-        src={Fabceylon_logo}
-        alt="Fab Ceylon Kandy Logo"
-        height={200}
-        width={200}
-      />
-      <a 
-        className="absolute text-3xl font-bold text-white transition-transform duration-300 font-poppins hover:scale-105 mds:text-2xl sms:text-[12px]
-         top-[250px] left-[40px] 
-         sms:top-[130px] sms:left-[10px] xxs:ml-9"
-        style={{ }}
-      >
-        Fab Ceylon
-      </a>
-      <a 
-        className="absolute text-3xl font-bold text-white transition-transform duration-300 font-poppins hover:scale-105 mds:text-2xl 
-        sms:text-[12px]
-        top-[290px] left-[60px]  sms:top-[145px] sms:left-[18px] xxs:ml-9"
-        
-      >
-        Kandy
-      </a>
-    </article>
-  </div>
-
-  <div className="relative">
-    <article className="delay-300 animate-slideUp">
-      <Image 
-        className="absolute transition-transform duration-300 transform hover:scale-105 
-        mds:h-40 w-40 sms:h-20 sms:w-20
-        sms:-ml-32"
-        style={{ top: '30px', left: '60px' }}
-        src={Fabceylon_Grand_logo}
-        alt="Fab Ceylon Grand Logo"
-        height={200}
-        width={200}
-      />
-      <a 
-        className="absolute text-3xl font-bold text-white transition-transform duration-300 font-poppins hover:scale-105 mds:text-2xl sms:text-[12px]
-         top-[250px] left-[80px]  sms:top-[130px] sms:left-[-60px]"
-        
-      >
-        Fab Ceylon
-      </a>
-      <a 
-        className="absolute text-3xl font-bold text-white transition-transform duration-300 font-poppins hover:scale-105 mds:text-2xl sms:text-[12px]
-         top-[290px] left-[100px]  sms:top-[145px] sms:left-[-60px]"
-       
-      >
-        Grand
-      </a>
-    </article>
-  </div>
-
-  <div className="relative">
-    <article className="animate-slideUp delay-400">
-      <Image 
-        className="absolute transition-transform duration-300 transform hover:scale-105 
-        mds:h-40 w-40 sms:h-20 sms:w-20 sms:-ml-52 xxs:"
-        style={{ top: '30px', left: '60px' }}
-        src={Fabceylon_logo}
-        alt="Fab Ceylon Kurunegala Logo"
-        height={200}
-        width={200}
-      />
-      <a 
-        className="absolute text-3xl font-bold text-white transition-transform duration-300 font-poppins hover:scale-105 mds:text-2xl sms:text-[12px] 
-        top-[250px] left-[70px]  sms:top-[130px] sms:left-[-160px]"
-        
-      >
-        Fab Ceylon Kurunegala
-      </a>
-    </article>
-  </div>
-</div>
-
-
+      <section className="grid grid-cols-2 md:grid-cols-4 gap-6 mx-4 md:mx-20 my-8 p-4 md:p-12 bg-[#111010] rounded-3xl md:rounded-[60px]">
+        {/* Cafe Nuwara */}
+        <div className="relative flex flex-col items-center">
+          <Image
+            className="transition-transform duration-300 transform hover:scale-105 w-20 h-20 sm:w-28 sm:h-28 md:w-40 md:h-40"
+            src={Cafe_Nuwara_logo}
+            alt="Cafe Nuwara Logo"
+            width={160}
+            height={160}
+          />
+          <span className="mt-4 text-base sm:text-lg md:text-2xl font-bold text-white font-poppins">Cafe Nuwara</span>
+        </div>
+        {/* Fab Ceylon Kandy */}
+        <div className="relative flex flex-col items-center">
+          <Image
+            className="transition-transform duration-300 transform hover:scale-105 w-20 h-20 sm:w-28 sm:h-28 md:w-40 md:h-40"
+            src={Fabceylon_logo}
+            alt="Fab Ceylon Kandy Logo"
+            width={160}
+            height={160}
+          />
+          <span className="mt-4 text-base sm:text-lg md:text-2xl font-bold text-white font-poppins">Fab Ceylon</span>
+          <span className="text-base sm:text-lg md:text-2xl font-bold text-white font-poppins">Kandy</span>
+        </div>
+        {/* Fab Ceylon Grand */}
+        <div className="relative flex flex-col items-center">
+          <Image
+            className="transition-transform duration-300 transform hover:scale-105 w-20 h-20 sm:w-28 sm:h-28 md:w-40 md:h-40"
+            src={Fabceylon_Grand_logo}
+            alt="Fab Ceylon Grand Logo"
+            width={160}
+            height={160}
+          />
+          <span className="mt-4 text-base sm:text-lg md:text-2xl font-bold text-white font-poppins">Fab Ceylon</span>
+          <span className="text-base sm:text-lg md:text-2xl font-bold text-white font-poppins">Grand</span>
+        </div>
+        {/* Fab Ceylon Kurunegala */}
+        <div className="relative flex flex-col items-center">
+          <Image
+            className="transition-transform duration-300 transform hover:scale-105 w-20 h-20 sm:w-28 sm:h-28 md:w-40 md:h-40"
+            src={Fabceylon_logo}
+            alt="Fab Ceylon Kurunegala Logo"
+            width={160}
+            height={160}
+          />
+          <span className="mt-4 text-base sm:text-lg md:text-2xl font-bold text-white font-poppins text-center">Fab Ceylon Kurunegala</span>
+        </div>
+      </section>
 
       {/* Background Image Section */}
-      <div className="relative flex items-center justify-center h-2/3  mds:h-1/3 mds:ml-36 sms:ml-56">
-        <Image 
-          src={Back_image_middle}
-          className='mds:w-1/5 '
-          layout="fill"
-          objectFit="cover"
-          alt="Background Image"
-        /> 
-        <div className="absolute z-10 text-white ml-[400px] mr-20 mds:ml-[200px]">
-        <p className="items-center justify-between p-20 text-4xl font-bold tracking-wider opacity-100 font-poppins ml-30 mds:text-2xl sms:text-xl">
-          Fab Ceylon Cafe and Restaurant offers a unique culinary experience
-          with authentic Sri Lankan cuisine. The cozy restaurant features 
-          traditional recipes and fresh ingredients, serving flavorful curries,
-          aromatic rice dishes, and delectable desserts. Guests enjoy warm hospitality in
-        </p>
-
+      <section className="relative flex flex-col md:flex-row items-center justify-center min-h-[250px] md:min-h-[350px] lg:min-h-[400px] my-8">
+        <div className="relative w-full md:w-1/2 h-40 md:h-72 lg:h-96">
+          <Image
+            src={Back_image_middle}
+            fill
+            style={{ objectFit: 'cover', borderRadius: '1.5rem' }}
+            alt="Background Image"
+            className="rounded-2xl"
+          />
         </div>
-         
-      </div>
+        <div className="w-full md:w-1/2 px-4 md:px-12 mt-4 md:mt-0">
+          <p className="text-white text-lg sm:text-xl md:text-2xl font-bold font-poppins">
+            Fab Ceylon Cafe and Restaurant offers a unique culinary experience with authentic Sri Lankan cuisine. The cozy restaurant features traditional recipes and fresh ingredients, serving flavorful curries, aromatic rice dishes, and delectable desserts. Guests enjoy warm hospitality in a modern setting.
+          </p>
+        </div>
+      </section>
 
       {/* Title Section */}
-      <div>
-        <div style={{ paddingTop: '120px' }}></div>
-        <div className='font-serif text-4xl font-bold text-center'>
-          <h1 className="headline">
+      <div className="py-10">
+        <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-center headline">
           F A B C E Y L O N
-          </h1>
-          </div>
+        </h1>
       </div>
 
-
-    {/* Cafe Nuwara Section */}
-<div className="relative flex items-center text-left text-white mt-36 justify-left ">
-  <Image 
-    className="flex items-center justify-between h-80 w-80 ml-28 zoom-animation mds:h-[200px] mds:ml-40"
-    src={Cafe_Nuwara_logo}
-    height={600}
-    width={600}
-    alt="Cafe Nuwara Logo"
-  />
-  <article>
-    <h1 className="font-serif text-4xl font-bold text-center mds:text-3xl">
-      CAFE NUWARA
-    </h1>
-    <p className="p-10 ml-48 mr-20 font-serif text-2xl font-bold tracking-wider mds:text-xl mds:ml-5 mds:mr-5 mds:break-words">
-      Cafe Nuwara is a cozy, charming spot that offers a delightful blend 
-      of rich coffee and delicious bites in a warm, inviting atmosphere. 
-      Whether you're looking to catch up with friends or enjoy some quiet 
-      time, this cafe provides the perfect setting with its comfortable 
-      seating and friendly service. A hidden gem for coffee lovers and 
-      food enthusiasts alike.
-    </p>
-  </article>
-</div>
-
-      {/* Fab Ceylon Kandy Section */}
-      <div className="relative flex items-center h-full m-8 -mt-20 text-left text-white h-2/3 justify-left ">
+      {/* Cafe Nuwara Section */}
+      <section className="flex flex-col md:flex-row items-center text-white my-12 px-4 md:px-20">
+        <Image
+          className="w-40 h-40 md:w-60 md:h-60 mb-6 md:mb-0 md:mr-12 rounded-xl"
+          src={Cafe_Nuwara_logo}
+          width={240}
+          height={240}
+          alt="Cafe Nuwara Logo"
+        />
         <article>
-          <h1 className="text-4xl text-center font-serif font-bold mb-10 mr-[570px]">
-            FAB CEYLON KANDY
-          </h1>
-          <p className="text-2xl font-serif font-bold mr-28 ml-28 tracking-wider mr-[600px]">
-            Cafe Nuwara is a cozy, charming spot that offers a delightful blend 
-            of rich coffee and delicious bites in a warm, inviting atmosphere. 
-            Whether you're looking to catch up with friends or enjoy some quiet 
-            time, this cafe provides the perfect setting with its comfortable 
-            seating and friendly service. A hidden gem for coffee lovers and 
-            food enthusiasts alike.
+          <h2 className="font-serif text-xl sm:text-2xl md:text-3xl font-bold text-center mb-4">CAFE NUWARA</h2>
+          <p className="text-base sm:text-lg md:text-xl font-bold tracking-wider">
+            Cafe Nuwara is a cozy, charming spot that offers a delightful blend of rich coffee and delicious bites in a warm, inviting atmosphere. Whether you're looking to catch up with friends or enjoy some quiet time, this cafe provides the perfect setting with its comfortable seating and friendly service. A hidden gem for coffee lovers and food enthusiasts alike.
           </p>
         </article>
-        <Image 
-          className="absolute top-0 left-0 h-80 w-80 rotate-with-pause-counterclockwise"
-          style={{ top: '180px', left: '1030px' }}
+      </section>
+
+      {/* Fab Ceylon Kandy Section */}
+      <section className="flex flex-col md:flex-row-reverse items-center text-white my-12 px-4 md:px-20">
+        <Image
+          className="w-40 h-40 md:w-60 md:h-60 mb-6 md:mb-0 md:ml-12 rounded-xl"
           src={Fab_logo_inner}
+          width={240}
+          height={240}
           alt="Fab Ceylon Kandy Logo"
         />
-        <Image 
-          className="absolute top-0 left-0 h-80 w-80 rotate-with-pause-clockwise"
-          src={Fab_logo_outer}
-          alt="Fab Ceylon Kandy Logo"
-          style={{ top: '180px', left: '1030px',animationDelay: '0.5s' }}
-        />
-      </div>
+        <article>
+          <h2 className="font-serif text-xl sm:text-2xl md:text-3xl font-bold text-center mb-4">FAB CEYLON KANDY</h2>
+          <p className="text-base sm:text-lg md:text-xl font-bold tracking-wider">
+            Cafe Nuwara is a cozy, charming spot that offers a delightful blend of rich coffee and delicious bites in a warm, inviting atmosphere. Whether you're looking to catch up with friends or enjoy some quiet time, this cafe provides the perfect setting with its comfortable seating and friendly service. A hidden gem for coffee lovers and food enthusiasts alike.
+          </p>
+        </article>
+      </section>
 
       {/* Fab Ceylon Grand Section */}
-      <div className="relative flex items-center m-8 -mt-12 text-left text-white h-2/3 justify-left ">
-        <Image 
-          className="flex items-center justify-between ml-20 -mt-12 h-80 w-80 zoom-animation"
+      <section className="flex flex-col md:flex-row items-center text-white my-12 px-4 md:px-20">
+        <Image
+          className="w-40 h-40 md:w-60 md:h-60 mb-6 md:mb-0 md:mr-12 rounded-xl"
           src={Fabceylon_Grand_logo}
+          width={240}
+          height={240}
           alt="Fab Ceylon Grand Logo"
         />
         <article>
-          <h1 className="mt-16 font-serif text-4xl font-bold text-center">
-            FAB CEYLON GRAND
-          </h1>
-          <p className="p-10 mb-40 ml-48 font-serif text-2xl font-bold tracking-wider">
-          Fab Ceylon Grand is where culinary elegance meets vibrant Sri Lankan 
-          hospitality. Our upscale dining experience celebrates both the richness 
-          of traditional Sri Lankan cuisine and the allure of global flavors, all 
-          crafted with the finest ingredients. At Fab Ceylon Grand, we strive to create 
-          a warm, welcoming atmosphere that suits everything from intimate gatherings to 
-          larger celebrations. Our chefs’ specialties, including gourmet renditions of local 
-          classics, are complemented by an array of signature drinks and desserts, ensuring 
-          every visit is memorable. Step into Fab Ceylon Grand and enjoy a truly elevated dining journey.
+          <h2 className="font-serif text-xl sm:text-2xl md:text-3xl font-bold text-center mb-4">FAB CEYLON GRAND</h2>
+          <p className="text-base sm:text-lg md:text-xl font-bold tracking-wider">
+            Fab Ceylon Grand is where culinary elegance meets vibrant Sri Lankan hospitality. Our upscale dining experience celebrates both the richness of traditional Sri Lankan cuisine and the allure of global flavors, all crafted with the finest ingredients. At Fab Ceylon Grand, we strive to create a warm, welcoming atmosphere that suits everything from intimate gatherings to larger celebrations. Our chefs’ specialties, including gourmet renditions of local classics, are complemented by an array of signature drinks and desserts, ensuring every visit is memorable. Step into Fab Ceylon Grand and enjoy a truly elevated dining journey.
           </p>
         </article>
-      </div>
+      </section>
 
       {/* Fab Ceylon Kurunegala Section */}
-      <div className="relative flex items-center h-full m-8 -mt-20 text-left text-white h-2/3 justify-left">
-        <article className=" slide-in-left">
-          <h1 className="text-4xl text-center font-serif font-bold mb-10 mr-[570px]">
-            FAB CEYLON KURUNEGALA
-          </h1>
-          <p className="text-2xl font-serif font-bold mr-28 ml-28 tracking-wider mr-[600px] ">
-          Located in the heart of Kurunegala, Fab Ceylon offers a unique blend
-          of Sri Lankan flavors with a modern twist. Our welcoming ambiance, 
-          paired with a wide variety of authentic Sri Lankan and international dishes, 
-          provides an ideal setting for friends, families, and food enthusiasts alike. 
-          Known for our signature offerings, such as the Biriyani Bucket and the popular 
-          Fab Monster Boat, we are passionate about delivering not only delicious food but 
-          a memorable dining experience. Whether you're here for a quick bite or a leisurely 
-          meal, Fab Ceylon Kurunegala promises quality, flavor, and exceptional service.
+      <section className="flex flex-col md:flex-row-reverse items-center text-white my-12 px-4 md:px-20">
+        <Image
+          className="w-40 h-40 md:w-60 md:h-60 mb-6 md:mb-0 md:ml-12 rounded-xl"
+          src={Fab_logo_inner}
+          width={240}
+          height={240}
+          alt="Fab Ceylon Kurunegala Logo"
+        />
+        <article>
+          <h2 className="font-serif text-xl sm:text-2xl md:text-3xl font-bold text-center mb-4">FAB CEYLON KURUNEGALA</h2>
+          <p className="text-base sm:text-lg md:text-xl font-bold tracking-wider">
+            Located in the heart of Kurunegala, Fab Ceylon offers a unique blend of Sri Lankan flavors with a modern twist. Our welcoming ambiance, paired with a wide variety of authentic Sri Lankan and international dishes, provides an ideal setting for friends, families, and food enthusiasts alike. Known for our signature offerings, such as the Biriyani Bucket and the popular Fab Monster Boat, we are passionate about delivering not only delicious food but a memorable dining experience. Whether you're here for a quick bite or a leisurely meal, Fab Ceylon Kurunegala promises quality, flavor, and exceptional service.
           </p>
         </article>
-        <Image 
-          className="absolute top-0 left-0 h-80 w-80 rotate-with-pause-clockwise"
-          style={{ top: '190px', left: '1030px' }}
-          src={Fab_logo_inner}
-          alt="Fab Ceylon Kandy Logo"
-        />
-        <Image 
-          className="absolute top-0 left-0 h-80 w-80 rotate-with-pause-counterclockwise"
-          src={Fab_logo_outer}
-          alt="Fab Ceylon Kandy Logo"
-          style={{ top: '190px', left: '1030px' }}
-        />
-        
-      </div>
-      
-      <div className='-mt-60'>
-        <InfiniteMovingCardsDemo />
-        
-      </div>
+      </section>
 
+      {/* Cards Demo */}
+      <div className="my-12">
+        <InfiniteMovingCardsDemo />
+      </div>
     </div>
-    
   );
 }
-
-
-
-
-
