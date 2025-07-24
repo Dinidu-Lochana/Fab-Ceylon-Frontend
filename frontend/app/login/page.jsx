@@ -1,4 +1,4 @@
-'use client'; // Required for client-side rendering in Next.js
+'use client';
 
 import React, { useState } from 'react';
 import Image from 'next/image';
@@ -6,6 +6,8 @@ import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Eye, EyeOff } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 import Fabceylon_PVT from '@/components/Assets/Fabceylon_PVT.png';
 import user_icon from '@/components/Assets/User_Icon_login.png';
@@ -18,6 +20,8 @@ const LoginCustomer = () => {
     contactNumber: '',
     password: '',
   });
+
+  const [showPassword, setShowPassword] = useState(false);
 
   const changeHandler = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -44,72 +48,127 @@ const LoginCustomer = () => {
 
   return (
     <div
-      className="w-full h-screen bg-[#ded2b7] pt-[100px] bg-cover bg-center"
+      className="min-h-screen w-full bg-cover bg-center flex items-center justify-center relative"
       style={{ backgroundImage: `url(${background_image.src})` }}
     >
-      {/* Responsive Container */}
-      <div className="w-[90%] sm:w-[400px] h-auto sm:h-[500px] bg-[#FFFDF7] mx-auto p-[20px] sm:px-[60px] rounded-[30px] shadow-lg">
-        <Image
-          className="mt-1 h-[20vh] w-[150px] sm:w-[200px] mx-auto"
-          src={Fabceylon_PVT}
-          alt="Fab Ceylon Logo"
-          width={200}
-          height={100}
-        />
-        <h1 className="text-center mt-5 mb-4 text-[22px] sm:text-[26px] font-bold font-serif">Login</h1>
-        <div className="flex flex-col gap-[5px] mt-[10px]">
-          <div className="relative mb-[10px]">
+      <div className="absolute inset-0 bg-black/40 backdrop-blur-sm z-0" />
+
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5 }}
+        className="relative z-10 w-[90%] max-w-md bg-white/20 backdrop-blur-lg border border-white/30 rounded-3xl shadow-2xl px-8 py-10"
+      >
+        <div className="flex justify-center mb-6">
+          <Image src={Fabceylon_PVT} alt="Fab Ceylon Logo" width={120} height={80} className="rounded-md" />
+        </div>
+
+        <motion.h1
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+          className="text-2xl sm:text-3xl font-bold text-white text-center mb-6 -mt-5"
+        >
+          Welcome Back
+        </motion.h1>
+
+        <div className="space-y-5">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            className="relative"
+          >
             <Image
-              className="absolute transform -translate-y-1/2 left-2 top-1/2"
               src={user_icon}
-              alt="User Icon"
+              alt="User"
               width={20}
               height={20}
+              className="absolute left-3 top-1/2 transform -translate-y-1/2"
             />
             <input
               type="text"
-              placeholder="Contact Number"
               name="contactNumber"
+              placeholder="Contact Number"
               onChange={changeHandler}
               value={formData.contactNumber}
               required
-              className="h-[35px] w-full bg-[#D9D9D9] rounded-[20px] text-[12px] pl-[50px] border border-[#c9c9c9] placeholder:text-[#888]"
+              className="w-full pl-10 pr-4 py-4 rounded-xl bg-white/70 border border-gray-300 text-sm placeholder-gray-500 text-black focus:outline-none focus:ring-2 focus:ring-orange-400 transition-all"
             />
-          </div>
-          <div className="relative mb-[10px]">
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            className="relative"
+          >
             <Image
-              className="absolute transform -translate-y-1/2 left-2 top-1/2"
               src={lock}
-              alt="Lock Icon"
+              alt="Lock"
               width={20}
               height={20}
+              className="absolute left-3 top-1/2 transform -translate-y-1/2"
             />
             <input
-              type="password"
-              placeholder="Password"
+              type={showPassword ? 'text' : 'password'}
               name="password"
+              placeholder="Password"
               onChange={changeHandler}
               value={formData.password}
               required
-              className="h-[35px] w-full bg-[#D9D9D9] rounded-[20px] text-[12px] pl-[50px] border border-[#c9c9c9] placeholder:text-[#888]"
+              className="w-full pl-10 pr-10 py-4 rounded-xl bg-white/70 border border-gray-300 text-sm placeholder-gray-500 text-black focus:outline-none focus:ring-2 focus:ring-orange-400 transition-all"
             />
-          </div>
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-600 hover:text-gray-800"
+            >
+              {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+            </button>
+          </motion.div>
+
+          {/* Forgot Password Link */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.45 }}
+            className="text-right"
+          >
+            <button
+              onClick={() => router.push('/profileSetting')}
+              className="text-sm text-blue-200 hover:text-blue-400 hover:underline transition"
+            >
+              Forgot Password?
+            </button>
+          </motion.div>
         </div>
-        <button
+
+        <motion.button
           onClick={login}
-          className="w-full h-[35px] bg-[#E1D6C1] mt-[30px] text-[18px] sm:text-[20px] font-semibold rounded-[20px] cursor-pointer hover:bg-[#d1c4b4] transition-all"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5 }}
+          className="w-full mt-8 py-3 bg-gradient-to-r from-orange-400 to-yellow-500 text-white font-semibold rounded-xl hover:from-orange-500 hover:to-yellow-600 transition-all"
         >
           Login
-        </button>
-        <p className="mt-[20px] text-[14px] sm:text-[15px] font-medium flex justify-center">
-          Don't have an Account?{' '}
-          <a href="/signup" className="ml-1 font-extrabold text-blue-500 hover:underline">
+        </motion.button>
+
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.6 }}
+          className="mt-6 text-sm text-white text-center"
+        >
+          Don&apos;t have an account?{' '}
+          <a href="/signup" className="font-bold text-blue-300 hover:underline">
             Sign Up
           </a>
-        </p>
-      </div>
-      <ToastContainer containerId="successMessage" />
-      <ToastContainer containerId="ErrorMessage" />
+        </motion.p>
+      </motion.div>
+
+      <ToastContainer containerId="successMessage" position="top-center" />
+      <ToastContainer containerId="ErrorMessage" position="top-center" />
     </div>
   );
 };

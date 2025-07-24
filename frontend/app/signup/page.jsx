@@ -1,189 +1,165 @@
-'use client'; // Mark this file as a client component
+'use client';
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation'; // Use next/navigation instead of next/router
-import axios from 'axios';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
+import { motion } from 'framer-motion';
+import { Eye, EyeOff } from 'lucide-react';
 import Fabceylon_PVT from '@/components/Assets/Fabceylon_PVT.png';
 import user_icon from '@/components/Assets/User_Icon_login.png';
-import user_icon2 from '@/components/Assets/User_Icon_login2.png';
-
 import lock from '@/components/Assets/Lock.png';
 import background_image from '@/components/Assets/LoginSignUp_back_Image.png';
 
 const SignUpCustomer = () => {
-  const router = useRouter();
-  const [waitForOTPVerification,setWaitForOTPVerification] = useState(false);
-  const [recievedOTP, setRecievedOTP] = useState("");
-  const [enteredOTP, setEnteredOTP] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
   const [formData, setFormData] = useState({
     name: '',
     contactNumber: '',
     password: '',
+    confirmPassword: '',
   });
 
   const changeHandler = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const startVerification = async () => {
-    if (formData.password !== confirmPassword) {
-      toast.error('Passwords do not match.', { containerId: 'ErrorMessage' });
-      return;
-    }
-
-    try {
-      const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL_ADDRESS}/api/customers/start-otp-verification`,
-        {
-          name: formData.name,
-          contactNumber: formData.contactNumber,
-          password: formData.password,
-        },
-        { headers: { 'Content-Type': 'application/json' } }
-      );
-      setRecievedOTP(response.data.generatedOTP);
-      toast.success(`OTP has been successfully sent to ${formData.contactNumber}`, { containerId: 'SuccessMessage' });
-      setWaitForOTPVerification(true);
-
-    } catch (error) {
-      toast.error(error.response?.data?.error || 'An error occurred.', { containerId: 'ErrorMessage' });
-    }
-  };
-  const signup = async () => {
-    if (formData.password !== confirmPassword) {
-      toast.error('Passwords do not match.', { containerId: 'ErrorMessage' });
-      return;
-    }
-
-    try {
-      if(!enteredOTP){
-        throw Error("Please Enter OTP")
-      }
-      if(recievedOTP != enteredOTP){
-        throw Error("The OTP you entered is not valid, or it is expired")
-      }
-      const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL_ADDRESS}/api/customers/signup`,
-        {
-          name: formData.name,
-          contactNumber: formData.contactNumber,
-          password: formData.password,
-        },
-        { headers: { 'Content-Type': 'application/json' } }
-      );
-
-      localStorage.setItem('user', JSON.stringify(response.data));
-      toast.success('Account created successfully!', { containerId: 'SuccessMessage' });
-      router.push('/');
-    } catch (error) {
-      toast.error(error.response?.data?.error || 'An error occurred.', { containerId: 'ErrorMessage' });
-    }
-  };
-
   return (
-    <div className="w-full h-screen bg-[#ded2b7] pt-24 bg-cover bg-center" style={{ backgroundImage: `url(${background_image.src})` }}>
-      <div className="signup-container w-[350px] bg-[#FFFDF7] mx-auto p-[30px] px-[40px] rounded-[30px] shadow-lg">
+    <div
+      className="min-h-screen w-full bg-cover bg-center flex items-center justify-center relative"
+      style={{ backgroundImage: `url(${background_image.src})` }}
+    >
+      <div className="absolute inset-0 bg-black/40 backdrop-blur-sm z-0" />
+
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5 }}
+        className="relative z-10 w-[90%] max-w-md bg-white/20 backdrop-blur-lg border border-white/30 rounded-3xl shadow-2xl px-8 py-10"
+      >
         <div className="flex justify-center mb-6">
-          <Image src={Fabceylon_PVT} alt="Fab Ceylon Logo" width={150} height={75} />
+          <Image src={Fabceylon_PVT} alt="Fab Ceylon Logo" width={120} height={80} className="rounded-md" />
         </div>
 
-        {!waitForOTPVerification ? (
-          <>
-          
-       <h1 className="text-[26px] font-extrabold text-center text-[#333] font-serif">Sign Up</h1>
-        <div className="signup-field flex flex-col gap-[15px] mt-[20px]">
-          <div className="relative">
+        <motion.h1
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+          className="text-2xl sm:text-3xl font-bold text-white text-center mb-6 -mt-5"
+        >
+          Create Account
+        </motion.h1>
+
+        <div className="space-y-5">
+          {/* Name */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            className="relative"
+          >
+            <Image src={user_icon} alt="Name" width={20} height={20} className="absolute left-3 top-1/2 transform -translate-y-1/2" />
             <input
               type="text"
-              placeholder="Name"
               name="name"
-              value={formData.name}
+              placeholder="Full Name"
               onChange={changeHandler}
-              className="h-[40px] w-full bg-[#D9D9D9] rounded-[20px] text-[14px] pl-[50px] border border-[#c9c9c9] text-[#333] placeholder:text-[#888] placeholder:text-[12px]"
+              value={formData.name}
+              className="w-full pl-10 pr-4 py-4 rounded-xl bg-white/70 border border-gray-300 text-sm placeholder-gray-500 text-black focus:outline-none focus:ring-2 focus:ring-orange-400 transition-all"
             />
-            <Image src={user_icon} alt="User Icon" width={20} height={20} className="absolute transform -translate-y-1/2 left-3 top-1/2" />
-          </div>
+          </motion.div>
 
-          <div className="relative">
+          {/* Contact Number */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.35 }}
+            className="relative"
+          >
+            <Image src={user_icon} alt="Contact" width={20} height={20} className="absolute left-3 top-1/2 transform -translate-y-1/2" />
             <input
               type="text"
-              placeholder="Phone Number"
               name="contactNumber"
+              placeholder="Contact Number"
+              onChange={changeHandler}
               value={formData.contactNumber}
-              onChange={changeHandler}
-              className="h-[40px] w-full bg-[#D9D9D9] rounded-[20px] text-[14px] pl-[50px] border border-[#c9c9c9] text-[#333] placeholder:text-[#888] placeholder:text-[12px]"
+              className="w-full pl-10 pr-4 py-4 rounded-xl bg-white/70 border border-gray-300 text-sm placeholder-gray-500 text-black focus:outline-none focus:ring-2 focus:ring-orange-400 transition-all"
             />
-            <Image src={user_icon2} alt="Phone Icon" width={20} height={20} className="absolute transform -translate-y-1/2 left-3 top-1/2" />
-          </div>
+          </motion.div>
 
-          <div className="relative">
+          {/* Password */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            className="relative"
+          >
+            <Image src={lock} alt="Password" width={20} height={20} className="absolute left-3 top-1/2 transform -translate-y-1/2" />
             <input
-              type="password"
-              placeholder="Password"
+              type={showPassword ? 'text' : 'password'}
               name="password"
-              value={formData.password}
+              placeholder="Password"
               onChange={changeHandler}
-              className="h-[40px] w-full bg-[#D9D9D9] rounded-[20px] text-[14px] pl-[50px] border border-[#c9c9c9] text-[#333] placeholder:text-[#888] placeholder:text-[12px]"
+              value={formData.password}
+              className="w-full pl-10 pr-10 py-4 rounded-xl bg-white/70 border border-gray-300 text-sm placeholder-gray-500 text-black focus:outline-none focus:ring-2 focus:ring-orange-400 transition-all"
             />
-            <Image src={lock} alt="Lock Icon" width={20} height={20} className="absolute transform -translate-y-1/2 left-3 top-1/2" />
-          </div>
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-600 hover:text-gray-800"
+            >
+              {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+            </button>
+          </motion.div>
 
-          <div className="relative">
+          {/* Confirm Password */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.45 }}
+            className="relative"
+          >
+            <Image src={lock} alt="Confirm Password" width={20} height={20} className="absolute left-3 top-1/2 transform -translate-y-1/2" />
             <input
-              type="password"
+              type={showConfirmPassword ? 'text' : 'password'}
+              name="confirmPassword"
               placeholder="Confirm Password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              className="h-[40px] w-full bg-[#D9D9D9] rounded-[20px] text-[14px] pl-[50px] border border-[#c9c9c9] text-[#333] placeholder:text-[#888] placeholder:text-[12px]"
+              onChange={changeHandler}
+              value={formData.confirmPassword}
+              className="w-full pl-10 pr-10 py-4 rounded-xl bg-white/70 border border-gray-300 text-sm placeholder-gray-500 text-black focus:outline-none focus:ring-2 focus:ring-orange-400 transition-all"
             />
-            <Image src={lock} alt="Lock Icon" width={20} height={20} className="absolute transform -translate-y-1/2 left-3 top-1/2" />
-          </div>
+            <button
+              type="button"
+              onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+              className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-600 hover:text-gray-800"
+            >
+              {showConfirmPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+            </button>
+          </motion.div>
         </div>
-        <button
-          onClick={startVerification}
-          className="w-full h-[40px] bg-[#E1D6C1] mt-[30px] text-[18px] font-semibold font-sans rounded-[20px] hover:bg-[#d4c6b1] transition ease-in-out"
+
+        <motion.button
+          onClick={() => alert('Signup logic not connected.')}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5 }}
+          className="w-full mt-8 py-3 bg-gradient-to-r from-orange-400 to-yellow-500 text-white font-semibold rounded-xl hover:from-orange-500 hover:to-yellow-600 transition-all"
         >
           Sign Up
-        </button>
-        <div className="signup-login mt-[20px] text-[15px] font-medium flex ml-[10px]">
-          <p>
-            Already have an account?{' '}
-            <a href="/login" className="font-extrabold text-blue-500 hover:underline">
-              Login
-            </a>
-          </p>
-        </div>
-          </>
+        </motion.button>
 
-        ):(
-          <>
-            <div className="relative">
-              <input
-                type="text"
-                placeholder="Enter OTP with 6 digits"
-                name="name"
-                value={enteredOTP}
-                onChange={(e)=>{setEnteredOTP(e.target.value)}}
-                className="h-[40px] w-full bg-[#D9D9D9] rounded-[20px] text-[14px] pl-[50px] border border-[#c9c9c9] text-[#333] placeholder:text-[#888] placeholder:text-[12px]"
-              />
-              <Image src={lock} alt="Lock Icon" width={20} height={20} className="absolute transform -translate-y-1/2 left-3 top-1/2" />
-            </div>
-            <button
-              onClick={signup}
-              className="w-full h-[40px] bg-[#E1D6C1] mt-[30px] text-[18px] font-semibold font-sans rounded-[20px] hover:bg-[#d4c6b1] transition ease-in-out"
-            >
-              Confirm OTP
-            </button>
-          </>
-        )}
-      </div>
-      <ToastContainer containerId="SuccessMessage" />
-      <ToastContainer containerId="ErrorMessage" />
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.6 }}
+          className="mt-6 text-sm text-white text-center"
+        >
+          Already have an account?{' '}
+          <a href="/login" className="font-bold text-blue-300 hover:underline">
+            Login
+          </a>
+        </motion.p>
+      </motion.div>
     </div>
   );
 };
