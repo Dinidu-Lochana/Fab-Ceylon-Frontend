@@ -65,7 +65,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-black text-gray-300 pt-16 pb-8 px-4 sm:px-6 lg:px-20">
+    <footer id="contact" className="bg-black text-gray-300 pt-16 pb-8 px-4 sm:px-6 lg:px-20">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 border-b border-gray-700 pb-10">
         {cafes.map((cafe, index) => (
           <div key={index}>

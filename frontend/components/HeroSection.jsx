@@ -1,6 +1,22 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
+
 const HeroSection = () => {
+  const router = useRouter();
+
+  const onExploreMenu = () => {
+    router.push('/exploreMenu');
+  };
+
+  const onFindLocation = () => {
+    // Scroll to the #locations section on the same page
+    const section = document.getElementById('locations');
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section id="home" className="relative pt-24 pb-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
@@ -18,10 +34,16 @@ const HeroSection = () => {
               Experience authentic Sri Lankan cuisine across our premium restaurant locations
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <button className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 rounded-full font-semibold text-lg transition-colors duration-300 transform hover:scale-105">
+              <button
+                onClick={onExploreMenu}
+                className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 rounded-full font-semibold text-lg transition-colors duration-300 transform hover:scale-105"
+              >
                 Explore Menu
               </button>
-              <button className="border-2 border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300">
+              <button
+                onClick={onFindLocation}
+                className="border-2 border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300"
+              >
                 Find Location
               </button>
             </div>
@@ -37,7 +59,6 @@ const HeroSection = () => {
                   className="w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 object-cover rounded-full shadow-2xl animate-bounce"
                 />
               </div>
-              {/* Floating elements */}
               <div className="absolute -top-4 -right-4 w-20 h-20 bg-orange-500/30 rounded-full animate-pulse" />
               <div className="absolute -bottom-8 -left-8 w-16 h-16 bg-orange-400/20 rounded-full animate-pulse delay-1000" />
             </div>
@@ -48,4 +69,6 @@ const HeroSection = () => {
   );
 };
 
-export default HeroSection;
+export default function Home() {
+  return <HeroSection />;
+}
