@@ -1,9 +1,11 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
 const TestimonialsSection = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const router = useRouter();
 
   const testimonials = [
     {
@@ -42,6 +44,10 @@ const TestimonialsSection = () => {
     }, 5000);
     return () => clearInterval(timer);
   }, [testimonials.length]);
+
+  const handleViewMenu = () => {
+    router.push('/exploreMenu');
+  };
 
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-900/30">
@@ -111,12 +117,24 @@ const TestimonialsSection = () => {
             <p className="text-xl text-white/90 mb-6">
               Visit any of our locations and discover why we're Sri Lanka's favorite dining destination
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-white text-orange-500 hover:bg-gray-100 px-8 py-4 rounded-full font-bold text-lg transition-colors duration-300">
-                Book a Table
-              </button>
-              <button className="border-2 border-white text-white hover:bg-white hover:text-orange-500 px-8 py-4 rounded-full font-bold text-lg transition-all duration-300">
-                View Our Menu
+            <div className="flex justify-center">
+              <button 
+                onClick={handleViewMenu}
+                className="relative border-2 border-white text-white px-8 py-4 rounded-full font-bold text-lg overflow-hidden group transition-all duration-500 hover:scale-105 hover:shadow-2xl transform"
+              >
+                {/* Animated background */}
+                <span className="absolute inset-0 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></span>
+                
+                {/* Shimmer effect */}
+                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></span>
+                
+                {/* Button text */}
+                <span className="relative z-10 group-hover:text-orange-500 transition-colors duration-300">
+                  View Our Menu
+                </span>
+                
+                {/* Pulse ring */}
+                <span className="absolute inset-0 rounded-full border-2 border-white animate-pulse opacity-75"></span>
               </button>
             </div>
           </div>
