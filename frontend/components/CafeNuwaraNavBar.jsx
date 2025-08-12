@@ -9,6 +9,9 @@ import Nuwara_Logo_flat from '@/components/Assets/Nuwara _Logo_flat.png';
 const CafeNuwaraNavBar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  // Updated navigation menu — replaced "reservation" with "home" at the start
+  const navItems = ["home", "menu", "order", "register"];
+
   return (
     <div className="relative">
       {/* Main Navigation */}
@@ -41,10 +44,16 @@ const CafeNuwaraNavBar = () => {
           {/* Desktop Menu */}
           <div className="hidden lg:flex items-center space-x-8">
             <nav className="flex gap-6 xl:gap-8 text-black font-serif font-semibold">
-              {["menu", "order", "reservation", "register"].map((id) => (
+              {navItems.map((id) => (
                 <a
                   key={id}
-                  href={`/cafenuwara/${id}/appetizers`}
+                  href={
+                    id === "home"
+                      ? "/"
+                      : id === "register"
+                      ? "/signup"
+                      : `/cafenuwara/${id}/appetizers`
+                  }
                   className="text-lg xl:text-xl hover:text-amber-300 transition-colors duration-200 relative group"
                 >
                   {id === "order" ? "Place Order" : id.charAt(0).toUpperCase() + id.slice(1)}
@@ -73,10 +82,16 @@ const CafeNuwaraNavBar = () => {
       {isMobileMenuOpen && (
         <div className="lg:hidden absolute top-full left-4 right-4 mt-2 bg-white rounded-xl shadow-2xl border border-amber-200 z-50 animate-fade-in">
           <div className="p-6 space-y-4">
-            {["menu", "order", "reservation", "register"].map((id) => (
+            {navItems.map((id) => (
               <a
                 key={id}
-                href={`/cafenuwara/${id}/appetizers`}
+                href={
+                  id === "home"
+                    ? "/"
+                    : id === "register"
+                    ? "/signup"
+                    : `/cafenuwara/${id}/appetizers`
+                }
                 className="block text-lg font-semibold text-gray-800 hover:text-amber-700 transition-colors duration-200 py-2 border-b border-amber-100"
               >
                 {id === "order" ? "Place Order" : id.charAt(0).toUpperCase() + id.slice(1)}

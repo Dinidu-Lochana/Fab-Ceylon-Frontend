@@ -8,6 +8,8 @@ import Fabceylon_logo from "@/components/Assets/Fabceylon_logo.png";
 const KandyMainMenuNavBar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  const navItems = ["home", "menu", "order", "register"];
+
   return (
     <div className="relative ">
       {/* Main Navigation */}
@@ -35,11 +37,15 @@ const KandyMainMenuNavBar = () => {
           {/* Desktop Menu */}
           <div className="items-center hidden space-x-8 lg:flex">
             <nav className="flex gap-6 xl:gap-8 text-[#caa767] font-serif font-semibold">
-              {["menu", "order", "reservation", "register"].map((id) => (
+              {navItems.map((id) => (
                 <a
                   key={id}
                   href={
-                    id === "order"
+                    id === "home"
+                      ? "/"
+                      : id === "register"
+                      ? "/signup"
+                      : id === "order"
                       ? "/fabceylon-kandy/order"
                       : `/fabceylon-kandy/${id}/appetizers`
                   }
@@ -71,11 +77,15 @@ const KandyMainMenuNavBar = () => {
       {isMobileMenuOpen && (
         <div className="absolute z-50 mt-2 bg-white border shadow-2xl lg:hidden top-full left-4 right-4 rounded-xl border-amber-200 animate-fade-in">
           <div className="p-6 space-y-4">
-            {["menu", "order", "reservation", "register"].map((id) => (
+            {navItems.map((id) => (
               <a
                 key={id}
                 href={
-                  id === "order"
+                  id === "home"
+                    ? "/"
+                    : id === "register"
+                    ? "/signup"
+                    : id === "order"
                     ? "/fabceylon-kandy/order"
                     : `/fabceylon-kandy/${id}/appetizers`
                 }

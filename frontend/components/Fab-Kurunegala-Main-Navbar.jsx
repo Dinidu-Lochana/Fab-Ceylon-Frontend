@@ -8,6 +8,8 @@ import Fabceylon_logo from "@/components/Assets/Fabceylon_logo.png";
 const KurunagalMainNavBar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  const navItems = ["home", "menu", "order", "register"];
+
   return (
     <div className="relative ">
       {/* Main Navigation */}
@@ -35,11 +37,15 @@ const KurunagalMainNavBar = () => {
           {/* Desktop Menu */}
           <div className="hidden lg:flex items-center space-x-8">
             <nav className="flex gap-6 xl:gap-8 text-[#caa767] font-serif font-semibold">
-              {["menu", "order", "reservation", "register"].map((id) => (
+              {navItems.map((id) => (
                 <a
                   key={id}
                   href={
-                    id === "order"
+                    id === "home"
+                      ? "/"
+                      : id === "register"
+                      ? "/signup"
+                      : id === "order"
                       ? "/fabceylon-kurunegala/order"
                       : `/fabceylon-kurunegala/${id}/appetizers`
                   }
@@ -71,11 +77,15 @@ const KurunagalMainNavBar = () => {
       {isMobileMenuOpen && (
         <div className="lg:hidden absolute top-full left-4 right-4 mt-2 bg-white rounded-xl shadow-2xl border border-amber-200 z-50 animate-fade-in">
           <div className="p-6 space-y-4">
-            {["menu", "order", "reservation", "register"].map((id) => (
+            {navItems.map((id) => (
               <a
                 key={id}
                 href={
-                  id === "order"
+                  id === "home"
+                    ? "/"
+                    : id === "register"
+                    ? "/signup"
+                    : id === "order"
                     ? "/fabceylon-kurunegala/order"
                     : `/fabceylon-kurunegala/${id}/appetizers`
                 }
