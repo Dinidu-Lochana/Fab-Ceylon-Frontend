@@ -11,6 +11,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import Footer from '@/components/Footer';
 
 const getStars = (rating) => {
   const roundedRating = parseFloat(rating.toFixed(1));
@@ -168,7 +169,7 @@ export default function KandyMenu({ params }) {
         </div>
 
       {/* Category and Food List */}
-      <div className="relative text-center bg-black">
+      <div className="relative text-center bg-gradient-to-b from-gray-900 via-black to-gray-900 pb-20">
         <h1 className="text-[#eb650f] text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold font-['Poppins'] px-4">
           {foodCategory.replace(/-/g, ' ').toUpperCase()}
         </h1>
@@ -176,7 +177,7 @@ export default function KandyMenu({ params }) {
           It is a good time for the great taste of {foodCategory.replace(/-/g, ' ')}
         </div>
 
-        <div className="flex flex-col items-start justify-center gap-6 px-4 mt-6 lg:flex-row lg:gap-10 lg:mt-10">
+        <div className="flex flex-col items-start justify-center gap-6 px-4 mt-6 mb-20 lg:flex-row lg:gap-10 lg:mt-10">
           {/* Foods */}
           <div className="w-full lg:flex-1">
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3 place-items-center">
@@ -278,6 +279,7 @@ export default function KandyMenu({ params }) {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

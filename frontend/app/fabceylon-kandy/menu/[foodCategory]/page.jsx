@@ -10,6 +10,9 @@ import { useParams } from 'next/navigation';
 import delete_icon from '@/components/Assets/delete.png';
 import { FabKandyMenuNavBar } from '@/components/Fab-Kandy-MenuNavBar';
 import  KandyMainMenuNavBar  from '@/components/Fab-Kandy-MainMenuNavBar';
+import axios from "axios";
+import { toast } from "react-hot-toast";
+import Footer from '@/components/Footer';
 
 const getStars = (rating) => {
   const roundedRating = parseFloat(rating.toFixed(1)); 
@@ -116,7 +119,7 @@ export default function KandyMenu({ params }) {
         </div>
 
         {/* Category Header */}
-        <div className="px-4 py-10 text-center bg-black">
+        <div className="px-4 py-10 text-center bg-gradient-to-b from-gray-900 via-black to-gray-900">
           <h1 className="text-[#eb650f] text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold font-['Poppins']">
             {foodCategory.replace(/-/g, ' ').toUpperCase()}
           </h1>
@@ -127,7 +130,7 @@ export default function KandyMenu({ params }) {
         </div>
 
         {/* Food Cards */}
-        <div className="px-4 py-10 bg-black sm:px-10 md:px-20">
+        <div className="px-4 py-10 bg-gradient-to-b from-gray-900 via-black to-gray-900 sm:px-10 md:px-20">
           <div className="grid justify-center grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
             {foods.map((food) => (
               <div
@@ -176,6 +179,7 @@ export default function KandyMenu({ params }) {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

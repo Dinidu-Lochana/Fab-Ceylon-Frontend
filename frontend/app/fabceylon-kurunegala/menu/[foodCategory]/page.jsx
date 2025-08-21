@@ -12,6 +12,7 @@ import { useParams } from 'next/navigation';
 import Rating_Star from '@/components/Assets/star_icon.png'; // Assuming you're using this for stars
 import axios from 'axios';
 import { toast } from 'react-toastify'; // Only if you're using toast
+import Footer from '@/components/Footer';
 
 
 
@@ -127,8 +128,8 @@ export default function KurunagalaMenu({ params }) {
         </div>
         </div>
 
-      <div className="relative bg-black">
-        <div className="text-[#eb650f] text-7xl font-bold font-['Poppins'] bg-black text-center">
+      <div className="relative bg-gradient-to-b from-gray-900 via-black to-gray-900 pb-20">
+        <div className="text-[#eb650f] text-7xl font-bold font-['Poppins'] bg-gradient-to-b from-gray-900 via-black to-gray-900 text-center">
           <h1>{foodCategory.replace(/-/g, ' ').toUpperCase()}</h1>
 
           <div className="text-white text-3xl font-bold font-['Poppins'] mt-10">
@@ -136,7 +137,7 @@ export default function KurunagalaMenu({ params }) {
           </div>
         </div>
 
-        <div className="flex flex-row items-start justify-center gap-10 mt-10">
+        <div className="flex flex-row items-start justify-center gap-10 mt-10 mb-20">
           <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
             {foods.map((food) => (
               <div
@@ -191,6 +192,7 @@ export default function KurunagalaMenu({ params }) {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

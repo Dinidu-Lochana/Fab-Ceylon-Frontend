@@ -13,6 +13,7 @@ import Cafe_Nuwara_logo from '@/components/Assets/Cafe_Nuwara_logo.png'
 import Link from "next/link";
 import CafeNuwaraHero_Image from "@/components/Assets/CafeNuwaraHero_Image.png";
 import delete_icon from "@/components/Assets/delete.png";
+import CafenuwaraFooter from "@/components/CafenuwaraFooter"
 
 
 const getStars = (rating) => {
@@ -201,7 +202,7 @@ export default function CafeNuwara({ params }) {
       </div>
 
       {/* Cards and Cart Container */}
-      <div className="flex flex-col items-start justify-center gap-6 px-4 mt-16 xl:flex-row md:gap-10 md:mt-32">
+      <div className="flex flex-col items-start justify-center gap-6 px-4 mt-16 mb-16 md:mb-24 xl:flex-row md:gap-10 md:mt-32">
         {/* Card Grid Section */}
         <div className="w-full xl:flex-1">
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 md:gap-10 justify-items-center">
@@ -389,6 +390,7 @@ export default function CafeNuwara({ params }) {
           )}
         </div>
       </div>
+      <CafenuwaraFooter />
     </div>
   );
 }

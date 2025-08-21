@@ -9,6 +9,7 @@ import KandyMainMenuNavBar  from '@/components/Fab-Kandy-MainMenuNavBar';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import Link from 'next/link';
+import Footer from '@/components/Footer';
 
 const getStars = (rating) => {
   const roundedRating = parseFloat(rating.toFixed(1)); 
@@ -162,8 +163,8 @@ export default function KandyMenu({ params }) {
         </div>
 
       {/* Food Category and List */}
-      <div className="relative bg-black">
-        <div className="text-[#eb650f] text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold font-['Poppins'] bg-black text-center px-4">
+      <div className="relative bg-gradient-to-b from-gray-900 via-black to-gray-900 pb-16 sm:pb-20 md:pb-24 lg:pb-32">
+        <div className="text-[#eb650f] text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold font-['Poppins'] bg-gradient-to-b from-gray-900 via-black to-gray-900 text-center px-4">
           <h1>{foodCategory.replace(/-/g, ' ').toUpperCase()}</h1>
 
           <div className="text-white text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold font-['Poppins'] mt-6 md:mt-10">
@@ -290,6 +291,7 @@ export default function KandyMenu({ params }) {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

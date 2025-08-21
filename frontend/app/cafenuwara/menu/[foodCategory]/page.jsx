@@ -9,6 +9,7 @@ import star_icon from "@/components/Assets/star_icon.png";
 import axios from "axios";
 import toast from "react-hot-toast";
 import CafeNuwaraHero_Image from "@/components/Assets/CafeNuwaraHero_Image.png";
+import CafenuwaraFooter from "@/components/CafenuwaraFooter"
 
 const getStars = (rating) => {
   const roundedRating = parseFloat(rating.toFixed(1));
@@ -72,7 +73,7 @@ export default function CafeNuwara({ params }) {
   }, [foodCategory]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-amber-100 via-orange-50 to-amber-100">
+    <div className="min-h-screen bg-gradient-to-br from-amber-100 via-orange-50 to-amber-100 pb-20">
       <div className="relative z-50">
         <CafeNuwaraNavBar />
         <CafeNuwaraMenuNavBar />
@@ -148,7 +149,7 @@ export default function CafeNuwara({ params }) {
       </div>
 
       {/* Cards and Cart Container */}
-      <div className="flex flex-row items-start justify-center gap-10 mt-32">
+      <div className="flex flex-row items-start justify-center gap-10 mt-32 mb-20">
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
           {foods.map((food) => (
             <div
@@ -215,6 +216,7 @@ export default function CafeNuwara({ params }) {
           ))}
         </div>
       </div>
+      <CafenuwaraFooter />
     </div>
   );
 }

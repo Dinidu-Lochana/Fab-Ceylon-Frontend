@@ -9,6 +9,7 @@ import {FabKurungalaMenuNavBar} from '@/components/Fab-Kurunegala-Pickup_Navbar'
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import Link from 'next/link';
+import Footer from '@/components/Footer';
 
 const getStars = (rating) => {
   const roundedRating = parseFloat(rating.toFixed(1)); 
@@ -162,9 +163,9 @@ export default function KandyMenu({ params }) {
         </div>
 
       {/* Food Category and List */}
-        <div className="relative px-4 bg-black sm:px-6 lg:px-8">
+        <div className="relative px-4 bg-gradient-to-b from-gray-900 via-black to-gray-900 sm:px-6 lg:px-8">
           
-          <div className="text-[#eb650f] text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold font-['Poppins'] bg-black text-center py-8">
+          <div className="text-[#eb650f] text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold font-['Poppins'] bg-gradient-to-b from-gray-900 via-black to-gray-900 text-center py-8">
             <h1>{foodCategory.replace(/-/g, ' ').toUpperCase()}</h1>
 
           <div className="text-white text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold font-['Poppins'] mt-4 sm:mt-6 lg:mt-10">
@@ -297,6 +298,7 @@ export default function KandyMenu({ params }) {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
